@@ -114,6 +114,38 @@ class STL():
 
         return trend, season, remainder
 
+    def fit_1d(self,
+            y,
+            n_p,
+            t_window=None,
+            l_window=None,
+            t_degree=1,
+            l_degree=None,
+            t_jump=None,
+            l_jump=None,
+            inner=2,
+            outer=1,
+            critval=0.05,
+            ):
+        y = np.asarray(y)
+        if y.ndim != 1:
+            raise TypeError("y should be a 1d array")
+        n = y.shape[0]
+        Y = y.reshape(1, n)
+
+        season, trend, remainder = self.fit(Y,
+                                            n_p,
+                                            t_window,
+                                            l_window,
+                                            t_degree,
+                                            l_degree,
+                                            t_jump,
+                                            l_jump,
+                                            inner,
+                                            outer,
+                                            critval)
+        return season[0], trend[0], remainder[0]
+
     def _degcheck(self, x):
         x = int(x)
         if not (0 <= x <= 2):

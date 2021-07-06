@@ -38,16 +38,11 @@ if __name__ == "__main__":
     x_dim = 500
     n_p = 52
 
-    data = gen_harmonic_data(out_len=x_dim, n_p=n_p).reshape((1, x_dim)).astype(np.float32)
+    data = gen_harmonic_data(out_len=x_dim, n_p=n_p).astype(np.float32)
     x = np.arange(1, x_dim + 1)
 
     stl = STL(debug=True)
-    seasonal, trend, remainder = stl.fit(data, n_p=n_p)
-    seasonal = seasonal[0]
-    trend = trend[0]
-    remainder = remainder[0]
-
-    data = data[0]
+    seasonal, trend, remainder = stl.fit_1d(data, n_p=n_p)
 
     fig, axs = plt.subplots(4)
     axs[0].plot(x, data)
