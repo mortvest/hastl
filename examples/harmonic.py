@@ -41,7 +41,7 @@ if __name__ == "__main__":
     data = gen_harmonic_data(out_len=x_dim, n_p=n_p).astype(np.float32)
     x = np.arange(1, x_dim + 1)
 
-    stl = STL(debug=True)
+    stl = STL(debug=True, backend="c")
     seasonal, trend, remainder = stl.fit_1d(data, n_p=n_p)
 
     fig, axs = plt.subplots(4)

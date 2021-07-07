@@ -13,6 +13,32 @@ numpy==1.21.0
 pycparser==2.20
 ```
 ## Installation
+You may want to run the program in a Python virtual environment. Create it via::
+```
+python -m venv env
+```
+
+Then, activate the virtual environment via::
+```
+. env/bin/activate
+```
+
+Upgrade pip via::
+```
+  pip install --upgrade pip
+```
+
+To install the package from the sources, first get the current stable release via::
+```
+  git clone https://github.com/mortvest/hastl
+```
+
+Install the bfast dependencies via::
+```
+  pip install -r requirements.txt
+```
+
+Afterwards, on Linux systems, you can install the package locally for the current user via::
 ```
 python setup.py sdist bdist-wheel
 pip install .

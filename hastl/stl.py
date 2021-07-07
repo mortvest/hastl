@@ -1,7 +1,6 @@
 import numpy as np
 from futhark_ffi import Futhark
-from . import _stl
-# from . import foo
+from . import _stl_c
 
 
 class STL():
@@ -9,6 +8,7 @@ class STL():
     Batched STL decomposition for GPUs
     """
     def __init__(self,
+                 backend="opencl",
                  jump_threshold=9,
                  max_group_size=1024,
                  tuning=None,
@@ -17,6 +17,7 @@ class STL():
                  debug=False
                  ):
         # set device-specific parameters
+        self.backend = backend
         self.jump_threshold = jump_threshold
         self.max_group_size = max_group_size
         self.device = device
@@ -27,11 +28,27 @@ class STL():
             # TODO: add tuning
             self.tuning = {}
 
-        if self.debug:
+        if self.backend == "opencl":
+            try:
+                from . import _stl_opencl
+                self.fut_lib = _stl_opencl
+            except:
+                raise ValueError("Failed loading the OpenCL backend") from None
+        elif self.backend == "cuda":
+            try:
+                from . import _stl_cuda
+                self.fut_lib = _stl_cuda
+            except:
+                raise ValueError("Failed loading the CUDA backend") from None
+        elif self.backend == "c":
+            self.fut_lib = _stl_c
+        else:
+            raise ValueError("Unknown backend parameter: '{}'".format(self.backend))
+
+        if self.debug and self.backend != "c":
             print("Initializing the device")
         try:
-            self.fut_obj = Futhark(_stl, tuning=self.tuning, device=self.device, platform=self.platform)
-            # self.fut_obj = Futhark(stl_opencl, tuning=self.tuning, device=self.device, platform=self.platform)
+            self.fut_obj = Futhark(self.fut_lib, tuning=self.tuning, device=self.device, platform=self.platform)
         except ValueError as err:
             from_err = err if self.debug else None
             raise ValueError("An error occurred while initializing the device") from from_err
