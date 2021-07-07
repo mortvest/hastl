@@ -24,7 +24,6 @@ setup(
     packages=find_packages(),
     package_data={'': ["*.so"]},
     install_requires=[
-        "numpy>=1.21.0",
         "futhark-ffi>=0.13.0"
     ],
     setup_requires=[
