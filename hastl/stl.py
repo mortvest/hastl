@@ -1,7 +1,7 @@
 import numpy as np
 from futhark_ffi import Futhark
-
-import _stl
+from . import _stl
+# from . import foo
 
 
 class STL():
@@ -31,6 +31,7 @@ class STL():
             print("Initializing the device")
         try:
             self.fut_obj = Futhark(_stl, tuning=self.tuning, device=self.device, platform=self.platform)
+            # self.fut_obj = Futhark(stl_opencl, tuning=self.tuning, device=self.device, platform=self.platform)
         except ValueError as err:
             from_err = err if self.debug else None
             raise ValueError("An error occurred while initializing the device") from from_err

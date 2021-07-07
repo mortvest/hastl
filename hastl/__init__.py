@@ -1,1 +1,1 @@
-from .stl import STL
+from hastl.stl import STL
