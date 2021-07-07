@@ -1,7 +1,7 @@
 # HaSTL
 HaSTL \[ˈheɪstiɛl\]: A fast GPU implementation of batched Seasonal and Trend
 decomposition using Loess (STL) [1] with missing values and support for both
-CUDA and OpenCL (a sequential C backend is also available).
+CUDA and OpenCL (a sequential, but rather slow C backend is also available).
 Loosely based on [stlplus](https://github.com/hafen/stlplus), a
 popular library for the R programming language. The GPU code is written in
 [Futhark](https://futhark-lang.org/), a small functional language that compiles
