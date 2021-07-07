@@ -31,24 +31,24 @@ class STL():
         if self.backend == "opencl":
             try:
                 from . import _stl_opencl
-                self.fut_lib = _stl_opencl
+                self._fut_lib = _stl_opencl
             except:
                 raise ValueError("Failed loading the OpenCL backend") from None
         elif self.backend == "cuda":
             try:
                 from . import _stl_cuda
-                self.fut_lib = _stl_cuda
+                self._fut_lib = _stl_cuda
             except:
                 raise ValueError("Failed loading the CUDA backend") from None
         elif self.backend == "c":
-            self.fut_lib = _stl_c
+            self._fut_lib = _stl_c
         else:
             raise ValueError("Unknown backend parameter: '{}'".format(self.backend))
 
         if self.debug and self.backend != "c":
             print("Initializing the device")
         try:
-            self.fut_obj = Futhark(self.fut_lib, tuning=self.tuning, device=self.device, platform=self.platform)
+            self._fut_obj = Futhark(self._fut_lib, tuning=self.tuning, device=self.device, platform=self.platform)
         except ValueError as err:
             from_err = err if self.debug else None
             raise ValueError("An error occurred while initializing the device") from from_err
@@ -106,22 +106,22 @@ class STL():
             print("Running the program")
 
         try:
-            s_data, t_data, r_data = self.fut_obj.main(Y,
-                                                       n_p,
-                                                       t_window,
-                                                       l_window,
-                                                       t_degree,
-                                                       l_degree,
-                                                       t_jump,
-                                                       l_jump,
-                                                       inner,
-                                                       outer,
-                                                       self.jump_threshold,
-                                                       self.max_group_size)
+            s_data, t_data, r_data = self._fut_obj.main(Y,
+                                                        n_p,
+                                                        t_window,
+                                                        l_window,
+                                                        t_degree,
+                                                        l_degree,
+                                                        t_jump,
+                                                        l_jump,
+                                                        inner,
+                                                        outer,
+                                                        self.jump_threshold,
+                                                        self.max_group_size)
 
-            season = self.fut_obj.from_futhark(s_data)
-            trend = self.fut_obj.from_futhark(t_data)
-            remainder = self.fut_obj.from_futhark(r_data)
+            season = self._fut_obj.from_futhark(s_data)
+            trend = self._fut_obj.from_futhark(t_data)
+            remainder = self._fut_obj.from_futhark(r_data)
         except ValueError as err:
             err_type = err.args[0].split("\n")[0]
             from_err = err if self.debug else None
