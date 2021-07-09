@@ -34,6 +34,10 @@ Upgrade pip via::
 
   pip install --upgrade pip
 
+The package can then be easily installed using pip via::
+
+  pip install hastl
+
 To install the package from the sources, first get the current stable release via::
 
   git clone https://github.com/mortvest/hastl
@@ -42,7 +46,9 @@ Install the bfast dependencies via::
 
   pip install -r requirements.txt
 
-Afterwards, you can compile all the backends and install the package (this will take a while)::
+Afterwards, you can install the package. This will take a while, since we need
+to compile the shared libraries for your particular system and Python
+implementation and all available backends::
 
   python setup.py sdist bdist_wheel
   pip install .
