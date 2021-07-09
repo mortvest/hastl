@@ -6,7 +6,7 @@ CUDA_MODULE = "./hastl/build_stl.py:build_stl_cuda"
 OPENCL_MODULE = "./hastl/build_stl.py:build_stl_opencl"
 C_MODULE = "./hastl/build_stl.py:build_stl_c"
 
-VERSION = "0.1.1"
+VERSION = "0.1.2"
 
 def gen_setup(cffi_mods):
     return setup(
@@ -43,7 +43,7 @@ except:
             C_MODULE
         ])
     except:
-        print("Could not locate a working OPENCL installation, skipping..")
+        print("Could not locate a working OpenCL installation, skipping..")
         gen_setup([
             C_MODULE
         ])

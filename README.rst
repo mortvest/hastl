@@ -6,7 +6,7 @@ decomposition using Loess (STL) [1] with missing values and support for both
 CUDA and OpenCL (a rather slow C backend is also available).
 Loosely based on `stlplus <https://github.com/hafen/stlplus>`_, a
 popular library for the R programming language. The GPU code is written in
-`Futhark <https://futhark-lang.org>`_, a small functional language that compiles
+`Futhark <https://futhark-lang.org>`_, a functional language that compiles
 to efficient parallel code.
 
 
