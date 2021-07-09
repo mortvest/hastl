@@ -6,10 +6,12 @@ CUDA_MODULE = "./hastl/build_stl.py:build_stl_cuda"
 OPENCL_MODULE = "./hastl/build_stl.py:build_stl_opencl"
 C_MODULE = "./hastl/build_stl.py:build_stl_c"
 
+VERSION = "0.1.1"
+
 def gen_setup(cffi_mods):
     return setup(
         name="hastl",
-        version="0.1",
+        version=VERSION,
         author="Dmitry Serykh",
         author_email="dmitry.serykh@gmail.com",
         description=("A fast GPU implementation of STL decomposition with missing values"),
