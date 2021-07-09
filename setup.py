@@ -1,6 +1,4 @@
-import sys
 from setuptools import setup, find_packages
-import os
 
 CUDA_MODULE = "./hastl/build_stl.py:build_stl_cuda"
 OPENCL_MODULE = "./hastl/build_stl.py:build_stl_opencl"
@@ -8,7 +6,7 @@ C_MODULE = "./hastl/build_stl.py:build_stl_c"
 
 VERSION = "0.1.2"
 
-def gen_setup(cffi_mods):
+def run_setup(cffi_mods):
     return setup(
         name="hastl",
         version=VERSION,
@@ -28,22 +26,12 @@ def gen_setup(cffi_mods):
         cffi_modules=cffi_mods
     )
 
-# TODO: REWRITE THIS
-try:
-    gen_setup([
-        CUDA_MODULE,
-        OPENCL_MODULE,
-        C_MODULE
-    ])
-except:
-    print("Could not locate a working CUDA installation, skipping..")
+CFFI_MODULES = [CUDA_MODULE, OPENCL_MODULE, C_MODULE]
+
+while CFFI_MODULES:
     try:
-        gen_setup([
-            OPENCL_MODULE,
-            C_MODULE
-        ])
+        # try compiling a subset of backends
+        run_setup(CFFI_MODULES)
+        break
     except:
-        print("Could not locate a working OpenCL installation, skipping..")
-        gen_setup([
-            C_MODULE
-        ])
+        print("Compilation of CFFI module '{}': failed, skipping...".format(CFFI_MODULES.pop(0)))
