@@ -1,3 +1,2 @@
 *.c linguist-detectable=false
-*.py linguist-detectable=true
-*.fut linguist-detectable=true
+*.h linguist-detectable=false
