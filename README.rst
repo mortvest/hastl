@@ -49,7 +49,7 @@ Afterwards, you can compile all the backends and install the package (this will 
 
 
 Usage
-----
+-----
 Set backend to "cuda", "opencl" or "c" and run::
 
   from hastl import STL
