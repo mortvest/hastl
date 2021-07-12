@@ -6,6 +6,7 @@ C_MODULE = "./hastl/build_stl.py:build_stl_c"
 
 VERSION = "0.1.2"
 
+
 def run_setup(cffi_mods):
     return setup(
         name="hastl",
@@ -17,6 +18,23 @@ def run_setup(cffi_mods):
         url="https://github.com/mortvest/hastl",
         license="MIT",
         packages=find_packages(),
+        classifiers=[
+            "Development Status :: 3 - Alpha",
+            "Environment :: GPU",
+            "Intended Audience :: Science/Research",
+            "Intended Audience :: Developers",
+            "License :: OSI Approved :: MIT License",
+            "Operating System :: POSIX :: Linux",
+            "Operating System :: MacOS",
+            "Programming Language :: Python",
+            "Programming Language :: Python :: 3 :: Only",
+            "Programming Language :: Python :: 3.6",
+            "Programming Language :: Python :: 3.7",
+            "Programming Language :: Python :: 3.8",
+            "Programming Language :: Python :: 3.9",
+            "Topic :: Software Development",
+            "Topic :: Scientific/Engineering",
+        ],
         install_requires=[
             "futhark-ffi>=0.13.0",
         ],
@@ -30,7 +48,6 @@ CFFI_MODULES = [CUDA_MODULE, OPENCL_MODULE, C_MODULE]
 
 while CFFI_MODULES:
     try:
-        # try compiling a subset of backends
         run_setup(CFFI_MODULES)
         break
     except:
