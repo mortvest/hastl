@@ -36,7 +36,7 @@ Upgrade pip via::
 
 Then select the backends (choose from opencl, cuda, c and multicore) that you wish to build by setting the environment variable::
 
-  export HASTL_BACKENDS="c, opencl" 
+  export HASTL_BACKENDS="opencl multicore c" 
 
 If no environmental variable is set, an attempt will be made to compile all
 available backends.
