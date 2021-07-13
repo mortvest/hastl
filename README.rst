@@ -13,7 +13,7 @@ to efficient parallel code.
 Requirements
 ------------
 
-You would need a working OpenCL or CUDA installation, C compiler and these Python packages:
+You would need a working OpenCL or CUDA installation/header files, C compiler and these Python packages:
 
 - futhark-ffi>=0.13.0
 - wheel
@@ -54,7 +54,7 @@ Install the bfast dependencies via::
 
   pip install -r requirements.txt
 
-Afterwards, you can install the package. This will also take a while::
+Afterwards, you can install the package. This can also take a while::
 
   python setup.py sdist bdist_wheel
   pip install .
