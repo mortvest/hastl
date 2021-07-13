@@ -65,7 +65,7 @@ Usage
 Set backend to "cuda", "opencl", "multicore" or "c" and run::
 
   from hastl import STL
-  stl = STL(backend=backend)
+  stl = STL(backend="opencl")
   seasonal, trend, remainder = stl.fit(data, n_p=12)
 
 
