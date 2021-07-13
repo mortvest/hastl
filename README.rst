@@ -41,9 +41,8 @@ Then select the backends (choose from opencl, cuda, c and multicore) that you wi
 If no environmental variable is set, an attempt will be made to compile all
 available backends.
 
-The package can then be easily installed using pip via. This will take a while, since we need
-to compile the shared libraries for your particular system, Python
-implementation and all selected backends::
+The package can then be easily installed using pip. This will take a while, since we need
+to compile the shared libraries for your particular system, Python implementation and all selected backends::
 
   pip install hastl
 
