@@ -1,2 +1,2 @@
-futhark-ffi==0.13.0
+futhark-ffi>=0.14.0
 wheel

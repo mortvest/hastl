@@ -1,6 +1,7 @@
-import numpy as np
+from importlib import import_module
+
 from futhark_ffi import Futhark
-from . import _stl_c
+import numpy as np
 
 
 class STL():
@@ -28,37 +29,17 @@ class STL():
             # TODO: add tuning
             self.tuning = {}
 
-        if self.backend == "opencl":
-            try:
-                from . import _stl_opencl
-                self._fut_lib = _stl_opencl
-            except:
-                raise ValueError("Failed loading the OpenCL backend") from None
-        elif self.backend == "cuda":
-            try:
-                from . import _stl_cuda
-                self._fut_lib = _stl_cuda
-            except:
-                raise ValueError("Failed loading the CUDA backend") from None
-        elif self.backend == "c":
-            try:
-                from . import _stl_c
-                self._fut_lib = _stl_c
-            except:
-                raise ValueError("Failed loading the C backend") from None
-        elif self.backend == "multicore":
-            try:
-                from . import _stl_multicore
-                self._fut_lib = _stl_multicore
-            except:
-                raise ValueError("Failed loading the multicore backend") from None
-        else:
-            raise ValueError("Unknown backend parameter: '{}'".format(self.backend))
+        self._backends = ["opencl", "cuda", "multicore", "c"]
 
-        if self.debug and self.backend != "c":
+        if self.backend not in self._backends:
+            raise ValueError("Unknown backend: '{}'".format(self.backend))
+
+        fut_lib = _try_importing(backend)
+
+        if self.debug and self.backend in ["opencl", "cuda"]:
             print("Initializing the device")
         try:
-            self._fut_obj = Futhark(self._fut_lib, tuning=self.tuning, device=self.device, platform=self.platform)
+            self._fut_obj = Futhark(fut_lib, tuning=self.tuning, device=self.device, platform=self.platform)
         except ValueError as err:
             from_err = err if self.debug else None
             raise ValueError("An error occurred while initializing the device") from from_err
@@ -233,3 +214,25 @@ class STL():
 
         n_t = self._nextodd((-betat1 - np.sqrt(betat1**2 - 4 * betat00 * betat2)) / (2 * betat00))
         return n_t
+
+def print_installed_backends():
+    installed_backends = []
+    for backend in ["cuda", "opencl", "multicore", "c"]:
+        try:
+            _try_importing(backend)
+        except ValueError:
+            pass
+        else:
+            installed_backends.append(backend)
+    print("Installed HaSTL backens:")
+    print(installed_backends)
+
+def _try_importing(backend):
+    module_name = "_stl_" + backend
+    try:
+        mod = import_module("hastl." + module_name)
+    except:
+        raise ValueError("Failed loading the {} backend".format(backend)) from None
+    else:
+        globals()[module_name] = mod
+        return mod

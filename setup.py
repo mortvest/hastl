@@ -5,7 +5,7 @@ BACKENDS = ["cuda", "opencl", "c", "multicore"]
 MODULE_BASE = "./hastl/build_stl.py:build_stl_"
 ENV_VAR = "HASTL_BACKENDS"
 
-VERSION = "0.1.2"
+VERSION = "0.1.3"
 
 def run_setup(cffi_mods):
     return setup(
@@ -36,10 +36,10 @@ def run_setup(cffi_mods):
             "Topic :: Scientific/Engineering",
         ],
         install_requires=[
-            "futhark-ffi>=0.13.0",
+            "futhark-ffi>=0.14.0",
         ],
         setup_requires=[
-            "futhark-ffi>=0.13.0"
+            "futhark-ffi>=0.14.0"
         ],
         cffi_modules=cffi_mods
     )
