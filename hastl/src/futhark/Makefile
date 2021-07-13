@@ -1,4 +1,4 @@
-backends = cuda opencl c
+backends = cuda opencl c multicore
 
 .PHONY: all c_files h_files clean
 

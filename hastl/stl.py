@@ -41,7 +41,17 @@ class STL():
             except:
                 raise ValueError("Failed loading the CUDA backend") from None
         elif self.backend == "c":
-            self._fut_lib = _stl_c
+            try:
+                from . import _stl_c
+                self._fut_lib = _stl_c
+            except:
+                raise ValueError("Failed loading the C backend") from None
+        elif self.backend == "multicore":
+            try:
+                from . import _stl_multicore
+                self._fut_lib = _stl_multicore
+            except:
+                raise ValueError("Failed loading the multicore backend") from None
         else:
             raise ValueError("Unknown backend parameter: '{}'".format(self.backend))
 

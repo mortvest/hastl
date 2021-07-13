@@ -1,9 +1,10 @@
+import itertools
 import os
 import wget
+from zipfile import ZipFile
 
 import numpy as np
 import pandas as pd
-from zipfile import ZipFile
 
 from hastl import STL
 
@@ -44,7 +45,6 @@ def process_file(stl_obj, input_name, output_name, n_p):
     print("saving csv")
     res.to_csv(output_name, index=False)
 
-
 # download and parse input data
 data_dir = "data/"
 data_dir_p = data_dir + "power/"
@@ -67,18 +67,17 @@ if not os.path.exists(archive_path):
 print()
 if not (os.path.exists(test_file) and os.path.exists(train_file) and os.path.exists(val_file)):
     print("extracting zip")
-    with ZipFile(archive_path, 'r') as zip:
-        zip.extractall(data_dir)
-
-daily_n_p = 60 * 24
-weekly_n_p = 60 * 24 * 7
+    with ZipFile(archive_path, 'r') as zip_archive:
+        zip_archive.extractall(data_dir)
 
 print("initializing the environment")
 stl_obj = STL(backend="opencl")
 
-process_file(stl_obj, train_file, "train_decomp_daily.csv", daily_n_p)
-process_file(stl_obj, train_file, "train_decomp_weekly.csv", weekly_n_p)
-process_file(stl_obj, test_file, "test_decomp_daily.csv", daily_n_p)
-process_file(stl_obj, test_file, "test_decomp_weekly.csv", weekly_n_p)
-process_file(stl_obj, val_file, "val_decomp_daily.csv", daily_n_p)
-process_file(stl_obj, val_file, "val_decomp_weekly.csv", weekly_n_p)
+datasets = [train_file, test_file, val_file]
+out_names = ["train", "test", "val"]
+
+n_ps = [60 * 24, 60 * 24 * 7]
+periodicities = ["daily", "weekly"]
+
+for (dataset, out_name), (n_p, periodicity) in itertools.product(zip(datasets, out_names), zip(n_ps, periodicities)):
+    process_file(stl_obj, dataset, "{}_decomp_{}.csv".format(out_name, periodicity), n_p)

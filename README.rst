@@ -3,7 +3,7 @@ HaSTL
 
 HaSTL [ˈheɪstiɛl]: A fast GPU implementation of batched Seasonal and Trend
 decomposition using Loess (STL) [1] with missing values and support for both
-CUDA and OpenCL (a rather slow C backend is also available).
+CUDA and OpenCL (C and multicore backends are also available).
 Loosely based on `stlplus <https://github.com/hafen/stlplus>`_, a
 popular library for the R programming language. The GPU code is written in
 `Futhark <https://futhark-lang.org>`_, a functional language that compiles
@@ -34,7 +34,16 @@ Upgrade pip via::
 
   pip install --upgrade pip
 
-The package can then be easily installed using pip via::
+Then select the backends (choose from opencl, cuda, c and multicore) that you wish to build by setting the environment variable::
+
+  export HASTL_BACKENDS="c, opencl" 
+
+If no environmental variable is set, an attempt will be made to compile all
+available backends.
+
+The package can then be easily installed using pip via. This will take a while, since we need
+to compile the shared libraries for your particular system, Python
+implementation and all selected backends::
 
   pip install hastl
 
@@ -46,9 +55,7 @@ Install the bfast dependencies via::
 
   pip install -r requirements.txt
 
-Afterwards, you can install the package. This will take a while, since we need
-to compile the shared libraries for your particular system and Python
-implementation and all available backends::
+Afterwards, you can install the package. This will also take a while::
 
   python setup.py sdist bdist_wheel
   pip install .
@@ -56,7 +63,7 @@ implementation and all available backends::
 
 Usage
 -----
-Set backend to "cuda", "opencl" or "c" and run::
+Set backend to "cuda", "opencl", "multicore" or "c" and run::
 
   from hastl import STL
   stl = STL(backend=backend)

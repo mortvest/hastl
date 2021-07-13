@@ -1,11 +1,12 @@
+import os
 from setuptools import setup, find_packages
 
 CUDA_MODULE = "./hastl/build_stl.py:build_stl_cuda"
 OPENCL_MODULE = "./hastl/build_stl.py:build_stl_opencl"
 C_MODULE = "./hastl/build_stl.py:build_stl_c"
+MULTICORE_MODULE = "./hastl/build_stl.py:build_stl_multicore"
 
 VERSION = "0.1.2"
-
 
 def run_setup(cffi_mods):
     return setup(
@@ -44,11 +45,26 @@ def run_setup(cffi_mods):
         cffi_modules=cffi_mods
     )
 
-CFFI_MODULES = [CUDA_MODULE, OPENCL_MODULE, C_MODULE]
 
-while CFFI_MODULES:
-    try:
-        run_setup(CFFI_MODULES)
-        break
-    except:
-        print("Compilation of CFFI module '{}': failed, skipping...".format(CFFI_MODULES.pop(0)))
+def check(backend_str):
+    allowed_backends = ["cuda", "opencl", "c", "multicore"]
+    backend = backend_str.lower()
+    if backend not in allowed_backends:
+        raise ValueError("Invalid backend '{}' encountered in the environment variable. Must be one of {}".format(backend_str, allowed_backends))
+    if backend == "cuda":
+        return CUDA_MODULE
+    elif backend == "opencl":
+        return OPENCL_MODULE
+    elif backend == "multicore":
+        return MULTICORE_MODULE
+    return C_MODULE
+
+# read environment variable
+env_backends = os.environ.get("HASTL_BACKENDS", None)
+if env_backends:
+    CFFI_MODULES = list(set([check(backend) for backend in env_backends.split(" ")]))
+else:
+    # if not set, try compiling all available backends
+    CFFI_MODULES = [CUDA_MODULE, OPENCL_MODULE, C_MODULE, MULTICORE_MODULE]
+
+run_setup(CFFI_MODULES)
