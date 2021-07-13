@@ -38,7 +38,7 @@ Then select the backends (choose from opencl, cuda, c and multicore) that you wi
 
   export HASTL_BACKENDS="opencl multicore c" 
 
-If no environmental variable is set, an attempt will be made to compile all
+If no environmental variable is set, an attempt will be made to compile all the
 available backends.
 
 The package can then be easily installed using pip. This will take a while, since we need
