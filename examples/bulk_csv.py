@@ -1,3 +1,7 @@
+"""
+A bigger example of HaSTL usage. Download and unzip three .csv files, then apply
+STL to three columns of each file and save the results
+"""
 import itertools
 import os
 import wget

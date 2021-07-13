@@ -1,3 +1,7 @@
+"""
+A small example of HaSTL usage. Apply STL to a generated harmonic time series
+with missing values and plot the results
+"""
 import random
 random.seed(100)
 
