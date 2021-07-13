@@ -1,6 +1,5 @@
 HaSTL
 =================================================================
-[![CI](https://github.com/mortvest/hastl/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mortvest/hastl/actions/workflows/ci.yml)
 
 HaSTL [ˈheɪstiɛl]: A fast GPU implementation of batched Seasonal and Trend
 decomposition using Loess (STL) [1] with missing values and support for both
