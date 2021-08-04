@@ -44,29 +44,6 @@ local let moving_averages [n] (x: [n]t) (n_p: i64): []t =
 
 
 --------------------------------------------------------------------------------
--- Interpolation with slopes                                                  --
---------------------------------------------------------------------------------
-local let interpolate [n_m] (m_fun: i64 -> i64)
-                            (fits: [n_m]t)
-                            (slopes: [n_m]t)
-                            (N: i64)
-                            (jump: i64): [N]t =
-  tabulate N (\a ->
-                let m_v = a / jump
-                let j = if m_v == n_m - 1 then m_v - 1 else m_v
-                let m_j = m_fun j
-                let h = T.i64 (m_fun (j + 1) - m_j)
-                let u = (T.i64 (a - m_j)) / h
-                let u2 = u * u
-                let u3 = u2 * u
-                in
-                (2 * u3 - 3 * u2 + 1) * fits[j] +
-                (3 * u2 - 2 * u3)     * fits[j + 1] +
-                (u3 - 2 * u2 + u)     * slopes[j] * h +
-                (u3 - u2)             * slopes[j + 1] * h
-             )
-
---------------------------------------------------------------------------------
 -- Main STL function                                                          --
 --------------------------------------------------------------------------------
 let stl [m] [n] (Y: [m][n]t)
@@ -249,7 +226,7 @@ let stl [m] [n] (Y: [m][n]t)
             if l_jump > 1 then
               map2 (\l_results l_slopes ->
                     -- [n]
-                    interpolate l_m_fun l_results l_slopes n l_jump
+                    loess.interpolate l_m_fun l_results l_slopes n l_jump
                    ) l_results_l l_slopes_l
             else
               l_results_l :> [m][n]t
@@ -297,7 +274,7 @@ let stl [m] [n] (Y: [m][n]t)
             -- [n]
             if t_jump > 1 then
               map2 (\t_results t_slopes ->
-                      interpolate t_m_fun t_results t_slopes n t_jump
+                      loess.interpolate t_m_fun t_results t_slopes n t_jump
                    ) t_results_l t_slopes_l |> opaque
             else
               t_results_l :> [m][n]t

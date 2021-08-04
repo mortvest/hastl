@@ -2,7 +2,8 @@ import os
 from setuptools import setup, find_packages
 
 BACKENDS = ["cuda", "opencl", "c", "multicore"]
-MODULE_BASE = "./hastl/build_stl.py:build_stl_"
+STL_MODULE_BASE = "./hastl/build_stl.py:build_stl_"
+LOESS_MODULE_BASE = "./hastl/build_stl.py:build_loess_"
 ENV_VAR = "HASTL_BACKENDS"
 
 VERSION = "0.1.3"
@@ -45,19 +46,21 @@ def run_setup(cffi_mods):
         cffi_modules=cffi_mods
     )
 
-def check(backend_str):
+def check(backend_str, base):
     backend = backend_str.lower()
     if backend not in BACKENDS:
         raise ValueError("Invalid backend '{}' encountered in the environment variable. Must be one of {}".format(backend_str, allowed_backends))
-    return MODULE_BASE + backend
+    return base + backend
 
 # read environment variable
 env_backends = os.environ.get(ENV_VAR, None)
 # build the list of CFFI modules
 if env_backends:
-    CFFI_MODULES = list(set([check(backend) for backend in env_backends.split(" ")]))
+    CFFI_MODULES = list(set([check(backend, STL_MODULE_BASE) for backend in env_backends.split(" ")]))
+    CFFI_MODULES += list(set([check(backend, LOESS_MODULE_BASE) for backend in env_backends.split(" ")]))
 else:
     # if not set, compile all available backends
-    CFFI_MODULES = [MODULE_BASE + backend for backend in BACKENDS]
+    CFFI_MODULES = [STL_MODULE_BASE + backend for backend in BACKENDS]
+    CFFI_MODULES += [LOESS_MODULE_BASE + backend for backend in BACKENDS]
 
 run_setup(CFFI_MODULES)

@@ -321,12 +321,10 @@ let loess_l [m] [n] [n_m] (xx_l: [m][n]t)
   else
     use_version loess_intragroup_simple_l
 
-
--- find q nearest neighbors and return index of the leftmost one - arrays must be sorted
--- sequential version
--- memory: O(n_m)
--- work: O(n_m * q)
--- span: O(q)
+--------------------------------------------------------------------------------
+-- Find q nearest neighbors and return index of the leftmost one              --
+-- arraysmust be sorted, sequential version                                   --
+--------------------------------------------------------------------------------
 let l_indexes [N] (nn_idx: [N]i64) (m_fun: i64 -> i64) (n_m: i64) (q: i64) (n_nn: i64): [n_m]i64 =
   -- set invalid indexes to max long, so they would be ignored
   let pad_idx = map (\i -> if i < 0 then i64.highest else i) nn_idx
@@ -372,7 +370,9 @@ let l_indexes [N] (nn_idx: [N]i64) (m_fun: i64 -> i64) (n_m: i64) (q: i64) (n_nn
          in res_idx
       )
 
--- find lambda_q
+--------------------------------------------------------------------------------
+-- Find lambda_q                                                              --
+--------------------------------------------------------------------------------
 let find_max_dist [n_m] (y_idx: []i64)
                         (l_idx: [n_m]i64)
                         (m_fun: i64 -> i64)
@@ -400,32 +400,69 @@ let loess_params [N] (q: i64)         -- should be odd
   let l_idx = l_indexes y_idx_p1 (m_fun >-> (+1)) n_m q3 n
   let max_dist = find_max_dist y_idx l_idx m_fun q q3 n
   in (l_idx, max_dist)
+
+
+--------------------------------------------------------------------------------
+-- Cubic Hermite Interpolator                                                 --
+--------------------------------------------------------------------------------
+let interpolate [n_m] (m_fun: i64 -> i64)
+                            (fits: [n_m]t)
+                            (slopes: [n_m]t)
+                            (N: i64)
+                            (jump: i64): [N]t =
+  tabulate N (\a ->
+                let m_v = a / jump
+                let j = if m_v == n_m - 1 then m_v - 1 else m_v
+                let m_j = m_fun j
+                let h = T.i64 (m_fun (j + 1) - m_j)
+                let u = (T.i64 (a - m_j)) / h
+                let u2 = u * u
+                let u3 = u2 * u
+                in
+                (2 * u3 - 3 * u2 + 1) * fits[j] +
+                (3 * u2 - 2 * u3)     * fits[j + 1] +
+                (u3 - 2 * u2 + u)     * slopes[j] * h +
+                (u3 - u2)             * slopes[j + 1] * h
+             )
 }
 
+entry main [m] [n] (Y: [m][n]f32)
+                   (q: i64)
+                   (degree: i64)
+                   (jump: i64)
+                   (jump_threshold: i64)
+                   (q_threshold: i64): [m][n]f32 =
+  -- set up parameters for the low-pass filter smoothing
+  let n_m = n / jump + 1
+  let m_fun (x: i64): i64 = i64.min (x * jump) (n - 1)
 
--- entry main [m] [n] [n_m] (xx_l: [m][n]f32)
---                          (yy_l: [m][n]f32)
---                          (ww_l: [m][n]f32)
---                          (l_idx_l: [m][n_m]i64)
---                          (max_dist_l: [m][n_m]f32)
---                          (n_nn_l: [m]i64)
---                          (degree: i64)
---                          (q: i64)
---                          (jump: i64)
---                          (jump_threshold: i64)
---                          (q_threshold: i64)
---                         : ([m][n_m]f32, [m][n_m]f32) =
---   let m_fun (x: i64): i64 = 2 + i64.min (x * jump) (n - 1)
---   in
---   loess.loess_l xx_l
---                 yy_l
---                 degree
---                 q
---                 m_fun
---                 ww_l
---                 l_idx_l
---                 max_dist_l
---                 n_nn_l
---                 jump
---                 jump_threshold
---                 q_threshold
+  -- filter nans and pad non-nan indices
+  let (nn_y_l, nn_idx_l, n_nn_l) = map (filterPadWithKeys (\i -> !(f32.isnan i)) 0) Y |> unzip3
+
+  -- calculate invariant arrays for the low-pass filter smoothing
+  let (l_idx_l, max_dist_l) =
+    map2 (\nn_idx n_nn ->
+            loess_m.loess_params q m_fun n_m nn_idx n_nn
+         ) nn_idx_l n_nn_l |> unzip
+
+  let weights_l = replicate (m * n) 1f32 |> unflatten m n
+  let nn_idx_f_l = map (map f32.i64) nn_idx_l
+  let (results_l, slopes_l) = loess_m.loess_l nn_idx_f_l
+                                         nn_y_l
+                                         degree
+                                         q
+                                         m_fun
+                                         weights_l
+                                         l_idx_l
+                                         max_dist_l
+                                         n_nn_l
+                                         jump
+                                         jump_threshold
+                                         q_threshold
+  in
+  if jump > 1 then
+    map2 (\results slopes ->
+            loess_m.interpolate m_fun results slopes n jump
+         ) results_l slopes_l
+  else
+    results_l :> [m][n]f32
