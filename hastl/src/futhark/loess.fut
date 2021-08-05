@@ -1,4 +1,4 @@
--- Implementation of LOESS with missing values
+-- Implementation of LOESS Smoother with missing values
 import "utils"
 
 module loess_m = {
@@ -7,26 +7,37 @@ type t = T.t
 type^ fun_t = (t -> t -> t -> t -> t -> t -> t -> t -> t -> t -> t)
 
 
-let fit_fun_zero (w_j: t) (yy_j: t) (_: t) (_: t) (a0: t) (_: t) (_: t) (_: t) (_: t) (_: t): t =
+--------------------------------------------------------------------------------
+-- FIT/SLOPE calculations function for polynomial degrees [0,1,2]             --
+--------------------------------------------------------------------------------
+let fit_fun_zero (w_j: t) (yy_j: t) (_: t) (_: t) (a0: t)
+                 (_: t) (_: t) (_: t) (_: t) (_: t): t =
   w_j * a0 * yy_j
 
-let fit_fun_one (w_j: t) (yy_j: t) (xw_j: t) (_: t) (_: t) (a11: t) (_: t) (b11: t) (_: t) (_: t): t =
+let fit_fun_one (w_j: t) (yy_j: t) (xw_j: t) (_: t) (_: t)
+                (a11: t) (_: t) (b11: t) (_: t) (_: t): t =
   (w_j * a11 + xw_j * b11) * yy_j
 
-let fit_fun_two (w_j: t) (yy_j: t) (xw_j: t) (x2w_j: t) (_: t) (_: t) (a12: t) (_: t) (b12: t) (c12: t): t =
+let fit_fun_two (w_j: t) (yy_j: t) (xw_j: t) (x2w_j: t) (_: t)
+                (_: t) (a12: t) (_: t) (b12: t) (c12: t): t =
   (w_j * a12 + xw_j * b12 + x2w_j * c12) * yy_j
 
-
-let slope_fun_zero (_: t) (_: t) (_: t) (_: t) (_: t) (_: t) (_: t) (_: t) (_: t) (_: t): t =
+let slope_fun_zero (_: t) (_: t) (_: t) (_: t) (_: t) (_: t)
+                   (_: t) (_: t) (_: t) (_: t): t =
   T.i64 0
 
-let slope_fun_one (w_j: t) (yy_j: t) (xw_j: t) (_: t) (_: t) (_: t) (_: t) (b11: t) (_: t) (c11: t): t =
+let slope_fun_one (w_j: t) (yy_j: t) (xw_j: t) (_: t) (_: t)
+                    (_: t) (_: t) (b11: t) (_: t) (c11: t): t =
   (w_j * b11 + xw_j * c11) * yy_j
 
-let slope_fun_two (w_j: t) (yy_j: t) (xw_j: t) (x2w_j: t) (c2: t) (_: t) (a2: t) (_: t) (b2: t) (_: t): t =
+let slope_fun_two (w_j: t) (yy_j: t) (xw_j: t) (x2w_j: t) (c2: t)
+                  (_: t) (a2: t) (_: t) (b2: t) (_: t): t =
   (w_j * a2 + xw_j * b2 + x2w_j * c2) * yy_j
 
 
+--------------------------------------------------------------------------------
+-- Main LOESS procedure - sequential/flat version, with extra work            --
+--------------------------------------------------------------------------------
 let loess_flat [n] [n_m] (xx: [n]t)
                          (yy: [n]t)
                          (q: i64)
@@ -163,6 +174,9 @@ let loess_flat_l [m] [n] [n_m] (xx_l: [m][n]t)
        ) xx_l yy_l ww_l l_idx_l (zip max_dist_l n_nn_l) |> unzip
 
 
+--------------------------------------------------------------------------------
+-- Main LOESS procedure - intragroup version with no extra work               --
+--------------------------------------------------------------------------------
 let loess_intragroup_simple [n] [n_m] (xx: [n]t)
                                       (yy: [n]t)
                                       (q: i64)
@@ -274,6 +288,9 @@ let loess_intragroup_simple_l [m] [n] [n_m] (xx_l: [m][n]t)
        ) xx_l yy_l ww_l l_idx_l (zip max_dist_l n_nn_l) |> unzip
 
 
+--------------------------------------------------------------------------------
+-- Lifted LOESS wrapper, choose and run the correct code version for each ts  --
+--------------------------------------------------------------------------------
 let loess_l [m] [n] [n_m] (xx_l: [m][n]t)
                           (yy_l: [m][n]t)
                           (degree: i64)
@@ -299,33 +316,31 @@ let loess_l [m] [n] [n_m] (xx_l: [m][n]t)
                                fun_t ->
                                ([m][n_m]t, [m][n_m]t))
                                : ([m][n_m]t, [m][n_m]t) =
-    let loess_l_fun (fit_fun: fun_t) (slope_fun: fun_t): ([m][n_m]t, [m][n_m]t) =
-      loess_proc xx_l
-                 yy_l
-                 q
-                 m_fun
-                 ww_l
-                 l_idx_l
-                 max_dist_l
-                 n_nn_l
-                 fit_fun
-                 slope_fun
+    let loess_l_fun (fit_fu: fun_t) (slope_fu: fun_t): ([m][n_m]t, [m][n_m]t) =
+      loess_proc xx_l yy_l q m_fun ww_l l_idx_l max_dist_l n_nn_l fit_fu slope_fu
     in
     match degree
+    -- create version, based on polynomial degree
     case 0 -> loess_l_fun fit_fun_zero slope_fun_zero |> opaque
     case 1 -> loess_l_fun fit_fun_one  slope_fun_one |> opaque
     case _ -> loess_l_fun fit_fun_two  slope_fun_two |> opaque
   in
+  -- choose version, based on value of q and jump
   if jump < jump_threshold || q > q_threshold then
     use_version loess_flat_l
   else
     use_version loess_intragroup_simple_l
 
+
 --------------------------------------------------------------------------------
 -- Find q nearest neighbors and return index of the leftmost one              --
--- arraysmust be sorted, sequential version                                   --
+--- index array must be sorted, sequential version                            --
 --------------------------------------------------------------------------------
-let l_indexes [N] (nn_idx: [N]i64) (m_fun: i64 -> i64) (n_m: i64) (q: i64) (n_nn: i64): [n_m]i64 =
+let l_indexes [N] (nn_idx: [N]i64)
+                  (m_fun: i64 -> i64)
+                  (n_m: i64)
+                  (q: i64)
+                  (n_nn: i64): [n_m]i64 =
   -- set invalid indexes to max long, so they would be ignored
   let pad_idx = map (\i -> if i < 0 then i64.highest else i) nn_idx
   in
@@ -345,7 +360,8 @@ let l_indexes [N] (nn_idx: [N]i64) (m_fun: i64 -> i64) (n_m: i64) (q: i64) (n_nn
          let init_idx = i64.max 0 (nearest_idx - q)
          -- O(q)
          -- replace with loop?
-         let init_sum = nn_idx[init_idx:(init_idx + q)] |> map (\x_i -> i64.abs (x_i - x)) |> i64.sum
+         let init_sum = nn_idx[init_idx:(init_idx + q)]
+                        |> map (\x_i -> i64.abs (x_i - x)) |> i64.sum
          -- check q possible sums and find the index, corresponding to the lowest
          let (idx, _, _, _) =
            -- O(q)
@@ -355,10 +371,12 @@ let l_indexes [N] (nn_idx: [N]i64) (m_fun: i64 -> i64) (n_m: i64) (q: i64) (n_nn
              let new_idx = init_idx + j
              let new_sum = if new_idx + q > n_nn
                            then i64.highest
-                           -- if valid, calculate the sum of distances for the new frame
+                           -- calculate the sum of distances for the new frame
                            else curr_sum
-                                - (i64.abs <| x - nn_idx[last_idx])
-                                + (i64.abs <| x - nn_idx[i64.min (last_idx + q) (N - 1)])
+                                - (i64.abs <|
+                                   x - nn_idx[last_idx])
+                                + (i64.abs <|
+                                   x - nn_idx[i64.min (last_idx + q) (N - 1)])
              in
              if new_sum <= best_sum
              then
@@ -369,6 +387,7 @@ let l_indexes [N] (nn_idx: [N]i64) (m_fun: i64 -> i64) (n_m: i64) (q: i64) (n_nn
          let res_idx = i64.min (n_nn - q) idx
          in res_idx
       )
+
 
 --------------------------------------------------------------------------------
 -- Find lambda_q                                                              --
@@ -383,16 +402,21 @@ let find_max_dist [n_m] (y_idx: []i64)
   map2 (\l i ->
           let mv = m_fun i
           let r = l + q3 - 1
-          let md_i = i64.max (i64.abs (y_idx[l] - mv)) (i64.abs (y_idx[r] - mv)) |> T.i64
+          let md_i = i64.max (i64.abs (y_idx[l] - mv))
+                             (i64.abs (y_idx[r] - mv)) |> T.i64
           in
           md_i + T.max (((T.i64 q) - (T.i64 n)) / 2) 0
        ) l_idx (iota n_m)
 
-let loess_params [N] (q: i64)         -- should be odd
+
+--------------------------------------------------------------------------------
+-- Calculate parameters for the main LOESS procedure                          --
+--------------------------------------------------------------------------------
+let loess_params [N] (q: i64)
                      (m_fun: i64 -> i64)
                      (n_m: i64)
-                     (y_idx: [N]i64)  -- indexes of non-nan vals in y
-                     (n: i64)         -- number of non-nan vals
+                     (y_idx: [N]i64)
+                     (n: i64)
                      : ([n_m]i64, [n_m]t) =
   let y_idx_p1 = (y_idx |> map (+1))
   let q3 = i64.min q N
@@ -406,10 +430,10 @@ let loess_params [N] (q: i64)         -- should be odd
 -- Cubic Hermite Interpolator                                                 --
 --------------------------------------------------------------------------------
 let interpolate [n_m] (m_fun: i64 -> i64)
-                            (fits: [n_m]t)
-                            (slopes: [n_m]t)
-                            (N: i64)
-                            (jump: i64): [N]t =
+                      (fits: [n_m]t)
+                      (slopes: [n_m]t)
+                      (N: i64)
+                      (jump: i64): [N]t =
   tabulate N (\a ->
                 let m_v = a / jump
                 let j = if m_v == n_m - 1 then m_v - 1 else m_v
@@ -426,6 +450,7 @@ let interpolate [n_m] (m_fun: i64 -> i64)
              )
 }
 
+
 entry main [m] [n] (Y: [m][n]f32)
                    (q: i64)
                    (degree: i64)
@@ -433,11 +458,12 @@ entry main [m] [n] (Y: [m][n]f32)
                    (jump_threshold: i64)
                    (q_threshold: i64): [m][n]f32 =
   -- set up parameters for the low-pass filter smoothing
-  let n_m = n / jump + 1
+  let n_m = if jump == 1 then n else n / jump + 1
   let m_fun (x: i64): i64 = i64.min (x * jump) (n - 1)
 
   -- filter nans and pad non-nan indices
-  let (nn_y_l, nn_idx_l, n_nn_l) = map (filterPadWithKeys (\i -> !(f32.isnan i)) 0) Y |> unzip3
+  let (nn_y_l, nn_idx_l, n_nn_l) =
+    map (filterPadWithKeys (\i -> !(f32.isnan i)) 0) Y |> unzip3
 
   -- calculate invariant arrays for the low-pass filter smoothing
   let (l_idx_l, max_dist_l) =
@@ -448,17 +474,17 @@ entry main [m] [n] (Y: [m][n]f32)
   let weights_l = replicate (m * n) 1f32 |> unflatten m n
   let nn_idx_f_l = map (map f32.i64) nn_idx_l
   let (results_l, slopes_l) = loess_m.loess_l nn_idx_f_l
-                                         nn_y_l
-                                         degree
-                                         q
-                                         m_fun
-                                         weights_l
-                                         l_idx_l
-                                         max_dist_l
-                                         n_nn_l
-                                         jump
-                                         jump_threshold
-                                         q_threshold
+                                              nn_y_l
+                                              degree
+                                              q
+                                              m_fun
+                                              weights_l
+                                              l_idx_l
+                                              max_dist_l
+                                              n_nn_l
+                                              jump
+                                              jump_threshold
+                                              q_threshold
   in
   if jump > 1 then
     map2 (\results slopes ->
@@ -466,3 +492,16 @@ entry main [m] [n] (Y: [m][n]f32)
          ) results_l slopes_l
   else
     results_l :> [m][n]f32
+
+
+let main1 =
+  let n = 10i64
+  let Y = [replicate n 1f32]
+  let q = 101i64
+  -- let q = 99i64
+  let degree = 1
+  let jump = i64.f32 <| f32.ceil <| (f32.i64 (i64.min q n) / 10)
+  let j_t = 10
+  let q_t = 255
+  in
+  main Y q degree jump j_t q_t

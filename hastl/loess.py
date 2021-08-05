@@ -3,6 +3,9 @@ from importlib import import_module
 from futhark_ffi import Futhark
 import numpy as np
 
+from . import stl
+
+
 class LOESS():
     """
     Batched LOESS Smoother for GPUs
@@ -33,7 +36,7 @@ class LOESS():
         if self.backend not in self._backends:
             raise ValueError("Unknown backend: '{}'".format(self.backend))
 
-        fut_lib = _try_importing(backend)
+        fut_lib = stl._try_importing(backend, "loess")
 
         if self.debug and self.backend in ["opencl", "cuda"]:
             print("Initializing the device")
@@ -55,12 +58,12 @@ class LOESS():
             raise TypeError("Y should be a 2d array")
         m, n = Y.shape
 
-        q = self._wincheck(q)
-        degree = self._degcheck(degree)
+        q = stl._wincheck(q)
+        degree = stl._degcheck(degree)
 
         if jump is None:
-            jump = np.ceil(q / 10)
-        jump = self._jump_check(jump)
+            jump = np.ceil(min(q, n) / 10)
+        jump = stl._jump_check(jump, n)
 
         if self.debug:
             print("Running the program")
@@ -98,39 +101,3 @@ class LOESS():
                           degree,
                           jump)
         return result[0]
-
-    def _degcheck(self, x):
-        x = int(x)
-        if not (0 <= x <= 2):
-            raise ValueError("Smoothing degree must be 0, 1, or 2")
-        return x
-
-    def _nextodd(self, x):
-        x = round(x)
-        x2 = x + 1 if x % 2 == 0 else x
-        return int(x2)
-
-    def _wincheck(self, x):
-        x = self._nextodd(x)
-        if x <= 0:
-            raise ValueError("Window lengths must be positive")
-        return x
-
-    def _jump_check(self, x):
-        return self._len_check(x, "Jump")
-
-    def _len_check(self, x, name):
-        x = int(x)
-        if x < 0:
-            raise ValueError("{} value must be non-negative".format(name))
-        return x
-
-def _try_importing(backend):
-    module_name = "_loess_" + backend
-    try:
-        mod = import_module("hastl." + module_name)
-    except:
-        raise ValueError("Failed loading the {} backend".format(backend)) from None
-    else:
-        globals()[module_name] = mod
-        return mod

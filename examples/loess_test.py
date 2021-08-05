@@ -1,44 +1,14 @@
-import random
-random.seed(100)
-
 import numpy as np
 import matplotlib.pyplot as plt
 
 from hastl import LOESS
-
-
-def add_nans(arr, nan_frac=0.1):
-    assert 0 <= nan_frac < 1
-    dim = arr.shape[0]
-    n_nans = int(dim * nan_frac)
-    idxs = random.sample(range(dim), n_nans)
-    arr1 = np.copy(arr)
-    arr1[idxs] = np.nan
-    return arr1
-
-def gen_harmonic_data(out_len=500, noise_level=0.1, trend_coeff=0.00005, period=2*np.pi, n_p=52, nans=True, nan_frac=0.1):
-    n_repeats = int(out_len / n_p)
-    x = np.linspace(0, period, n_p)
-
-    x1 = np.tile(x, n_repeats + 1)[:out_len]
-    x2 = np.repeat(np.arange(n_repeats + 1) * period, n_p)[:out_len]
-    x1 += x2
-
-    n_res = x1.shape[0]
-    noise = np.random.normal(0, noise_level, n_res)
-    trend = np.arange(0, n_res) * trend_coeff
-    # result = np.sin(x1) + trend + noise
-    result = np.sin(x1) + noise
-    if nans:
-        result = add_nans(result, nan_frac)
-    result = np.round(result, 4)
-    return result
+from utils import *
 
 
 def plot_single(ax, data, q):
-    result = loess.fit_1d(data, q=q)
-    ax.set_ylim(-1.2, 1.2)
-    ax.set_xlim(-10, 510)
+    result = loess.fit_1d(data, q=q, jump=1)
+    # ax.set_ylim(-1.2, 1.2)
+    ax.set_xlim(-5, 505)
     ax.plot(x, data, label="data")
     ax.plot(x, result, label="LOESS")
     ax.set_title("q = {}".format(q))
@@ -59,17 +29,15 @@ if __name__ == "__main__":
     x_dim = 500
     n_p = 100
 
-    data = gen_harmonic_data(out_len=x_dim, n_p=n_p, nans=False).astype(np.float32)
+    data = gen_harmonic_data(out_len=x_dim, n_p=n_p, nans=False, trend_coeff=0).astype(np.float32)
     x = np.arange(1, x_dim + 1)
 
-    loess = LOESS(debug=True, backend="c")
+    loess = LOESS(backend="c")
 
-    # q = 3001
-    # result = loess.fit_1d(data, q=q)
-
-    fig, axs = plt.subplots(4)
-
-    qs = [11, 51, 101, 3001]
+    qs = [11, 31, 101, 3001]
+    fig, axs = plt.subplots(len(qs))
+    if type(axs) != np.ndarray:
+        axs = np.array([axs])
 
     for (ax, q) in zip(axs, qs):
         plot_single(ax, data, q)
@@ -79,7 +47,5 @@ if __name__ == "__main__":
 
     plt.tight_layout()
     plt.subplots_adjust(wspace=0.085)
-    plt.savefig("loess_qs.png", dpi=150)
-
-    # plt.show()
-
+    # plt.savefig("loess_qs.png", dpi=150)
+    plt.show()

@@ -34,7 +34,7 @@ class STL():
         if self.backend not in self._backends:
             raise ValueError("Unknown backend: '{}'".format(self.backend))
 
-        fut_lib = _try_importing(backend)
+        fut_lib = _try_importing(backend, "stl")
 
         if self.debug and self.backend in ["opencl", "cuda"]:
             print("Initializing the device")
@@ -68,30 +68,30 @@ class STL():
         n_p = int(n_p)
 
         if t_window is None:
-            # t_window = self._nextodd(np.ceil(1.5 * n_p / (1 - 1.5 / self.s_window)))
+            # t_window = _nextodd(np.ceil(1.5 * n_p / (1 - 1.5 / self.s_window)))
             t_window = self._get_t_window(t_degree, n, n_p, critval)
-        t_window = self._wincheck(t_window)
+        t_window = _wincheck(t_window)
 
         if l_window is None:
-            l_window = self._nextodd(n_p)
-        l_window = self._wincheck(l_window)
+            l_window = _nextodd(n_p)
+        l_window = _wincheck(l_window)
 
-        t_degree = self._degcheck(t_degree)
+        t_degree = _degcheck(t_degree)
 
         if l_degree is None:
             l_degree = t_degree
-        l_degree = self._degcheck(l_degree)
+        l_degree = _degcheck(l_degree)
 
         if t_jump is None:
             t_jump = np.ceil(t_window / 10)
-        t_jump = self._jump_check(t_jump)
+        t_jump = _jump_check(t_jump, n)
 
         if l_jump is None:
             l_jump = np.ceil(l_window / 10)
-        l_jump = self._jump_check(l_jump)
+        l_jump = _jump_check(l_jump, n)
 
-        inner = self._iter_check(inner)
-        outer = self._iter_check(outer)
+        inner = _iter_check(inner)
+        outer = _iter_check(outer)
 
         if self.debug:
             print("Running the program")
@@ -155,35 +155,6 @@ class STL():
                                             critval)
         return season[0], trend[0], remainder[0]
 
-    def _degcheck(self, x):
-        x = int(x)
-        if not (0 <= x <= 2):
-            raise ValueError("Smoothing degree must be 0, 1, or 2")
-        return x
-
-    def _nextodd(self, x):
-        x = round(x)
-        x2 = x + 1 if x % 2 == 0 else x
-        return int(x2)
-
-    def _wincheck(self, x):
-        x = self._nextodd(x)
-        if x <= 0:
-            raise ValueError("Window lengths must be positive")
-        return x
-
-    def _jump_check(self, x):
-        return self._len_check(x, "Jump")
-
-    def _iter_check(self, x):
-        return self._len_check(x, "Number of iterations")
-
-    def _len_check(self, x, name):
-        x = int(x)
-        if x < 0:
-            raise ValueError("{} value must be non-negative".format(name))
-        return x
-
     def _get_t_window(self, t_degree, n, n_p, omega):
         t_dg = max(t_degree - 1, 0)
         n_s = 10 * n + 1
@@ -212,14 +183,14 @@ class STL():
 
         betat00 = betat0 - f_c
 
-        n_t = self._nextodd((-betat1 - np.sqrt(betat1**2 - 4 * betat00 * betat2)) / (2 * betat00))
+        n_t = _nextodd((-betat1 - np.sqrt(betat1**2 - 4 * betat00 * betat2)) / (2 * betat00))
         return n_t
 
 def print_installed_backends():
     installed_backends = []
     for backend in ["cuda", "opencl", "multicore", "c"]:
         try:
-            _try_importing(backend)
+            _try_importing(backend, "stl")
         except ValueError:
             pass
         else:
@@ -227,8 +198,41 @@ def print_installed_backends():
     print("Installed HaSTL backens:")
     print(installed_backends)
 
-def _try_importing(backend):
-    module_name = "_stl_" + backend
+def _degcheck(x):
+    x = int(x)
+    if not (0 <= x <= 2):
+        raise ValueError("Smoothing degree must be 0, 1, or 2")
+    return x
+
+def _nextodd(x):
+    x = round(x)
+    x2 = x + 1 if x % 2 == 0 else x
+    return int(x2)
+
+def _wincheck(x):
+    x = _nextodd(x)
+    if x <= 0:
+        raise ValueError("Window lengths must be positive")
+    return x
+
+def _jump_check(j, n):
+    n_m = n if j == 1 else n / j + 1
+    if n_m < 2:
+        raise ValueError("Jump value is set too high, must be <= n")
+    return _len_check(j, "Jump")
+
+def _iter_check(x):
+    return _len_check(x, "Number of iterations")
+
+def _len_check(x, name):
+    x = int(x)
+    if x < 0:
+        raise ValueError("{} value must be non-negative".format(name))
+    return x
+
+
+def _try_importing(backend, name):
+    module_name = "_" + name + "_" + backend
     try:
         mod = import_module("hastl." + module_name)
     except:

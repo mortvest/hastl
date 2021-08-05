@@ -110,13 +110,13 @@ let stl [m] [n] (Y: [m][n]t)
     -- [n_p]
     tabulate n_p
              (\css_i ->
-               -- [css_chunk_len]
-               tabulate css_chunk_len (\j ->
-                                         let res_idx = css_i + (j * n_p)
-                                         in
-                                         if res_idx > n - 1
-                                         then -1
-                                         else res_idx
+                -- [css_chunk_len]
+                tabulate css_chunk_len (\j ->
+                                          let res_idx = css_i + (j * n_p)
+                                          in
+                                          if res_idx > n - 1
+                                          then -1
+                                          else res_idx
                                       )
              ) |> opaque
 
@@ -180,18 +180,18 @@ let stl [m] [n] (Y: [m][n]t)
             map2 (\y_detrended css_n_nns ->
                     -- [n_p]
                     map2 (\css_idx css_n_nn ->
-                          -- [css_chunk_len]
-                          let vals = pad_gather y_detrended css_idx T.nan
-                          let filt = map (\v -> if T.isnan v then 0 else v) vals
-                          in (T.sum filt / css_n_nn)
+                            -- [css_chunk_len]
+                            let vals = pad_gather y_detrended css_idx T.nan
+                            let filt = map (\v -> if T.isnan v then 0 else v) vals
+                            in (T.sum filt / css_n_nn)
                         ) css_idxs css_n_nns
                  ) Y_detrended_l css_n_nn_l |> opaque
 
           -- combine chunks into one array
           let C_l =
             map (\css_avgs ->
-                    -- [C_len]
-                    tabulate C_len (\i -> css_avgs[i % n_p])
+                   -- [C_len]
+                   tabulate C_len (\i -> css_avgs[i % n_p])
             ) css_avgs_l |> opaque
 
           -- Step 3: Low-pass filtering of collection of all the cycle-subseries
@@ -202,31 +202,23 @@ let stl [m] [n] (Y: [m][n]t)
 
 
           --- then apply LOESS
-          let (ma3_pad_l, w_pad_l) =
-            map3 ( \ma3 nn_idx weights ->
-                     -- [n_nn]
-                     let ma3_pad = pad_gather ma3 nn_idx 0
-                     let w_pad = pad_gather weights nn_idx 0
-                     in (ma3_pad, w_pad)
-                 ) ma3_l nn_idx_l weights_l |> unzip |> opaque
-
-          let (l_results_l, l_slopes_l) = loess.loess_l nn_idx_f_l
-                                                        ma3_pad_l
+          let (l_results_l, l_slopes_l) = loess.loess_l (replicate m (iota n |> map (T.i64)))
+                                                        ma3_l
                                                         l_degree
                                                         l_window
                                                         t_m_fun
-                                                        w_pad_l
+                                                        weights_l
                                                         l_l_idx_l
                                                         l_max_dist_l
-                                                        n_nn_l
+                                                        (replicate m n)
                                                         l_jump
                                                         jump_threshold
                                                         max_group_size
           let L_l =
             if l_jump > 1 then
               map2 (\l_results l_slopes ->
-                    -- [n]
-                    loess.interpolate l_m_fun l_results l_slopes n l_jump
+                      -- [n]
+                      loess.interpolate l_m_fun l_results l_slopes n l_jump
                    ) l_results_l l_slopes_l
             else
               l_results_l :> [m][n]t
@@ -250,11 +242,13 @@ let stl [m] [n] (Y: [m][n]t)
                  ) Y seasonal_l
 
           -- Step 6: Trend Smoothing
-          let D_pad_l =
-            map2 (\D nn_idx ->
+          let (D_pad_l, w_pad_l) =
+            map3 (\D nn_idx weights ->
                     -- [n_nn]
-                    pad_gather D nn_idx 0
-                 ) D_l nn_idx_l |> opaque
+                    let D_pad = pad_gather D nn_idx 0
+                    let w_pad = pad_gather weights nn_idx 0
+                    in (D_pad, w_pad)
+                 ) D_l nn_idx_l weights_l |> unzip |> opaque
 
           -- apply LOESS
           let (t_results_l, t_slopes_l) = loess.loess_l nn_idx_f_l
