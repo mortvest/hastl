@@ -13,19 +13,29 @@ from hastl import STL
 from utils import *
 
 
+def nan_ds(y):
+    nan_idx = np.isnan(y)
+    x = lambda z: z.nonzero()[0]
+    y_i = np.interp(x(nan_idx), x(~nan_idx), y[~nan_idx])
+    return x(nan_idx) + 1, y_i
+
 def plot_single(ax, x, data, label):
     # ax.set_ylim(-2, 2)
     ax.set_xlim(-5, 505)
     ax.plot([], [])
     ax.scatter([], [])
+    x_nan, y_nan = nan_ds(data)
+
     if label == "Remainder":
-        ax.scatter(x, data, label="data")
+        ax.scatter(x, data, label="data", s=12)
     else:
-        ax.plot(x, data, label="data")
+        ax.plot(x, data, label="time series")
+    if label == "Input":
+        ax.scatter(x_nan, y_nan, label="missing values", c="black", marker="x")
+        ax.legend()
 
     ax.set_title(label)
     ax.set_ylabel("y")
-    # ax.legend()
 
 
 if __name__ == "__main__":
@@ -41,7 +51,7 @@ if __name__ == "__main__":
     x_dim = 500
     n_p = 52
 
-    data = gen_harmonic_data(out_len=x_dim, n_p=n_p, nan_frac=0.01, trend_coeff=0.002, noise_level=0.05).astype(np.float32)
+    data = gen_harmonic_data(out_len=x_dim, n_p=n_p, nan_frac=0.05, trend_coeff=0.002, noise_level=0.05).astype(np.float32)
     x = np.arange(1, x_dim + 1)
 
     stl = STL(debug=True, backend="c")
@@ -59,5 +69,5 @@ if __name__ == "__main__":
 
     plt.tight_layout()
     plt.subplots_adjust(wspace=0.085)
-    # plt.savefig("stl1.png", dpi=150)
+    plt.savefig("stl1.png", dpi=150)
     plt.show()

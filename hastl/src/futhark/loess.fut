@@ -341,49 +341,34 @@ let l_indexes [N] (nn_idx: [N]i64)
                   (n_m: i64)
                   (q: i64)
                   (n_nn: i64): [n_m]i64 =
-  -- set invalid indexes to max long, so they would be ignored
-  let pad_idx = map (\i -> if i < 0 then i64.highest else i) nn_idx
-  in
   -- [n_m]
   tabulate n_m (\i ->
          let x = m_fun i
          -- use binary search to find the nearest idx
-         let (nearest_idx, _) =
+         let (init_idx, _) =
            -- O(log N)
            loop (low, high) = (0i64, N - 1) while low <= high do
-               let mid = (low + high) / 2
-               in
-               if pad_idx[mid] >= x
-               then (low, mid - 1)
-               else (mid + 1, high)
-         -- find initial sum of k distances to k
-         let init_idx = i64.max 0 (nearest_idx - q)
-         -- O(q)
-         -- replace with loop?
-         let init_sum = nn_idx[init_idx:(init_idx + q)]
-                        |> map (\x_i -> i64.abs (x_i - x)) |> i64.sum
-         -- check q possible sums and find the index, corresponding to the lowest
-         let (idx, _, _, _) =
-           -- O(q)
-           loop (best_idx, last_idx, best_sum, curr_sum) =
-                (init_idx, init_idx, init_sum, init_sum) for j < q do
-             -- move frame 1 to right
-             let new_idx = init_idx + j
-             let new_sum = if new_idx + q > n_nn
-                           then i64.highest
-                           -- calculate the sum of distances for the new frame
-                           else curr_sum
-                                - (i64.abs <|
-                                   x - nn_idx[last_idx])
-                                + (i64.abs <|
-                                   x - nn_idx[i64.min (last_idx + q) (N - 1)])
+           let mid = (low + high) / 2
+           let mid_id = nn_idx[mid]
+           let mid_idx = if mid_id < 0 then i64.highest else mid_id
+           in
+           if mid_idx >= x
+           then (low, mid - 1)
+           else (mid + 1, high)
+         let (idx, _, _) =
+           -- find the neighbor interval, starting at init_idx
+           loop (l_idx, r_idx, span) = (init_idx, init_idx, 1i64) while span < q do
+             -- O(q)
+             let l_cand = i64.max (l_idx - 1) 0
+             let r_cand = i64.min (r_idx + 1) (n_nn - 1)
+             let l_dist = i64.abs (nn_idx[l_cand] - x)
+             let r_dist = i64.abs (nn_idx[r_cand] - x)
              in
-             if new_sum <= best_sum
-             then
-               (new_idx, new_idx, new_sum, new_sum)
-             else
-               (best_idx, new_idx, best_sum, new_sum)
-
+             if l_cand == l_idx
+               then (l_idx, r_idx, q) -- leftmost found, return
+             else if l_dist < r_dist || r_cand == r_idx
+               then (l_cand, r_idx, span + 1) -- expand to the left
+             else (l_idx, r_cand, span + 1)   -- expand to the right
          let res_idx = i64.min (n_nn - q) idx
          in res_idx
       )
