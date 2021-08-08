@@ -477,16 +477,3 @@ entry main [m] [n] (Y: [m][n]f32)
          ) results_l slopes_l
   else
     results_l :> [m][n]f32
-
-
-let main1 =
-  let n = 10i64
-  let Y = [replicate n 1f32]
-  let q = 101i64
-  -- let q = 99i64
-  let degree = 1
-  let jump = i64.f32 <| f32.ceil <| (f32.i64 (i64.min q n) / 10)
-  let j_t = 10
-  let q_t = 255
-  in
-  main Y q degree jump j_t q_t
