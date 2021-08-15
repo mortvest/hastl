@@ -369,7 +369,7 @@ let l_indexes [N] (nn_idx: [N]i64)
              else if l_dist < r_dist || r_cand == r_idx
                then (l_cand, r_idx, span + 1) -- expand to the left
              else (l_idx, r_cand, span + 1)   -- expand to the right
-         let res_idx = i64.min (n_nn - q) idx
+         let res_idx = i64.max (i64.min (n_nn - q) idx) 0
          in res_idx
       )
 
@@ -381,16 +381,16 @@ let find_max_dist [n_m] (y_idx: []i64)
                         (l_idx: [n_m]i64)
                         (m_fun: i64 -> i64)
                         (q: i64)
-                        (q3: i64)
-                        (n: i64) : [n_m]t=
-  -- [n_m]
+                        -- (q3: i64)
+                        (n_nn: i64) : [n_m]t=
   map2 (\l i ->
           let mv = m_fun i
-          let r = l + q3 - 1
+          let q' = i64.min q n_nn
+          let r = l + q' - 1
           let md_i = i64.max (i64.abs (y_idx[l] - mv))
                              (i64.abs (y_idx[r] - mv)) |> T.i64
           in
-          md_i + T.max (((T.i64 q) - (T.i64 n)) / 2) 0
+          md_i + T.max (((T.i64 q) - (T.i64 n_nn)) / 2) 0
        ) l_idx (iota n_m)
 
 
@@ -401,13 +401,13 @@ let loess_params [N] (q: i64)
                      (m_fun: i64 -> i64)
                      (n_m: i64)
                      (y_idx: [N]i64)
-                     (n: i64)
+                     (n_nn: i64)
                      : ([n_m]i64, [n_m]t) =
   let y_idx_p1 = (y_idx |> map (+1))
   let q3 = i64.min q N
   -- [n_m]
-  let l_idx = l_indexes y_idx_p1 (m_fun >-> (+1)) n_m q3 n
-  let max_dist = find_max_dist y_idx l_idx m_fun q q3 n
+  let l_idx = l_indexes y_idx_p1 (m_fun >-> (+1)) n_m q3 n_nn
+  let max_dist = find_max_dist y_idx l_idx m_fun q n_nn
   in (l_idx, max_dist)
 
 
