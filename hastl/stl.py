@@ -121,7 +121,7 @@ class STL():
             else:
                 raise ValueError("An internal error occurred while running the GPU program") from from_err
 
-        return trend, season, remainder
+        return season, trend, remainder
 
     def fit_1d(self,
             y,
