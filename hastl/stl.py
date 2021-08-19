@@ -56,6 +56,7 @@ class STL():
             inner=2,
             outer=1,
             critval=0.05,
+            dump=False,
             ):
         Y = np.asarray(Y)
 
@@ -93,8 +94,34 @@ class STL():
         inner = _iter_check(inner)
         outer = _iter_check(outer)
 
+        jump_threshold = 10000000 if self.backend in ["c", "multicore"] else self.jump_threshold
+
         if self.debug:
             print("Running the program")
+
+        if dump:
+            import futhark_data
+            f = open("dump.in", "wb")
+            Y_32 = Y.astype(np.float32)
+            futhark_data.dump(Y_32, f)
+
+            params = [n_p,
+                      t_window,
+                      l_window,
+                      t_degree,
+                      l_degree,
+                      t_jump,
+                      l_jump,
+                      inner,
+                      outer,
+                      self.jump_threshold,
+                      self.max_group_size]
+
+            for par in params:
+                print(par)
+                futhark_data.dump(np.int64(par), f)
+
+            f.close()
 
         try:
             s_data, t_data, r_data = self._fut_obj.main(Y,
@@ -107,7 +134,7 @@ class STL():
                                                         l_jump,
                                                         inner,
                                                         outer,
-                                                        self.jump_threshold,
+                                                        jump_threshold,
                                                         self.max_group_size)
 
             season = self._fut_obj.from_futhark(s_data)
@@ -135,6 +162,7 @@ class STL():
             inner=2,
             outer=1,
             critval=0.05,
+            dump=False
             ):
         y = np.asarray(y)
         if y.ndim != 1:
@@ -152,7 +180,8 @@ class STL():
                                             l_jump,
                                             inner,
                                             outer,
-                                            critval)
+                                            critval,
+                                            dump)
         return season[0], trend[0], remainder[0]
 
     def _get_t_window(self, t_degree, n, n_p, omega):
@@ -185,6 +214,7 @@ class STL():
 
         n_t = _nextodd((-betat1 - np.sqrt(betat1**2 - 4 * betat00 * betat2)) / (2 * betat00))
         return n_t
+
 
 def print_installed_backends():
     installed_backends = []
