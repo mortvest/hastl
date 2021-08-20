@@ -49,6 +49,22 @@ char *futhark_values_raw_f32_2d(struct futhark_context *ctx,
                                 struct futhark_f32_2d *arr);
 const int64_t *futhark_shape_f32_2d(struct futhark_context *ctx,
                                     struct futhark_f32_2d *arr);
+struct futhark_f32_3d;
+struct futhark_f32_3d *futhark_new_f32_3d(struct futhark_context *ctx, const
+                                          float *data, int64_t dim0,
+                                          int64_t dim1, int64_t dim2);
+struct futhark_f32_3d *futhark_new_raw_f32_3d(struct futhark_context *ctx, const
+                                              char *data, int offset,
+                                              int64_t dim0, int64_t dim1,
+                                              int64_t dim2);
+int futhark_free_f32_3d(struct futhark_context *ctx,
+                        struct futhark_f32_3d *arr);
+int futhark_values_f32_3d(struct futhark_context *ctx,
+                          struct futhark_f32_3d *arr, float *data);
+char *futhark_values_raw_f32_3d(struct futhark_context *ctx,
+                                struct futhark_f32_3d *arr);
+const int64_t *futhark_shape_f32_3d(struct futhark_context *ctx,
+                                    struct futhark_f32_3d *arr);
 
 // Opaque values
 
@@ -58,7 +74,8 @@ const int64_t *futhark_shape_f32_2d(struct futhark_context *ctx,
 int futhark_entry_main(struct futhark_context *ctx,
                        struct futhark_f32_2d **out0,
                        struct futhark_f32_2d **out1,
-                       struct futhark_f32_2d **out2, const
+                       struct futhark_f32_2d **out2,
+                       struct futhark_f32_3d **out3, const
                        struct futhark_f32_2d *in0, const int64_t in1, const
                        int64_t in2, const int64_t in3, const int64_t in4, const
                        int64_t in5, const int64_t in6, const int64_t in7, const

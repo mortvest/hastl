@@ -97,22 +97,23 @@ class STL():
             print("Running the program")
 
         try:
-            s_data, t_data, r_data = self._fut_obj.main(Y,
-                                                        n_p,
-                                                        t_window,
-                                                        l_window,
-                                                        t_degree,
-                                                        l_degree,
-                                                        t_jump,
-                                                        l_jump,
-                                                        inner,
-                                                        outer,
-                                                        self.jump_threshold,
-                                                        self.max_group_size)
+            s_data, t_data, r_data, ws_data = self._fut_obj.main(Y,
+                                                                 n_p,
+                                                                 t_window,
+                                                                 l_window,
+                                                                 t_degree,
+                                                                 l_degree,
+                                                                 t_jump,
+                                                                 l_jump,
+                                                                 inner,
+                                                                 outer,
+                                                                 self.jump_threshold,
+                                                                 self.max_group_size)
 
             season = self._fut_obj.from_futhark(s_data)
             trend = self._fut_obj.from_futhark(t_data)
             remainder = self._fut_obj.from_futhark(r_data)
+            weights = self._fut_obj.from_futhark(ws_data)
         except ValueError as err:
             err_type = err.args[0].split("\n")[0]
             from_err = err if self.debug else None
@@ -121,7 +122,7 @@ class STL():
             else:
                 raise ValueError("An internal error occurred while running the GPU program") from from_err
 
-        return season, trend, remainder
+        return season, trend, remainder, weights
 
     def fit_1d(self,
             y,
@@ -142,18 +143,18 @@ class STL():
         n = y.shape[0]
         Y = y.reshape(1, n)
 
-        season, trend, remainder = self.fit(Y,
-                                            n_p,
-                                            t_window,
-                                            l_window,
-                                            t_degree,
-                                            l_degree,
-                                            t_jump,
-                                            l_jump,
-                                            inner,
-                                            outer,
-                                            critval)
-        return season[0], trend[0], remainder[0]
+        season, trend, remainder, weights = self.fit(Y,
+                                                     n_p,
+                                                     t_window,
+                                                     l_window,
+                                                     t_degree,
+                                                     l_degree,
+                                                     t_jump,
+                                                     l_jump,
+                                                     inner,
+                                                     outer,
+                                                     critval)
+        return season[0], trend[0], remainder[0], weights[0]
 
     def _get_t_window(self, t_degree, n, n_p, omega):
         t_dg = max(t_degree - 1, 0)

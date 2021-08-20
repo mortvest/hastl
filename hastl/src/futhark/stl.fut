@@ -58,7 +58,7 @@ let stl [m] [n] (Y: [m][n]t)
                 (outer: i64)
                 (jump_threshold: i64)
                 (max_group_size: i64)
-                : ([m][n]t, [m][n]t, [m][n]t, [m][n][t_degree]t) =
+                : ([m][n]t, [m][n]t, [m][n]t, [m][n][]t) =
 
   ------------------------------------------------------------------------------
   -- PARAMETER SETUP                                                          --
@@ -345,25 +345,41 @@ let stl [m] [n] (Y: [m][n]t)
                             -- [n]
                             map3 (\v s t -> v - s - t) y seasonal trend
                          ) Y seasonal_l trend_l |> opaque
-  let q_slice (arr: [n]t) (l_idx_i: i64) (v: t): [q]t =
-    tabulate q (\j -> if j >= n_nn then (T.i64 0) else arr[l_idx_i + j] + v)
+
+  let w_pad_l =
+    map2 (\nn_idx weights ->
+            pad_gather weights nn_idx 0
+       ) nn_idx_l weights_l
+
+  let (l_idx_l, max_dist_l) =
+    map2 (\nn_idx n_nn ->
+            -- [l_n_m]
+            loess.loess_params t_window id n nn_idx n_nn
+         ) nn_idx_l n_nn_l |> unzip
+
   let W_l =
-    map5 (\xx yy ww l_idx (max_dist, n_nn) ->
+    let q = t_window
+    in
+    map5 (\xx ww l_idx max_dist n_nn ->
             map3 (\i l_idx_i max_dist_i ->
+                    let q_slice (arr: [n]t) (l_idx_i: i64) (v: t): [q]t =
+                      tabulate q (\j -> if j >= n_nn then (T.i64 0) else arr[l_idx_i + j] + v)
                     let xx_slice = q_slice xx l_idx_i 1
                     let ww_slice = q_slice ww l_idx_i 0
-                    in
-                    map2 (\xx_j ww_j ->
-                            let x_j = xx_j - (m_fun i |> T.i64)
-                            let r = T.abs x_j
-                            let tmp1 = r / max_dist_i
-                            let tmp2 = 1.0 - tmp1 * tmp1 * tmp1
-                            let tmp3 = tmp2 * tmp2 * tmp2
-                            let w_j = tmp3 * ww_j
-                            in
-                            x_j * w_j
-                         ) xx_slice ww_slice
-                 ) xx_l yy_l ww_l l_idx_l (zip max_dist_l n_nn_l)
+                    let xw =
+                      map2 (\xx_j ww_j ->
+                              let x_j = xx_j - (T.i64 i)
+                              let r = T.abs x_j
+                              let tmp1 = r / max_dist_i
+                              let tmp2 = 1.0 - tmp1 * tmp1 * tmp1
+                              let tmp3 = tmp2 * tmp2 * tmp2
+                              let w_j = tmp3 * ww_j
+                              in
+                              x_j * w_j
+                           ) xx_slice ww_slice
+                    in xw
+                 ) (iota n) l_idx max_dist
+         ) nn_idx_f_l w_pad_l l_idx_l max_dist_l n_nn_l
   in (seasonal_l, trend_l, remainder_l, W_l)
 }
 
@@ -380,7 +396,7 @@ entry main [m] [n] (Y: [m][n]f32)
                    (outer: i64)
                    (jump_threshold: i64)
                    (max_group_size: i64)
-                   : ([m][n]f32, [m][n]f32, [m][n]f32) =
+                   : ([m][n]f32, [m][n]f32, [m][n]f32, [m][n][]f32) =
   stl_periodic.stl Y
                    n_p
                    t_window
