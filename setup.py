@@ -1,66 +1,64 @@
 import os
 from setuptools import setup, find_packages
 
-BACKENDS = ["cuda", "opencl", "c", "multicore"]
-STL_MODULE_BASE = "./hastl/build_stl.py:build_stl_"
-LOESS_MODULE_BASE = "./hastl/build_stl.py:build_loess_"
+ALL_BACKENDS = ["cuda", "opencl", "c", "multicore"]
+CFFI_BASE = "./hastl/build_stl.py:"
+STL_MODULE_BASE = CFFI_BASE + "build_stl_"
+LOESS_MODULE_BASE = CFFI_BASE + "build_loess_"
 ENV_VAR = "HASTL_BACKENDS"
 
 VERSION = "0.1.3"
 
 
-def run_setup(cffi_mods):
-    return setup(
-        name="hastl",
-        version=VERSION,
-        author="Dmitry Serykh",
-        author_email="dmitry.serykh@gmail.com",
-        description=("A fast GPU implementation of STL decomposition with missing values"),
-        long_description=open("README.rst", "rt").read(),
-        url="https://github.com/mortvest/hastl",
-        license="MIT",
-        packages=find_packages(),
-        classifiers=[
-            "Development Status :: 3 - Alpha",
-            "Environment :: GPU",
-            "Intended Audience :: Science/Research",
-            "Intended Audience :: Developers",
-            "License :: OSI Approved :: MIT License",
-            "Operating System :: POSIX :: Linux",
-            "Operating System :: MacOS",
-            "Programming Language :: Python",
-            "Programming Language :: Python :: 3 :: Only",
-            "Programming Language :: Python :: 3.6",
-            "Programming Language :: Python :: 3.7",
-            "Programming Language :: Python :: 3.8",
-            "Programming Language :: Python :: 3.9",
-            "Topic :: Software Development",
-            "Topic :: Scientific/Engineering",
-        ],
-        install_requires=[
-            "futhark-ffi>=0.14.0",
-        ],
-        setup_requires=[
-            "futhark-ffi>=0.14.0"
-        ],
-        cffi_modules=cffi_mods
-    )
-
-def check(backend_str, base):
+def check_backend(backend_str, base):
     backend = backend_str.lower()
-    if backend not in BACKENDS:
-        raise ValueError("Invalid backend '{}' encountered in the environment variable. Must be one of {}".format(backend_str, allowed_backends))
+    if backend not in ALL_BACKENDS:
+        raise ValueError("Invalid backend '{}' encountered in the environment variable. Must be one of {}".
+                         format(backend_str, ALL_BACKENDS))
     return base + backend
 
-# read environment variable
-env_backends = os.environ.get(ENV_VAR, None)
-# build the list of CFFI modules
-if env_backends:
-    CFFI_MODULES = list(set([check(backend, STL_MODULE_BASE) for backend in env_backends.split(" ")]))
-    CFFI_MODULES += list(set([check(backend, LOESS_MODULE_BASE) for backend in env_backends.split(" ")]))
-else:
-    # if not set, compile all available backends
-    CFFI_MODULES = [STL_MODULE_BASE + backend for backend in BACKENDS]
-    CFFI_MODULES += [LOESS_MODULE_BASE + backend for backend in BACKENDS]
+def find_cffi_modules():
+    # read environment variable
+    env_backends = os.environ.get(ENV_VAR, None)
+    backends = env_backends.split(" ") if env_backends else ALL_BACKENDS
+    modules = []
+    for module_base in [STL_MODULE_BASE, LOESS_MODULE_BASE]:
+        modules += list({check_backend(backend, module_base) for backend in backends})
+    assert modules, "List of cffi modules can not be empty"
+    return modules
 
-run_setup(CFFI_MODULES)
+setup(
+    name="hastl",
+    version=VERSION,
+    author="Dmitry Serykh",
+    author_email="dmitry.serykh@gmail.com",
+    description=("A fast GPU implementation of STL decomposition with missing values"),
+    long_description=open("README.rst", "rt").read(),
+    url="https://github.com/mortvest/hastl",
+    license="MIT",
+    packages=find_packages(),
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Environment :: GPU",
+        "Intended Audience :: Science/Research",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: POSIX :: Linux",
+        "Operating System :: MacOS",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3 :: Only",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Topic :: Software Development",
+        "Topic :: Scientific/Engineering",
+    ],
+    install_requires=[
+        "futhark-ffi>=0.14.0",
+    ],
+    setup_requires=[
+        "futhark-ffi>=0.14.0"
+    ],
+    cffi_modules=find_cffi_modules()
+)
