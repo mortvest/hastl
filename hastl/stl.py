@@ -105,23 +105,24 @@ class STL():
             Y_32 = Y.astype(np.float32)
             futhark_data.dump(Y_32, f)
 
-            params = [n_p,
-                      t_window,
-                      l_window,
-                      t_degree,
-                      l_degree,
-                      t_jump,
-                      l_jump,
-                      inner,
-                      outer,
-                      self.jump_threshold,
-                      self.max_group_size]
+            params = [(n_p, "n_p"),
+                      (t_window, "q_t"),
+                      (l_window, "q_l"),
+                      (t_degree, "d_t"),
+                      (l_degree, "d_l"),
+                      (t_jump, "n_jump_t"),
+                      (l_jump, "n_jump_l"),
+                      (inner, "n_inner"),
+                      (outer, "n_outer"),
+                      (self.jump_threshold, "jump threshold"),
+                      (self.max_group_size, "q_threshold")]
 
-            for par in params:
-                print(par)
+            for (par, name) in params:
+                print("{}: {}".format(name, par))
                 futhark_data.dump(np.int64(par), f)
 
             f.close()
+            exit()
 
         try:
             s_data, t_data, r_data = self._fut_obj.main(Y,
