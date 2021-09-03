@@ -25,22 +25,24 @@ local let filterPadNans = filterPadWithKeys (\i -> !(T.isnan i)) 0
 --------------------------------------------------------------------------------
 -- Three moving averages                                                      --
 --------------------------------------------------------------------------------
-local let moving_averages [n] (x: [n]t) (n_p: i64): []t =
-  let single_ma (n_p: i64) (n: i64) (x: []t) : [n]t =
-    let ma_tmp = T.sum x[:n_p]
+local let moving_averages_l [m][n] (x_l: [m][n]t) (n_p: i64): [m][]t =
+  let single_ma_l [m] (n_p: i64) (n: i64) (x_l: [m][]t) : [m][n]t =
     let n_p_f = T.i64 n_p
-        in
-        tabulate n (\i ->
-                      if i == 0
-                      then
-                        ma_tmp / n_p_f
-                      else
-                        (x[i + n_p - 1] - x[i - 1]) / n_p_f
-               ) |> scan (+) 0
+    let ma_tmp_l = map (\x -> T.sum x[:n_p]) x_l |> opaque
+    in
+    map2 (\x ma_tmp ->
+           tabulate n (\i ->
+                         if i == 0
+                         then
+                           ma_tmp / n_p_f
+                         else
+                           (x[i + n_p - 1] - x[i - 1]) / n_p_f
+                      ) |> scan (+) 0
+         ) x_l ma_tmp_l |> opaque
   let nn = n - n_p * 2
   in
   -- apply three moving averages
-  single_ma n_p (nn + n_p + 1) x |> single_ma n_p (nn + 2) |> single_ma 3 nn
+  single_ma_l n_p (nn + n_p + 1) x_l |> single_ma_l n_p (nn + 2) |> single_ma_l 3 nn
 
 
 --------------------------------------------------------------------------------
@@ -196,10 +198,7 @@ let stl [m] [n] (Y: [m][n]t)
 
           -- Step 3: Low-pass filtering of collection of all the cycle-subseries
           --- apply 3 moving averages
-          let ma3_l = map (\C ->
-                             moving_averages C n_p :> [n]t
-                          ) C_l |> opaque
-
+          let ma3_l = moving_averages_l C_l n_p :> [m][n]t
 
           --- then apply LOESS
           let (l_results_l, l_slopes_l) = loess.loess_l (replicate m (iota n |> map (T.i64)))
@@ -214,6 +213,7 @@ let stl [m] [n] (Y: [m][n]t)
                                                         l_jump
                                                         jump_threshold
                                                         max_group_size
+
           let L_l =
             if l_jump > 1 then
               map2 (\l_results l_slopes ->
