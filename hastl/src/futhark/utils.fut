@@ -1,3 +1,18 @@
+let nonans (arr: [][]f32): bool =
+  !(any (any (f32.isnan)) arr)
+
+-- compact wrapper for the tabulate function
+let tab 't (fun: (i64 -> t)) (n: i64): [n]t =
+  tabulate n fun
+
+-- swap two values in an array (arr[i] <-> arr[j])
+let swap 't (arr: *[]t) (i: i64) (j: i64): *[]t =
+  #[unsafe]
+  let v = copy arr[i]
+  let arr[i] = copy arr[j]
+  let arr[j] = v
+  in arr
+
 let check_pos (x: i64): i64 =
   assert (x > 0) x
 
@@ -19,12 +34,12 @@ let pad_gather [n] 'a (vs: []a) (idxs: [n]i64) (zero: a): [n]a =
 
 
 let pad_idx (n: i64) (i: i64) (n_p: i64) (i_max: i64): [n]i64 =
-  tabulate n (
-             \j -> let ind = i + (j * n_p)
-                   in
-                   if ind < i_max then ind else -1
-           )
+  tab (\j -> let ind = i + (j * n_p)
+               in
+               if ind < i_max then ind else -1
+      ) n
 
+-- Filter the array with a predicate, then pad to original size with dummy
 -- returns:
 --- rs: array of matching values, padded with 0 of that type
 --- ks: array of indexes of matching values, padded with -1

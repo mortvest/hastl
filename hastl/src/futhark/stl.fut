@@ -1,26 +1,19 @@
--- Seasonal-Trend decomposition by LOESS (STL) - Periodic Version
+-- Seasonal-Trend decomposition by LOESS (STL)
 --- Loosely based on:
 ---- https://github.com/hafen/stlplus
 -- ==
 -- compiled input @ batchednan.in
 
--- input @ flat_small_per.in output @ flat_small_per.out
--- input @ batch_small_per.in output @ batch_small_per.out
-
--- compiled input @ flatnan.in
--- compiled input @ co2nan.in
 import "lib/github.com/diku-dk/sorts/radix_sort"
 import "loess"
 import "utils"
 
-module stl_periodic = {
+module stl_batched = {
 
 module T = f32
 type t = T.t
 
 module loess = loess_m
-
-local let filterPadNans = filterPadWithKeys (\i -> !(T.isnan i)) 0
 
 --------------------------------------------------------------------------------
 -- Three moving averages                                                      --
@@ -31,13 +24,13 @@ local let moving_averages_l [m][n] (x_l: [m][n]t) (n_p: i64): [m][]t =
     let ma_tmp_l = map (\x -> T.sum x[:n_p]) x_l |> opaque
     in
     map2 (\x ma_tmp ->
-           tabulate n (\i ->
-                         if i == 0
-                         then
-                           ma_tmp / n_p_f
-                         else
-                           (x[i + n_p - 1] - x[i - 1]) / n_p_f
-                      ) |> scan (+) 0
+            tab (\i ->
+                   if i == 0
+                   then
+                     ma_tmp / n_p_f
+                   else
+                     (x[i + n_p - 1] - x[i - 1]) / n_p_f
+                ) n |> scan (+) 0
          ) x_l ma_tmp_l |> opaque
   let nn = n - n_p * 2
   in
@@ -45,21 +38,28 @@ local let moving_averages_l [m][n] (x_l: [m][n]t) (n_p: i64): [m][]t =
   single_ma_l n_p (nn + n_p + 1) x_l |> single_ma_l n_p (nn + 2) |> single_ma_l 3 nn
 
 
+local let filterPadNans = filterPadWithKeys (\i -> !(T.isnan i)) 0
+local let pad_gather_floats = \vs idxs -> pad_gather vs idxs (T.i64 0)
+local let pad_gather_ints = \vs idxs -> pad_gather vs idxs 0i64
+
 --------------------------------------------------------------------------------
 -- Main STL function                                                          --
 --------------------------------------------------------------------------------
 let stl [m] [n] (Y: [m][n]t)
                 (n_p: i64)
+                (s_window: i64)
                 (t_window: i64)
                 (l_window: i64)
+                (s_degree: i64)
                 (t_degree: i64)
                 (l_degree: i64)
+                (s_jump: i64)
                 (t_jump: i64)
                 (l_jump: i64)
                 (inner: i64)
                 (outer: i64)
                 (jump_threshold: i64)
-                (max_group_size: i64)
+                (q_threshold: i64)
                 : ([m][n]t, [m][n]t, [m][n]t) =
 
   ------------------------------------------------------------------------------
@@ -80,10 +80,17 @@ let stl [m] [n] (Y: [m][n]t)
   let inner = check_pos inner
   let outer = check_nonneg outer
 
-  -- set up parameters for cycle-subseries averaging
-  let max_css_len = T.to_i64 <| T.ceil <| ((T.i64 n) / (T.i64 n_p))
-  let css_chunk_len = max_css_len + 2
+  -- set up parameters for cycle-subseries smoothing
+  let max_css_len = T.ceil ((T.i64 n) / (T.i64 n_p)) |> T.to_i64
+  let pad_css_len = max_css_len + 2
   let C_len = n + 2 * n_p
+  -- -- number of incomplete css
+  -- let css_n_incomplete = pad_css_len * n_p - C_len
+
+  let s_n_m = if s_jump == 1 then pad_css_len else max_css_len / s_jump + 3
+  let s_m_fun (x: i64) = if x == 0 then 0
+                         else if x == s_n_m - 1 then pad_css_len - 1
+                         else i64.min ((x - 1) * s_jump + 1) (max_css_len)
 
   -- set up parameters for the low-pass filter smoothing
   let l_n_m = if l_jump == 1 then n else n / l_jump + 1
@@ -105,38 +112,44 @@ let stl [m] [n] (Y: [m][n]t)
   ------------------------------------------------------------------------------
   -- filter nans and pad non-nan indices
   let (_, nn_idx_l, n_nn_l) = map filterPadNans Y |> unzip3 |> opaque
-  let nn_idx_f_l = map (\nn_idx -> map (\i -> T.i64 i) nn_idx) nn_idx_l |> opaque
 
   -- calculate invariant arrays for the cycle sub-series averaging
-  let css_idxs =
-    -- [n_p]
-    tabulate n_p
-             (\css_i ->
-                -- [css_chunk_len]
-                tabulate css_chunk_len (\j ->
-                                          let res_idx = css_i + (j * n_p)
-                                          in
-                                          if res_idx > n - 1
-                                          then -1
-                                          else res_idx
-                                      )
-             ) |> opaque
+  -- indexes of each css in full array
+  let css_idxss = tab ( \i ->
+                          tab ( \j ->
+                                  let new_i = i + n_p * j
+                                  in
+                                  if new_i > n - 1
+                                  then -1
+                                  else new_i
+                              ) max_css_len
+                      ) n_p |> opaque
 
-  -- find number of non-nan values in each subseries of each time series
-  let css_n_nn_l =
+  -- compute local indexes of non-nan values and their number for each css
+  let (css_nn_idxss_l, css_n_nns_l) =
     map (\y ->
-            -- [n_p]
-            map (\css_idx ->
-                  -- [css_chunk_len]
-                  let vals = pad_gather y css_idx T.nan
-                  let n_nn = map (\v -> if T.isnan v then 0 else 1) vals
-                  let n_nn_sum_ = T.sum n_nn
-                  let sub_series_is_not_all_nan = n_nn_sum_ > 0
-                  -- Fail for all-zero subseries - nothing can be done here
-                  let n_nn_sum = assert sub_series_is_not_all_nan n_nn_sum_
-                  in n_nn_sum
-                ) css_idxs
-        ) Y |> opaque
+           tab ( \i ->
+                 -- extract css, padded to max_css_len with NaNs
+                   let css = tab ( \j ->
+                                     let new_i = i + n_p * j
+                                     in
+                                     if new_i > n - 1
+                                     then T.nan
+                                     else y[new_i]
+                                 ) max_css_len
+                 -- extract non-nan indexes from padded css, pad to max_css_len
+                 let (_, css_nn_idx, css_n_nn) = filterPadNans css
+                 in (css_nn_idx, css_n_nn)
+               ) n_p |> unzip
+        ) Y |> unzip |> opaque
+
+  let (css_l_idxs_l, css_max_dists_l) =
+    map2 (\css_nn_idxss css_n_nns ->
+           map2 (\css_nn_idxs css_n_nn ->
+                   loess.loess_params_css s_window s_m_fun s_n_m css_nn_idxs css_n_nn
+                ) css_nn_idxss css_n_nns |> unzip
+        ) css_nn_idxss_l css_n_nns_l |> unzip |> opaque
+
 
   -- calculate invariant arrays for the low-pass filter smoothing
   let (l_l_idx_l, l_max_dist_l) =
@@ -171,48 +184,73 @@ let stl [m] [n] (Y: [m][n]t)
         ------------------------------------
         loop (_, trend_l) = (seasonal_l, trend_l) for _i_inner < inner do
           -- Step 1: Detrending
-          let Y_detrended_l = map2 (\y trend ->
-                                      -- [n]
-                                      map2 (-) y trend
-                                   ) Y trend_l |> opaque
+          let Y_detrended_l = map2 (\y trend -> map2 (-) y trend) Y trend_l |> opaque
 
-          -- Step 2: Averaging cycle-subseries
-          --- find averages for each cycle sub-series
-          let css_avgs_l =
-            map2 (\y_detrended css_n_nns ->
-                    -- [n_p]
-                    map2 (\css_idx css_n_nn ->
-                            -- [css_chunk_len]
-                            let vals = pad_gather y_detrended css_idx T.nan
-                            let filt = map (\v -> if T.isnan v then 0 else v) vals
-                            in (T.sum filt / css_n_nn)
-                        ) css_idxs css_n_nns
-                 ) Y_detrended_l css_n_nn_l |> opaque
+          -- Step 2: Cycle subseries smoothing
+          --- calculate the padded non-NaN values of each css and corresponding ws
+          let (css_nns_l, css_ws_l) =
+            map3 (\css_nn_idxss y_detrended w ->
+                    map2 (\css_idxs css_nn_idxs ->
+                           -- [max_css_len]
+                           -- extract cycle subseries
+                           let css = pad_gather_floats y_detrended css_idxs
+                           -- extract non-NaN values, then pad
+                           let css_nn = pad_gather_floats css css_nn_idxs
+                           -- extract corresponding robustness weitghs
+                           let css_w = pad_gather_floats w css_idxs
+                           in (css_nn, css_w)
+                         ) css_idxss css_nn_idxss |> unzip
+                 ) css_nn_idxss_l Y_detrended_l weights_l |> unzip |> opaque
 
-          -- combine chunks into one array
-          let C_l =
-            map (\css_avgs ->
-                   -- [C_len]
-                   tabulate C_len (\i -> css_avgs[i % n_p])
-            ) css_avgs_l |> opaque
+          -- apply LOESS to each css
+          let (css_fits_l, css_slopes_l) = loess.loess_css_l css_nn_idxss_l
+                                                             css_nns_l
+                                                             s_degree
+                                                             s_window
+                                                             s_m_fun
+                                                             css_ws_l
+                                                             css_l_idxs_l
+                                                             css_max_dists_l
+                                                             css_n_nns_l
+                                                             s_jump
+                                                             jump_threshold
+                                                             q_threshold
+
+          -- apply interpolation to each css if necessary
+          let css_results_l =
+            if s_jump == 1
+            then
+              css_fits_l
+            else
+              map2 (\css_fits css_slopes ->
+                      map2 (\css_fit css_slope ->
+                              -- loess.interpolate_css s_m_fun css_fit css_slope pad_css_len s_jump
+                              loess.interpolate_css s_m_fun css_fit css_slope pad_css_len s_jump
+                           ) css_fits css_slopes
+                   ) css_fits_l css_slopes_l |> opaque
+
+          -- rebuild time series of size N + 2 * n_p out of smoothed cycle subseries
+          let C_l = map (\css_results ->
+                           tab (\i -> css_results[i % n_p, i / n_p]) C_len
+                        ) css_results_l |> opaque
 
           -- Step 3: Low-pass filtering of collection of all the cycle-subseries
           --- apply 3 moving averages
           let ma3_l = moving_averages_l C_l n_p :> [m][n]t
 
           --- then apply LOESS
-          let (l_results_l, l_slopes_l) = loess.loess_l (replicate m (iota n |> map (T.i64)))
+          let (l_results_l, l_slopes_l) = loess.loess_l (replicate m (iota n))
                                                         ma3_l
                                                         l_degree
                                                         l_window
-                                                        t_m_fun
+                                                        (t_m_fun >-> (+1))
                                                         weights_l
                                                         l_l_idx_l
                                                         l_max_dist_l
                                                         (replicate m n)
                                                         l_jump
                                                         jump_threshold
-                                                        max_group_size
+                                                        q_threshold
 
           let L_l =
             if l_jump > 1 then
@@ -243,26 +281,28 @@ let stl [m] [n] (Y: [m][n]t)
 
           -- Step 6: Trend Smoothing
           let (D_pad_l, w_pad_l) =
+            --- Gather non-nan values
+            ----- can be fused with above
             map3 (\D nn_idx weights ->
-                    -- [n_nn]
-                    let D_pad = pad_gather D nn_idx 0
-                    let w_pad = pad_gather weights nn_idx 0
+                    -- [n]
+                    let D_pad = pad_gather_floats D nn_idx
+                    let w_pad = pad_gather_floats weights nn_idx
                     in (D_pad, w_pad)
-                 ) D_l nn_idx_l weights_l |> unzip |> opaque
+                 ) D_l nn_idx_l weights_l |> unzip
 
           -- apply LOESS
-          let (t_results_l, t_slopes_l) = loess.loess_l nn_idx_f_l
+          let (t_results_l, t_slopes_l) = loess.loess_l nn_idx_l
                                                         D_pad_l
                                                         t_degree
                                                         t_window
-                                                        t_m_fun
+                                                        (t_m_fun >-> (+1))
                                                         w_pad_l
                                                         t_l_idx_l
                                                         t_max_dist_l
                                                         n_nn_l
                                                         t_jump
                                                         jump_threshold
-                                                        max_group_size
+                                                        q_threshold
           --- interpolate
           let trend_l =
             -- [n]
@@ -294,10 +334,10 @@ let stl [m] [n] (Y: [m][n]t)
                     let R = map3 (\v s t -> v - s - t) y seasonal trend
                     in
                     map (\r -> if T.isnan r then T.nan else T.abs r) R
-                 ) Y seasonal_l trend_l |> opaque
+                 ) Y seasonal_l trend_l
           let R_pad_l =
             map2 (\R_abs nn_idx ->
-                    -- [n_nn]
+                    -- [n]
                     pad_gather R_abs nn_idx T.inf
                  ) R_abs_l nn_idx_l |> opaque
 
@@ -344,33 +384,39 @@ let stl [m] [n] (Y: [m][n]t)
   let remainder_l = map3 (\y seasonal trend ->
                             -- [n]
                             map3 (\v s t -> v - s - t) y seasonal trend
-                         ) Y seasonal_l trend_l |> opaque
+                         ) Y seasonal_l trend_l
   in (seasonal_l, trend_l, remainder_l)
 }
 
 
 entry main [m] [n] (Y: [m][n]f32)
                    (n_p: i64)
+                   (s_window: i64)
                    (t_window: i64)
                    (l_window: i64)
+                   (s_degree: i64)
                    (t_degree: i64)
                    (l_degree: i64)
+                   (s_jump: i64)
                    (t_jump: i64)
                    (l_jump: i64)
                    (inner: i64)
                    (outer: i64)
                    (jump_threshold: i64)
-                   (max_group_size: i64)
+                   (q_threshold: i64)
                    : ([m][n]f32, [m][n]f32, [m][n]f32) =
-  stl_periodic.stl Y
-                   n_p
-                   t_window
-                   l_window
-                   t_degree
-                   l_degree
-                   t_jump
-                   l_jump
-                   inner
-                   outer
-                   jump_threshold
-                   max_group_size
+  stl_batched.stl Y
+                  n_p
+                  s_window
+                  t_window
+                  l_window
+                  s_degree
+                  t_degree
+                  l_degree
+                  s_jump
+                  t_jump
+                  l_jump
+                  inner
+                  outer
+                  jump_threshold
+                  q_threshold

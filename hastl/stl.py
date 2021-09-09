@@ -47,15 +47,18 @@ class STL():
     def fit(self,
             Y,
             n_p,
+            s_window,
             t_window=None,
             l_window=None,
+            s_degree=1,
             t_degree=1,
             l_degree=None,
+            s_jump=None,
             t_jump=None,
             l_jump=None,
             inner=2,
             outer=1,
-            critval=0.05,
+            critfreq=0.05,
             dump=False,
             ):
         Y = np.asarray(Y)
@@ -68,20 +71,29 @@ class STL():
             raise ValueError("n_p was set to {}. Must be at least 4".format(n_p))
         n_p = int(n_p)
 
+        if s_window < 7:
+            raise ValueError("s_window was set to {}. Must be at least 7".format(s_window))
+        s_window = _wincheck(s_window)
+
         if t_window is None:
             # t_window = _nextodd(np.ceil(1.5 * n_p / (1 - 1.5 / self.s_window)))
-            t_window = self._get_t_window(t_degree, n, n_p, critval)
+            t_window = self._get_t_window(t_degree, s_degree, s_window, n_p, critfreq)
         t_window = _wincheck(t_window)
 
         if l_window is None:
             l_window = _nextodd(n_p)
         l_window = _wincheck(l_window)
 
+        s_degree = _degcheck(s_degree)
         t_degree = _degcheck(t_degree)
 
         if l_degree is None:
             l_degree = t_degree
         l_degree = _degcheck(l_degree)
+
+        if s_jump is None:
+            s_jump = np.ceil(s_window / 10)
+        s_jump = _jump_check(s_jump, n)
 
         if t_jump is None:
             t_jump = np.ceil(t_window / 10)
@@ -106,10 +118,13 @@ class STL():
             futhark_data.dump(Y_32, f)
 
             params = [(n_p, "n_p"),
+                      (s_window, "q_s"),
                       (t_window, "q_t"),
                       (l_window, "q_l"),
+                      (s_degree, "d_s"),
                       (t_degree, "d_t"),
                       (l_degree, "d_l"),
+                      (s_jump, "n_jump_s"),
                       (t_jump, "n_jump_t"),
                       (l_jump, "n_jump_l"),
                       (inner, "n_inner"),
@@ -127,10 +142,13 @@ class STL():
         try:
             s_data, t_data, r_data = self._fut_obj.main(Y,
                                                         n_p,
+                                                        s_window,
                                                         t_window,
                                                         l_window,
+                                                        s_degree,
                                                         t_degree,
                                                         l_degree,
+                                                        s_jump,
                                                         t_jump,
                                                         l_jump,
                                                         inner,
@@ -154,15 +172,18 @@ class STL():
     def fit_1d(self,
             y,
             n_p,
+            s_window,
             t_window=None,
             l_window=None,
+            s_degree=1,
             t_degree=1,
             l_degree=None,
+            s_jump=None,
             t_jump=None,
             l_jump=None,
             inner=2,
             outer=1,
-            critval=0.05,
+            critfreq=0.05,
             dump=False
             ):
         y = np.asarray(y)
@@ -173,21 +194,24 @@ class STL():
 
         season, trend, remainder = self.fit(Y,
                                             n_p,
+                                            s_window,
                                             t_window,
                                             l_window,
+                                            s_degree,
                                             t_degree,
                                             l_degree,
+                                            s_jump,
                                             t_jump,
                                             l_jump,
                                             inner,
                                             outer,
-                                            critval,
+                                            critfreq,
                                             dump)
         return season[0], trend[0], remainder[0]
 
-    def _get_t_window(self, t_degree, n, n_p, omega):
+    def _get_t_window(self, t_degree, s_degree, n_s, n_p, omega):
         t_dg = max(t_degree - 1, 0)
-        n_s = 10 * n + 1
+        s_dg = max(s_degree - 1, 0)
 
         coefs_a_a = (0.000103350651767650, 3.81086166990428e-6)
         coefs_a_b = (-0.000216653946625270, 0.000708495976681902)
@@ -201,9 +225,9 @@ class STL():
         coefs_c_c = (6.46952900183769, 1.85431548427732)
 
         # estimate critical frequency for seasonal
-        betac0 = coefs_a_a[0] + coefs_a_b[0] * omega
-        betac1 = coefs_b_a[0] + coefs_b_b[0] * omega + coefs_b_c[0] * omega**2
-        betac2 = coefs_c_a[0] + coefs_c_b[0] * omega + coefs_c_c[0] * omega**2
+        betac0 = coefs_a_a[s_dg] + coefs_a_b[s_dg] * omega
+        betac1 = coefs_b_a[s_dg] + coefs_b_b[s_dg] * omega + coefs_b_c[s_dg] * omega**2
+        betac2 = coefs_c_a[s_dg] + coefs_c_b[s_dg] * omega + coefs_c_c[s_dg] * omega**2
         f_c = (1 - (betac0 + betac1 / n_s + betac2 / n_s**2)) / n_p
 
         # choose

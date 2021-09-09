@@ -18,12 +18,12 @@ def plot_single(ax, data, q):
 
 if __name__ == "__main__":
     plt.style.use("bmh")
-    plt.rcParams['font.size'] = 10
-    plt.rcParams['axes.labelsize'] = 10
+    plt.rcParams['font.size'] = 12
+    plt.rcParams['axes.labelsize'] = 12
     plt.rcParams['axes.labelweight'] = 'bold'
-    plt.rcParams['xtick.labelsize'] = 8
-    plt.rcParams['ytick.labelsize'] = 8
-    plt.rcParams['legend.fontsize'] = 10
+    plt.rcParams['xtick.labelsize'] = 12
+    plt.rcParams['ytick.labelsize'] = 12
+    plt.rcParams['legend.fontsize'] = 12
     plt.rcParams['figure.titlesize'] = 12
 
     x_dim = 500
@@ -47,5 +47,5 @@ if __name__ == "__main__":
 
     plt.tight_layout()
     plt.subplots_adjust(wspace=0.085)
-    # plt.savefig("loess_qs.png", dpi=150)
-    plt.show()
+    plt.savefig("loess_qs.png", dpi=150)
+    # plt.show()

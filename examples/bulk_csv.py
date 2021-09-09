@@ -21,7 +21,7 @@ def process_file(stl_obj, input_name, output_name, n_p):
     data[np.isclose(data, 0)] = np.nan
 
     print("running stl")
-    seasonal, trend, remainder = stl_obj.fit(data.T, n_p = n_p)
+    seasonal, trend, remainder = stl_obj.fit(data.T, n_p = n_p, s_window=999)
     seasonal = np.nan_to_num(seasonal)
     trend = np.nan_to_num(trend)
     remainder = np.nan_to_num(remainder)

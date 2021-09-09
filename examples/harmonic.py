@@ -40,12 +40,12 @@ def plot_single(ax, x, data, label):
 
 if __name__ == "__main__":
     plt.style.use("bmh")
-    plt.rcParams['font.size'] = 10
-    plt.rcParams['axes.labelsize'] = 10
+    plt.rcParams['font.size'] = 12
+    plt.rcParams['axes.labelsize'] = 12
     plt.rcParams['axes.labelweight'] = 'bold'
-    plt.rcParams['xtick.labelsize'] = 8
-    plt.rcParams['ytick.labelsize'] = 8
-    plt.rcParams['legend.fontsize'] = 10
+    plt.rcParams['xtick.labelsize'] = 12
+    plt.rcParams['ytick.labelsize'] = 12
+    plt.rcParams['legend.fontsize'] = 12
     plt.rcParams['figure.titlesize'] = 12
 
     x_dim = 500
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     x = np.arange(1, x_dim + 1)
 
     stl = STL(debug=True, backend="c")
-    seasonal, trend, remainder = stl.fit_1d(data, n_p=n_p)
+    seasonal, trend, remainder = stl.fit_1d(data, n_p=n_p, s_window=19, s_degree=0)
 
     fig, axs = plt.subplots(4)
     labels = ["Input", "Seasonal", "Trend", "Remainder"]
@@ -69,5 +69,5 @@ if __name__ == "__main__":
 
     plt.tight_layout()
     plt.subplots_adjust(wspace=0.085)
-    plt.savefig("stl1.png", dpi=150)
+    # plt.savefig("stl1.png", dpi=150)
     plt.show()
