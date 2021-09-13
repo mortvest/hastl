@@ -84,8 +84,6 @@ let stl [m] [n] (Y: [m][n]t)
   let max_css_len = T.ceil ((T.i64 n) / (T.i64 n_p)) |> T.to_i64
   let pad_css_len = max_css_len + 2
   let C_len = n + 2 * n_p
-  -- -- number of incomplete css
-  -- let css_n_incomplete = pad_css_len * n_p - C_len
 
   let s_n_m = if s_jump == 1 then pad_css_len else max_css_len / s_jump + 3
   let s_m_fun (x: i64) = if x == 0 then 0
@@ -113,18 +111,6 @@ let stl [m] [n] (Y: [m][n]t)
   -- filter nans and pad non-nan indices
   let (_, nn_idx_l, n_nn_l) = map filterPadNans Y |> unzip3 |> opaque
 
-  -- calculate invariant arrays for the cycle sub-series averaging
-  -- indexes of each css in full array
-  let css_idxss = tab ( \i ->
-                          tab ( \j ->
-                                  let new_i = i + n_p * j
-                                  in
-                                  if new_i > n - 1
-                                  then -1
-                                  else new_i
-                              ) max_css_len
-                      ) n_p |> opaque
-
   -- compute local indexes of non-nan values and their number for each css
   let (css_nn_idxss_l, css_n_nns_l) =
     map (\y ->
@@ -143,13 +129,13 @@ let stl [m] [n] (Y: [m][n]t)
                ) n_p |> unzip
         ) Y |> unzip |> opaque
 
+  -- calculate invariant arrays for the seasonal smoothing
   let (css_l_idxs_l, css_max_dists_l) =
     map2 (\css_nn_idxss css_n_nns ->
            map2 (\css_nn_idxs css_n_nn ->
                    loess.loess_params_css s_window s_m_fun s_n_m css_nn_idxs css_n_nn
                 ) css_nn_idxss css_n_nns |> unzip
         ) css_nn_idxss_l css_n_nns_l |> unzip |> opaque
-
 
   -- calculate invariant arrays for the low-pass filter smoothing
   let (l_l_idx_l, l_max_dist_l) =
@@ -165,7 +151,7 @@ let stl [m] [n] (Y: [m][n]t)
             loess.loess_params t_window t_m_fun t_n_m nn_idx n_nn
          ) nn_idx_l n_nn_l |> unzip |> opaque
 
-  --- initialize components to 0s
+  --- initialize components to 0s, should not be instantiated
   let seasonal_l = replicate (m * n) (T.i64 0) |> unflatten m n
   let trend_l = replicate (m * n) (T.i64 0) |> unflatten m n
   let weights_l = replicate (m * n) (T.i64 1) |> unflatten m n
@@ -187,19 +173,18 @@ let stl [m] [n] (Y: [m][n]t)
           let Y_detrended_l = map2 (\y trend -> map2 (-) y trend) Y trend_l |> opaque
 
           -- Step 2: Cycle subseries smoothing
-          --- calculate the padded non-NaN values of each css and corresponding ws
+          --- extract the padded non-NaN values for each css and corresponding weights
           let (css_nns_l, css_ws_l) =
             map3 (\css_nn_idxss y_detrended w ->
-                    map2 (\css_idxs css_nn_idxs ->
-                           -- [max_css_len]
-                           -- extract cycle subseries
-                           let css = pad_gather_floats y_detrended css_idxs
-                           -- extract non-NaN values, then pad
-                           let css_nn = pad_gather_floats css css_nn_idxs
-                           -- extract corresponding robustness weitghs
-                           let css_w = pad_gather_floats w css_idxs
-                           in (css_nn, css_w)
-                         ) css_idxss css_nn_idxss |> unzip
+                    map2 (\i css_nn_idx ->
+                           map (\nn_id ->
+                                   let idx = nn_id * n_p + i
+                                   in
+                                   if idx > n - 1 || nn_id < 0
+                                   then (0, 0)
+                                   else (y_detrended[idx], w[idx])
+                                ) css_nn_idx |> unzip
+                         ) (iota n_p) css_nn_idxss |> unzip
                  ) css_nn_idxss_l Y_detrended_l weights_l |> unzip |> opaque
 
           -- apply LOESS to each css
@@ -216,7 +201,7 @@ let stl [m] [n] (Y: [m][n]t)
                                                              jump_threshold
                                                              q_threshold
 
-          -- apply interpolation to each css if necessary
+          -- apply interpolation to each css if necessary. The result has inner dimension (max_css_length + 2)
           let css_results_l =
             if s_jump == 1
             then
@@ -224,12 +209,11 @@ let stl [m] [n] (Y: [m][n]t)
             else
               map2 (\css_fits css_slopes ->
                       map2 (\css_fit css_slope ->
-                              -- loess.interpolate_css s_m_fun css_fit css_slope pad_css_len s_jump
                               loess.interpolate_css s_m_fun css_fit css_slope pad_css_len s_jump
                            ) css_fits css_slopes
                    ) css_fits_l css_slopes_l |> opaque
 
-          -- rebuild time series of size N + 2 * n_p out of smoothed cycle subseries
+          -- rebuild time series of size (N + 2 * n_p) out of smoothed cycle subseries
           let C_l = map (\css_results ->
                            tab (\i -> css_results[i % n_p, i / n_p]) C_len
                         ) css_results_l |> opaque
@@ -252,6 +236,7 @@ let stl [m] [n] (Y: [m][n]t)
                                                         jump_threshold
                                                         q_threshold
 
+          -- interpolate, if needed
           let L_l =
             if l_jump > 1 then
               map2 (\l_results l_slopes ->
@@ -262,7 +247,7 @@ let stl [m] [n] (Y: [m][n]t)
               l_results_l :> [m][n]t
 
           -- Step 4: Detrend smoothed cycle-subseries
-          --- can be fused with above
+          --- extract the slice from the L array of size n. Can be fused with above
           let seasonal_l =
             map2 (\C L ->
                     -- [n]
@@ -282,7 +267,7 @@ let stl [m] [n] (Y: [m][n]t)
           -- Step 6: Trend Smoothing
           let (D_pad_l, w_pad_l) =
             --- Gather non-nan values
-            ----- can be fused with above
+            ----- can be fused with above?
             map3 (\D nn_idx weights ->
                     -- [n]
                     let D_pad = pad_gather_floats D nn_idx
@@ -333,7 +318,7 @@ let stl [m] [n] (Y: [m][n]t)
                     -- [n]
                     let R = map3 (\v s t -> v - s - t) y seasonal trend
                     in
-                    map (\r -> if T.isnan r then T.nan else T.abs r) R
+                    map (\r -> if T.isnan r then r else T.abs r) R
                  ) Y seasonal_l trend_l
           let R_pad_l =
             map2 (\R_abs nn_idx ->
