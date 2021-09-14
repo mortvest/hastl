@@ -3084,12 +3084,12 @@ int futhark_context_clear_caches(struct futhark_context *ctx)
 }
 
 static int futrts_entry_main(struct futhark_context *ctx,
-                             struct memblock *mem_out_p_73330,
-                             struct memblock Y_mem_71984, int64_t m_70232,
-                             int64_t n_70233, int64_t q_70235,
-                             int64_t degree_70236, int64_t jump_70237,
-                             int64_t jump_threshold_70238,
-                             int64_t q_threshold_70239);
+                             struct memblock *mem_out_p_73377,
+                             struct memblock Y_mem_72031, int64_t m_70279,
+                             int64_t n_70280, int64_t q_70282,
+                             int64_t degree_70283, int64_t jump_70284,
+                             int64_t jump_threshold_70285,
+                             int64_t q_threshold_70286);
 
 static int init_constants(struct futhark_context *ctx)
 {
@@ -3186,4639 +3186,4639 @@ const int64_t *futhark_shape_f32_2d(struct futhark_context *ctx,
 }
 
 static int futrts_entry_main(struct futhark_context *ctx,
-                             struct memblock *mem_out_p_73330,
-                             struct memblock Y_mem_71984, int64_t m_70232,
-                             int64_t n_70233, int64_t q_70235,
-                             int64_t degree_70236, int64_t jump_70237,
-                             int64_t jump_threshold_70238,
-                             int64_t q_threshold_70239)
+                             struct memblock *mem_out_p_73377,
+                             struct memblock Y_mem_72031, int64_t m_70279,
+                             int64_t n_70280, int64_t q_70282,
+                             int64_t degree_70283, int64_t jump_70284,
+                             int64_t jump_threshold_70285,
+                             int64_t q_threshold_70286)
 {
     (void) ctx;
     
     int err = 0;
-    size_t mem_72005_cached_sizze_73331 = 0;
-    unsigned char *mem_72005 = NULL;
-    size_t mem_72020_cached_sizze_73332 = 0;
-    unsigned char *mem_72020 = NULL;
-    size_t mem_72023_cached_sizze_73333 = 0;
-    unsigned char *mem_72023 = NULL;
-    size_t mem_72050_cached_sizze_73334 = 0;
-    unsigned char *mem_72050 = NULL;
-    size_t mem_72065_cached_sizze_73335 = 0;
-    unsigned char *mem_72065 = NULL;
-    size_t mem_72138_cached_sizze_73336 = 0;
-    unsigned char *mem_72138 = NULL;
-    size_t mem_72153_cached_sizze_73337 = 0;
-    unsigned char *mem_72153 = NULL;
-    size_t mem_72156_cached_sizze_73338 = 0;
-    unsigned char *mem_72156 = NULL;
-    size_t mem_72183_cached_sizze_73339 = 0;
-    unsigned char *mem_72183 = NULL;
-    size_t mem_72198_cached_sizze_73340 = 0;
-    unsigned char *mem_72198 = NULL;
-    size_t mem_72301_cached_sizze_73341 = 0;
-    unsigned char *mem_72301 = NULL;
-    size_t mem_72316_cached_sizze_73342 = 0;
-    unsigned char *mem_72316 = NULL;
-    size_t mem_72319_cached_sizze_73343 = 0;
-    unsigned char *mem_72319 = NULL;
-    size_t mem_72346_cached_sizze_73344 = 0;
-    unsigned char *mem_72346 = NULL;
-    size_t mem_72361_cached_sizze_73345 = 0;
-    unsigned char *mem_72361 = NULL;
-    size_t mem_72486_cached_sizze_73346 = 0;
-    unsigned char *mem_72486 = NULL;
-    size_t mem_72501_cached_sizze_73347 = 0;
-    unsigned char *mem_72501 = NULL;
-    size_t mem_72504_cached_sizze_73348 = 0;
-    unsigned char *mem_72504 = NULL;
-    size_t mem_72531_cached_sizze_73349 = 0;
-    unsigned char *mem_72531 = NULL;
-    size_t mem_72546_cached_sizze_73350 = 0;
-    unsigned char *mem_72546 = NULL;
-    size_t mem_72572_cached_sizze_73351 = 0;
-    unsigned char *mem_72572 = NULL;
-    size_t mem_72634_cached_sizze_73352 = 0;
-    unsigned char *mem_72634 = NULL;
-    size_t mem_72649_cached_sizze_73353 = 0;
-    unsigned char *mem_72649 = NULL;
-    size_t mem_72652_cached_sizze_73354 = 0;
-    unsigned char *mem_72652 = NULL;
-    size_t mem_72679_cached_sizze_73355 = 0;
-    unsigned char *mem_72679 = NULL;
-    size_t mem_72694_cached_sizze_73356 = 0;
-    unsigned char *mem_72694 = NULL;
-    size_t mem_72731_cached_sizze_73357 = 0;
-    unsigned char *mem_72731 = NULL;
-    size_t mem_72734_cached_sizze_73358 = 0;
-    unsigned char *mem_72734 = NULL;
-    size_t mem_72827_cached_sizze_73359 = 0;
-    unsigned char *mem_72827 = NULL;
-    size_t mem_72842_cached_sizze_73360 = 0;
-    unsigned char *mem_72842 = NULL;
-    size_t mem_72845_cached_sizze_73361 = 0;
-    unsigned char *mem_72845 = NULL;
-    size_t mem_72872_cached_sizze_73362 = 0;
-    unsigned char *mem_72872 = NULL;
-    size_t mem_72887_cached_sizze_73363 = 0;
-    unsigned char *mem_72887 = NULL;
-    size_t mem_72924_cached_sizze_73364 = 0;
-    unsigned char *mem_72924 = NULL;
-    size_t mem_72927_cached_sizze_73365 = 0;
-    unsigned char *mem_72927 = NULL;
-    size_t mem_72954_cached_sizze_73366 = 0;
-    unsigned char *mem_72954 = NULL;
-    size_t mem_72957_cached_sizze_73367 = 0;
-    unsigned char *mem_72957 = NULL;
-    struct memblock mem_out_73178;
+    size_t mem_72052_cached_sizze_73378 = 0;
+    unsigned char *mem_72052 = NULL;
+    size_t mem_72067_cached_sizze_73379 = 0;
+    unsigned char *mem_72067 = NULL;
+    size_t mem_72070_cached_sizze_73380 = 0;
+    unsigned char *mem_72070 = NULL;
+    size_t mem_72097_cached_sizze_73381 = 0;
+    unsigned char *mem_72097 = NULL;
+    size_t mem_72112_cached_sizze_73382 = 0;
+    unsigned char *mem_72112 = NULL;
+    size_t mem_72185_cached_sizze_73383 = 0;
+    unsigned char *mem_72185 = NULL;
+    size_t mem_72200_cached_sizze_73384 = 0;
+    unsigned char *mem_72200 = NULL;
+    size_t mem_72203_cached_sizze_73385 = 0;
+    unsigned char *mem_72203 = NULL;
+    size_t mem_72230_cached_sizze_73386 = 0;
+    unsigned char *mem_72230 = NULL;
+    size_t mem_72245_cached_sizze_73387 = 0;
+    unsigned char *mem_72245 = NULL;
+    size_t mem_72348_cached_sizze_73388 = 0;
+    unsigned char *mem_72348 = NULL;
+    size_t mem_72363_cached_sizze_73389 = 0;
+    unsigned char *mem_72363 = NULL;
+    size_t mem_72366_cached_sizze_73390 = 0;
+    unsigned char *mem_72366 = NULL;
+    size_t mem_72393_cached_sizze_73391 = 0;
+    unsigned char *mem_72393 = NULL;
+    size_t mem_72408_cached_sizze_73392 = 0;
+    unsigned char *mem_72408 = NULL;
+    size_t mem_72533_cached_sizze_73393 = 0;
+    unsigned char *mem_72533 = NULL;
+    size_t mem_72548_cached_sizze_73394 = 0;
+    unsigned char *mem_72548 = NULL;
+    size_t mem_72551_cached_sizze_73395 = 0;
+    unsigned char *mem_72551 = NULL;
+    size_t mem_72578_cached_sizze_73396 = 0;
+    unsigned char *mem_72578 = NULL;
+    size_t mem_72593_cached_sizze_73397 = 0;
+    unsigned char *mem_72593 = NULL;
+    size_t mem_72619_cached_sizze_73398 = 0;
+    unsigned char *mem_72619 = NULL;
+    size_t mem_72681_cached_sizze_73399 = 0;
+    unsigned char *mem_72681 = NULL;
+    size_t mem_72696_cached_sizze_73400 = 0;
+    unsigned char *mem_72696 = NULL;
+    size_t mem_72699_cached_sizze_73401 = 0;
+    unsigned char *mem_72699 = NULL;
+    size_t mem_72726_cached_sizze_73402 = 0;
+    unsigned char *mem_72726 = NULL;
+    size_t mem_72741_cached_sizze_73403 = 0;
+    unsigned char *mem_72741 = NULL;
+    size_t mem_72778_cached_sizze_73404 = 0;
+    unsigned char *mem_72778 = NULL;
+    size_t mem_72781_cached_sizze_73405 = 0;
+    unsigned char *mem_72781 = NULL;
+    size_t mem_72874_cached_sizze_73406 = 0;
+    unsigned char *mem_72874 = NULL;
+    size_t mem_72889_cached_sizze_73407 = 0;
+    unsigned char *mem_72889 = NULL;
+    size_t mem_72892_cached_sizze_73408 = 0;
+    unsigned char *mem_72892 = NULL;
+    size_t mem_72919_cached_sizze_73409 = 0;
+    unsigned char *mem_72919 = NULL;
+    size_t mem_72934_cached_sizze_73410 = 0;
+    unsigned char *mem_72934 = NULL;
+    size_t mem_72971_cached_sizze_73411 = 0;
+    unsigned char *mem_72971 = NULL;
+    size_t mem_72974_cached_sizze_73412 = 0;
+    unsigned char *mem_72974 = NULL;
+    size_t mem_73001_cached_sizze_73413 = 0;
+    unsigned char *mem_73001 = NULL;
+    size_t mem_73004_cached_sizze_73414 = 0;
+    unsigned char *mem_73004 = NULL;
+    struct memblock mem_out_73225;
     
-    mem_out_73178.references = NULL;
+    mem_out_73225.references = NULL;
     
-    bool cond_70240 = jump_70237 == (int64_t) 1;
-    int64_t n_m_70241;
+    bool cond_70287 = jump_70284 == (int64_t) 1;
+    int64_t n_m_70288;
     
-    if (cond_70240) {
-        n_m_70241 = n_70233;
+    if (cond_70287) {
+        n_m_70288 = n_70280;
     } else {
-        bool zzero_70242 = jump_70237 == (int64_t) 0;
-        bool nonzzero_70243 = !zzero_70242;
-        bool nonzzero_cert_70244;
+        bool zzero_70289 = jump_70284 == (int64_t) 0;
+        bool nonzzero_70290 = !zzero_70289;
+        bool nonzzero_cert_70291;
         
-        if (!nonzzero_70243) {
+        if (!nonzzero_70290) {
             ctx->error = msgprintf("Error: %s\n\nBacktrace:\n%s",
                                    "division by zero",
-                                   "-> #0  loess.fut:578:38-45\n   #1  loess.fut:571:1-610:26\n");
-            if (memblock_unref(ctx, &mem_out_73178, "mem_out_73178") != 0)
+                                   "-> #0  loess.fut:579:38-45\n   #1  loess.fut:572:1-611:26\n");
+            if (memblock_unref(ctx, &mem_out_73225, "mem_out_73225") != 0)
                 return 1;
             return 1;
         }
         
-        int64_t x_70245 = sdiv64(n_70233, jump_70237);
-        int64_t n_m_f_res_70246 = add64((int64_t) 1, x_70245);
+        int64_t x_70292 = sdiv64(n_70280, jump_70284);
+        int64_t n_m_f_res_70293 = add64((int64_t) 1, x_70292);
         
-        n_m_70241 = n_m_f_res_70246;
+        n_m_70288 = n_m_f_res_70293;
     }
     
-    int64_t i_70247 = sub64(n_70233, (int64_t) 1);
-    bool x_70248 = sle64((int64_t) 0, i_70247);
-    bool y_70249 = slt64(i_70247, n_70233);
-    bool bounds_check_70250 = x_70248 && y_70249;
-    bool index_certs_70251;
+    int64_t i_70294 = sub64(n_70280, (int64_t) 1);
+    bool x_70295 = sle64((int64_t) 0, i_70294);
+    bool y_70296 = slt64(i_70294, n_70280);
+    bool bounds_check_70297 = x_70295 && y_70296;
+    bool index_certs_70298;
     
-    if (!bounds_check_70250) {
+    if (!bounds_check_70297) {
         ctx->error = msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                               "Index [", (long long) i_70247,
+                               "Index [", (long long) i_70294,
                                "] out of bounds for array of shape [",
-                               (long long) n_70233, "].",
-                               "-> #0  /prelude/array.fut:26:29-34\n   #1  utils.fut:53:13-20\n   #2  loess.fut:583:5-54\n   #3  loess.fut:571:1-610:26\n");
-        if (memblock_unref(ctx, &mem_out_73178, "mem_out_73178") != 0)
+                               (long long) n_70280, "].",
+                               "-> #0  /prelude/array.fut:26:29-34\n   #1  utils.fut:45:13-20\n   #2  loess.fut:584:5-54\n   #3  loess.fut:572:1-611:26\n");
+        if (memblock_unref(ctx, &mem_out_73225, "mem_out_73225") != 0)
             return 1;
         return 1;
     }
     
-    int64_t min_res_70253 = smin64(n_70233, q_70235);
-    bool bounds_invalid_upwards_70254 = slt64(n_m_70241, (int64_t) 0);
-    bool valid_70255 = !bounds_invalid_upwards_70254;
-    bool range_valid_c_70256;
+    int64_t min_res_70300 = smin64(n_70280, q_70282);
+    bool bounds_invalid_upwards_70301 = slt64(n_m_70288, (int64_t) 0);
+    bool valid_70302 = !bounds_invalid_upwards_70301;
+    bool range_valid_c_70303;
     
-    if (!valid_70255) {
+    if (!valid_70302) {
         ctx->error = msgprintf("Error: %s%lld%s%lld%s%lld%s\n\nBacktrace:\n%s",
                                "Range ", (long long) (int64_t) 0, "..",
                                (long long) (int64_t) 1, "..<",
-                               (long long) n_m_70241, " is invalid.",
-                               "-> #0  /prelude/array.fut:90:3-10\n   #1  /prelude/array.fut:195:11-16\n   #2  utils.fut:6:3-16\n   #3  loess.fut:442:3-469:10\n   #4  loess.fut:502:15-61\n   #5  loess.fut:588:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:587:5-589:26\n   #9  loess.fut:571:1-610:26\n");
-        if (memblock_unref(ctx, &mem_out_73178, "mem_out_73178") != 0)
+                               (long long) n_m_70288, " is invalid.",
+                               "-> #0  /prelude/array.fut:90:3-10\n   #1  /prelude/array.fut:195:11-16\n   #2  utils.fut:6:3-16\n   #3  loess.fut:442:3-469:10\n   #4  loess.fut:502:15-61\n   #5  loess.fut:589:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:588:5-590:26\n   #9  loess.fut:572:1-611:26\n");
+        if (memblock_unref(ctx, &mem_out_73225, "mem_out_73225") != 0)
             return 1;
         return 1;
     }
     
-    bool loop_cond_70258 = slt64((int64_t) 1, min_res_70253);
-    float i64_res_70259 = sitofp_i64_f32(q_70235);
-    bool cond_70260 = slt64(jump_70237, jump_threshold_70238);
-    bool cond_f_res_70261 = slt64(q_threshold_70239, q_70235);
-    bool x_70262 = !cond_70260;
-    bool y_70263 = cond_f_res_70261 && x_70262;
-    bool cond_70264 = cond_70260 || y_70263;
-    struct memblock ext_mem_73060;
+    bool loop_cond_70305 = slt64((int64_t) 1, min_res_70300);
+    float i64_res_70306 = sitofp_i64_f32(q_70282);
+    bool cond_70307 = slt64(jump_70284, jump_threshold_70285);
+    bool cond_f_res_70308 = slt64(q_threshold_70286, q_70282);
+    bool x_70309 = !cond_70307;
+    bool y_70310 = cond_f_res_70308 && x_70309;
+    bool cond_70311 = cond_70307 || y_70310;
+    struct memblock ext_mem_73107;
     
-    ext_mem_73060.references = NULL;
+    ext_mem_73107.references = NULL;
     
-    struct memblock ext_mem_73052;
+    struct memblock ext_mem_73099;
     
-    ext_mem_73052.references = NULL;
-    if (cond_70264) {
-        bool match_lit_70267 = (int64_t) 0 == degree_70236;
-        int64_t binop_x_71985 = m_70232 * n_m_70241;
-        int64_t binop_y_71986 = (int64_t) 4 * binop_x_71985;
-        int64_t bytes_71987 = smax64((int64_t) 0, binop_y_71986);
-        int64_t binop_y_72003 = (int64_t) 8 * n_70233;
-        int64_t bytes_72004 = smax64((int64_t) 0, binop_y_72003);
-        int64_t binop_y_72018 = (int64_t) 4 * n_70233;
-        int64_t bytes_72019 = smax64((int64_t) 0, binop_y_72018);
-        int64_t binop_y_72063 = (int64_t) 4 * q_70235;
-        int64_t bytes_72064 = smax64((int64_t) 0, binop_y_72063);
-        struct memblock ext_mem_72458;
+    ext_mem_73099.references = NULL;
+    if (cond_70311) {
+        bool match_lit_70314 = (int64_t) 0 == degree_70283;
+        int64_t binop_x_72032 = m_70279 * n_m_70288;
+        int64_t binop_y_72033 = (int64_t) 4 * binop_x_72032;
+        int64_t bytes_72034 = smax64((int64_t) 0, binop_y_72033);
+        int64_t binop_y_72050 = (int64_t) 8 * n_70280;
+        int64_t bytes_72051 = smax64((int64_t) 0, binop_y_72050);
+        int64_t binop_y_72065 = (int64_t) 4 * n_70280;
+        int64_t bytes_72066 = smax64((int64_t) 0, binop_y_72065);
+        int64_t binop_y_72110 = (int64_t) 4 * q_70282;
+        int64_t bytes_72111 = smax64((int64_t) 0, binop_y_72110);
+        struct memblock ext_mem_72505;
         
-        ext_mem_72458.references = NULL;
+        ext_mem_72505.references = NULL;
         
-        struct memblock ext_mem_72450;
+        struct memblock ext_mem_72497;
         
-        ext_mem_72450.references = NULL;
-        if (match_lit_70267) {
-            struct memblock mem_71988;
+        ext_mem_72497.references = NULL;
+        if (match_lit_70314) {
+            struct memblock mem_72035;
             
-            mem_71988.references = NULL;
-            if (memblock_alloc(ctx, &mem_71988, bytes_71987, "mem_71988")) {
+            mem_72035.references = NULL;
+            if (memblock_alloc(ctx, &mem_72035, bytes_72034, "mem_72035")) {
                 err = 1;
                 goto cleanup;
             }
-            for (int64_t i_73179 = 0; i_73179 < m_70232; i_73179++) {
-                for (int64_t i_73180 = 0; i_73180 < n_m_70241; i_73180++) {
-                    ((float *) mem_71988.mem)[i_73179 * n_m_70241 + i_73180] =
+            for (int64_t i_73226 = 0; i_73226 < m_70279; i_73226++) {
+                for (int64_t i_73227 = 0; i_73227 < n_m_70288; i_73227++) {
+                    ((float *) mem_72035.mem)[i_73226 * n_m_70288 + i_73227] =
                         0.0F;
                 }
             }
             
-            struct memblock mem_71992;
+            struct memblock mem_72039;
             
-            mem_71992.references = NULL;
-            if (memblock_alloc(ctx, &mem_71992, bytes_71987, "mem_71992")) {
+            mem_72039.references = NULL;
+            if (memblock_alloc(ctx, &mem_72039, bytes_72034, "mem_72039")) {
                 err = 1;
                 goto cleanup;
             }
-            if (mem_72005_cached_sizze_73331 < (size_t) bytes_72004) {
-                mem_72005 = realloc(mem_72005, bytes_72004);
-                mem_72005_cached_sizze_73331 = bytes_72004;
+            if (mem_72052_cached_sizze_73378 < (size_t) bytes_72051) {
+                mem_72052 = realloc(mem_72052, bytes_72051);
+                mem_72052_cached_sizze_73378 = bytes_72051;
             }
-            if (mem_72020_cached_sizze_73332 < (size_t) bytes_72019) {
-                mem_72020 = realloc(mem_72020, bytes_72019);
-                mem_72020_cached_sizze_73332 = bytes_72019;
+            if (mem_72067_cached_sizze_73379 < (size_t) bytes_72066) {
+                mem_72067 = realloc(mem_72067, bytes_72066);
+                mem_72067_cached_sizze_73379 = bytes_72066;
             }
-            if (mem_72023_cached_sizze_73333 < (size_t) bytes_72004) {
-                mem_72023 = realloc(mem_72023, bytes_72004);
-                mem_72023_cached_sizze_73333 = bytes_72004;
+            if (mem_72070_cached_sizze_73380 < (size_t) bytes_72051) {
+                mem_72070 = realloc(mem_72070, bytes_72051);
+                mem_72070_cached_sizze_73380 = bytes_72051;
             }
-            if (mem_72050_cached_sizze_73334 < (size_t) bytes_72004) {
-                mem_72050 = realloc(mem_72050, bytes_72004);
-                mem_72050_cached_sizze_73334 = bytes_72004;
+            if (mem_72097_cached_sizze_73381 < (size_t) bytes_72051) {
+                mem_72097 = realloc(mem_72097, bytes_72051);
+                mem_72097_cached_sizze_73381 = bytes_72051;
             }
-            if (mem_72065_cached_sizze_73335 < (size_t) bytes_72064) {
-                mem_72065 = realloc(mem_72065, bytes_72064);
-                mem_72065_cached_sizze_73335 = bytes_72064;
+            if (mem_72112_cached_sizze_73382 < (size_t) bytes_72111) {
+                mem_72112 = realloc(mem_72112, bytes_72111);
+                mem_72112_cached_sizze_73382 = bytes_72111;
             }
-            for (int64_t i_71613 = 0; i_71613 < m_70232; i_71613++) {
-                int64_t discard_71586;
-                int64_t scanacc_71582 = (int64_t) 0;
+            for (int64_t i_71660 = 0; i_71660 < m_70279; i_71660++) {
+                int64_t discard_71633;
+                int64_t scanacc_71629 = (int64_t) 0;
                 
-                for (int64_t i_71584 = 0; i_71584 < n_70233; i_71584++) {
-                    float x_70278 = ((float *) Y_mem_71984.mem)[i_71613 *
-                                                                n_70233 +
-                                                                i_71584];
-                    bool isnan_res_70279;
+                for (int64_t i_71631 = 0; i_71631 < n_70280; i_71631++) {
+                    float x_70325 = ((float *) Y_mem_72031.mem)[i_71660 *
+                                                                n_70280 +
+                                                                i_71631];
+                    bool isnan_res_70326;
                     
-                    isnan_res_70279 = futrts_isnan32(x_70278);
+                    isnan_res_70326 = futrts_isnan32(x_70325);
                     
-                    bool defunc_0_p_res_70280 = !isnan_res_70279;
-                    int64_t defunc_0_f_res_70281 =
-                            btoi_bool_i64(defunc_0_p_res_70280);
-                    int64_t defunc_1_op_res_70277 = add64(defunc_0_f_res_70281,
-                                                          scanacc_71582);
+                    bool defunc_0_p_res_70327 = !isnan_res_70326;
+                    int64_t defunc_0_f_res_70328 =
+                            btoi_bool_i64(defunc_0_p_res_70327);
+                    int64_t defunc_1_op_res_70324 = add64(defunc_0_f_res_70328,
+                                                          scanacc_71629);
                     
-                    ((int64_t *) mem_72005)[i_71584] = defunc_1_op_res_70277;
+                    ((int64_t *) mem_72052)[i_71631] = defunc_1_op_res_70324;
                     
-                    int64_t scanacc_tmp_73182 = defunc_1_op_res_70277;
+                    int64_t scanacc_tmp_73229 = defunc_1_op_res_70324;
                     
-                    scanacc_71582 = scanacc_tmp_73182;
+                    scanacc_71629 = scanacc_tmp_73229;
                 }
-                discard_71586 = scanacc_71582;
+                discard_71633 = scanacc_71629;
                 
-                int64_t last_res_70282 = ((int64_t *) mem_72005)[i_70247];
+                int64_t last_res_70329 = ((int64_t *) mem_72052)[i_70294];
                 
-                for (int64_t i_73184 = 0; i_73184 < n_70233; i_73184++) {
-                    ((float *) mem_72020)[i_73184] = 0.0F;
+                for (int64_t i_73231 = 0; i_73231 < n_70280; i_73231++) {
+                    ((float *) mem_72067)[i_73231] = 0.0F;
                 }
-                for (int64_t i_73185 = 0; i_73185 < n_70233; i_73185++) {
-                    ((int64_t *) mem_72023)[i_73185] = (int64_t) -1;
+                for (int64_t i_73232 = 0; i_73232 < n_70280; i_73232++) {
+                    ((int64_t *) mem_72070)[i_73232] = (int64_t) -1;
                 }
-                for (int64_t write_iter_71587 = 0; write_iter_71587 < n_70233;
-                     write_iter_71587++) {
-                    float write_iv_71590 = ((float *) Y_mem_71984.mem)[i_71613 *
-                                                                       n_70233 +
-                                                                       write_iter_71587];
-                    int64_t write_iv_71591 =
-                            ((int64_t *) mem_72005)[write_iter_71587];
-                    bool isnan_res_70290;
+                for (int64_t write_iter_71634 = 0; write_iter_71634 < n_70280;
+                     write_iter_71634++) {
+                    float write_iv_71637 = ((float *) Y_mem_72031.mem)[i_71660 *
+                                                                       n_70280 +
+                                                                       write_iter_71634];
+                    int64_t write_iv_71638 =
+                            ((int64_t *) mem_72052)[write_iter_71634];
+                    bool isnan_res_70337;
                     
-                    isnan_res_70290 = futrts_isnan32(write_iv_71590);
+                    isnan_res_70337 = futrts_isnan32(write_iv_71637);
                     
-                    bool defunc_0_p_res_70291 = !isnan_res_70290;
-                    int64_t defunc_1_f_res_70292;
+                    bool defunc_0_p_res_70338 = !isnan_res_70337;
+                    int64_t defunc_1_f_res_70339;
                     
-                    if (defunc_0_p_res_70291) {
-                        int64_t defunc_1_f_res_t_res_70293 =
-                                sub64(write_iv_71591, (int64_t) 1);
+                    if (defunc_0_p_res_70338) {
+                        int64_t defunc_1_f_res_t_res_70340 =
+                                sub64(write_iv_71638, (int64_t) 1);
                         
-                        defunc_1_f_res_70292 = defunc_1_f_res_t_res_70293;
+                        defunc_1_f_res_70339 = defunc_1_f_res_t_res_70340;
                     } else {
-                        defunc_1_f_res_70292 = (int64_t) -1;
+                        defunc_1_f_res_70339 = (int64_t) -1;
                     }
-                    if (sle64((int64_t) 0, defunc_1_f_res_70292) &&
-                        slt64(defunc_1_f_res_70292, n_70233)) {
-                        ((int64_t *) mem_72023)[defunc_1_f_res_70292] =
-                            write_iter_71587;
+                    if (sle64((int64_t) 0, defunc_1_f_res_70339) &&
+                        slt64(defunc_1_f_res_70339, n_70280)) {
+                        ((int64_t *) mem_72070)[defunc_1_f_res_70339] =
+                            write_iter_71634;
                     }
-                    if (sle64((int64_t) 0, defunc_1_f_res_70292) &&
-                        slt64(defunc_1_f_res_70292, n_70233)) {
+                    if (sle64((int64_t) 0, defunc_1_f_res_70339) &&
+                        slt64(defunc_1_f_res_70339, n_70280)) {
                         if ((int64_t) 4 > 0)
-                            memmove(mem_72020 + defunc_1_f_res_70292 *
-                                    (int64_t) 4, Y_mem_71984.mem + (i_71613 *
-                                                                    n_70233 +
-                                                                    write_iter_71587) *
+                            memmove(mem_72067 + defunc_1_f_res_70339 *
+                                    (int64_t) 4, Y_mem_72031.mem + (i_71660 *
+                                                                    n_70280 +
+                                                                    write_iter_71634) *
                                     (int64_t) 4, (int64_t) 4);
                     }
                 }
-                for (int64_t i_71597 = 0; i_71597 < n_70233; i_71597++) {
-                    int64_t x_70295 = ((int64_t *) mem_72023)[i_71597];
-                    int64_t defunc_0_f_res_70296 = add64((int64_t) 1, x_70295);
+                for (int64_t i_71644 = 0; i_71644 < n_70280; i_71644++) {
+                    int64_t x_70342 = ((int64_t *) mem_72070)[i_71644];
+                    int64_t defunc_0_f_res_70343 = add64((int64_t) 1, x_70342);
                     
-                    ((int64_t *) mem_72050)[i_71597] = defunc_0_f_res_70296;
+                    ((int64_t *) mem_72097)[i_71644] = defunc_0_f_res_70343;
                 }
                 
-                int64_t min_arg_70297 = sub64(last_res_70282, (int64_t) 1);
-                int64_t min_arg_70298 = sub64(last_res_70282, min_res_70253);
-                int64_t min_res_70299 = smin64(q_70235, last_res_70282);
-                float i64_res_70300 = sitofp_i64_f32(last_res_70282);
-                float x_70301 = i64_res_70259 - i64_res_70300;
-                float max_arg_70302 = x_70301 / 2.0F;
-                float max_res_70303 = fmax32(0.0F, max_arg_70302);
+                int64_t min_arg_70344 = sub64(last_res_70329, (int64_t) 1);
+                int64_t min_arg_70345 = sub64(last_res_70329, min_res_70300);
+                int64_t min_res_70346 = smin64(q_70282, last_res_70329);
+                float i64_res_70347 = sitofp_i64_f32(last_res_70329);
+                float x_70348 = i64_res_70306 - i64_res_70347;
+                float max_arg_70349 = x_70348 / 2.0F;
+                float max_res_70350 = fmax32(0.0F, max_arg_70349);
                 
-                for (int64_t i_71601 = 0; i_71601 < q_70235; i_71601++) {
-                    bool cond_70306 = sle64(last_res_70282, i_71601);
-                    float defunc_0_f_res_70307;
+                for (int64_t i_71648 = 0; i_71648 < q_70282; i_71648++) {
+                    bool cond_70353 = sle64(last_res_70329, i_71648);
+                    float defunc_0_f_res_70354;
                     
-                    if (cond_70306) {
-                        defunc_0_f_res_70307 = 0.0F;
+                    if (cond_70353) {
+                        defunc_0_f_res_70354 = 0.0F;
                     } else {
-                        defunc_0_f_res_70307 = 1.0F;
+                        defunc_0_f_res_70354 = 1.0F;
                     }
-                    ((float *) mem_72065)[i_71601] = defunc_0_f_res_70307;
+                    ((float *) mem_72112)[i_71648] = defunc_0_f_res_70354;
                 }
-                for (int64_t i_71609 = 0; i_71609 < n_m_70241; i_71609++) {
-                    int64_t min_arg_70310 = mul64(jump_70237, i_71609);
-                    int64_t min_res_70311 = smin64(i_70247, min_arg_70310);
-                    int64_t defunc_0_g_res_70312 = add64((int64_t) 1,
-                                                         min_res_70311);
-                    bool init_idx_70313;
-                    int64_t init_idx_70314;
-                    int64_t init_idx_70315;
-                    bool loop_while_70316;
-                    int64_t low_70317;
-                    int64_t high_70318;
+                for (int64_t i_71656 = 0; i_71656 < n_m_70288; i_71656++) {
+                    int64_t min_arg_70357 = mul64(jump_70284, i_71656);
+                    int64_t min_res_70358 = smin64(i_70294, min_arg_70357);
+                    int64_t defunc_0_g_res_70359 = add64((int64_t) 1,
+                                                         min_res_70358);
+                    bool init_idx_70360;
+                    int64_t init_idx_70361;
+                    int64_t init_idx_70362;
+                    bool loop_while_70363;
+                    int64_t low_70364;
+                    int64_t high_70365;
                     
-                    loop_while_70316 = x_70248;
-                    low_70317 = (int64_t) 0;
-                    high_70318 = i_70247;
-                    while (loop_while_70316) {
-                        int64_t x_70319 = add64(low_70317, high_70318);
-                        int64_t mid_70320 = sdiv64(x_70319, (int64_t) 2);
-                        bool x_70321 = sle64((int64_t) 0, mid_70320);
-                        bool y_70322 = slt64(mid_70320, n_70233);
-                        bool bounds_check_70323 = x_70321 && y_70322;
-                        bool index_certs_70324;
+                    loop_while_70363 = x_70295;
+                    low_70364 = (int64_t) 0;
+                    high_70365 = i_70294;
+                    while (loop_while_70363) {
+                        int64_t x_70366 = add64(low_70364, high_70365);
+                        int64_t mid_70367 = sdiv64(x_70366, (int64_t) 2);
+                        bool x_70368 = sle64((int64_t) 0, mid_70367);
+                        bool y_70369 = slt64(mid_70367, n_70280);
+                        bool bounds_check_70370 = x_70368 && y_70369;
+                        bool index_certs_70371;
                         
-                        if (!bounds_check_70323) {
+                        if (!bounds_check_70370) {
                             ctx->error =
                                 msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                          "Index [", (long long) mid_70320,
+                                          "Index [", (long long) mid_70367,
                                           "] out of bounds for array of shape [",
-                                          (long long) n_70233, "].",
-                                          "-> #0  loess.fut:449:26-36\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:588:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:587:5-589:26\n   #10 loess.fut:571:1-610:26\n");
-                            if (memblock_unref(ctx, &mem_71992, "mem_71992") !=
+                                          (long long) n_70280, "].",
+                                          "-> #0  loess.fut:449:26-36\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:589:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:588:5-590:26\n   #10 loess.fut:572:1-611:26\n");
+                            if (memblock_unref(ctx, &mem_72039, "mem_72039") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_71988, "mem_71988") !=
+                            if (memblock_unref(ctx, &mem_72035, "mem_72035") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_72450,
-                                               "ext_mem_72450") != 0)
+                            if (memblock_unref(ctx, &ext_mem_72497,
+                                               "ext_mem_72497") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_72458,
-                                               "ext_mem_72458") != 0)
+                            if (memblock_unref(ctx, &ext_mem_72505,
+                                               "ext_mem_72505") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73052,
-                                               "ext_mem_73052") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73099,
+                                               "ext_mem_73099") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73060,
-                                               "ext_mem_73060") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73107,
+                                               "ext_mem_73107") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_out_73178,
-                                               "mem_out_73178") != 0)
+                            if (memblock_unref(ctx, &mem_out_73225,
+                                               "mem_out_73225") != 0)
                                 return 1;
                             return 1;
                         }
                         
-                        int64_t mid_id_70325 =
-                                ((int64_t *) mem_72050)[mid_70320];
-                        bool cond_70326 = slt64(mid_id_70325, (int64_t) 0);
-                        int64_t mid_idx_70327;
+                        int64_t mid_id_70372 =
+                                ((int64_t *) mem_72097)[mid_70367];
+                        bool cond_70373 = slt64(mid_id_70372, (int64_t) 0);
+                        int64_t mid_idx_70374;
                         
-                        if (cond_70326) {
-                            mid_idx_70327 = (int64_t) 9223372036854775807;
+                        if (cond_70373) {
+                            mid_idx_70374 = (int64_t) 9223372036854775807;
                         } else {
-                            mid_idx_70327 = mid_id_70325;
+                            mid_idx_70374 = mid_id_70372;
                         }
                         
-                        bool cond_70328 = sle64(defunc_0_g_res_70312,
-                                                mid_idx_70327);
-                        int64_t loopres_70329;
-                        int64_t loopres_70330;
+                        bool cond_70375 = sle64(defunc_0_g_res_70359,
+                                                mid_idx_70374);
+                        int64_t loopres_70376;
+                        int64_t loopres_70377;
                         
-                        if (cond_70328) {
-                            int64_t loopres_t_res_70331 = sub64(mid_70320,
+                        if (cond_70375) {
+                            int64_t loopres_t_res_70378 = sub64(mid_70367,
                                                                 (int64_t) 1);
                             
-                            loopres_70329 = low_70317;
-                            loopres_70330 = loopres_t_res_70331;
+                            loopres_70376 = low_70364;
+                            loopres_70377 = loopres_t_res_70378;
                         } else {
-                            int64_t loopres_f_res_70332 = add64((int64_t) 1,
-                                                                mid_70320);
+                            int64_t loopres_f_res_70379 = add64((int64_t) 1,
+                                                                mid_70367);
                             
-                            loopres_70329 = loopres_f_res_70332;
-                            loopres_70330 = high_70318;
+                            loopres_70376 = loopres_f_res_70379;
+                            loopres_70377 = high_70365;
                         }
                         
-                        bool loop_cond_70333 = sle64(loopres_70329,
-                                                     loopres_70330);
-                        bool loop_while_tmp_73191 = loop_cond_70333;
-                        int64_t low_tmp_73192 = loopres_70329;
-                        int64_t high_tmp_73193 = loopres_70330;
+                        bool loop_cond_70380 = sle64(loopres_70376,
+                                                     loopres_70377);
+                        bool loop_while_tmp_73238 = loop_cond_70380;
+                        int64_t low_tmp_73239 = loopres_70376;
+                        int64_t high_tmp_73240 = loopres_70377;
                         
-                        loop_while_70316 = loop_while_tmp_73191;
-                        low_70317 = low_tmp_73192;
-                        high_70318 = high_tmp_73193;
+                        loop_while_70363 = loop_while_tmp_73238;
+                        low_70364 = low_tmp_73239;
+                        high_70365 = high_tmp_73240;
                     }
-                    init_idx_70313 = loop_while_70316;
-                    init_idx_70314 = low_70317;
-                    init_idx_70315 = high_70318;
+                    init_idx_70360 = loop_while_70363;
+                    init_idx_70361 = low_70364;
+                    init_idx_70362 = high_70365;
                     
-                    bool idx_70334;
-                    int64_t idx_70335;
-                    int64_t idx_70336;
-                    int64_t idx_70337;
-                    bool loop_while_70338;
-                    int64_t l_idx_70339;
-                    int64_t r_idx_70340;
-                    int64_t span_70341;
+                    bool idx_70381;
+                    int64_t idx_70382;
+                    int64_t idx_70383;
+                    int64_t idx_70384;
+                    bool loop_while_70385;
+                    int64_t l_idx_70386;
+                    int64_t r_idx_70387;
+                    int64_t span_70388;
                     
-                    loop_while_70338 = loop_cond_70258;
-                    l_idx_70339 = init_idx_70314;
-                    r_idx_70340 = init_idx_70314;
-                    span_70341 = (int64_t) 1;
-                    while (loop_while_70338) {
-                        int64_t max_arg_70342 = sub64(l_idx_70339, (int64_t) 1);
-                        int64_t max_res_70343 = smax64((int64_t) 0,
-                                                       max_arg_70342);
-                        int64_t min_arg_70344 = add64((int64_t) 1, r_idx_70340);
-                        int64_t min_res_70345 = smin64(min_arg_70297,
-                                                       min_arg_70344);
-                        bool x_70346 = sle64((int64_t) 0, max_res_70343);
-                        bool y_70347 = slt64(max_res_70343, n_70233);
-                        bool bounds_check_70348 = x_70346 && y_70347;
-                        bool index_certs_70349;
+                    loop_while_70385 = loop_cond_70305;
+                    l_idx_70386 = init_idx_70361;
+                    r_idx_70387 = init_idx_70361;
+                    span_70388 = (int64_t) 1;
+                    while (loop_while_70385) {
+                        int64_t max_arg_70389 = sub64(l_idx_70386, (int64_t) 1);
+                        int64_t max_res_70390 = smax64((int64_t) 0,
+                                                       max_arg_70389);
+                        int64_t min_arg_70391 = add64((int64_t) 1, r_idx_70387);
+                        int64_t min_res_70392 = smin64(min_arg_70344,
+                                                       min_arg_70391);
+                        bool x_70393 = sle64((int64_t) 0, max_res_70390);
+                        bool y_70394 = slt64(max_res_70390, n_70280);
+                        bool bounds_check_70395 = x_70393 && y_70394;
+                        bool index_certs_70396;
                         
-                        if (!bounds_check_70348) {
+                        if (!bounds_check_70395) {
                             ctx->error =
                                 msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                          "Index [", (long long) max_res_70343,
+                                          "Index [", (long long) max_res_70390,
                                           "] out of bounds for array of shape [",
-                                          (long long) n_70233, "].",
-                                          "-> #0  loess.fut:459:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:588:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:587:5-589:26\n   #10 loess.fut:571:1-610:26\n");
-                            if (memblock_unref(ctx, &mem_71992, "mem_71992") !=
+                                          (long long) n_70280, "].",
+                                          "-> #0  loess.fut:459:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:589:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:588:5-590:26\n   #10 loess.fut:572:1-611:26\n");
+                            if (memblock_unref(ctx, &mem_72039, "mem_72039") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_71988, "mem_71988") !=
+                            if (memblock_unref(ctx, &mem_72035, "mem_72035") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_72450,
-                                               "ext_mem_72450") != 0)
+                            if (memblock_unref(ctx, &ext_mem_72497,
+                                               "ext_mem_72497") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_72458,
-                                               "ext_mem_72458") != 0)
+                            if (memblock_unref(ctx, &ext_mem_72505,
+                                               "ext_mem_72505") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73052,
-                                               "ext_mem_73052") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73099,
+                                               "ext_mem_73099") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73060,
-                                               "ext_mem_73060") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73107,
+                                               "ext_mem_73107") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_out_73178,
-                                               "mem_out_73178") != 0)
+                            if (memblock_unref(ctx, &mem_out_73225,
+                                               "mem_out_73225") != 0)
                                 return 1;
                             return 1;
                         }
                         
-                        int64_t x_70350 =
-                                ((int64_t *) mem_72050)[max_res_70343];
-                        int64_t abs_arg_70351 = sub64(x_70350,
-                                                      defunc_0_g_res_70312);
-                        int64_t abs_res_70352 = abs64(abs_arg_70351);
-                        bool x_70353 = sle64((int64_t) 0, min_res_70345);
-                        bool y_70354 = slt64(min_res_70345, n_70233);
-                        bool bounds_check_70355 = x_70353 && y_70354;
-                        bool index_certs_70356;
+                        int64_t x_70397 =
+                                ((int64_t *) mem_72097)[max_res_70390];
+                        int64_t abs_arg_70398 = sub64(x_70397,
+                                                      defunc_0_g_res_70359);
+                        int64_t abs_res_70399 = abs64(abs_arg_70398);
+                        bool x_70400 = sle64((int64_t) 0, min_res_70392);
+                        bool y_70401 = slt64(min_res_70392, n_70280);
+                        bool bounds_check_70402 = x_70400 && y_70401;
+                        bool index_certs_70403;
                         
-                        if (!bounds_check_70355) {
+                        if (!bounds_check_70402) {
                             ctx->error =
                                 msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                          "Index [", (long long) min_res_70345,
+                                          "Index [", (long long) min_res_70392,
                                           "] out of bounds for array of shape [",
-                                          (long long) n_70233, "].",
-                                          "-> #0  loess.fut:460:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:588:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:587:5-589:26\n   #10 loess.fut:571:1-610:26\n");
-                            if (memblock_unref(ctx, &mem_71992, "mem_71992") !=
+                                          (long long) n_70280, "].",
+                                          "-> #0  loess.fut:460:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:589:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:588:5-590:26\n   #10 loess.fut:572:1-611:26\n");
+                            if (memblock_unref(ctx, &mem_72039, "mem_72039") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_71988, "mem_71988") !=
+                            if (memblock_unref(ctx, &mem_72035, "mem_72035") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_72450,
-                                               "ext_mem_72450") != 0)
+                            if (memblock_unref(ctx, &ext_mem_72497,
+                                               "ext_mem_72497") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_72458,
-                                               "ext_mem_72458") != 0)
+                            if (memblock_unref(ctx, &ext_mem_72505,
+                                               "ext_mem_72505") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73052,
-                                               "ext_mem_73052") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73099,
+                                               "ext_mem_73099") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73060,
-                                               "ext_mem_73060") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73107,
+                                               "ext_mem_73107") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_out_73178,
-                                               "mem_out_73178") != 0)
+                            if (memblock_unref(ctx, &mem_out_73225,
+                                               "mem_out_73225") != 0)
                                 return 1;
                             return 1;
                         }
                         
-                        int64_t x_70357 =
-                                ((int64_t *) mem_72050)[min_res_70345];
-                        int64_t abs_arg_70358 = sub64(x_70357,
-                                                      defunc_0_g_res_70312);
-                        int64_t abs_res_70359 = abs64(abs_arg_70358);
-                        bool cond_70360 = max_res_70343 == l_idx_70339;
-                        int64_t loopres_70361;
-                        int64_t loopres_70362;
-                        int64_t loopres_70363;
+                        int64_t x_70404 =
+                                ((int64_t *) mem_72097)[min_res_70392];
+                        int64_t abs_arg_70405 = sub64(x_70404,
+                                                      defunc_0_g_res_70359);
+                        int64_t abs_res_70406 = abs64(abs_arg_70405);
+                        bool cond_70407 = max_res_70390 == l_idx_70386;
+                        int64_t loopres_70408;
+                        int64_t loopres_70409;
+                        int64_t loopres_70410;
                         
-                        if (cond_70360) {
-                            loopres_70361 = l_idx_70339;
-                            loopres_70362 = r_idx_70340;
-                            loopres_70363 = min_res_70253;
+                        if (cond_70407) {
+                            loopres_70408 = l_idx_70386;
+                            loopres_70409 = r_idx_70387;
+                            loopres_70410 = min_res_70300;
                         } else {
-                            bool cond_70364 = slt64(abs_res_70352,
-                                                    abs_res_70359);
-                            bool cond_f_res_70365 = min_res_70345 ==
-                                 r_idx_70340;
-                            bool x_70366 = !cond_70364;
-                            bool y_70367 = cond_f_res_70365 && x_70366;
-                            bool cond_70368 = cond_70364 || y_70367;
-                            int64_t loopres_f_res_70369;
+                            bool cond_70411 = slt64(abs_res_70399,
+                                                    abs_res_70406);
+                            bool cond_f_res_70412 = min_res_70392 ==
+                                 r_idx_70387;
+                            bool x_70413 = !cond_70411;
+                            bool y_70414 = cond_f_res_70412 && x_70413;
+                            bool cond_70415 = cond_70411 || y_70414;
+                            int64_t loopres_f_res_70416;
                             
-                            if (cond_70368) {
-                                loopres_f_res_70369 = max_res_70343;
+                            if (cond_70415) {
+                                loopres_f_res_70416 = max_res_70390;
                             } else {
-                                loopres_f_res_70369 = l_idx_70339;
+                                loopres_f_res_70416 = l_idx_70386;
                             }
                             
-                            int64_t loopres_f_res_70370;
+                            int64_t loopres_f_res_70417;
                             
-                            if (cond_70368) {
-                                loopres_f_res_70370 = r_idx_70340;
+                            if (cond_70415) {
+                                loopres_f_res_70417 = r_idx_70387;
                             } else {
-                                loopres_f_res_70370 = min_res_70345;
+                                loopres_f_res_70417 = min_res_70392;
                             }
                             
-                            int64_t loopres_f_res_70371;
+                            int64_t loopres_f_res_70418;
                             
-                            if (cond_70368) {
-                                int64_t loopres_f_res_t_res_70372 =
-                                        add64((int64_t) 1, span_70341);
+                            if (cond_70415) {
+                                int64_t loopres_f_res_t_res_70419 =
+                                        add64((int64_t) 1, span_70388);
                                 
-                                loopres_f_res_70371 = loopres_f_res_t_res_70372;
+                                loopres_f_res_70418 = loopres_f_res_t_res_70419;
                             } else {
-                                int64_t loopres_f_res_f_res_70373 =
-                                        add64((int64_t) 1, span_70341);
+                                int64_t loopres_f_res_f_res_70420 =
+                                        add64((int64_t) 1, span_70388);
                                 
-                                loopres_f_res_70371 = loopres_f_res_f_res_70373;
+                                loopres_f_res_70418 = loopres_f_res_f_res_70420;
                             }
-                            loopres_70361 = loopres_f_res_70369;
-                            loopres_70362 = loopres_f_res_70370;
-                            loopres_70363 = loopres_f_res_70371;
+                            loopres_70408 = loopres_f_res_70416;
+                            loopres_70409 = loopres_f_res_70417;
+                            loopres_70410 = loopres_f_res_70418;
                         }
                         
-                        bool loop_cond_70374 = slt64(loopres_70363,
-                                                     min_res_70253);
-                        bool loop_while_tmp_73194 = loop_cond_70374;
-                        int64_t l_idx_tmp_73195 = loopres_70361;
-                        int64_t r_idx_tmp_73196 = loopres_70362;
-                        int64_t span_tmp_73197 = loopres_70363;
+                        bool loop_cond_70421 = slt64(loopres_70410,
+                                                     min_res_70300);
+                        bool loop_while_tmp_73241 = loop_cond_70421;
+                        int64_t l_idx_tmp_73242 = loopres_70408;
+                        int64_t r_idx_tmp_73243 = loopres_70409;
+                        int64_t span_tmp_73244 = loopres_70410;
                         
-                        loop_while_70338 = loop_while_tmp_73194;
-                        l_idx_70339 = l_idx_tmp_73195;
-                        r_idx_70340 = r_idx_tmp_73196;
-                        span_70341 = span_tmp_73197;
+                        loop_while_70385 = loop_while_tmp_73241;
+                        l_idx_70386 = l_idx_tmp_73242;
+                        r_idx_70387 = r_idx_tmp_73243;
+                        span_70388 = span_tmp_73244;
                     }
-                    idx_70334 = loop_while_70338;
-                    idx_70335 = l_idx_70339;
-                    idx_70336 = r_idx_70340;
-                    idx_70337 = span_70341;
+                    idx_70381 = loop_while_70385;
+                    idx_70382 = l_idx_70386;
+                    idx_70383 = r_idx_70387;
+                    idx_70384 = span_70388;
                     
-                    int64_t min_res_70375 = smin64(min_arg_70298, idx_70335);
-                    int64_t max_res_70376 = smax64((int64_t) 0, min_res_70375);
-                    int64_t x_70377 = add64(min_res_70299, max_res_70376);
-                    int64_t r_70378 = sub64(x_70377, (int64_t) 1);
-                    bool x_70379 = sle64((int64_t) 0, r_70378);
-                    bool y_70380 = slt64(r_70378, n_70233);
-                    bool bounds_check_70381 = x_70379 && y_70380;
-                    bool index_certs_70382;
+                    int64_t min_res_70422 = smin64(min_arg_70345, idx_70382);
+                    int64_t max_res_70423 = smax64((int64_t) 0, min_res_70422);
+                    int64_t x_70424 = add64(min_res_70346, max_res_70423);
+                    int64_t r_70425 = sub64(x_70424, (int64_t) 1);
+                    bool x_70426 = sle64((int64_t) 0, r_70425);
+                    bool y_70427 = slt64(r_70425, n_70280);
+                    bool bounds_check_70428 = x_70426 && y_70427;
+                    bool index_certs_70429;
                     
-                    if (!bounds_check_70381) {
+                    if (!bounds_check_70428) {
                         ctx->error =
                             msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                      "Index [", (long long) r_70378,
+                                      "Index [", (long long) r_70425,
                                       "] out of bounds for array of shape [",
-                                      (long long) n_70233, "].",
-                                      "-> #0  loess.fut:484:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:18-55\n   #5  loess.fut:588:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:587:5-589:26\n   #9  loess.fut:571:1-610:26\n");
-                        if (memblock_unref(ctx, &mem_71992, "mem_71992") != 0)
+                                      (long long) n_70280, "].",
+                                      "-> #0  loess.fut:484:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:16-51\n   #5  loess.fut:589:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:588:5-590:26\n   #9  loess.fut:572:1-611:26\n");
+                        if (memblock_unref(ctx, &mem_72039, "mem_72039") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &mem_71988, "mem_71988") != 0)
+                        if (memblock_unref(ctx, &mem_72035, "mem_72035") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &ext_mem_72450,
-                                           "ext_mem_72450") != 0)
+                        if (memblock_unref(ctx, &ext_mem_72497,
+                                           "ext_mem_72497") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &ext_mem_72458,
-                                           "ext_mem_72458") != 0)
+                        if (memblock_unref(ctx, &ext_mem_72505,
+                                           "ext_mem_72505") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &ext_mem_73052,
-                                           "ext_mem_73052") != 0)
+                        if (memblock_unref(ctx, &ext_mem_73099,
+                                           "ext_mem_73099") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &ext_mem_73060,
-                                           "ext_mem_73060") != 0)
+                        if (memblock_unref(ctx, &ext_mem_73107,
+                                           "ext_mem_73107") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &mem_out_73178,
-                                           "mem_out_73178") != 0)
+                        if (memblock_unref(ctx, &mem_out_73225,
+                                           "mem_out_73225") != 0)
                             return 1;
                         return 1;
                     }
                     
-                    int64_t x_70383 = ((int64_t *) mem_72023)[r_70378];
-                    int64_t abs_arg_70384 = sub64(x_70383, min_res_70311);
-                    int64_t abs_res_70385 = abs64(abs_arg_70384);
-                    bool x_70386 = sle64((int64_t) 0, max_res_70376);
-                    bool y_70387 = slt64(max_res_70376, n_70233);
-                    bool bounds_check_70388 = x_70386 && y_70387;
-                    bool index_certs_70389;
+                    int64_t x_70430 = ((int64_t *) mem_72070)[r_70425];
+                    int64_t abs_arg_70431 = sub64(x_70430, min_res_70358);
+                    int64_t abs_res_70432 = abs64(abs_arg_70431);
+                    bool x_70433 = sle64((int64_t) 0, max_res_70423);
+                    bool y_70434 = slt64(max_res_70423, n_70280);
+                    bool bounds_check_70435 = x_70433 && y_70434;
+                    bool index_certs_70436;
                     
-                    if (!bounds_check_70388) {
+                    if (!bounds_check_70435) {
                         ctx->error =
                             msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                      "Index [", (long long) max_res_70376,
+                                      "Index [", (long long) max_res_70423,
                                       "] out of bounds for array of shape [",
-                                      (long long) n_70233, "].",
-                                      "-> #0  loess.fut:483:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:18-55\n   #5  loess.fut:588:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:587:5-589:26\n   #9  loess.fut:571:1-610:26\n");
-                        if (memblock_unref(ctx, &mem_71992, "mem_71992") != 0)
+                                      (long long) n_70280, "].",
+                                      "-> #0  loess.fut:483:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:16-51\n   #5  loess.fut:589:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:588:5-590:26\n   #9  loess.fut:572:1-611:26\n");
+                        if (memblock_unref(ctx, &mem_72039, "mem_72039") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &mem_71988, "mem_71988") != 0)
+                        if (memblock_unref(ctx, &mem_72035, "mem_72035") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &ext_mem_72450,
-                                           "ext_mem_72450") != 0)
+                        if (memblock_unref(ctx, &ext_mem_72497,
+                                           "ext_mem_72497") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &ext_mem_72458,
-                                           "ext_mem_72458") != 0)
+                        if (memblock_unref(ctx, &ext_mem_72505,
+                                           "ext_mem_72505") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &ext_mem_73052,
-                                           "ext_mem_73052") != 0)
+                        if (memblock_unref(ctx, &ext_mem_73099,
+                                           "ext_mem_73099") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &ext_mem_73060,
-                                           "ext_mem_73060") != 0)
+                        if (memblock_unref(ctx, &ext_mem_73107,
+                                           "ext_mem_73107") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &mem_out_73178,
-                                           "mem_out_73178") != 0)
+                        if (memblock_unref(ctx, &mem_out_73225,
+                                           "mem_out_73225") != 0)
                             return 1;
                         return 1;
                     }
                     
-                    int64_t x_70390 = ((int64_t *) mem_72023)[max_res_70376];
-                    int64_t abs_arg_70391 = sub64(x_70390, min_res_70311);
-                    int64_t abs_res_70392 = abs64(abs_arg_70391);
-                    int64_t max_res_70393 = smax64(abs_res_70385,
-                                                   abs_res_70392);
-                    float defunc_0_f_res_70394 = sitofp_i64_f32(max_res_70393);
-                    float defunc_1_f_res_70395 = max_res_70303 +
-                          defunc_0_f_res_70394;
-                    float defunc_2_reduce_res_70396;
-                    float redout_71603 = 0.0F;
+                    int64_t x_70437 = ((int64_t *) mem_72070)[max_res_70423];
+                    int64_t abs_arg_70438 = sub64(x_70437, min_res_70358);
+                    int64_t abs_res_70439 = abs64(abs_arg_70438);
+                    int64_t max_res_70440 = smax64(abs_res_70432,
+                                                   abs_res_70439);
+                    float defunc_0_f_res_70441 = sitofp_i64_f32(max_res_70440);
+                    float defunc_1_f_res_70442 = max_res_70350 +
+                          defunc_0_f_res_70441;
+                    float defunc_2_reduce_res_70443;
+                    float redout_71650 = 0.0F;
                     
-                    for (int64_t i_71604 = 0; i_71604 < q_70235; i_71604++) {
-                        float x_70401 = ((float *) mem_72065)[i_71604];
-                        bool cond_70402 = sle64(last_res_70282, i_71604);
-                        int64_t defunc_0_f_res_70403;
+                    for (int64_t i_71651 = 0; i_71651 < q_70282; i_71651++) {
+                        float x_70448 = ((float *) mem_72112)[i_71651];
+                        bool cond_70449 = sle64(last_res_70329, i_71651);
+                        int64_t defunc_0_f_res_70450;
                         
-                        if (cond_70402) {
-                            defunc_0_f_res_70403 = (int64_t) 0;
+                        if (cond_70449) {
+                            defunc_0_f_res_70450 = (int64_t) 0;
                         } else {
-                            int64_t i_70404 = add64(max_res_70376, i_71604);
-                            int64_t defunc_0_add_arg_70405 =
-                                    ((int64_t *) mem_72023)[i_70404];
-                            int64_t defunc_1_add_res_70406 = add64((int64_t) 1,
-                                                                   defunc_0_add_arg_70405);
+                            int64_t i_70451 = add64(max_res_70423, i_71651);
+                            int64_t defunc_0_add_arg_70452 =
+                                    ((int64_t *) mem_72070)[i_70451];
+                            int64_t defunc_1_add_res_70453 = add64((int64_t) 1,
+                                                                   defunc_0_add_arg_70452);
                             
-                            defunc_0_f_res_70403 = defunc_1_add_res_70406;
+                            defunc_0_f_res_70450 = defunc_1_add_res_70453;
                         }
                         
-                        int64_t binop_p_70407 = sub64(defunc_0_f_res_70403,
-                                                      min_res_70311);
-                        float defunc_0_f_res_70408 =
-                              sitofp_i64_f32(binop_p_70407);
-                        float abs_res_70409 =
-                              (float) fabs(defunc_0_f_res_70408);
-                        float tmp1_70410 = abs_res_70409 / defunc_1_f_res_70395;
-                        float x_70411 = tmp1_70410 * tmp1_70410;
-                        float y_70412 = tmp1_70410 * x_70411;
-                        float tmp2_70413 = 1.0F - y_70412;
-                        float x_70414 = tmp2_70413 * tmp2_70413;
-                        float tmp3_70415 = tmp2_70413 * x_70414;
-                        float w_j_70416 = x_70401 * tmp3_70415;
-                        float defunc_1_op_res_70399 = w_j_70416 + redout_71603;
-                        float redout_tmp_73198 = defunc_1_op_res_70399;
+                        int64_t binop_p_70454 = sub64(defunc_0_f_res_70450,
+                                                      min_res_70358);
+                        float defunc_0_f_res_70455 =
+                              sitofp_i64_f32(binop_p_70454);
+                        float abs_res_70456 =
+                              (float) fabs(defunc_0_f_res_70455);
+                        float tmp1_70457 = abs_res_70456 / defunc_1_f_res_70442;
+                        float x_70458 = tmp1_70457 * tmp1_70457;
+                        float y_70459 = tmp1_70457 * x_70458;
+                        float tmp2_70460 = 1.0F - y_70459;
+                        float x_70461 = tmp2_70460 * tmp2_70460;
+                        float tmp3_70462 = tmp2_70460 * x_70461;
+                        float w_j_70463 = x_70448 * tmp3_70462;
+                        float defunc_1_op_res_70446 = w_j_70463 + redout_71650;
+                        float redout_tmp_73245 = defunc_1_op_res_70446;
                         
-                        redout_71603 = redout_tmp_73198;
+                        redout_71650 = redout_tmp_73245;
                     }
-                    defunc_2_reduce_res_70396 = redout_71603;
+                    defunc_2_reduce_res_70443 = redout_71650;
                     
-                    float a0_70417 = 1.0F / defunc_2_reduce_res_70396;
-                    float defunc_2_reduce_res_70418;
-                    float redout_71605 = 0.0F;
+                    float a0_70464 = 1.0F / defunc_2_reduce_res_70443;
+                    float defunc_2_reduce_res_70465;
+                    float redout_71652 = 0.0F;
                     
-                    for (int64_t i_71606 = 0; i_71606 < q_70235; i_71606++) {
-                        float x_70423 = ((float *) mem_72065)[i_71606];
-                        bool cond_70424 = sle64(last_res_70282, i_71606);
-                        int64_t defunc_0_f_res_70425;
+                    for (int64_t i_71653 = 0; i_71653 < q_70282; i_71653++) {
+                        float x_70470 = ((float *) mem_72112)[i_71653];
+                        bool cond_70471 = sle64(last_res_70329, i_71653);
+                        int64_t defunc_0_f_res_70472;
                         
-                        if (cond_70424) {
-                            defunc_0_f_res_70425 = (int64_t) 0;
+                        if (cond_70471) {
+                            defunc_0_f_res_70472 = (int64_t) 0;
                         } else {
-                            int64_t i_70426 = add64(max_res_70376, i_71606);
-                            int64_t defunc_0_add_arg_70427 =
-                                    ((int64_t *) mem_72023)[i_70426];
-                            int64_t defunc_1_add_res_70428 = add64((int64_t) 1,
-                                                                   defunc_0_add_arg_70427);
+                            int64_t i_70473 = add64(max_res_70423, i_71653);
+                            int64_t defunc_0_add_arg_70474 =
+                                    ((int64_t *) mem_72070)[i_70473];
+                            int64_t defunc_1_add_res_70475 = add64((int64_t) 1,
+                                                                   defunc_0_add_arg_70474);
                             
-                            defunc_0_f_res_70425 = defunc_1_add_res_70428;
+                            defunc_0_f_res_70472 = defunc_1_add_res_70475;
                         }
                         
-                        int64_t binop_p_70429 = sub64(defunc_0_f_res_70425,
-                                                      min_res_70311);
-                        float defunc_0_f_res_70430 =
-                              sitofp_i64_f32(binop_p_70429);
-                        float abs_res_70431 =
-                              (float) fabs(defunc_0_f_res_70430);
-                        float tmp1_70432 = abs_res_70431 / defunc_1_f_res_70395;
-                        float x_70433 = tmp1_70432 * tmp1_70432;
-                        float y_70434 = tmp1_70432 * x_70433;
-                        float tmp2_70435 = 1.0F - y_70434;
-                        float x_70436 = tmp2_70435 * tmp2_70435;
-                        float tmp3_70437 = tmp2_70435 * x_70436;
-                        float tmp4_70438 = x_70423 * tmp3_70437;
-                        float defunc_0_f_res_70439;
-                        
-                        if (cond_70424) {
-                            defunc_0_f_res_70439 = 0.0F;
-                        } else {
-                            int64_t i_70440 = add64(max_res_70376, i_71606);
-                            float defunc_0_add_arg_70441 =
-                                  ((float *) mem_72020)[i_70440];
-                            
-                            defunc_0_f_res_70439 = defunc_0_add_arg_70441;
-                        }
-                        
-                        float x_70442 = a0_70417 * tmp4_70438;
-                        float defunc_9_fit_fun_res_70443 =
-                              defunc_0_f_res_70439 * x_70442;
-                        float defunc_1_op_res_70421 =
-                              defunc_9_fit_fun_res_70443 + redout_71605;
-                        float redout_tmp_73199 = defunc_1_op_res_70421;
-                        
-                        redout_71605 = redout_tmp_73199;
-                    }
-                    defunc_2_reduce_res_70418 = redout_71605;
-                    ((float *) mem_71992.mem)[i_71613 * n_m_70241 + i_71609] =
-                        defunc_2_reduce_res_70418;
-                }
-            }
-            if (memblock_set(ctx, &ext_mem_72458, &mem_71992, "mem_71992") != 0)
-                return 1;
-            if (memblock_set(ctx, &ext_mem_72450, &mem_71988, "mem_71988") != 0)
-                return 1;
-            if (memblock_unref(ctx, &mem_71992, "mem_71992") != 0)
-                return 1;
-            if (memblock_unref(ctx, &mem_71988, "mem_71988") != 0)
-                return 1;
-        } else {
-            bool match_lit_70446 = (int64_t) 1 == degree_70236;
-            int64_t binop_x_72108 = m_70232 * n_m_70241;
-            int64_t binop_y_72109 = (int64_t) 4 * binop_x_72108;
-            int64_t bytes_72110 = smax64((int64_t) 0, binop_y_72109);
-            int64_t binop_y_72136 = (int64_t) 8 * n_70233;
-            int64_t bytes_72137 = smax64((int64_t) 0, binop_y_72136);
-            int64_t binop_y_72151 = (int64_t) 4 * n_70233;
-            int64_t bytes_72152 = smax64((int64_t) 0, binop_y_72151);
-            int64_t binop_y_72196 = (int64_t) 4 * q_70235;
-            int64_t bytes_72197 = smax64((int64_t) 0, binop_y_72196);
-            int64_t binop_x_72271 = m_70232 * n_m_70241;
-            int64_t binop_y_72272 = (int64_t) 4 * binop_x_72271;
-            int64_t bytes_72273 = smax64((int64_t) 0, binop_y_72272);
-            int64_t binop_y_72299 = (int64_t) 8 * n_70233;
-            int64_t bytes_72300 = smax64((int64_t) 0, binop_y_72299);
-            int64_t binop_y_72314 = (int64_t) 4 * n_70233;
-            int64_t bytes_72315 = smax64((int64_t) 0, binop_y_72314);
-            int64_t binop_y_72359 = (int64_t) 4 * q_70235;
-            int64_t bytes_72360 = smax64((int64_t) 0, binop_y_72359);
-            struct memblock ext_mem_72442;
-            
-            ext_mem_72442.references = NULL;
-            
-            struct memblock ext_mem_72434;
-            
-            ext_mem_72434.references = NULL;
-            if (match_lit_70446) {
-                struct memblock mem_72111;
-                
-                mem_72111.references = NULL;
-                if (memblock_alloc(ctx, &mem_72111, bytes_72110, "mem_72111")) {
-                    err = 1;
-                    goto cleanup;
-                }
-                
-                struct memblock mem_72115;
-                
-                mem_72115.references = NULL;
-                if (memblock_alloc(ctx, &mem_72115, bytes_72110, "mem_72115")) {
-                    err = 1;
-                    goto cleanup;
-                }
-                if (mem_72138_cached_sizze_73336 < (size_t) bytes_72137) {
-                    mem_72138 = realloc(mem_72138, bytes_72137);
-                    mem_72138_cached_sizze_73336 = bytes_72137;
-                }
-                if (mem_72153_cached_sizze_73337 < (size_t) bytes_72152) {
-                    mem_72153 = realloc(mem_72153, bytes_72152);
-                    mem_72153_cached_sizze_73337 = bytes_72152;
-                }
-                if (mem_72156_cached_sizze_73338 < (size_t) bytes_72137) {
-                    mem_72156 = realloc(mem_72156, bytes_72137);
-                    mem_72156_cached_sizze_73338 = bytes_72137;
-                }
-                if (mem_72183_cached_sizze_73339 < (size_t) bytes_72137) {
-                    mem_72183 = realloc(mem_72183, bytes_72137);
-                    mem_72183_cached_sizze_73339 = bytes_72137;
-                }
-                if (mem_72198_cached_sizze_73340 < (size_t) bytes_72197) {
-                    mem_72198 = realloc(mem_72198, bytes_72197);
-                    mem_72198_cached_sizze_73340 = bytes_72197;
-                }
-                for (int64_t i_71655 = 0; i_71655 < m_70232; i_71655++) {
-                    int64_t discard_71620;
-                    int64_t scanacc_71616 = (int64_t) 0;
-                    
-                    for (int64_t i_71618 = 0; i_71618 < n_70233; i_71618++) {
-                        float x_70457 = ((float *) Y_mem_71984.mem)[i_71655 *
-                                                                    n_70233 +
-                                                                    i_71618];
-                        bool isnan_res_70458;
-                        
-                        isnan_res_70458 = futrts_isnan32(x_70457);
-                        
-                        bool defunc_0_p_res_70459 = !isnan_res_70458;
-                        int64_t defunc_0_f_res_70460 =
-                                btoi_bool_i64(defunc_0_p_res_70459);
-                        int64_t defunc_1_op_res_70456 =
-                                add64(defunc_0_f_res_70460, scanacc_71616);
-                        
-                        ((int64_t *) mem_72138)[i_71618] =
-                            defunc_1_op_res_70456;
-                        
-                        int64_t scanacc_tmp_73202 = defunc_1_op_res_70456;
-                        
-                        scanacc_71616 = scanacc_tmp_73202;
-                    }
-                    discard_71620 = scanacc_71616;
-                    
-                    int64_t last_res_70461 = ((int64_t *) mem_72138)[i_70247];
-                    
-                    for (int64_t i_73204 = 0; i_73204 < n_70233; i_73204++) {
-                        ((float *) mem_72153)[i_73204] = 0.0F;
-                    }
-                    for (int64_t i_73205 = 0; i_73205 < n_70233; i_73205++) {
-                        ((int64_t *) mem_72156)[i_73205] = (int64_t) -1;
-                    }
-                    for (int64_t write_iter_71621 = 0; write_iter_71621 <
-                         n_70233; write_iter_71621++) {
-                        float write_iv_71624 =
-                              ((float *) Y_mem_71984.mem)[i_71655 * n_70233 +
-                                                          write_iter_71621];
-                        int64_t write_iv_71625 =
-                                ((int64_t *) mem_72138)[write_iter_71621];
-                        bool isnan_res_70469;
-                        
-                        isnan_res_70469 = futrts_isnan32(write_iv_71624);
-                        
-                        bool defunc_0_p_res_70470 = !isnan_res_70469;
-                        int64_t defunc_1_f_res_70471;
-                        
-                        if (defunc_0_p_res_70470) {
-                            int64_t defunc_1_f_res_t_res_70472 =
-                                    sub64(write_iv_71625, (int64_t) 1);
-                            
-                            defunc_1_f_res_70471 = defunc_1_f_res_t_res_70472;
-                        } else {
-                            defunc_1_f_res_70471 = (int64_t) -1;
-                        }
-                        if (sle64((int64_t) 0, defunc_1_f_res_70471) &&
-                            slt64(defunc_1_f_res_70471, n_70233)) {
-                            ((int64_t *) mem_72156)[defunc_1_f_res_70471] =
-                                write_iter_71621;
-                        }
-                        if (sle64((int64_t) 0, defunc_1_f_res_70471) &&
-                            slt64(defunc_1_f_res_70471, n_70233)) {
-                            if ((int64_t) 4 > 0)
-                                memmove(mem_72153 + defunc_1_f_res_70471 *
-                                        (int64_t) 4, Y_mem_71984.mem +
-                                        (i_71655 * n_70233 + write_iter_71621) *
-                                        (int64_t) 4, (int64_t) 4);
-                        }
-                    }
-                    for (int64_t i_71631 = 0; i_71631 < n_70233; i_71631++) {
-                        int64_t x_70474 = ((int64_t *) mem_72156)[i_71631];
-                        int64_t defunc_0_f_res_70475 = add64((int64_t) 1,
-                                                             x_70474);
-                        
-                        ((int64_t *) mem_72183)[i_71631] = defunc_0_f_res_70475;
-                    }
-                    
-                    int64_t min_arg_70476 = sub64(last_res_70461, (int64_t) 1);
-                    int64_t min_arg_70477 = sub64(last_res_70461,
-                                                  min_res_70253);
-                    int64_t min_res_70478 = smin64(q_70235, last_res_70461);
-                    float i64_res_70479 = sitofp_i64_f32(last_res_70461);
-                    float x_70480 = i64_res_70259 - i64_res_70479;
-                    float max_arg_70481 = x_70480 / 2.0F;
-                    float max_res_70482 = fmax32(0.0F, max_arg_70481);
-                    
-                    for (int64_t i_71635 = 0; i_71635 < q_70235; i_71635++) {
-                        bool cond_70485 = sle64(last_res_70461, i_71635);
+                        int64_t binop_p_70476 = sub64(defunc_0_f_res_70472,
+                                                      min_res_70358);
+                        float defunc_0_f_res_70477 =
+                              sitofp_i64_f32(binop_p_70476);
+                        float abs_res_70478 =
+                              (float) fabs(defunc_0_f_res_70477);
+                        float tmp1_70479 = abs_res_70478 / defunc_1_f_res_70442;
+                        float x_70480 = tmp1_70479 * tmp1_70479;
+                        float y_70481 = tmp1_70479 * x_70480;
+                        float tmp2_70482 = 1.0F - y_70481;
+                        float x_70483 = tmp2_70482 * tmp2_70482;
+                        float tmp3_70484 = tmp2_70482 * x_70483;
+                        float tmp4_70485 = x_70470 * tmp3_70484;
                         float defunc_0_f_res_70486;
                         
-                        if (cond_70485) {
+                        if (cond_70471) {
                             defunc_0_f_res_70486 = 0.0F;
                         } else {
-                            defunc_0_f_res_70486 = 1.0F;
+                            int64_t i_70487 = add64(max_res_70423, i_71653);
+                            float defunc_0_add_arg_70488 =
+                                  ((float *) mem_72067)[i_70487];
+                            
+                            defunc_0_f_res_70486 = defunc_0_add_arg_70488;
                         }
-                        ((float *) mem_72198)[i_71635] = defunc_0_f_res_70486;
+                        
+                        float x_70489 = a0_70464 * tmp4_70485;
+                        float defunc_9_fit_fun_res_70490 =
+                              defunc_0_f_res_70486 * x_70489;
+                        float defunc_1_op_res_70468 =
+                              defunc_9_fit_fun_res_70490 + redout_71652;
+                        float redout_tmp_73246 = defunc_1_op_res_70468;
+                        
+                        redout_71652 = redout_tmp_73246;
                     }
-                    for (int64_t i_71648 = 0; i_71648 < n_m_70241; i_71648++) {
-                        int64_t min_arg_70490 = mul64(jump_70237, i_71648);
-                        int64_t min_res_70491 = smin64(i_70247, min_arg_70490);
-                        int64_t defunc_0_g_res_70492 = add64((int64_t) 1,
-                                                             min_res_70491);
-                        bool init_idx_70493;
-                        int64_t init_idx_70494;
-                        int64_t init_idx_70495;
-                        bool loop_while_70496;
-                        int64_t low_70497;
-                        int64_t high_70498;
-                        
-                        loop_while_70496 = x_70248;
-                        low_70497 = (int64_t) 0;
-                        high_70498 = i_70247;
-                        while (loop_while_70496) {
-                            int64_t x_70499 = add64(low_70497, high_70498);
-                            int64_t mid_70500 = sdiv64(x_70499, (int64_t) 2);
-                            bool x_70501 = sle64((int64_t) 0, mid_70500);
-                            bool y_70502 = slt64(mid_70500, n_70233);
-                            bool bounds_check_70503 = x_70501 && y_70502;
-                            bool index_certs_70504;
-                            
-                            if (!bounds_check_70503) {
-                                ctx->error =
-                                    msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                              "Index [", (long long) mid_70500,
-                                              "] out of bounds for array of shape [",
-                                              (long long) n_70233, "].",
-                                              "-> #0  loess.fut:449:26-36\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:588:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:587:5-589:26\n   #10 loess.fut:571:1-610:26\n");
-                                if (memblock_unref(ctx, &mem_72115,
-                                                   "mem_72115") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &mem_72111,
-                                                   "mem_72111") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_72434,
-                                                   "ext_mem_72434") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_72442,
-                                                   "ext_mem_72442") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_72450,
-                                                   "ext_mem_72450") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_72458,
-                                                   "ext_mem_72458") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73052,
-                                                   "ext_mem_73052") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73060,
-                                                   "ext_mem_73060") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &mem_out_73178,
-                                                   "mem_out_73178") != 0)
-                                    return 1;
-                                return 1;
-                            }
-                            
-                            int64_t mid_id_70505 =
-                                    ((int64_t *) mem_72183)[mid_70500];
-                            bool cond_70506 = slt64(mid_id_70505, (int64_t) 0);
-                            int64_t mid_idx_70507;
-                            
-                            if (cond_70506) {
-                                mid_idx_70507 = (int64_t) 9223372036854775807;
-                            } else {
-                                mid_idx_70507 = mid_id_70505;
-                            }
-                            
-                            bool cond_70508 = sle64(defunc_0_g_res_70492,
-                                                    mid_idx_70507);
-                            int64_t loopres_70509;
-                            int64_t loopres_70510;
-                            
-                            if (cond_70508) {
-                                int64_t loopres_t_res_70511 = sub64(mid_70500,
-                                                                    (int64_t) 1);
-                                
-                                loopres_70509 = low_70497;
-                                loopres_70510 = loopres_t_res_70511;
-                            } else {
-                                int64_t loopres_f_res_70512 = add64((int64_t) 1,
-                                                                    mid_70500);
-                                
-                                loopres_70509 = loopres_f_res_70512;
-                                loopres_70510 = high_70498;
-                            }
-                            
-                            bool loop_cond_70513 = sle64(loopres_70509,
-                                                         loopres_70510);
-                            bool loop_while_tmp_73212 = loop_cond_70513;
-                            int64_t low_tmp_73213 = loopres_70509;
-                            int64_t high_tmp_73214 = loopres_70510;
-                            
-                            loop_while_70496 = loop_while_tmp_73212;
-                            low_70497 = low_tmp_73213;
-                            high_70498 = high_tmp_73214;
-                        }
-                        init_idx_70493 = loop_while_70496;
-                        init_idx_70494 = low_70497;
-                        init_idx_70495 = high_70498;
-                        
-                        bool idx_70514;
-                        int64_t idx_70515;
-                        int64_t idx_70516;
-                        int64_t idx_70517;
-                        bool loop_while_70518;
-                        int64_t l_idx_70519;
-                        int64_t r_idx_70520;
-                        int64_t span_70521;
-                        
-                        loop_while_70518 = loop_cond_70258;
-                        l_idx_70519 = init_idx_70494;
-                        r_idx_70520 = init_idx_70494;
-                        span_70521 = (int64_t) 1;
-                        while (loop_while_70518) {
-                            int64_t max_arg_70522 = sub64(l_idx_70519,
-                                                          (int64_t) 1);
-                            int64_t max_res_70523 = smax64((int64_t) 0,
-                                                           max_arg_70522);
-                            int64_t min_arg_70524 = add64((int64_t) 1,
-                                                          r_idx_70520);
-                            int64_t min_res_70525 = smin64(min_arg_70476,
-                                                           min_arg_70524);
-                            bool x_70526 = sle64((int64_t) 0, max_res_70523);
-                            bool y_70527 = slt64(max_res_70523, n_70233);
-                            bool bounds_check_70528 = x_70526 && y_70527;
-                            bool index_certs_70529;
-                            
-                            if (!bounds_check_70528) {
-                                ctx->error =
-                                    msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                              "Index [",
-                                              (long long) max_res_70523,
-                                              "] out of bounds for array of shape [",
-                                              (long long) n_70233, "].",
-                                              "-> #0  loess.fut:459:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:588:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:587:5-589:26\n   #10 loess.fut:571:1-610:26\n");
-                                if (memblock_unref(ctx, &mem_72115,
-                                                   "mem_72115") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &mem_72111,
-                                                   "mem_72111") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_72434,
-                                                   "ext_mem_72434") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_72442,
-                                                   "ext_mem_72442") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_72450,
-                                                   "ext_mem_72450") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_72458,
-                                                   "ext_mem_72458") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73052,
-                                                   "ext_mem_73052") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73060,
-                                                   "ext_mem_73060") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &mem_out_73178,
-                                                   "mem_out_73178") != 0)
-                                    return 1;
-                                return 1;
-                            }
-                            
-                            int64_t x_70530 =
-                                    ((int64_t *) mem_72183)[max_res_70523];
-                            int64_t abs_arg_70531 = sub64(x_70530,
-                                                          defunc_0_g_res_70492);
-                            int64_t abs_res_70532 = abs64(abs_arg_70531);
-                            bool x_70533 = sle64((int64_t) 0, min_res_70525);
-                            bool y_70534 = slt64(min_res_70525, n_70233);
-                            bool bounds_check_70535 = x_70533 && y_70534;
-                            bool index_certs_70536;
-                            
-                            if (!bounds_check_70535) {
-                                ctx->error =
-                                    msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                              "Index [",
-                                              (long long) min_res_70525,
-                                              "] out of bounds for array of shape [",
-                                              (long long) n_70233, "].",
-                                              "-> #0  loess.fut:460:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:588:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:587:5-589:26\n   #10 loess.fut:571:1-610:26\n");
-                                if (memblock_unref(ctx, &mem_72115,
-                                                   "mem_72115") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &mem_72111,
-                                                   "mem_72111") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_72434,
-                                                   "ext_mem_72434") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_72442,
-                                                   "ext_mem_72442") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_72450,
-                                                   "ext_mem_72450") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_72458,
-                                                   "ext_mem_72458") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73052,
-                                                   "ext_mem_73052") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73060,
-                                                   "ext_mem_73060") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &mem_out_73178,
-                                                   "mem_out_73178") != 0)
-                                    return 1;
-                                return 1;
-                            }
-                            
-                            int64_t x_70537 =
-                                    ((int64_t *) mem_72183)[min_res_70525];
-                            int64_t abs_arg_70538 = sub64(x_70537,
-                                                          defunc_0_g_res_70492);
-                            int64_t abs_res_70539 = abs64(abs_arg_70538);
-                            bool cond_70540 = max_res_70523 == l_idx_70519;
-                            int64_t loopres_70541;
-                            int64_t loopres_70542;
-                            int64_t loopres_70543;
-                            
-                            if (cond_70540) {
-                                loopres_70541 = l_idx_70519;
-                                loopres_70542 = r_idx_70520;
-                                loopres_70543 = min_res_70253;
-                            } else {
-                                bool cond_70544 = slt64(abs_res_70532,
-                                                        abs_res_70539);
-                                bool cond_f_res_70545 = min_res_70525 ==
-                                     r_idx_70520;
-                                bool x_70546 = !cond_70544;
-                                bool y_70547 = cond_f_res_70545 && x_70546;
-                                bool cond_70548 = cond_70544 || y_70547;
-                                int64_t loopres_f_res_70549;
-                                
-                                if (cond_70548) {
-                                    loopres_f_res_70549 = max_res_70523;
-                                } else {
-                                    loopres_f_res_70549 = l_idx_70519;
-                                }
-                                
-                                int64_t loopres_f_res_70550;
-                                
-                                if (cond_70548) {
-                                    loopres_f_res_70550 = r_idx_70520;
-                                } else {
-                                    loopres_f_res_70550 = min_res_70525;
-                                }
-                                
-                                int64_t loopres_f_res_70551;
-                                
-                                if (cond_70548) {
-                                    int64_t loopres_f_res_t_res_70552 =
-                                            add64((int64_t) 1, span_70521);
-                                    
-                                    loopres_f_res_70551 =
-                                        loopres_f_res_t_res_70552;
-                                } else {
-                                    int64_t loopres_f_res_f_res_70553 =
-                                            add64((int64_t) 1, span_70521);
-                                    
-                                    loopres_f_res_70551 =
-                                        loopres_f_res_f_res_70553;
-                                }
-                                loopres_70541 = loopres_f_res_70549;
-                                loopres_70542 = loopres_f_res_70550;
-                                loopres_70543 = loopres_f_res_70551;
-                            }
-                            
-                            bool loop_cond_70554 = slt64(loopres_70543,
-                                                         min_res_70253);
-                            bool loop_while_tmp_73215 = loop_cond_70554;
-                            int64_t l_idx_tmp_73216 = loopres_70541;
-                            int64_t r_idx_tmp_73217 = loopres_70542;
-                            int64_t span_tmp_73218 = loopres_70543;
-                            
-                            loop_while_70518 = loop_while_tmp_73215;
-                            l_idx_70519 = l_idx_tmp_73216;
-                            r_idx_70520 = r_idx_tmp_73217;
-                            span_70521 = span_tmp_73218;
-                        }
-                        idx_70514 = loop_while_70518;
-                        idx_70515 = l_idx_70519;
-                        idx_70516 = r_idx_70520;
-                        idx_70517 = span_70521;
-                        
-                        int64_t min_res_70555 = smin64(min_arg_70477,
-                                                       idx_70515);
-                        int64_t max_res_70556 = smax64((int64_t) 0,
-                                                       min_res_70555);
-                        int64_t x_70557 = add64(min_res_70478, max_res_70556);
-                        int64_t r_70558 = sub64(x_70557, (int64_t) 1);
-                        bool x_70559 = sle64((int64_t) 0, r_70558);
-                        bool y_70560 = slt64(r_70558, n_70233);
-                        bool bounds_check_70561 = x_70559 && y_70560;
-                        bool index_certs_70562;
-                        
-                        if (!bounds_check_70561) {
-                            ctx->error =
-                                msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                          "Index [", (long long) r_70558,
-                                          "] out of bounds for array of shape [",
-                                          (long long) n_70233, "].",
-                                          "-> #0  loess.fut:484:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:18-55\n   #5  loess.fut:588:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:587:5-589:26\n   #9  loess.fut:571:1-610:26\n");
-                            if (memblock_unref(ctx, &mem_72115, "mem_72115") !=
-                                0)
-                                return 1;
-                            if (memblock_unref(ctx, &mem_72111, "mem_72111") !=
-                                0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_72434,
-                                               "ext_mem_72434") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_72442,
-                                               "ext_mem_72442") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_72450,
-                                               "ext_mem_72450") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_72458,
-                                               "ext_mem_72458") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_73052,
-                                               "ext_mem_73052") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_73060,
-                                               "ext_mem_73060") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &mem_out_73178,
-                                               "mem_out_73178") != 0)
-                                return 1;
-                            return 1;
-                        }
-                        
-                        int64_t x_70563 = ((int64_t *) mem_72156)[r_70558];
-                        int64_t abs_arg_70564 = sub64(x_70563, min_res_70491);
-                        int64_t abs_res_70565 = abs64(abs_arg_70564);
-                        bool x_70566 = sle64((int64_t) 0, max_res_70556);
-                        bool y_70567 = slt64(max_res_70556, n_70233);
-                        bool bounds_check_70568 = x_70566 && y_70567;
-                        bool index_certs_70569;
-                        
-                        if (!bounds_check_70568) {
-                            ctx->error =
-                                msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                          "Index [", (long long) max_res_70556,
-                                          "] out of bounds for array of shape [",
-                                          (long long) n_70233, "].",
-                                          "-> #0  loess.fut:483:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:18-55\n   #5  loess.fut:588:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:587:5-589:26\n   #9  loess.fut:571:1-610:26\n");
-                            if (memblock_unref(ctx, &mem_72115, "mem_72115") !=
-                                0)
-                                return 1;
-                            if (memblock_unref(ctx, &mem_72111, "mem_72111") !=
-                                0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_72434,
-                                               "ext_mem_72434") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_72442,
-                                               "ext_mem_72442") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_72450,
-                                               "ext_mem_72450") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_72458,
-                                               "ext_mem_72458") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_73052,
-                                               "ext_mem_73052") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_73060,
-                                               "ext_mem_73060") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &mem_out_73178,
-                                               "mem_out_73178") != 0)
-                                return 1;
-                            return 1;
-                        }
-                        
-                        int64_t x_70570 =
-                                ((int64_t *) mem_72156)[max_res_70556];
-                        int64_t abs_arg_70571 = sub64(x_70570, min_res_70491);
-                        int64_t abs_res_70572 = abs64(abs_arg_70571);
-                        int64_t max_res_70573 = smax64(abs_res_70565,
-                                                       abs_res_70572);
-                        float defunc_0_f_res_70574 =
-                              sitofp_i64_f32(max_res_70573);
-                        float defunc_1_f_res_70575 = max_res_70482 +
-                              defunc_0_f_res_70574;
-                        float defunc_2_reduce_res_70576;
-                        float defunc_2_reduce_res_70577;
-                        float defunc_2_reduce_res_70578;
-                        float redout_71637;
-                        float redout_71638;
-                        float redout_71639;
-                        
-                        redout_71637 = 0.0F;
-                        redout_71638 = 0.0F;
-                        redout_71639 = 0.0F;
-                        for (int64_t i_71640 = 0; i_71640 < q_70235;
-                             i_71640++) {
-                            float x_70589 = ((float *) mem_72198)[i_71640];
-                            bool cond_70590 = sle64(last_res_70461, i_71640);
-                            int64_t defunc_0_f_res_70591;
-                            
-                            if (cond_70590) {
-                                defunc_0_f_res_70591 = (int64_t) 0;
-                            } else {
-                                int64_t i_70592 = add64(max_res_70556, i_71640);
-                                int64_t defunc_0_add_arg_70593 =
-                                        ((int64_t *) mem_72156)[i_70592];
-                                int64_t defunc_1_add_res_70594 =
-                                        add64((int64_t) 1,
-                                              defunc_0_add_arg_70593);
-                                
-                                defunc_0_f_res_70591 = defunc_1_add_res_70594;
-                            }
-                            
-                            int64_t binop_p_70595 = sub64(defunc_0_f_res_70591,
-                                                          min_res_70491);
-                            float defunc_0_f_res_70596 =
-                                  sitofp_i64_f32(binop_p_70595);
-                            float abs_res_70597 =
-                                  (float) fabs(defunc_0_f_res_70596);
-                            float tmp1_70598 = abs_res_70597 /
-                                  defunc_1_f_res_70575;
-                            float x_70599 = tmp1_70598 * tmp1_70598;
-                            float y_70600 = tmp1_70598 * x_70599;
-                            float tmp2_70601 = 1.0F - y_70600;
-                            float x_70602 = tmp2_70601 * tmp2_70601;
-                            float tmp3_70603 = tmp2_70601 * x_70602;
-                            float w_j_70604 = x_70589 * tmp3_70603;
-                            float xw_j_70605 = defunc_0_f_res_70596 * w_j_70604;
-                            float x2w_j_70606 = defunc_0_f_res_70596 *
-                                  xw_j_70605;
-                            float defunc_1_op_res_70581 = w_j_70604 +
-                                  redout_71637;
-                            float defunc_1_op_res_70584 = xw_j_70605 +
-                                  redout_71638;
-                            float defunc_1_op_res_70587 = x2w_j_70606 +
-                                  redout_71639;
-                            float redout_tmp_73219 = defunc_1_op_res_70581;
-                            float redout_tmp_73220 = defunc_1_op_res_70584;
-                            float redout_tmp_73221 = defunc_1_op_res_70587;
-                            
-                            redout_71637 = redout_tmp_73219;
-                            redout_71638 = redout_tmp_73220;
-                            redout_71639 = redout_tmp_73221;
-                        }
-                        defunc_2_reduce_res_70576 = redout_71637;
-                        defunc_2_reduce_res_70577 = redout_71638;
-                        defunc_2_reduce_res_70578 = redout_71639;
-                        
-                        float x_70607 = defunc_2_reduce_res_70576 *
-                              defunc_2_reduce_res_70578;
-                        float y_70608 = defunc_2_reduce_res_70577 *
-                              defunc_2_reduce_res_70577;
-                        float y_70609 = x_70607 - y_70608;
-                        float det1_70610 = 1.0F / y_70609;
-                        float a11_70611 = defunc_2_reduce_res_70578 *
-                              det1_70610;
-                        float x_70612 = 0.0F - defunc_2_reduce_res_70577;
-                        float b11_70613 = det1_70610 * x_70612;
-                        float c11_70614 = defunc_2_reduce_res_70576 *
-                              det1_70610;
-                        float defunc_2_reduce_res_70615;
-                        float defunc_2_reduce_res_70616;
-                        float redout_71641;
-                        float redout_71642;
-                        
-                        redout_71641 = 0.0F;
-                        redout_71642 = 0.0F;
-                        for (int64_t i_71643 = 0; i_71643 < q_70235;
-                             i_71643++) {
-                            float x_70624 = ((float *) mem_72198)[i_71643];
-                            bool cond_70625 = sle64(last_res_70461, i_71643);
-                            int64_t defunc_0_f_res_70626;
-                            
-                            if (cond_70625) {
-                                defunc_0_f_res_70626 = (int64_t) 0;
-                            } else {
-                                int64_t i_70627 = add64(max_res_70556, i_71643);
-                                int64_t defunc_0_add_arg_70628 =
-                                        ((int64_t *) mem_72156)[i_70627];
-                                int64_t defunc_1_add_res_70629 =
-                                        add64((int64_t) 1,
-                                              defunc_0_add_arg_70628);
-                                
-                                defunc_0_f_res_70626 = defunc_1_add_res_70629;
-                            }
-                            
-                            int64_t binop_p_70630 = sub64(defunc_0_f_res_70626,
-                                                          min_res_70491);
-                            float defunc_0_f_res_70631 =
-                                  sitofp_i64_f32(binop_p_70630);
-                            float abs_res_70632 =
-                                  (float) fabs(defunc_0_f_res_70631);
-                            float tmp1_70633 = abs_res_70632 /
-                                  defunc_1_f_res_70575;
-                            float x_70634 = tmp1_70633 * tmp1_70633;
-                            float y_70635 = tmp1_70633 * x_70634;
-                            float tmp2_70636 = 1.0F - y_70635;
-                            float x_70637 = tmp2_70636 * tmp2_70636;
-                            float tmp3_70638 = tmp2_70636 * x_70637;
-                            float tmp4_70639 = x_70624 * tmp3_70638;
-                            float defunc_1_f_res_70640 = defunc_0_f_res_70631 *
-                                  tmp4_70639;
-                            float defunc_0_f_res_70641;
-                            
-                            if (cond_70625) {
-                                defunc_0_f_res_70641 = 0.0F;
-                            } else {
-                                int64_t i_70642 = add64(max_res_70556, i_71643);
-                                float defunc_0_add_arg_70643 =
-                                      ((float *) mem_72153)[i_70642];
-                                
-                                defunc_0_f_res_70641 = defunc_0_add_arg_70643;
-                            }
-                            
-                            float x_70644 = a11_70611 * tmp4_70639;
-                            float y_70645 = b11_70613 * defunc_1_f_res_70640;
-                            float x_70646 = x_70644 + y_70645;
-                            float defunc_9_fit_fun_res_70647 =
-                                  defunc_0_f_res_70641 * x_70646;
-                            float x_70648 = b11_70613 * tmp4_70639;
-                            float y_70649 = c11_70614 * defunc_1_f_res_70640;
-                            float x_70650 = x_70648 + y_70649;
-                            float defunc_9_slope_fun_res_70651 =
-                                  defunc_0_f_res_70641 * x_70650;
-                            float defunc_1_op_res_70619 =
-                                  defunc_9_fit_fun_res_70647 + redout_71641;
-                            float defunc_1_op_res_70622 =
-                                  defunc_9_slope_fun_res_70651 + redout_71642;
-                            float redout_tmp_73222 = defunc_1_op_res_70619;
-                            float redout_tmp_73223 = defunc_1_op_res_70622;
-                            
-                            redout_71641 = redout_tmp_73222;
-                            redout_71642 = redout_tmp_73223;
-                        }
-                        defunc_2_reduce_res_70615 = redout_71641;
-                        defunc_2_reduce_res_70616 = redout_71642;
-                        ((float *) mem_72111.mem)[i_71655 * n_m_70241 +
-                                                  i_71648] =
-                            defunc_2_reduce_res_70615;
-                        ((float *) mem_72115.mem)[i_71655 * n_m_70241 +
-                                                  i_71648] =
-                            defunc_2_reduce_res_70616;
-                    }
+                    defunc_2_reduce_res_70465 = redout_71652;
+                    ((float *) mem_72039.mem)[i_71660 * n_m_70288 + i_71656] =
+                        defunc_2_reduce_res_70465;
                 }
-                if (memblock_set(ctx, &ext_mem_72442, &mem_72111,
-                                 "mem_72111") != 0)
-                    return 1;
-                if (memblock_set(ctx, &ext_mem_72434, &mem_72115,
-                                 "mem_72115") != 0)
-                    return 1;
-                if (memblock_unref(ctx, &mem_72115, "mem_72115") != 0)
-                    return 1;
-                if (memblock_unref(ctx, &mem_72111, "mem_72111") != 0)
-                    return 1;
-            } else {
-                struct memblock mem_72274;
+            }
+            if (memblock_set(ctx, &ext_mem_72505, &mem_72039, "mem_72039") != 0)
+                return 1;
+            if (memblock_set(ctx, &ext_mem_72497, &mem_72035, "mem_72035") != 0)
+                return 1;
+            if (memblock_unref(ctx, &mem_72039, "mem_72039") != 0)
+                return 1;
+            if (memblock_unref(ctx, &mem_72035, "mem_72035") != 0)
+                return 1;
+        } else {
+            bool match_lit_70493 = (int64_t) 1 == degree_70283;
+            int64_t binop_x_72155 = m_70279 * n_m_70288;
+            int64_t binop_y_72156 = (int64_t) 4 * binop_x_72155;
+            int64_t bytes_72157 = smax64((int64_t) 0, binop_y_72156);
+            int64_t binop_y_72183 = (int64_t) 8 * n_70280;
+            int64_t bytes_72184 = smax64((int64_t) 0, binop_y_72183);
+            int64_t binop_y_72198 = (int64_t) 4 * n_70280;
+            int64_t bytes_72199 = smax64((int64_t) 0, binop_y_72198);
+            int64_t binop_y_72243 = (int64_t) 4 * q_70282;
+            int64_t bytes_72244 = smax64((int64_t) 0, binop_y_72243);
+            int64_t binop_x_72318 = m_70279 * n_m_70288;
+            int64_t binop_y_72319 = (int64_t) 4 * binop_x_72318;
+            int64_t bytes_72320 = smax64((int64_t) 0, binop_y_72319);
+            int64_t binop_y_72346 = (int64_t) 8 * n_70280;
+            int64_t bytes_72347 = smax64((int64_t) 0, binop_y_72346);
+            int64_t binop_y_72361 = (int64_t) 4 * n_70280;
+            int64_t bytes_72362 = smax64((int64_t) 0, binop_y_72361);
+            int64_t binop_y_72406 = (int64_t) 4 * q_70282;
+            int64_t bytes_72407 = smax64((int64_t) 0, binop_y_72406);
+            struct memblock ext_mem_72489;
+            
+            ext_mem_72489.references = NULL;
+            
+            struct memblock ext_mem_72481;
+            
+            ext_mem_72481.references = NULL;
+            if (match_lit_70493) {
+                struct memblock mem_72158;
                 
-                mem_72274.references = NULL;
-                if (memblock_alloc(ctx, &mem_72274, bytes_72273, "mem_72274")) {
+                mem_72158.references = NULL;
+                if (memblock_alloc(ctx, &mem_72158, bytes_72157, "mem_72158")) {
                     err = 1;
                     goto cleanup;
                 }
                 
-                struct memblock mem_72278;
+                struct memblock mem_72162;
                 
-                mem_72278.references = NULL;
-                if (memblock_alloc(ctx, &mem_72278, bytes_72273, "mem_72278")) {
+                mem_72162.references = NULL;
+                if (memblock_alloc(ctx, &mem_72162, bytes_72157, "mem_72162")) {
                     err = 1;
                     goto cleanup;
                 }
-                if (mem_72301_cached_sizze_73341 < (size_t) bytes_72300) {
-                    mem_72301 = realloc(mem_72301, bytes_72300);
-                    mem_72301_cached_sizze_73341 = bytes_72300;
+                if (mem_72185_cached_sizze_73383 < (size_t) bytes_72184) {
+                    mem_72185 = realloc(mem_72185, bytes_72184);
+                    mem_72185_cached_sizze_73383 = bytes_72184;
                 }
-                if (mem_72316_cached_sizze_73342 < (size_t) bytes_72315) {
-                    mem_72316 = realloc(mem_72316, bytes_72315);
-                    mem_72316_cached_sizze_73342 = bytes_72315;
+                if (mem_72200_cached_sizze_73384 < (size_t) bytes_72199) {
+                    mem_72200 = realloc(mem_72200, bytes_72199);
+                    mem_72200_cached_sizze_73384 = bytes_72199;
                 }
-                if (mem_72319_cached_sizze_73343 < (size_t) bytes_72300) {
-                    mem_72319 = realloc(mem_72319, bytes_72300);
-                    mem_72319_cached_sizze_73343 = bytes_72300;
+                if (mem_72203_cached_sizze_73385 < (size_t) bytes_72184) {
+                    mem_72203 = realloc(mem_72203, bytes_72184);
+                    mem_72203_cached_sizze_73385 = bytes_72184;
                 }
-                if (mem_72346_cached_sizze_73344 < (size_t) bytes_72300) {
-                    mem_72346 = realloc(mem_72346, bytes_72300);
-                    mem_72346_cached_sizze_73344 = bytes_72300;
+                if (mem_72230_cached_sizze_73386 < (size_t) bytes_72184) {
+                    mem_72230 = realloc(mem_72230, bytes_72184);
+                    mem_72230_cached_sizze_73386 = bytes_72184;
                 }
-                if (mem_72361_cached_sizze_73345 < (size_t) bytes_72360) {
-                    mem_72361 = realloc(mem_72361, bytes_72360);
-                    mem_72361_cached_sizze_73345 = bytes_72360;
+                if (mem_72245_cached_sizze_73387 < (size_t) bytes_72244) {
+                    mem_72245 = realloc(mem_72245, bytes_72244);
+                    mem_72245_cached_sizze_73387 = bytes_72244;
                 }
-                for (int64_t i_71700 = 0; i_71700 < m_70232; i_71700++) {
-                    int64_t discard_71663;
-                    int64_t scanacc_71659 = (int64_t) 0;
+                for (int64_t i_71702 = 0; i_71702 < m_70279; i_71702++) {
+                    int64_t discard_71667;
+                    int64_t scanacc_71663 = (int64_t) 0;
                     
-                    for (int64_t i_71661 = 0; i_71661 < n_70233; i_71661++) {
-                        float x_70662 = ((float *) Y_mem_71984.mem)[i_71700 *
-                                                                    n_70233 +
-                                                                    i_71661];
-                        bool isnan_res_70663;
+                    for (int64_t i_71665 = 0; i_71665 < n_70280; i_71665++) {
+                        float x_70504 = ((float *) Y_mem_72031.mem)[i_71702 *
+                                                                    n_70280 +
+                                                                    i_71665];
+                        bool isnan_res_70505;
                         
-                        isnan_res_70663 = futrts_isnan32(x_70662);
+                        isnan_res_70505 = futrts_isnan32(x_70504);
                         
-                        bool defunc_0_p_res_70664 = !isnan_res_70663;
-                        int64_t defunc_0_f_res_70665 =
-                                btoi_bool_i64(defunc_0_p_res_70664);
-                        int64_t defunc_1_op_res_70661 =
-                                add64(defunc_0_f_res_70665, scanacc_71659);
+                        bool defunc_0_p_res_70506 = !isnan_res_70505;
+                        int64_t defunc_0_f_res_70507 =
+                                btoi_bool_i64(defunc_0_p_res_70506);
+                        int64_t defunc_1_op_res_70503 =
+                                add64(defunc_0_f_res_70507, scanacc_71663);
                         
-                        ((int64_t *) mem_72301)[i_71661] =
-                            defunc_1_op_res_70661;
+                        ((int64_t *) mem_72185)[i_71665] =
+                            defunc_1_op_res_70503;
                         
-                        int64_t scanacc_tmp_73226 = defunc_1_op_res_70661;
+                        int64_t scanacc_tmp_73249 = defunc_1_op_res_70503;
                         
-                        scanacc_71659 = scanacc_tmp_73226;
+                        scanacc_71663 = scanacc_tmp_73249;
                     }
-                    discard_71663 = scanacc_71659;
+                    discard_71667 = scanacc_71663;
                     
-                    int64_t last_res_70666 = ((int64_t *) mem_72301)[i_70247];
+                    int64_t last_res_70508 = ((int64_t *) mem_72185)[i_70294];
                     
-                    for (int64_t i_73228 = 0; i_73228 < n_70233; i_73228++) {
-                        ((float *) mem_72316)[i_73228] = 0.0F;
+                    for (int64_t i_73251 = 0; i_73251 < n_70280; i_73251++) {
+                        ((float *) mem_72200)[i_73251] = 0.0F;
                     }
-                    for (int64_t i_73229 = 0; i_73229 < n_70233; i_73229++) {
-                        ((int64_t *) mem_72319)[i_73229] = (int64_t) -1;
+                    for (int64_t i_73252 = 0; i_73252 < n_70280; i_73252++) {
+                        ((int64_t *) mem_72203)[i_73252] = (int64_t) -1;
                     }
-                    for (int64_t write_iter_71664 = 0; write_iter_71664 <
-                         n_70233; write_iter_71664++) {
-                        float write_iv_71667 =
-                              ((float *) Y_mem_71984.mem)[i_71700 * n_70233 +
-                                                          write_iter_71664];
-                        int64_t write_iv_71668 =
-                                ((int64_t *) mem_72301)[write_iter_71664];
-                        bool isnan_res_70674;
+                    for (int64_t write_iter_71668 = 0; write_iter_71668 <
+                         n_70280; write_iter_71668++) {
+                        float write_iv_71671 =
+                              ((float *) Y_mem_72031.mem)[i_71702 * n_70280 +
+                                                          write_iter_71668];
+                        int64_t write_iv_71672 =
+                                ((int64_t *) mem_72185)[write_iter_71668];
+                        bool isnan_res_70516;
                         
-                        isnan_res_70674 = futrts_isnan32(write_iv_71667);
+                        isnan_res_70516 = futrts_isnan32(write_iv_71671);
                         
-                        bool defunc_0_p_res_70675 = !isnan_res_70674;
-                        int64_t defunc_1_f_res_70676;
+                        bool defunc_0_p_res_70517 = !isnan_res_70516;
+                        int64_t defunc_1_f_res_70518;
                         
-                        if (defunc_0_p_res_70675) {
-                            int64_t defunc_1_f_res_t_res_70677 =
-                                    sub64(write_iv_71668, (int64_t) 1);
+                        if (defunc_0_p_res_70517) {
+                            int64_t defunc_1_f_res_t_res_70519 =
+                                    sub64(write_iv_71672, (int64_t) 1);
                             
-                            defunc_1_f_res_70676 = defunc_1_f_res_t_res_70677;
+                            defunc_1_f_res_70518 = defunc_1_f_res_t_res_70519;
                         } else {
-                            defunc_1_f_res_70676 = (int64_t) -1;
+                            defunc_1_f_res_70518 = (int64_t) -1;
                         }
-                        if (sle64((int64_t) 0, defunc_1_f_res_70676) &&
-                            slt64(defunc_1_f_res_70676, n_70233)) {
-                            ((int64_t *) mem_72319)[defunc_1_f_res_70676] =
-                                write_iter_71664;
+                        if (sle64((int64_t) 0, defunc_1_f_res_70518) &&
+                            slt64(defunc_1_f_res_70518, n_70280)) {
+                            ((int64_t *) mem_72203)[defunc_1_f_res_70518] =
+                                write_iter_71668;
                         }
-                        if (sle64((int64_t) 0, defunc_1_f_res_70676) &&
-                            slt64(defunc_1_f_res_70676, n_70233)) {
+                        if (sle64((int64_t) 0, defunc_1_f_res_70518) &&
+                            slt64(defunc_1_f_res_70518, n_70280)) {
                             if ((int64_t) 4 > 0)
-                                memmove(mem_72316 + defunc_1_f_res_70676 *
-                                        (int64_t) 4, Y_mem_71984.mem +
-                                        (i_71700 * n_70233 + write_iter_71664) *
+                                memmove(mem_72200 + defunc_1_f_res_70518 *
+                                        (int64_t) 4, Y_mem_72031.mem +
+                                        (i_71702 * n_70280 + write_iter_71668) *
                                         (int64_t) 4, (int64_t) 4);
                         }
                     }
-                    for (int64_t i_71674 = 0; i_71674 < n_70233; i_71674++) {
-                        int64_t x_70679 = ((int64_t *) mem_72319)[i_71674];
-                        int64_t defunc_0_f_res_70680 = add64((int64_t) 1,
-                                                             x_70679);
+                    for (int64_t i_71678 = 0; i_71678 < n_70280; i_71678++) {
+                        int64_t x_70521 = ((int64_t *) mem_72203)[i_71678];
+                        int64_t defunc_0_f_res_70522 = add64((int64_t) 1,
+                                                             x_70521);
                         
-                        ((int64_t *) mem_72346)[i_71674] = defunc_0_f_res_70680;
+                        ((int64_t *) mem_72230)[i_71678] = defunc_0_f_res_70522;
                     }
                     
-                    int64_t min_arg_70681 = sub64(last_res_70666, (int64_t) 1);
-                    int64_t min_arg_70682 = sub64(last_res_70666,
-                                                  min_res_70253);
-                    int64_t min_res_70683 = smin64(q_70235, last_res_70666);
-                    float i64_res_70684 = sitofp_i64_f32(last_res_70666);
-                    float x_70685 = i64_res_70259 - i64_res_70684;
-                    float max_arg_70686 = x_70685 / 2.0F;
-                    float max_res_70687 = fmax32(0.0F, max_arg_70686);
+                    int64_t min_arg_70523 = sub64(last_res_70508, (int64_t) 1);
+                    int64_t min_arg_70524 = sub64(last_res_70508,
+                                                  min_res_70300);
+                    int64_t min_res_70525 = smin64(q_70282, last_res_70508);
+                    float i64_res_70526 = sitofp_i64_f32(last_res_70508);
+                    float x_70527 = i64_res_70306 - i64_res_70526;
+                    float max_arg_70528 = x_70527 / 2.0F;
+                    float max_res_70529 = fmax32(0.0F, max_arg_70528);
                     
-                    for (int64_t i_71678 = 0; i_71678 < q_70235; i_71678++) {
-                        bool cond_70690 = sle64(last_res_70666, i_71678);
-                        float defunc_0_f_res_70691;
+                    for (int64_t i_71682 = 0; i_71682 < q_70282; i_71682++) {
+                        bool cond_70532 = sle64(last_res_70508, i_71682);
+                        float defunc_0_f_res_70533;
                         
-                        if (cond_70690) {
-                            defunc_0_f_res_70691 = 0.0F;
+                        if (cond_70532) {
+                            defunc_0_f_res_70533 = 0.0F;
                         } else {
-                            defunc_0_f_res_70691 = 1.0F;
+                            defunc_0_f_res_70533 = 1.0F;
                         }
-                        ((float *) mem_72361)[i_71678] = defunc_0_f_res_70691;
+                        ((float *) mem_72245)[i_71682] = defunc_0_f_res_70533;
                     }
-                    for (int64_t i_71693 = 0; i_71693 < n_m_70241; i_71693++) {
-                        int64_t min_arg_70695 = mul64(jump_70237, i_71693);
-                        int64_t min_res_70696 = smin64(i_70247, min_arg_70695);
-                        int64_t defunc_0_g_res_70697 = add64((int64_t) 1,
-                                                             min_res_70696);
-                        bool init_idx_70698;
-                        int64_t init_idx_70699;
-                        int64_t init_idx_70700;
-                        bool loop_while_70701;
-                        int64_t low_70702;
-                        int64_t high_70703;
+                    for (int64_t i_71695 = 0; i_71695 < n_m_70288; i_71695++) {
+                        int64_t min_arg_70537 = mul64(jump_70284, i_71695);
+                        int64_t min_res_70538 = smin64(i_70294, min_arg_70537);
+                        int64_t defunc_0_g_res_70539 = add64((int64_t) 1,
+                                                             min_res_70538);
+                        bool init_idx_70540;
+                        int64_t init_idx_70541;
+                        int64_t init_idx_70542;
+                        bool loop_while_70543;
+                        int64_t low_70544;
+                        int64_t high_70545;
                         
-                        loop_while_70701 = x_70248;
-                        low_70702 = (int64_t) 0;
-                        high_70703 = i_70247;
-                        while (loop_while_70701) {
-                            int64_t x_70704 = add64(low_70702, high_70703);
-                            int64_t mid_70705 = sdiv64(x_70704, (int64_t) 2);
-                            bool x_70706 = sle64((int64_t) 0, mid_70705);
-                            bool y_70707 = slt64(mid_70705, n_70233);
-                            bool bounds_check_70708 = x_70706 && y_70707;
-                            bool index_certs_70709;
+                        loop_while_70543 = x_70295;
+                        low_70544 = (int64_t) 0;
+                        high_70545 = i_70294;
+                        while (loop_while_70543) {
+                            int64_t x_70546 = add64(low_70544, high_70545);
+                            int64_t mid_70547 = sdiv64(x_70546, (int64_t) 2);
+                            bool x_70548 = sle64((int64_t) 0, mid_70547);
+                            bool y_70549 = slt64(mid_70547, n_70280);
+                            bool bounds_check_70550 = x_70548 && y_70549;
+                            bool index_certs_70551;
                             
-                            if (!bounds_check_70708) {
+                            if (!bounds_check_70550) {
                                 ctx->error =
                                     msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                              "Index [", (long long) mid_70705,
+                                              "Index [", (long long) mid_70547,
                                               "] out of bounds for array of shape [",
-                                              (long long) n_70233, "].",
-                                              "-> #0  loess.fut:449:26-36\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:588:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:587:5-589:26\n   #10 loess.fut:571:1-610:26\n");
-                                if (memblock_unref(ctx, &mem_72278,
-                                                   "mem_72278") != 0)
+                                              (long long) n_70280, "].",
+                                              "-> #0  loess.fut:449:26-36\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:589:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:588:5-590:26\n   #10 loess.fut:572:1-611:26\n");
+                                if (memblock_unref(ctx, &mem_72162,
+                                                   "mem_72162") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &mem_72274,
-                                                   "mem_72274") != 0)
+                                if (memblock_unref(ctx, &mem_72158,
+                                                   "mem_72158") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_72434,
-                                                   "ext_mem_72434") != 0)
+                                if (memblock_unref(ctx, &ext_mem_72481,
+                                                   "ext_mem_72481") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_72442,
-                                                   "ext_mem_72442") != 0)
+                                if (memblock_unref(ctx, &ext_mem_72489,
+                                                   "ext_mem_72489") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_72450,
-                                                   "ext_mem_72450") != 0)
+                                if (memblock_unref(ctx, &ext_mem_72497,
+                                                   "ext_mem_72497") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_72458,
-                                                   "ext_mem_72458") != 0)
+                                if (memblock_unref(ctx, &ext_mem_72505,
+                                                   "ext_mem_72505") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73052,
-                                                   "ext_mem_73052") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73099,
+                                                   "ext_mem_73099") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73060,
-                                                   "ext_mem_73060") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73107,
+                                                   "ext_mem_73107") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &mem_out_73178,
-                                                   "mem_out_73178") != 0)
+                                if (memblock_unref(ctx, &mem_out_73225,
+                                                   "mem_out_73225") != 0)
                                     return 1;
                                 return 1;
                             }
                             
-                            int64_t mid_id_70710 =
-                                    ((int64_t *) mem_72346)[mid_70705];
-                            bool cond_70711 = slt64(mid_id_70710, (int64_t) 0);
-                            int64_t mid_idx_70712;
+                            int64_t mid_id_70552 =
+                                    ((int64_t *) mem_72230)[mid_70547];
+                            bool cond_70553 = slt64(mid_id_70552, (int64_t) 0);
+                            int64_t mid_idx_70554;
                             
-                            if (cond_70711) {
-                                mid_idx_70712 = (int64_t) 9223372036854775807;
+                            if (cond_70553) {
+                                mid_idx_70554 = (int64_t) 9223372036854775807;
                             } else {
-                                mid_idx_70712 = mid_id_70710;
+                                mid_idx_70554 = mid_id_70552;
                             }
                             
-                            bool cond_70713 = sle64(defunc_0_g_res_70697,
-                                                    mid_idx_70712);
-                            int64_t loopres_70714;
-                            int64_t loopres_70715;
+                            bool cond_70555 = sle64(defunc_0_g_res_70539,
+                                                    mid_idx_70554);
+                            int64_t loopres_70556;
+                            int64_t loopres_70557;
                             
-                            if (cond_70713) {
-                                int64_t loopres_t_res_70716 = sub64(mid_70705,
+                            if (cond_70555) {
+                                int64_t loopres_t_res_70558 = sub64(mid_70547,
                                                                     (int64_t) 1);
                                 
-                                loopres_70714 = low_70702;
-                                loopres_70715 = loopres_t_res_70716;
+                                loopres_70556 = low_70544;
+                                loopres_70557 = loopres_t_res_70558;
                             } else {
-                                int64_t loopres_f_res_70717 = add64((int64_t) 1,
-                                                                    mid_70705);
+                                int64_t loopres_f_res_70559 = add64((int64_t) 1,
+                                                                    mid_70547);
                                 
-                                loopres_70714 = loopres_f_res_70717;
-                                loopres_70715 = high_70703;
+                                loopres_70556 = loopres_f_res_70559;
+                                loopres_70557 = high_70545;
                             }
                             
-                            bool loop_cond_70718 = sle64(loopres_70714,
-                                                         loopres_70715);
-                            bool loop_while_tmp_73236 = loop_cond_70718;
-                            int64_t low_tmp_73237 = loopres_70714;
-                            int64_t high_tmp_73238 = loopres_70715;
+                            bool loop_cond_70560 = sle64(loopres_70556,
+                                                         loopres_70557);
+                            bool loop_while_tmp_73259 = loop_cond_70560;
+                            int64_t low_tmp_73260 = loopres_70556;
+                            int64_t high_tmp_73261 = loopres_70557;
                             
-                            loop_while_70701 = loop_while_tmp_73236;
-                            low_70702 = low_tmp_73237;
-                            high_70703 = high_tmp_73238;
+                            loop_while_70543 = loop_while_tmp_73259;
+                            low_70544 = low_tmp_73260;
+                            high_70545 = high_tmp_73261;
                         }
-                        init_idx_70698 = loop_while_70701;
-                        init_idx_70699 = low_70702;
-                        init_idx_70700 = high_70703;
+                        init_idx_70540 = loop_while_70543;
+                        init_idx_70541 = low_70544;
+                        init_idx_70542 = high_70545;
                         
-                        bool idx_70719;
-                        int64_t idx_70720;
-                        int64_t idx_70721;
-                        int64_t idx_70722;
-                        bool loop_while_70723;
-                        int64_t l_idx_70724;
-                        int64_t r_idx_70725;
-                        int64_t span_70726;
+                        bool idx_70561;
+                        int64_t idx_70562;
+                        int64_t idx_70563;
+                        int64_t idx_70564;
+                        bool loop_while_70565;
+                        int64_t l_idx_70566;
+                        int64_t r_idx_70567;
+                        int64_t span_70568;
                         
-                        loop_while_70723 = loop_cond_70258;
-                        l_idx_70724 = init_idx_70699;
-                        r_idx_70725 = init_idx_70699;
-                        span_70726 = (int64_t) 1;
-                        while (loop_while_70723) {
-                            int64_t max_arg_70727 = sub64(l_idx_70724,
+                        loop_while_70565 = loop_cond_70305;
+                        l_idx_70566 = init_idx_70541;
+                        r_idx_70567 = init_idx_70541;
+                        span_70568 = (int64_t) 1;
+                        while (loop_while_70565) {
+                            int64_t max_arg_70569 = sub64(l_idx_70566,
                                                           (int64_t) 1);
-                            int64_t max_res_70728 = smax64((int64_t) 0,
-                                                           max_arg_70727);
-                            int64_t min_arg_70729 = add64((int64_t) 1,
-                                                          r_idx_70725);
-                            int64_t min_res_70730 = smin64(min_arg_70681,
-                                                           min_arg_70729);
-                            bool x_70731 = sle64((int64_t) 0, max_res_70728);
-                            bool y_70732 = slt64(max_res_70728, n_70233);
-                            bool bounds_check_70733 = x_70731 && y_70732;
-                            bool index_certs_70734;
+                            int64_t max_res_70570 = smax64((int64_t) 0,
+                                                           max_arg_70569);
+                            int64_t min_arg_70571 = add64((int64_t) 1,
+                                                          r_idx_70567);
+                            int64_t min_res_70572 = smin64(min_arg_70523,
+                                                           min_arg_70571);
+                            bool x_70573 = sle64((int64_t) 0, max_res_70570);
+                            bool y_70574 = slt64(max_res_70570, n_70280);
+                            bool bounds_check_70575 = x_70573 && y_70574;
+                            bool index_certs_70576;
                             
-                            if (!bounds_check_70733) {
+                            if (!bounds_check_70575) {
                                 ctx->error =
                                     msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
                                               "Index [",
-                                              (long long) max_res_70728,
+                                              (long long) max_res_70570,
                                               "] out of bounds for array of shape [",
-                                              (long long) n_70233, "].",
-                                              "-> #0  loess.fut:459:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:588:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:587:5-589:26\n   #10 loess.fut:571:1-610:26\n");
-                                if (memblock_unref(ctx, &mem_72278,
-                                                   "mem_72278") != 0)
+                                              (long long) n_70280, "].",
+                                              "-> #0  loess.fut:459:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:589:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:588:5-590:26\n   #10 loess.fut:572:1-611:26\n");
+                                if (memblock_unref(ctx, &mem_72162,
+                                                   "mem_72162") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &mem_72274,
-                                                   "mem_72274") != 0)
+                                if (memblock_unref(ctx, &mem_72158,
+                                                   "mem_72158") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_72434,
-                                                   "ext_mem_72434") != 0)
+                                if (memblock_unref(ctx, &ext_mem_72481,
+                                                   "ext_mem_72481") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_72442,
-                                                   "ext_mem_72442") != 0)
+                                if (memblock_unref(ctx, &ext_mem_72489,
+                                                   "ext_mem_72489") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_72450,
-                                                   "ext_mem_72450") != 0)
+                                if (memblock_unref(ctx, &ext_mem_72497,
+                                                   "ext_mem_72497") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_72458,
-                                                   "ext_mem_72458") != 0)
+                                if (memblock_unref(ctx, &ext_mem_72505,
+                                                   "ext_mem_72505") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73052,
-                                                   "ext_mem_73052") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73099,
+                                                   "ext_mem_73099") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73060,
-                                                   "ext_mem_73060") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73107,
+                                                   "ext_mem_73107") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &mem_out_73178,
-                                                   "mem_out_73178") != 0)
+                                if (memblock_unref(ctx, &mem_out_73225,
+                                                   "mem_out_73225") != 0)
                                     return 1;
                                 return 1;
                             }
                             
-                            int64_t x_70735 =
-                                    ((int64_t *) mem_72346)[max_res_70728];
-                            int64_t abs_arg_70736 = sub64(x_70735,
-                                                          defunc_0_g_res_70697);
-                            int64_t abs_res_70737 = abs64(abs_arg_70736);
-                            bool x_70738 = sle64((int64_t) 0, min_res_70730);
-                            bool y_70739 = slt64(min_res_70730, n_70233);
-                            bool bounds_check_70740 = x_70738 && y_70739;
-                            bool index_certs_70741;
+                            int64_t x_70577 =
+                                    ((int64_t *) mem_72230)[max_res_70570];
+                            int64_t abs_arg_70578 = sub64(x_70577,
+                                                          defunc_0_g_res_70539);
+                            int64_t abs_res_70579 = abs64(abs_arg_70578);
+                            bool x_70580 = sle64((int64_t) 0, min_res_70572);
+                            bool y_70581 = slt64(min_res_70572, n_70280);
+                            bool bounds_check_70582 = x_70580 && y_70581;
+                            bool index_certs_70583;
                             
-                            if (!bounds_check_70740) {
+                            if (!bounds_check_70582) {
                                 ctx->error =
                                     msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
                                               "Index [",
-                                              (long long) min_res_70730,
+                                              (long long) min_res_70572,
                                               "] out of bounds for array of shape [",
-                                              (long long) n_70233, "].",
-                                              "-> #0  loess.fut:460:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:588:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:587:5-589:26\n   #10 loess.fut:571:1-610:26\n");
-                                if (memblock_unref(ctx, &mem_72278,
-                                                   "mem_72278") != 0)
+                                              (long long) n_70280, "].",
+                                              "-> #0  loess.fut:460:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:589:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:588:5-590:26\n   #10 loess.fut:572:1-611:26\n");
+                                if (memblock_unref(ctx, &mem_72162,
+                                                   "mem_72162") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &mem_72274,
-                                                   "mem_72274") != 0)
+                                if (memblock_unref(ctx, &mem_72158,
+                                                   "mem_72158") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_72434,
-                                                   "ext_mem_72434") != 0)
+                                if (memblock_unref(ctx, &ext_mem_72481,
+                                                   "ext_mem_72481") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_72442,
-                                                   "ext_mem_72442") != 0)
+                                if (memblock_unref(ctx, &ext_mem_72489,
+                                                   "ext_mem_72489") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_72450,
-                                                   "ext_mem_72450") != 0)
+                                if (memblock_unref(ctx, &ext_mem_72497,
+                                                   "ext_mem_72497") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_72458,
-                                                   "ext_mem_72458") != 0)
+                                if (memblock_unref(ctx, &ext_mem_72505,
+                                                   "ext_mem_72505") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73052,
-                                                   "ext_mem_73052") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73099,
+                                                   "ext_mem_73099") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73060,
-                                                   "ext_mem_73060") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73107,
+                                                   "ext_mem_73107") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &mem_out_73178,
-                                                   "mem_out_73178") != 0)
+                                if (memblock_unref(ctx, &mem_out_73225,
+                                                   "mem_out_73225") != 0)
                                     return 1;
                                 return 1;
                             }
                             
-                            int64_t x_70742 =
-                                    ((int64_t *) mem_72346)[min_res_70730];
-                            int64_t abs_arg_70743 = sub64(x_70742,
-                                                          defunc_0_g_res_70697);
-                            int64_t abs_res_70744 = abs64(abs_arg_70743);
-                            bool cond_70745 = max_res_70728 == l_idx_70724;
-                            int64_t loopres_70746;
-                            int64_t loopres_70747;
-                            int64_t loopres_70748;
+                            int64_t x_70584 =
+                                    ((int64_t *) mem_72230)[min_res_70572];
+                            int64_t abs_arg_70585 = sub64(x_70584,
+                                                          defunc_0_g_res_70539);
+                            int64_t abs_res_70586 = abs64(abs_arg_70585);
+                            bool cond_70587 = max_res_70570 == l_idx_70566;
+                            int64_t loopres_70588;
+                            int64_t loopres_70589;
+                            int64_t loopres_70590;
                             
-                            if (cond_70745) {
-                                loopres_70746 = l_idx_70724;
-                                loopres_70747 = r_idx_70725;
-                                loopres_70748 = min_res_70253;
+                            if (cond_70587) {
+                                loopres_70588 = l_idx_70566;
+                                loopres_70589 = r_idx_70567;
+                                loopres_70590 = min_res_70300;
                             } else {
-                                bool cond_70749 = slt64(abs_res_70737,
-                                                        abs_res_70744);
-                                bool cond_f_res_70750 = min_res_70730 ==
-                                     r_idx_70725;
-                                bool x_70751 = !cond_70749;
-                                bool y_70752 = cond_f_res_70750 && x_70751;
-                                bool cond_70753 = cond_70749 || y_70752;
-                                int64_t loopres_f_res_70754;
+                                bool cond_70591 = slt64(abs_res_70579,
+                                                        abs_res_70586);
+                                bool cond_f_res_70592 = min_res_70572 ==
+                                     r_idx_70567;
+                                bool x_70593 = !cond_70591;
+                                bool y_70594 = cond_f_res_70592 && x_70593;
+                                bool cond_70595 = cond_70591 || y_70594;
+                                int64_t loopres_f_res_70596;
                                 
-                                if (cond_70753) {
-                                    loopres_f_res_70754 = max_res_70728;
+                                if (cond_70595) {
+                                    loopres_f_res_70596 = max_res_70570;
                                 } else {
-                                    loopres_f_res_70754 = l_idx_70724;
+                                    loopres_f_res_70596 = l_idx_70566;
                                 }
                                 
-                                int64_t loopres_f_res_70755;
+                                int64_t loopres_f_res_70597;
                                 
-                                if (cond_70753) {
-                                    loopres_f_res_70755 = r_idx_70725;
+                                if (cond_70595) {
+                                    loopres_f_res_70597 = r_idx_70567;
                                 } else {
-                                    loopres_f_res_70755 = min_res_70730;
+                                    loopres_f_res_70597 = min_res_70572;
                                 }
                                 
-                                int64_t loopres_f_res_70756;
+                                int64_t loopres_f_res_70598;
                                 
-                                if (cond_70753) {
-                                    int64_t loopres_f_res_t_res_70757 =
-                                            add64((int64_t) 1, span_70726);
+                                if (cond_70595) {
+                                    int64_t loopres_f_res_t_res_70599 =
+                                            add64((int64_t) 1, span_70568);
                                     
-                                    loopres_f_res_70756 =
-                                        loopres_f_res_t_res_70757;
+                                    loopres_f_res_70598 =
+                                        loopres_f_res_t_res_70599;
                                 } else {
-                                    int64_t loopres_f_res_f_res_70758 =
-                                            add64((int64_t) 1, span_70726);
+                                    int64_t loopres_f_res_f_res_70600 =
+                                            add64((int64_t) 1, span_70568);
                                     
-                                    loopres_f_res_70756 =
-                                        loopres_f_res_f_res_70758;
+                                    loopres_f_res_70598 =
+                                        loopres_f_res_f_res_70600;
                                 }
-                                loopres_70746 = loopres_f_res_70754;
-                                loopres_70747 = loopres_f_res_70755;
-                                loopres_70748 = loopres_f_res_70756;
+                                loopres_70588 = loopres_f_res_70596;
+                                loopres_70589 = loopres_f_res_70597;
+                                loopres_70590 = loopres_f_res_70598;
                             }
                             
-                            bool loop_cond_70759 = slt64(loopres_70748,
-                                                         min_res_70253);
-                            bool loop_while_tmp_73239 = loop_cond_70759;
-                            int64_t l_idx_tmp_73240 = loopres_70746;
-                            int64_t r_idx_tmp_73241 = loopres_70747;
-                            int64_t span_tmp_73242 = loopres_70748;
+                            bool loop_cond_70601 = slt64(loopres_70590,
+                                                         min_res_70300);
+                            bool loop_while_tmp_73262 = loop_cond_70601;
+                            int64_t l_idx_tmp_73263 = loopres_70588;
+                            int64_t r_idx_tmp_73264 = loopres_70589;
+                            int64_t span_tmp_73265 = loopres_70590;
                             
-                            loop_while_70723 = loop_while_tmp_73239;
-                            l_idx_70724 = l_idx_tmp_73240;
-                            r_idx_70725 = r_idx_tmp_73241;
-                            span_70726 = span_tmp_73242;
+                            loop_while_70565 = loop_while_tmp_73262;
+                            l_idx_70566 = l_idx_tmp_73263;
+                            r_idx_70567 = r_idx_tmp_73264;
+                            span_70568 = span_tmp_73265;
                         }
-                        idx_70719 = loop_while_70723;
-                        idx_70720 = l_idx_70724;
-                        idx_70721 = r_idx_70725;
-                        idx_70722 = span_70726;
+                        idx_70561 = loop_while_70565;
+                        idx_70562 = l_idx_70566;
+                        idx_70563 = r_idx_70567;
+                        idx_70564 = span_70568;
                         
-                        int64_t min_res_70760 = smin64(min_arg_70682,
-                                                       idx_70720);
-                        int64_t max_res_70761 = smax64((int64_t) 0,
-                                                       min_res_70760);
-                        int64_t x_70762 = add64(min_res_70683, max_res_70761);
-                        int64_t r_70763 = sub64(x_70762, (int64_t) 1);
-                        bool x_70764 = sle64((int64_t) 0, r_70763);
-                        bool y_70765 = slt64(r_70763, n_70233);
-                        bool bounds_check_70766 = x_70764 && y_70765;
-                        bool index_certs_70767;
+                        int64_t min_res_70602 = smin64(min_arg_70524,
+                                                       idx_70562);
+                        int64_t max_res_70603 = smax64((int64_t) 0,
+                                                       min_res_70602);
+                        int64_t x_70604 = add64(min_res_70525, max_res_70603);
+                        int64_t r_70605 = sub64(x_70604, (int64_t) 1);
+                        bool x_70606 = sle64((int64_t) 0, r_70605);
+                        bool y_70607 = slt64(r_70605, n_70280);
+                        bool bounds_check_70608 = x_70606 && y_70607;
+                        bool index_certs_70609;
                         
-                        if (!bounds_check_70766) {
+                        if (!bounds_check_70608) {
                             ctx->error =
                                 msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                          "Index [", (long long) r_70763,
+                                          "Index [", (long long) r_70605,
                                           "] out of bounds for array of shape [",
-                                          (long long) n_70233, "].",
-                                          "-> #0  loess.fut:484:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:18-55\n   #5  loess.fut:588:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:587:5-589:26\n   #9  loess.fut:571:1-610:26\n");
-                            if (memblock_unref(ctx, &mem_72278, "mem_72278") !=
+                                          (long long) n_70280, "].",
+                                          "-> #0  loess.fut:484:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:16-51\n   #5  loess.fut:589:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:588:5-590:26\n   #9  loess.fut:572:1-611:26\n");
+                            if (memblock_unref(ctx, &mem_72162, "mem_72162") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_72274, "mem_72274") !=
+                            if (memblock_unref(ctx, &mem_72158, "mem_72158") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_72434,
-                                               "ext_mem_72434") != 0)
+                            if (memblock_unref(ctx, &ext_mem_72481,
+                                               "ext_mem_72481") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_72442,
-                                               "ext_mem_72442") != 0)
+                            if (memblock_unref(ctx, &ext_mem_72489,
+                                               "ext_mem_72489") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_72450,
-                                               "ext_mem_72450") != 0)
+                            if (memblock_unref(ctx, &ext_mem_72497,
+                                               "ext_mem_72497") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_72458,
-                                               "ext_mem_72458") != 0)
+                            if (memblock_unref(ctx, &ext_mem_72505,
+                                               "ext_mem_72505") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73052,
-                                               "ext_mem_73052") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73099,
+                                               "ext_mem_73099") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73060,
-                                               "ext_mem_73060") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73107,
+                                               "ext_mem_73107") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_out_73178,
-                                               "mem_out_73178") != 0)
+                            if (memblock_unref(ctx, &mem_out_73225,
+                                               "mem_out_73225") != 0)
                                 return 1;
                             return 1;
                         }
                         
-                        int64_t x_70768 = ((int64_t *) mem_72319)[r_70763];
-                        int64_t abs_arg_70769 = sub64(x_70768, min_res_70696);
-                        int64_t abs_res_70770 = abs64(abs_arg_70769);
-                        bool x_70771 = sle64((int64_t) 0, max_res_70761);
-                        bool y_70772 = slt64(max_res_70761, n_70233);
-                        bool bounds_check_70773 = x_70771 && y_70772;
-                        bool index_certs_70774;
+                        int64_t x_70610 = ((int64_t *) mem_72203)[r_70605];
+                        int64_t abs_arg_70611 = sub64(x_70610, min_res_70538);
+                        int64_t abs_res_70612 = abs64(abs_arg_70611);
+                        bool x_70613 = sle64((int64_t) 0, max_res_70603);
+                        bool y_70614 = slt64(max_res_70603, n_70280);
+                        bool bounds_check_70615 = x_70613 && y_70614;
+                        bool index_certs_70616;
                         
-                        if (!bounds_check_70773) {
+                        if (!bounds_check_70615) {
                             ctx->error =
                                 msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                          "Index [", (long long) max_res_70761,
+                                          "Index [", (long long) max_res_70603,
                                           "] out of bounds for array of shape [",
-                                          (long long) n_70233, "].",
-                                          "-> #0  loess.fut:483:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:18-55\n   #5  loess.fut:588:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:587:5-589:26\n   #9  loess.fut:571:1-610:26\n");
-                            if (memblock_unref(ctx, &mem_72278, "mem_72278") !=
+                                          (long long) n_70280, "].",
+                                          "-> #0  loess.fut:483:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:16-51\n   #5  loess.fut:589:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:588:5-590:26\n   #9  loess.fut:572:1-611:26\n");
+                            if (memblock_unref(ctx, &mem_72162, "mem_72162") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_72274, "mem_72274") !=
+                            if (memblock_unref(ctx, &mem_72158, "mem_72158") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_72434,
-                                               "ext_mem_72434") != 0)
+                            if (memblock_unref(ctx, &ext_mem_72481,
+                                               "ext_mem_72481") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_72442,
-                                               "ext_mem_72442") != 0)
+                            if (memblock_unref(ctx, &ext_mem_72489,
+                                               "ext_mem_72489") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_72450,
-                                               "ext_mem_72450") != 0)
+                            if (memblock_unref(ctx, &ext_mem_72497,
+                                               "ext_mem_72497") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_72458,
-                                               "ext_mem_72458") != 0)
+                            if (memblock_unref(ctx, &ext_mem_72505,
+                                               "ext_mem_72505") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73052,
-                                               "ext_mem_73052") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73099,
+                                               "ext_mem_73099") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73060,
-                                               "ext_mem_73060") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73107,
+                                               "ext_mem_73107") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_out_73178,
-                                               "mem_out_73178") != 0)
+                            if (memblock_unref(ctx, &mem_out_73225,
+                                               "mem_out_73225") != 0)
                                 return 1;
                             return 1;
                         }
                         
-                        int64_t x_70775 =
-                                ((int64_t *) mem_72319)[max_res_70761];
-                        int64_t abs_arg_70776 = sub64(x_70775, min_res_70696);
-                        int64_t abs_res_70777 = abs64(abs_arg_70776);
-                        int64_t max_res_70778 = smax64(abs_res_70770,
-                                                       abs_res_70777);
-                        float defunc_0_f_res_70779 =
-                              sitofp_i64_f32(max_res_70778);
-                        float defunc_1_f_res_70780 = max_res_70687 +
-                              defunc_0_f_res_70779;
-                        float defunc_2_reduce_res_70781;
-                        float defunc_2_reduce_res_70782;
-                        float defunc_2_reduce_res_70783;
-                        float defunc_2_reduce_res_70784;
-                        float defunc_2_reduce_res_70785;
-                        float redout_71680;
-                        float redout_71681;
-                        float redout_71682;
-                        float redout_71683;
+                        int64_t x_70617 =
+                                ((int64_t *) mem_72203)[max_res_70603];
+                        int64_t abs_arg_70618 = sub64(x_70617, min_res_70538);
+                        int64_t abs_res_70619 = abs64(abs_arg_70618);
+                        int64_t max_res_70620 = smax64(abs_res_70612,
+                                                       abs_res_70619);
+                        float defunc_0_f_res_70621 =
+                              sitofp_i64_f32(max_res_70620);
+                        float defunc_1_f_res_70622 = max_res_70529 +
+                              defunc_0_f_res_70621;
+                        float defunc_2_reduce_res_70623;
+                        float defunc_2_reduce_res_70624;
+                        float defunc_2_reduce_res_70625;
                         float redout_71684;
-                        
-                        redout_71680 = 0.0F;
-                        redout_71681 = 0.0F;
-                        redout_71682 = 0.0F;
-                        redout_71683 = 0.0F;
-                        redout_71684 = 0.0F;
-                        for (int64_t i_71685 = 0; i_71685 < q_70235;
-                             i_71685++) {
-                            float x_70802 = ((float *) mem_72361)[i_71685];
-                            bool cond_70803 = sle64(last_res_70666, i_71685);
-                            int64_t defunc_0_f_res_70804;
-                            
-                            if (cond_70803) {
-                                defunc_0_f_res_70804 = (int64_t) 0;
-                            } else {
-                                int64_t i_70805 = add64(max_res_70761, i_71685);
-                                int64_t defunc_0_add_arg_70806 =
-                                        ((int64_t *) mem_72319)[i_70805];
-                                int64_t defunc_1_add_res_70807 =
-                                        add64((int64_t) 1,
-                                              defunc_0_add_arg_70806);
-                                
-                                defunc_0_f_res_70804 = defunc_1_add_res_70807;
-                            }
-                            
-                            int64_t binop_p_70808 = sub64(defunc_0_f_res_70804,
-                                                          min_res_70696);
-                            float defunc_0_f_res_70809 =
-                                  sitofp_i64_f32(binop_p_70808);
-                            float abs_res_70810 =
-                                  (float) fabs(defunc_0_f_res_70809);
-                            float tmp1_70811 = abs_res_70810 /
-                                  defunc_1_f_res_70780;
-                            float x_70812 = tmp1_70811 * tmp1_70811;
-                            float y_70813 = tmp1_70811 * x_70812;
-                            float tmp2_70814 = 1.0F - y_70813;
-                            float x_70815 = tmp2_70814 * tmp2_70814;
-                            float tmp3_70816 = tmp2_70814 * x_70815;
-                            float w_j_70817 = x_70802 * tmp3_70816;
-                            float xw_j_70818 = defunc_0_f_res_70809 * w_j_70817;
-                            float x2w_j_70819 = defunc_0_f_res_70809 *
-                                  xw_j_70818;
-                            float x3w_j_70820 = defunc_0_f_res_70809 *
-                                  x2w_j_70819;
-                            float x4w_j_70821 = defunc_0_f_res_70809 *
-                                  x3w_j_70820;
-                            float defunc_1_op_res_70788 = w_j_70817 +
-                                  redout_71680;
-                            float defunc_1_op_res_70791 = xw_j_70818 +
-                                  redout_71681;
-                            float defunc_1_op_res_70794 = x2w_j_70819 +
-                                  redout_71682;
-                            float defunc_1_op_res_70797 = x3w_j_70820 +
-                                  redout_71683;
-                            float defunc_1_op_res_70800 = x4w_j_70821 +
-                                  redout_71684;
-                            float redout_tmp_73243 = defunc_1_op_res_70788;
-                            float redout_tmp_73244 = defunc_1_op_res_70791;
-                            float redout_tmp_73245 = defunc_1_op_res_70794;
-                            float redout_tmp_73246 = defunc_1_op_res_70797;
-                            float redout_tmp_73247 = defunc_1_op_res_70800;
-                            
-                            redout_71680 = redout_tmp_73243;
-                            redout_71681 = redout_tmp_73244;
-                            redout_71682 = redout_tmp_73245;
-                            redout_71683 = redout_tmp_73246;
-                            redout_71684 = redout_tmp_73247;
-                        }
-                        defunc_2_reduce_res_70781 = redout_71680;
-                        defunc_2_reduce_res_70782 = redout_71681;
-                        defunc_2_reduce_res_70783 = redout_71682;
-                        defunc_2_reduce_res_70784 = redout_71683;
-                        defunc_2_reduce_res_70785 = redout_71684;
-                        
-                        float x_70822 = defunc_2_reduce_res_70783 *
-                              defunc_2_reduce_res_70785;
-                        float y_70823 = defunc_2_reduce_res_70784 *
-                              defunc_2_reduce_res_70784;
-                        float a12_70824 = x_70822 - y_70823;
-                        float x_70825 = defunc_2_reduce_res_70783 *
-                              defunc_2_reduce_res_70784;
-                        float y_70826 = defunc_2_reduce_res_70782 *
-                              defunc_2_reduce_res_70785;
-                        float b12_70827 = x_70825 - y_70826;
-                        float x_70828 = defunc_2_reduce_res_70782 *
-                              defunc_2_reduce_res_70784;
-                        float y_70829 = defunc_2_reduce_res_70783 *
-                              defunc_2_reduce_res_70783;
-                        float c12_70830 = x_70828 - y_70829;
-                        float x_70831 = defunc_2_reduce_res_70781 *
-                              defunc_2_reduce_res_70785;
-                        float b2_70832 = x_70831 - y_70829;
-                        float x_70833 = defunc_2_reduce_res_70782 *
-                              defunc_2_reduce_res_70783;
-                        float y_70834 = defunc_2_reduce_res_70781 *
-                              defunc_2_reduce_res_70784;
-                        float c2_70835 = x_70833 - y_70834;
-                        float x_70836 = defunc_2_reduce_res_70781 * a12_70824;
-                        float y_70837 = defunc_2_reduce_res_70782 * b12_70827;
-                        float x_70838 = x_70836 + y_70837;
-                        float y_70839 = defunc_2_reduce_res_70783 * c12_70830;
-                        float y_70840 = x_70838 + y_70839;
-                        float det_70841 = 1.0F / y_70840;
-                        float a12_70842 = a12_70824 * det_70841;
-                        float b12_70843 = b12_70827 * det_70841;
-                        float c12_70844 = c12_70830 * det_70841;
-                        float b2_70845 = b2_70832 * det_70841;
-                        float c2_70846 = c2_70835 * det_70841;
-                        float defunc_2_reduce_res_70847;
-                        float defunc_2_reduce_res_70848;
+                        float redout_71685;
                         float redout_71686;
-                        float redout_71687;
                         
+                        redout_71684 = 0.0F;
+                        redout_71685 = 0.0F;
                         redout_71686 = 0.0F;
-                        redout_71687 = 0.0F;
-                        for (int64_t i_71688 = 0; i_71688 < q_70235;
-                             i_71688++) {
-                            float x_70856 = ((float *) mem_72361)[i_71688];
-                            bool cond_70857 = sle64(last_res_70666, i_71688);
-                            int64_t defunc_0_f_res_70858;
+                        for (int64_t i_71687 = 0; i_71687 < q_70282;
+                             i_71687++) {
+                            float x_70636 = ((float *) mem_72245)[i_71687];
+                            bool cond_70637 = sle64(last_res_70508, i_71687);
+                            int64_t defunc_0_f_res_70638;
                             
-                            if (cond_70857) {
-                                defunc_0_f_res_70858 = (int64_t) 0;
+                            if (cond_70637) {
+                                defunc_0_f_res_70638 = (int64_t) 0;
                             } else {
-                                int64_t i_70859 = add64(max_res_70761, i_71688);
-                                int64_t defunc_0_add_arg_70860 =
-                                        ((int64_t *) mem_72319)[i_70859];
-                                int64_t defunc_1_add_res_70861 =
+                                int64_t i_70639 = add64(max_res_70603, i_71687);
+                                int64_t defunc_0_add_arg_70640 =
+                                        ((int64_t *) mem_72203)[i_70639];
+                                int64_t defunc_1_add_res_70641 =
                                         add64((int64_t) 1,
-                                              defunc_0_add_arg_70860);
+                                              defunc_0_add_arg_70640);
                                 
-                                defunc_0_f_res_70858 = defunc_1_add_res_70861;
+                                defunc_0_f_res_70638 = defunc_1_add_res_70641;
                             }
                             
-                            int64_t binop_p_70862 = sub64(defunc_0_f_res_70858,
-                                                          min_res_70696);
-                            float defunc_0_f_res_70863 =
-                                  sitofp_i64_f32(binop_p_70862);
-                            float abs_res_70864 =
-                                  (float) fabs(defunc_0_f_res_70863);
-                            float tmp1_70865 = abs_res_70864 /
-                                  defunc_1_f_res_70780;
-                            float x_70866 = tmp1_70865 * tmp1_70865;
-                            float y_70867 = tmp1_70865 * x_70866;
-                            float tmp2_70868 = 1.0F - y_70867;
-                            float x_70869 = tmp2_70868 * tmp2_70868;
-                            float tmp3_70870 = tmp2_70868 * x_70869;
-                            float tmp4_70871 = x_70856 * tmp3_70870;
-                            float defunc_1_f_res_70872 = defunc_0_f_res_70863 *
-                                  tmp4_70871;
-                            float defunc_1_f_res_70873 = defunc_0_f_res_70863 *
-                                  defunc_1_f_res_70872;
-                            float defunc_0_f_res_70874;
+                            int64_t binop_p_70642 = sub64(defunc_0_f_res_70638,
+                                                          min_res_70538);
+                            float defunc_0_f_res_70643 =
+                                  sitofp_i64_f32(binop_p_70642);
+                            float abs_res_70644 =
+                                  (float) fabs(defunc_0_f_res_70643);
+                            float tmp1_70645 = abs_res_70644 /
+                                  defunc_1_f_res_70622;
+                            float x_70646 = tmp1_70645 * tmp1_70645;
+                            float y_70647 = tmp1_70645 * x_70646;
+                            float tmp2_70648 = 1.0F - y_70647;
+                            float x_70649 = tmp2_70648 * tmp2_70648;
+                            float tmp3_70650 = tmp2_70648 * x_70649;
+                            float w_j_70651 = x_70636 * tmp3_70650;
+                            float xw_j_70652 = defunc_0_f_res_70643 * w_j_70651;
+                            float x2w_j_70653 = defunc_0_f_res_70643 *
+                                  xw_j_70652;
+                            float defunc_1_op_res_70628 = w_j_70651 +
+                                  redout_71684;
+                            float defunc_1_op_res_70631 = xw_j_70652 +
+                                  redout_71685;
+                            float defunc_1_op_res_70634 = x2w_j_70653 +
+                                  redout_71686;
+                            float redout_tmp_73266 = defunc_1_op_res_70628;
+                            float redout_tmp_73267 = defunc_1_op_res_70631;
+                            float redout_tmp_73268 = defunc_1_op_res_70634;
                             
-                            if (cond_70857) {
-                                defunc_0_f_res_70874 = 0.0F;
-                            } else {
-                                int64_t i_70875 = add64(max_res_70761, i_71688);
-                                float defunc_0_add_arg_70876 =
-                                      ((float *) mem_72316)[i_70875];
-                                
-                                defunc_0_f_res_70874 = defunc_0_add_arg_70876;
-                            }
-                            
-                            float x_70877 = a12_70842 * tmp4_70871;
-                            float y_70878 = b12_70843 * defunc_1_f_res_70872;
-                            float x_70879 = x_70877 + y_70878;
-                            float y_70880 = c12_70844 * defunc_1_f_res_70873;
-                            float x_70881 = x_70879 + y_70880;
-                            float defunc_9_fit_fun_res_70882 =
-                                  defunc_0_f_res_70874 * x_70881;
-                            float x_70883 = b12_70843 * tmp4_70871;
-                            float y_70884 = b2_70845 * defunc_1_f_res_70872;
-                            float x_70885 = x_70883 + y_70884;
-                            float y_70886 = c2_70846 * defunc_1_f_res_70873;
-                            float x_70887 = x_70885 + y_70886;
-                            float defunc_9_slope_fun_res_70888 =
-                                  defunc_0_f_res_70874 * x_70887;
-                            float defunc_1_op_res_70851 =
-                                  defunc_9_fit_fun_res_70882 + redout_71686;
-                            float defunc_1_op_res_70854 =
-                                  defunc_9_slope_fun_res_70888 + redout_71687;
-                            float redout_tmp_73248 = defunc_1_op_res_70851;
-                            float redout_tmp_73249 = defunc_1_op_res_70854;
-                            
-                            redout_71686 = redout_tmp_73248;
-                            redout_71687 = redout_tmp_73249;
+                            redout_71684 = redout_tmp_73266;
+                            redout_71685 = redout_tmp_73267;
+                            redout_71686 = redout_tmp_73268;
                         }
-                        defunc_2_reduce_res_70847 = redout_71686;
-                        defunc_2_reduce_res_70848 = redout_71687;
-                        ((float *) mem_72274.mem)[i_71700 * n_m_70241 +
-                                                  i_71693] =
-                            defunc_2_reduce_res_70847;
-                        ((float *) mem_72278.mem)[i_71700 * n_m_70241 +
-                                                  i_71693] =
-                            defunc_2_reduce_res_70848;
+                        defunc_2_reduce_res_70623 = redout_71684;
+                        defunc_2_reduce_res_70624 = redout_71685;
+                        defunc_2_reduce_res_70625 = redout_71686;
+                        
+                        float x_70654 = defunc_2_reduce_res_70623 *
+                              defunc_2_reduce_res_70625;
+                        float y_70655 = defunc_2_reduce_res_70624 *
+                              defunc_2_reduce_res_70624;
+                        float y_70656 = x_70654 - y_70655;
+                        float det1_70657 = 1.0F / y_70656;
+                        float a11_70658 = defunc_2_reduce_res_70625 *
+                              det1_70657;
+                        float x_70659 = 0.0F - defunc_2_reduce_res_70624;
+                        float b11_70660 = det1_70657 * x_70659;
+                        float c11_70661 = defunc_2_reduce_res_70623 *
+                              det1_70657;
+                        float defunc_2_reduce_res_70662;
+                        float defunc_2_reduce_res_70663;
+                        float redout_71688;
+                        float redout_71689;
+                        
+                        redout_71688 = 0.0F;
+                        redout_71689 = 0.0F;
+                        for (int64_t i_71690 = 0; i_71690 < q_70282;
+                             i_71690++) {
+                            float x_70671 = ((float *) mem_72245)[i_71690];
+                            bool cond_70672 = sle64(last_res_70508, i_71690);
+                            int64_t defunc_0_f_res_70673;
+                            
+                            if (cond_70672) {
+                                defunc_0_f_res_70673 = (int64_t) 0;
+                            } else {
+                                int64_t i_70674 = add64(max_res_70603, i_71690);
+                                int64_t defunc_0_add_arg_70675 =
+                                        ((int64_t *) mem_72203)[i_70674];
+                                int64_t defunc_1_add_res_70676 =
+                                        add64((int64_t) 1,
+                                              defunc_0_add_arg_70675);
+                                
+                                defunc_0_f_res_70673 = defunc_1_add_res_70676;
+                            }
+                            
+                            int64_t binop_p_70677 = sub64(defunc_0_f_res_70673,
+                                                          min_res_70538);
+                            float defunc_0_f_res_70678 =
+                                  sitofp_i64_f32(binop_p_70677);
+                            float abs_res_70679 =
+                                  (float) fabs(defunc_0_f_res_70678);
+                            float tmp1_70680 = abs_res_70679 /
+                                  defunc_1_f_res_70622;
+                            float x_70681 = tmp1_70680 * tmp1_70680;
+                            float y_70682 = tmp1_70680 * x_70681;
+                            float tmp2_70683 = 1.0F - y_70682;
+                            float x_70684 = tmp2_70683 * tmp2_70683;
+                            float tmp3_70685 = tmp2_70683 * x_70684;
+                            float tmp4_70686 = x_70671 * tmp3_70685;
+                            float defunc_1_f_res_70687 = defunc_0_f_res_70678 *
+                                  tmp4_70686;
+                            float defunc_0_f_res_70688;
+                            
+                            if (cond_70672) {
+                                defunc_0_f_res_70688 = 0.0F;
+                            } else {
+                                int64_t i_70689 = add64(max_res_70603, i_71690);
+                                float defunc_0_add_arg_70690 =
+                                      ((float *) mem_72200)[i_70689];
+                                
+                                defunc_0_f_res_70688 = defunc_0_add_arg_70690;
+                            }
+                            
+                            float x_70691 = a11_70658 * tmp4_70686;
+                            float y_70692 = b11_70660 * defunc_1_f_res_70687;
+                            float x_70693 = x_70691 + y_70692;
+                            float defunc_9_fit_fun_res_70694 =
+                                  defunc_0_f_res_70688 * x_70693;
+                            float x_70695 = b11_70660 * tmp4_70686;
+                            float y_70696 = c11_70661 * defunc_1_f_res_70687;
+                            float x_70697 = x_70695 + y_70696;
+                            float defunc_9_slope_fun_res_70698 =
+                                  defunc_0_f_res_70688 * x_70697;
+                            float defunc_1_op_res_70666 =
+                                  defunc_9_fit_fun_res_70694 + redout_71688;
+                            float defunc_1_op_res_70669 =
+                                  defunc_9_slope_fun_res_70698 + redout_71689;
+                            float redout_tmp_73269 = defunc_1_op_res_70666;
+                            float redout_tmp_73270 = defunc_1_op_res_70669;
+                            
+                            redout_71688 = redout_tmp_73269;
+                            redout_71689 = redout_tmp_73270;
+                        }
+                        defunc_2_reduce_res_70662 = redout_71688;
+                        defunc_2_reduce_res_70663 = redout_71689;
+                        ((float *) mem_72158.mem)[i_71702 * n_m_70288 +
+                                                  i_71695] =
+                            defunc_2_reduce_res_70662;
+                        ((float *) mem_72162.mem)[i_71702 * n_m_70288 +
+                                                  i_71695] =
+                            defunc_2_reduce_res_70663;
                     }
                 }
-                if (memblock_set(ctx, &ext_mem_72442, &mem_72274,
-                                 "mem_72274") != 0)
+                if (memblock_set(ctx, &ext_mem_72489, &mem_72158,
+                                 "mem_72158") != 0)
                     return 1;
-                if (memblock_set(ctx, &ext_mem_72434, &mem_72278,
-                                 "mem_72278") != 0)
+                if (memblock_set(ctx, &ext_mem_72481, &mem_72162,
+                                 "mem_72162") != 0)
                     return 1;
-                if (memblock_unref(ctx, &mem_72278, "mem_72278") != 0)
+                if (memblock_unref(ctx, &mem_72162, "mem_72162") != 0)
                     return 1;
-                if (memblock_unref(ctx, &mem_72274, "mem_72274") != 0)
+                if (memblock_unref(ctx, &mem_72158, "mem_72158") != 0)
+                    return 1;
+            } else {
+                struct memblock mem_72321;
+                
+                mem_72321.references = NULL;
+                if (memblock_alloc(ctx, &mem_72321, bytes_72320, "mem_72321")) {
+                    err = 1;
+                    goto cleanup;
+                }
+                
+                struct memblock mem_72325;
+                
+                mem_72325.references = NULL;
+                if (memblock_alloc(ctx, &mem_72325, bytes_72320, "mem_72325")) {
+                    err = 1;
+                    goto cleanup;
+                }
+                if (mem_72348_cached_sizze_73388 < (size_t) bytes_72347) {
+                    mem_72348 = realloc(mem_72348, bytes_72347);
+                    mem_72348_cached_sizze_73388 = bytes_72347;
+                }
+                if (mem_72363_cached_sizze_73389 < (size_t) bytes_72362) {
+                    mem_72363 = realloc(mem_72363, bytes_72362);
+                    mem_72363_cached_sizze_73389 = bytes_72362;
+                }
+                if (mem_72366_cached_sizze_73390 < (size_t) bytes_72347) {
+                    mem_72366 = realloc(mem_72366, bytes_72347);
+                    mem_72366_cached_sizze_73390 = bytes_72347;
+                }
+                if (mem_72393_cached_sizze_73391 < (size_t) bytes_72347) {
+                    mem_72393 = realloc(mem_72393, bytes_72347);
+                    mem_72393_cached_sizze_73391 = bytes_72347;
+                }
+                if (mem_72408_cached_sizze_73392 < (size_t) bytes_72407) {
+                    mem_72408 = realloc(mem_72408, bytes_72407);
+                    mem_72408_cached_sizze_73392 = bytes_72407;
+                }
+                for (int64_t i_71747 = 0; i_71747 < m_70279; i_71747++) {
+                    int64_t discard_71710;
+                    int64_t scanacc_71706 = (int64_t) 0;
+                    
+                    for (int64_t i_71708 = 0; i_71708 < n_70280; i_71708++) {
+                        float x_70709 = ((float *) Y_mem_72031.mem)[i_71747 *
+                                                                    n_70280 +
+                                                                    i_71708];
+                        bool isnan_res_70710;
+                        
+                        isnan_res_70710 = futrts_isnan32(x_70709);
+                        
+                        bool defunc_0_p_res_70711 = !isnan_res_70710;
+                        int64_t defunc_0_f_res_70712 =
+                                btoi_bool_i64(defunc_0_p_res_70711);
+                        int64_t defunc_1_op_res_70708 =
+                                add64(defunc_0_f_res_70712, scanacc_71706);
+                        
+                        ((int64_t *) mem_72348)[i_71708] =
+                            defunc_1_op_res_70708;
+                        
+                        int64_t scanacc_tmp_73273 = defunc_1_op_res_70708;
+                        
+                        scanacc_71706 = scanacc_tmp_73273;
+                    }
+                    discard_71710 = scanacc_71706;
+                    
+                    int64_t last_res_70713 = ((int64_t *) mem_72348)[i_70294];
+                    
+                    for (int64_t i_73275 = 0; i_73275 < n_70280; i_73275++) {
+                        ((float *) mem_72363)[i_73275] = 0.0F;
+                    }
+                    for (int64_t i_73276 = 0; i_73276 < n_70280; i_73276++) {
+                        ((int64_t *) mem_72366)[i_73276] = (int64_t) -1;
+                    }
+                    for (int64_t write_iter_71711 = 0; write_iter_71711 <
+                         n_70280; write_iter_71711++) {
+                        float write_iv_71714 =
+                              ((float *) Y_mem_72031.mem)[i_71747 * n_70280 +
+                                                          write_iter_71711];
+                        int64_t write_iv_71715 =
+                                ((int64_t *) mem_72348)[write_iter_71711];
+                        bool isnan_res_70721;
+                        
+                        isnan_res_70721 = futrts_isnan32(write_iv_71714);
+                        
+                        bool defunc_0_p_res_70722 = !isnan_res_70721;
+                        int64_t defunc_1_f_res_70723;
+                        
+                        if (defunc_0_p_res_70722) {
+                            int64_t defunc_1_f_res_t_res_70724 =
+                                    sub64(write_iv_71715, (int64_t) 1);
+                            
+                            defunc_1_f_res_70723 = defunc_1_f_res_t_res_70724;
+                        } else {
+                            defunc_1_f_res_70723 = (int64_t) -1;
+                        }
+                        if (sle64((int64_t) 0, defunc_1_f_res_70723) &&
+                            slt64(defunc_1_f_res_70723, n_70280)) {
+                            ((int64_t *) mem_72366)[defunc_1_f_res_70723] =
+                                write_iter_71711;
+                        }
+                        if (sle64((int64_t) 0, defunc_1_f_res_70723) &&
+                            slt64(defunc_1_f_res_70723, n_70280)) {
+                            if ((int64_t) 4 > 0)
+                                memmove(mem_72363 + defunc_1_f_res_70723 *
+                                        (int64_t) 4, Y_mem_72031.mem +
+                                        (i_71747 * n_70280 + write_iter_71711) *
+                                        (int64_t) 4, (int64_t) 4);
+                        }
+                    }
+                    for (int64_t i_71721 = 0; i_71721 < n_70280; i_71721++) {
+                        int64_t x_70726 = ((int64_t *) mem_72366)[i_71721];
+                        int64_t defunc_0_f_res_70727 = add64((int64_t) 1,
+                                                             x_70726);
+                        
+                        ((int64_t *) mem_72393)[i_71721] = defunc_0_f_res_70727;
+                    }
+                    
+                    int64_t min_arg_70728 = sub64(last_res_70713, (int64_t) 1);
+                    int64_t min_arg_70729 = sub64(last_res_70713,
+                                                  min_res_70300);
+                    int64_t min_res_70730 = smin64(q_70282, last_res_70713);
+                    float i64_res_70731 = sitofp_i64_f32(last_res_70713);
+                    float x_70732 = i64_res_70306 - i64_res_70731;
+                    float max_arg_70733 = x_70732 / 2.0F;
+                    float max_res_70734 = fmax32(0.0F, max_arg_70733);
+                    
+                    for (int64_t i_71725 = 0; i_71725 < q_70282; i_71725++) {
+                        bool cond_70737 = sle64(last_res_70713, i_71725);
+                        float defunc_0_f_res_70738;
+                        
+                        if (cond_70737) {
+                            defunc_0_f_res_70738 = 0.0F;
+                        } else {
+                            defunc_0_f_res_70738 = 1.0F;
+                        }
+                        ((float *) mem_72408)[i_71725] = defunc_0_f_res_70738;
+                    }
+                    for (int64_t i_71740 = 0; i_71740 < n_m_70288; i_71740++) {
+                        int64_t min_arg_70742 = mul64(jump_70284, i_71740);
+                        int64_t min_res_70743 = smin64(i_70294, min_arg_70742);
+                        int64_t defunc_0_g_res_70744 = add64((int64_t) 1,
+                                                             min_res_70743);
+                        bool init_idx_70745;
+                        int64_t init_idx_70746;
+                        int64_t init_idx_70747;
+                        bool loop_while_70748;
+                        int64_t low_70749;
+                        int64_t high_70750;
+                        
+                        loop_while_70748 = x_70295;
+                        low_70749 = (int64_t) 0;
+                        high_70750 = i_70294;
+                        while (loop_while_70748) {
+                            int64_t x_70751 = add64(low_70749, high_70750);
+                            int64_t mid_70752 = sdiv64(x_70751, (int64_t) 2);
+                            bool x_70753 = sle64((int64_t) 0, mid_70752);
+                            bool y_70754 = slt64(mid_70752, n_70280);
+                            bool bounds_check_70755 = x_70753 && y_70754;
+                            bool index_certs_70756;
+                            
+                            if (!bounds_check_70755) {
+                                ctx->error =
+                                    msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
+                                              "Index [", (long long) mid_70752,
+                                              "] out of bounds for array of shape [",
+                                              (long long) n_70280, "].",
+                                              "-> #0  loess.fut:449:26-36\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:589:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:588:5-590:26\n   #10 loess.fut:572:1-611:26\n");
+                                if (memblock_unref(ctx, &mem_72325,
+                                                   "mem_72325") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &mem_72321,
+                                                   "mem_72321") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_72481,
+                                                   "ext_mem_72481") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_72489,
+                                                   "ext_mem_72489") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_72497,
+                                                   "ext_mem_72497") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_72505,
+                                                   "ext_mem_72505") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73099,
+                                                   "ext_mem_73099") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73107,
+                                                   "ext_mem_73107") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &mem_out_73225,
+                                                   "mem_out_73225") != 0)
+                                    return 1;
+                                return 1;
+                            }
+                            
+                            int64_t mid_id_70757 =
+                                    ((int64_t *) mem_72393)[mid_70752];
+                            bool cond_70758 = slt64(mid_id_70757, (int64_t) 0);
+                            int64_t mid_idx_70759;
+                            
+                            if (cond_70758) {
+                                mid_idx_70759 = (int64_t) 9223372036854775807;
+                            } else {
+                                mid_idx_70759 = mid_id_70757;
+                            }
+                            
+                            bool cond_70760 = sle64(defunc_0_g_res_70744,
+                                                    mid_idx_70759);
+                            int64_t loopres_70761;
+                            int64_t loopres_70762;
+                            
+                            if (cond_70760) {
+                                int64_t loopres_t_res_70763 = sub64(mid_70752,
+                                                                    (int64_t) 1);
+                                
+                                loopres_70761 = low_70749;
+                                loopres_70762 = loopres_t_res_70763;
+                            } else {
+                                int64_t loopres_f_res_70764 = add64((int64_t) 1,
+                                                                    mid_70752);
+                                
+                                loopres_70761 = loopres_f_res_70764;
+                                loopres_70762 = high_70750;
+                            }
+                            
+                            bool loop_cond_70765 = sle64(loopres_70761,
+                                                         loopres_70762);
+                            bool loop_while_tmp_73283 = loop_cond_70765;
+                            int64_t low_tmp_73284 = loopres_70761;
+                            int64_t high_tmp_73285 = loopres_70762;
+                            
+                            loop_while_70748 = loop_while_tmp_73283;
+                            low_70749 = low_tmp_73284;
+                            high_70750 = high_tmp_73285;
+                        }
+                        init_idx_70745 = loop_while_70748;
+                        init_idx_70746 = low_70749;
+                        init_idx_70747 = high_70750;
+                        
+                        bool idx_70766;
+                        int64_t idx_70767;
+                        int64_t idx_70768;
+                        int64_t idx_70769;
+                        bool loop_while_70770;
+                        int64_t l_idx_70771;
+                        int64_t r_idx_70772;
+                        int64_t span_70773;
+                        
+                        loop_while_70770 = loop_cond_70305;
+                        l_idx_70771 = init_idx_70746;
+                        r_idx_70772 = init_idx_70746;
+                        span_70773 = (int64_t) 1;
+                        while (loop_while_70770) {
+                            int64_t max_arg_70774 = sub64(l_idx_70771,
+                                                          (int64_t) 1);
+                            int64_t max_res_70775 = smax64((int64_t) 0,
+                                                           max_arg_70774);
+                            int64_t min_arg_70776 = add64((int64_t) 1,
+                                                          r_idx_70772);
+                            int64_t min_res_70777 = smin64(min_arg_70728,
+                                                           min_arg_70776);
+                            bool x_70778 = sle64((int64_t) 0, max_res_70775);
+                            bool y_70779 = slt64(max_res_70775, n_70280);
+                            bool bounds_check_70780 = x_70778 && y_70779;
+                            bool index_certs_70781;
+                            
+                            if (!bounds_check_70780) {
+                                ctx->error =
+                                    msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
+                                              "Index [",
+                                              (long long) max_res_70775,
+                                              "] out of bounds for array of shape [",
+                                              (long long) n_70280, "].",
+                                              "-> #0  loess.fut:459:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:589:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:588:5-590:26\n   #10 loess.fut:572:1-611:26\n");
+                                if (memblock_unref(ctx, &mem_72325,
+                                                   "mem_72325") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &mem_72321,
+                                                   "mem_72321") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_72481,
+                                                   "ext_mem_72481") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_72489,
+                                                   "ext_mem_72489") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_72497,
+                                                   "ext_mem_72497") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_72505,
+                                                   "ext_mem_72505") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73099,
+                                                   "ext_mem_73099") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73107,
+                                                   "ext_mem_73107") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &mem_out_73225,
+                                                   "mem_out_73225") != 0)
+                                    return 1;
+                                return 1;
+                            }
+                            
+                            int64_t x_70782 =
+                                    ((int64_t *) mem_72393)[max_res_70775];
+                            int64_t abs_arg_70783 = sub64(x_70782,
+                                                          defunc_0_g_res_70744);
+                            int64_t abs_res_70784 = abs64(abs_arg_70783);
+                            bool x_70785 = sle64((int64_t) 0, min_res_70777);
+                            bool y_70786 = slt64(min_res_70777, n_70280);
+                            bool bounds_check_70787 = x_70785 && y_70786;
+                            bool index_certs_70788;
+                            
+                            if (!bounds_check_70787) {
+                                ctx->error =
+                                    msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
+                                              "Index [",
+                                              (long long) min_res_70777,
+                                              "] out of bounds for array of shape [",
+                                              (long long) n_70280, "].",
+                                              "-> #0  loess.fut:460:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:589:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:588:5-590:26\n   #10 loess.fut:572:1-611:26\n");
+                                if (memblock_unref(ctx, &mem_72325,
+                                                   "mem_72325") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &mem_72321,
+                                                   "mem_72321") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_72481,
+                                                   "ext_mem_72481") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_72489,
+                                                   "ext_mem_72489") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_72497,
+                                                   "ext_mem_72497") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_72505,
+                                                   "ext_mem_72505") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73099,
+                                                   "ext_mem_73099") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73107,
+                                                   "ext_mem_73107") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &mem_out_73225,
+                                                   "mem_out_73225") != 0)
+                                    return 1;
+                                return 1;
+                            }
+                            
+                            int64_t x_70789 =
+                                    ((int64_t *) mem_72393)[min_res_70777];
+                            int64_t abs_arg_70790 = sub64(x_70789,
+                                                          defunc_0_g_res_70744);
+                            int64_t abs_res_70791 = abs64(abs_arg_70790);
+                            bool cond_70792 = max_res_70775 == l_idx_70771;
+                            int64_t loopres_70793;
+                            int64_t loopres_70794;
+                            int64_t loopres_70795;
+                            
+                            if (cond_70792) {
+                                loopres_70793 = l_idx_70771;
+                                loopres_70794 = r_idx_70772;
+                                loopres_70795 = min_res_70300;
+                            } else {
+                                bool cond_70796 = slt64(abs_res_70784,
+                                                        abs_res_70791);
+                                bool cond_f_res_70797 = min_res_70777 ==
+                                     r_idx_70772;
+                                bool x_70798 = !cond_70796;
+                                bool y_70799 = cond_f_res_70797 && x_70798;
+                                bool cond_70800 = cond_70796 || y_70799;
+                                int64_t loopres_f_res_70801;
+                                
+                                if (cond_70800) {
+                                    loopres_f_res_70801 = max_res_70775;
+                                } else {
+                                    loopres_f_res_70801 = l_idx_70771;
+                                }
+                                
+                                int64_t loopres_f_res_70802;
+                                
+                                if (cond_70800) {
+                                    loopres_f_res_70802 = r_idx_70772;
+                                } else {
+                                    loopres_f_res_70802 = min_res_70777;
+                                }
+                                
+                                int64_t loopres_f_res_70803;
+                                
+                                if (cond_70800) {
+                                    int64_t loopres_f_res_t_res_70804 =
+                                            add64((int64_t) 1, span_70773);
+                                    
+                                    loopres_f_res_70803 =
+                                        loopres_f_res_t_res_70804;
+                                } else {
+                                    int64_t loopres_f_res_f_res_70805 =
+                                            add64((int64_t) 1, span_70773);
+                                    
+                                    loopres_f_res_70803 =
+                                        loopres_f_res_f_res_70805;
+                                }
+                                loopres_70793 = loopres_f_res_70801;
+                                loopres_70794 = loopres_f_res_70802;
+                                loopres_70795 = loopres_f_res_70803;
+                            }
+                            
+                            bool loop_cond_70806 = slt64(loopres_70795,
+                                                         min_res_70300);
+                            bool loop_while_tmp_73286 = loop_cond_70806;
+                            int64_t l_idx_tmp_73287 = loopres_70793;
+                            int64_t r_idx_tmp_73288 = loopres_70794;
+                            int64_t span_tmp_73289 = loopres_70795;
+                            
+                            loop_while_70770 = loop_while_tmp_73286;
+                            l_idx_70771 = l_idx_tmp_73287;
+                            r_idx_70772 = r_idx_tmp_73288;
+                            span_70773 = span_tmp_73289;
+                        }
+                        idx_70766 = loop_while_70770;
+                        idx_70767 = l_idx_70771;
+                        idx_70768 = r_idx_70772;
+                        idx_70769 = span_70773;
+                        
+                        int64_t min_res_70807 = smin64(min_arg_70729,
+                                                       idx_70767);
+                        int64_t max_res_70808 = smax64((int64_t) 0,
+                                                       min_res_70807);
+                        int64_t x_70809 = add64(min_res_70730, max_res_70808);
+                        int64_t r_70810 = sub64(x_70809, (int64_t) 1);
+                        bool x_70811 = sle64((int64_t) 0, r_70810);
+                        bool y_70812 = slt64(r_70810, n_70280);
+                        bool bounds_check_70813 = x_70811 && y_70812;
+                        bool index_certs_70814;
+                        
+                        if (!bounds_check_70813) {
+                            ctx->error =
+                                msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
+                                          "Index [", (long long) r_70810,
+                                          "] out of bounds for array of shape [",
+                                          (long long) n_70280, "].",
+                                          "-> #0  loess.fut:484:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:16-51\n   #5  loess.fut:589:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:588:5-590:26\n   #9  loess.fut:572:1-611:26\n");
+                            if (memblock_unref(ctx, &mem_72325, "mem_72325") !=
+                                0)
+                                return 1;
+                            if (memblock_unref(ctx, &mem_72321, "mem_72321") !=
+                                0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_72481,
+                                               "ext_mem_72481") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_72489,
+                                               "ext_mem_72489") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_72497,
+                                               "ext_mem_72497") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_72505,
+                                               "ext_mem_72505") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_73099,
+                                               "ext_mem_73099") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_73107,
+                                               "ext_mem_73107") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &mem_out_73225,
+                                               "mem_out_73225") != 0)
+                                return 1;
+                            return 1;
+                        }
+                        
+                        int64_t x_70815 = ((int64_t *) mem_72366)[r_70810];
+                        int64_t abs_arg_70816 = sub64(x_70815, min_res_70743);
+                        int64_t abs_res_70817 = abs64(abs_arg_70816);
+                        bool x_70818 = sle64((int64_t) 0, max_res_70808);
+                        bool y_70819 = slt64(max_res_70808, n_70280);
+                        bool bounds_check_70820 = x_70818 && y_70819;
+                        bool index_certs_70821;
+                        
+                        if (!bounds_check_70820) {
+                            ctx->error =
+                                msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
+                                          "Index [", (long long) max_res_70808,
+                                          "] out of bounds for array of shape [",
+                                          (long long) n_70280, "].",
+                                          "-> #0  loess.fut:483:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:16-51\n   #5  loess.fut:589:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:588:5-590:26\n   #9  loess.fut:572:1-611:26\n");
+                            if (memblock_unref(ctx, &mem_72325, "mem_72325") !=
+                                0)
+                                return 1;
+                            if (memblock_unref(ctx, &mem_72321, "mem_72321") !=
+                                0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_72481,
+                                               "ext_mem_72481") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_72489,
+                                               "ext_mem_72489") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_72497,
+                                               "ext_mem_72497") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_72505,
+                                               "ext_mem_72505") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_73099,
+                                               "ext_mem_73099") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_73107,
+                                               "ext_mem_73107") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &mem_out_73225,
+                                               "mem_out_73225") != 0)
+                                return 1;
+                            return 1;
+                        }
+                        
+                        int64_t x_70822 =
+                                ((int64_t *) mem_72366)[max_res_70808];
+                        int64_t abs_arg_70823 = sub64(x_70822, min_res_70743);
+                        int64_t abs_res_70824 = abs64(abs_arg_70823);
+                        int64_t max_res_70825 = smax64(abs_res_70817,
+                                                       abs_res_70824);
+                        float defunc_0_f_res_70826 =
+                              sitofp_i64_f32(max_res_70825);
+                        float defunc_1_f_res_70827 = max_res_70734 +
+                              defunc_0_f_res_70826;
+                        float defunc_2_reduce_res_70828;
+                        float defunc_2_reduce_res_70829;
+                        float defunc_2_reduce_res_70830;
+                        float defunc_2_reduce_res_70831;
+                        float defunc_2_reduce_res_70832;
+                        float redout_71727;
+                        float redout_71728;
+                        float redout_71729;
+                        float redout_71730;
+                        float redout_71731;
+                        
+                        redout_71727 = 0.0F;
+                        redout_71728 = 0.0F;
+                        redout_71729 = 0.0F;
+                        redout_71730 = 0.0F;
+                        redout_71731 = 0.0F;
+                        for (int64_t i_71732 = 0; i_71732 < q_70282;
+                             i_71732++) {
+                            float x_70849 = ((float *) mem_72408)[i_71732];
+                            bool cond_70850 = sle64(last_res_70713, i_71732);
+                            int64_t defunc_0_f_res_70851;
+                            
+                            if (cond_70850) {
+                                defunc_0_f_res_70851 = (int64_t) 0;
+                            } else {
+                                int64_t i_70852 = add64(max_res_70808, i_71732);
+                                int64_t defunc_0_add_arg_70853 =
+                                        ((int64_t *) mem_72366)[i_70852];
+                                int64_t defunc_1_add_res_70854 =
+                                        add64((int64_t) 1,
+                                              defunc_0_add_arg_70853);
+                                
+                                defunc_0_f_res_70851 = defunc_1_add_res_70854;
+                            }
+                            
+                            int64_t binop_p_70855 = sub64(defunc_0_f_res_70851,
+                                                          min_res_70743);
+                            float defunc_0_f_res_70856 =
+                                  sitofp_i64_f32(binop_p_70855);
+                            float abs_res_70857 =
+                                  (float) fabs(defunc_0_f_res_70856);
+                            float tmp1_70858 = abs_res_70857 /
+                                  defunc_1_f_res_70827;
+                            float x_70859 = tmp1_70858 * tmp1_70858;
+                            float y_70860 = tmp1_70858 * x_70859;
+                            float tmp2_70861 = 1.0F - y_70860;
+                            float x_70862 = tmp2_70861 * tmp2_70861;
+                            float tmp3_70863 = tmp2_70861 * x_70862;
+                            float w_j_70864 = x_70849 * tmp3_70863;
+                            float xw_j_70865 = defunc_0_f_res_70856 * w_j_70864;
+                            float x2w_j_70866 = defunc_0_f_res_70856 *
+                                  xw_j_70865;
+                            float x3w_j_70867 = defunc_0_f_res_70856 *
+                                  x2w_j_70866;
+                            float x4w_j_70868 = defunc_0_f_res_70856 *
+                                  x3w_j_70867;
+                            float defunc_1_op_res_70835 = w_j_70864 +
+                                  redout_71727;
+                            float defunc_1_op_res_70838 = xw_j_70865 +
+                                  redout_71728;
+                            float defunc_1_op_res_70841 = x2w_j_70866 +
+                                  redout_71729;
+                            float defunc_1_op_res_70844 = x3w_j_70867 +
+                                  redout_71730;
+                            float defunc_1_op_res_70847 = x4w_j_70868 +
+                                  redout_71731;
+                            float redout_tmp_73290 = defunc_1_op_res_70835;
+                            float redout_tmp_73291 = defunc_1_op_res_70838;
+                            float redout_tmp_73292 = defunc_1_op_res_70841;
+                            float redout_tmp_73293 = defunc_1_op_res_70844;
+                            float redout_tmp_73294 = defunc_1_op_res_70847;
+                            
+                            redout_71727 = redout_tmp_73290;
+                            redout_71728 = redout_tmp_73291;
+                            redout_71729 = redout_tmp_73292;
+                            redout_71730 = redout_tmp_73293;
+                            redout_71731 = redout_tmp_73294;
+                        }
+                        defunc_2_reduce_res_70828 = redout_71727;
+                        defunc_2_reduce_res_70829 = redout_71728;
+                        defunc_2_reduce_res_70830 = redout_71729;
+                        defunc_2_reduce_res_70831 = redout_71730;
+                        defunc_2_reduce_res_70832 = redout_71731;
+                        
+                        float x_70869 = defunc_2_reduce_res_70830 *
+                              defunc_2_reduce_res_70832;
+                        float y_70870 = defunc_2_reduce_res_70831 *
+                              defunc_2_reduce_res_70831;
+                        float a12_70871 = x_70869 - y_70870;
+                        float x_70872 = defunc_2_reduce_res_70830 *
+                              defunc_2_reduce_res_70831;
+                        float y_70873 = defunc_2_reduce_res_70829 *
+                              defunc_2_reduce_res_70832;
+                        float b12_70874 = x_70872 - y_70873;
+                        float x_70875 = defunc_2_reduce_res_70829 *
+                              defunc_2_reduce_res_70831;
+                        float y_70876 = defunc_2_reduce_res_70830 *
+                              defunc_2_reduce_res_70830;
+                        float c12_70877 = x_70875 - y_70876;
+                        float x_70878 = defunc_2_reduce_res_70828 *
+                              defunc_2_reduce_res_70832;
+                        float b2_70879 = x_70878 - y_70876;
+                        float x_70880 = defunc_2_reduce_res_70829 *
+                              defunc_2_reduce_res_70830;
+                        float y_70881 = defunc_2_reduce_res_70828 *
+                              defunc_2_reduce_res_70831;
+                        float c2_70882 = x_70880 - y_70881;
+                        float x_70883 = defunc_2_reduce_res_70828 * a12_70871;
+                        float y_70884 = defunc_2_reduce_res_70829 * b12_70874;
+                        float x_70885 = x_70883 + y_70884;
+                        float y_70886 = defunc_2_reduce_res_70830 * c12_70877;
+                        float y_70887 = x_70885 + y_70886;
+                        float det_70888 = 1.0F / y_70887;
+                        float a12_70889 = a12_70871 * det_70888;
+                        float b12_70890 = b12_70874 * det_70888;
+                        float c12_70891 = c12_70877 * det_70888;
+                        float b2_70892 = b2_70879 * det_70888;
+                        float c2_70893 = c2_70882 * det_70888;
+                        float defunc_2_reduce_res_70894;
+                        float defunc_2_reduce_res_70895;
+                        float redout_71733;
+                        float redout_71734;
+                        
+                        redout_71733 = 0.0F;
+                        redout_71734 = 0.0F;
+                        for (int64_t i_71735 = 0; i_71735 < q_70282;
+                             i_71735++) {
+                            float x_70903 = ((float *) mem_72408)[i_71735];
+                            bool cond_70904 = sle64(last_res_70713, i_71735);
+                            int64_t defunc_0_f_res_70905;
+                            
+                            if (cond_70904) {
+                                defunc_0_f_res_70905 = (int64_t) 0;
+                            } else {
+                                int64_t i_70906 = add64(max_res_70808, i_71735);
+                                int64_t defunc_0_add_arg_70907 =
+                                        ((int64_t *) mem_72366)[i_70906];
+                                int64_t defunc_1_add_res_70908 =
+                                        add64((int64_t) 1,
+                                              defunc_0_add_arg_70907);
+                                
+                                defunc_0_f_res_70905 = defunc_1_add_res_70908;
+                            }
+                            
+                            int64_t binop_p_70909 = sub64(defunc_0_f_res_70905,
+                                                          min_res_70743);
+                            float defunc_0_f_res_70910 =
+                                  sitofp_i64_f32(binop_p_70909);
+                            float abs_res_70911 =
+                                  (float) fabs(defunc_0_f_res_70910);
+                            float tmp1_70912 = abs_res_70911 /
+                                  defunc_1_f_res_70827;
+                            float x_70913 = tmp1_70912 * tmp1_70912;
+                            float y_70914 = tmp1_70912 * x_70913;
+                            float tmp2_70915 = 1.0F - y_70914;
+                            float x_70916 = tmp2_70915 * tmp2_70915;
+                            float tmp3_70917 = tmp2_70915 * x_70916;
+                            float tmp4_70918 = x_70903 * tmp3_70917;
+                            float defunc_1_f_res_70919 = defunc_0_f_res_70910 *
+                                  tmp4_70918;
+                            float defunc_1_f_res_70920 = defunc_0_f_res_70910 *
+                                  defunc_1_f_res_70919;
+                            float defunc_0_f_res_70921;
+                            
+                            if (cond_70904) {
+                                defunc_0_f_res_70921 = 0.0F;
+                            } else {
+                                int64_t i_70922 = add64(max_res_70808, i_71735);
+                                float defunc_0_add_arg_70923 =
+                                      ((float *) mem_72363)[i_70922];
+                                
+                                defunc_0_f_res_70921 = defunc_0_add_arg_70923;
+                            }
+                            
+                            float x_70924 = a12_70889 * tmp4_70918;
+                            float y_70925 = b12_70890 * defunc_1_f_res_70919;
+                            float x_70926 = x_70924 + y_70925;
+                            float y_70927 = c12_70891 * defunc_1_f_res_70920;
+                            float x_70928 = x_70926 + y_70927;
+                            float defunc_9_fit_fun_res_70929 =
+                                  defunc_0_f_res_70921 * x_70928;
+                            float x_70930 = b12_70890 * tmp4_70918;
+                            float y_70931 = b2_70892 * defunc_1_f_res_70919;
+                            float x_70932 = x_70930 + y_70931;
+                            float y_70933 = c2_70893 * defunc_1_f_res_70920;
+                            float x_70934 = x_70932 + y_70933;
+                            float defunc_9_slope_fun_res_70935 =
+                                  defunc_0_f_res_70921 * x_70934;
+                            float defunc_1_op_res_70898 =
+                                  defunc_9_fit_fun_res_70929 + redout_71733;
+                            float defunc_1_op_res_70901 =
+                                  defunc_9_slope_fun_res_70935 + redout_71734;
+                            float redout_tmp_73295 = defunc_1_op_res_70898;
+                            float redout_tmp_73296 = defunc_1_op_res_70901;
+                            
+                            redout_71733 = redout_tmp_73295;
+                            redout_71734 = redout_tmp_73296;
+                        }
+                        defunc_2_reduce_res_70894 = redout_71733;
+                        defunc_2_reduce_res_70895 = redout_71734;
+                        ((float *) mem_72321.mem)[i_71747 * n_m_70288 +
+                                                  i_71740] =
+                            defunc_2_reduce_res_70894;
+                        ((float *) mem_72325.mem)[i_71747 * n_m_70288 +
+                                                  i_71740] =
+                            defunc_2_reduce_res_70895;
+                    }
+                }
+                if (memblock_set(ctx, &ext_mem_72489, &mem_72321,
+                                 "mem_72321") != 0)
+                    return 1;
+                if (memblock_set(ctx, &ext_mem_72481, &mem_72325,
+                                 "mem_72325") != 0)
+                    return 1;
+                if (memblock_unref(ctx, &mem_72325, "mem_72325") != 0)
+                    return 1;
+                if (memblock_unref(ctx, &mem_72321, "mem_72321") != 0)
                     return 1;
             }
-            if (memblock_set(ctx, &ext_mem_72458, &ext_mem_72442,
-                             "ext_mem_72442") != 0)
+            if (memblock_set(ctx, &ext_mem_72505, &ext_mem_72489,
+                             "ext_mem_72489") != 0)
                 return 1;
-            if (memblock_set(ctx, &ext_mem_72450, &ext_mem_72434,
-                             "ext_mem_72434") != 0)
+            if (memblock_set(ctx, &ext_mem_72497, &ext_mem_72481,
+                             "ext_mem_72481") != 0)
                 return 1;
-            if (memblock_unref(ctx, &ext_mem_72434, "ext_mem_72434") != 0)
+            if (memblock_unref(ctx, &ext_mem_72481, "ext_mem_72481") != 0)
                 return 1;
-            if (memblock_unref(ctx, &ext_mem_72442, "ext_mem_72442") != 0)
+            if (memblock_unref(ctx, &ext_mem_72489, "ext_mem_72489") != 0)
                 return 1;
         }
-        if (memblock_set(ctx, &ext_mem_73060, &ext_mem_72458,
-                         "ext_mem_72458") != 0)
+        if (memblock_set(ctx, &ext_mem_73107, &ext_mem_72505,
+                         "ext_mem_72505") != 0)
             return 1;
-        if (memblock_set(ctx, &ext_mem_73052, &ext_mem_72450,
-                         "ext_mem_72450") != 0)
+        if (memblock_set(ctx, &ext_mem_73099, &ext_mem_72497,
+                         "ext_mem_72497") != 0)
             return 1;
-        if (memblock_unref(ctx, &ext_mem_72450, "ext_mem_72450") != 0)
+        if (memblock_unref(ctx, &ext_mem_72497, "ext_mem_72497") != 0)
             return 1;
-        if (memblock_unref(ctx, &ext_mem_72458, "ext_mem_72458") != 0)
+        if (memblock_unref(ctx, &ext_mem_72505, "ext_mem_72505") != 0)
             return 1;
     } else {
-        bool match_lit_70891 = (int64_t) 0 == degree_70236;
-        int64_t binop_x_72466 = m_70232 * n_m_70241;
-        int64_t binop_y_72467 = (int64_t) 4 * binop_x_72466;
-        int64_t bytes_72468 = smax64((int64_t) 0, binop_y_72467);
-        int64_t binop_y_72484 = (int64_t) 8 * n_70233;
-        int64_t bytes_72485 = smax64((int64_t) 0, binop_y_72484);
-        int64_t binop_y_72499 = (int64_t) 4 * n_70233;
-        int64_t bytes_72500 = smax64((int64_t) 0, binop_y_72499);
-        int64_t binop_y_72544 = (int64_t) 4 * q_70235;
-        int64_t bytes_72545 = smax64((int64_t) 0, binop_y_72544);
-        struct memblock ext_mem_73044;
+        bool match_lit_70938 = (int64_t) 0 == degree_70283;
+        int64_t binop_x_72513 = m_70279 * n_m_70288;
+        int64_t binop_y_72514 = (int64_t) 4 * binop_x_72513;
+        int64_t bytes_72515 = smax64((int64_t) 0, binop_y_72514);
+        int64_t binop_y_72531 = (int64_t) 8 * n_70280;
+        int64_t bytes_72532 = smax64((int64_t) 0, binop_y_72531);
+        int64_t binop_y_72546 = (int64_t) 4 * n_70280;
+        int64_t bytes_72547 = smax64((int64_t) 0, binop_y_72546);
+        int64_t binop_y_72591 = (int64_t) 4 * q_70282;
+        int64_t bytes_72592 = smax64((int64_t) 0, binop_y_72591);
+        struct memblock ext_mem_73091;
         
-        ext_mem_73044.references = NULL;
+        ext_mem_73091.references = NULL;
         
-        struct memblock ext_mem_73036;
+        struct memblock ext_mem_73083;
         
-        ext_mem_73036.references = NULL;
-        if (match_lit_70891) {
-            struct memblock mem_72469;
+        ext_mem_73083.references = NULL;
+        if (match_lit_70938) {
+            struct memblock mem_72516;
             
-            mem_72469.references = NULL;
-            if (memblock_alloc(ctx, &mem_72469, bytes_72468, "mem_72469")) {
+            mem_72516.references = NULL;
+            if (memblock_alloc(ctx, &mem_72516, bytes_72515, "mem_72516")) {
                 err = 1;
                 goto cleanup;
             }
-            for (int64_t i_73250 = 0; i_73250 < m_70232; i_73250++) {
-                for (int64_t i_73251 = 0; i_73251 < n_m_70241; i_73251++) {
-                    ((float *) mem_72469.mem)[i_73250 * n_m_70241 + i_73251] =
+            for (int64_t i_73297 = 0; i_73297 < m_70279; i_73297++) {
+                for (int64_t i_73298 = 0; i_73298 < n_m_70288; i_73298++) {
+                    ((float *) mem_72516.mem)[i_73297 * n_m_70288 + i_73298] =
                         0.0F;
                 }
             }
             
-            struct memblock mem_72473;
+            struct memblock mem_72520;
             
-            mem_72473.references = NULL;
-            if (memblock_alloc(ctx, &mem_72473, bytes_72468, "mem_72473")) {
+            mem_72520.references = NULL;
+            if (memblock_alloc(ctx, &mem_72520, bytes_72515, "mem_72520")) {
                 err = 1;
                 goto cleanup;
             }
-            if (mem_72486_cached_sizze_73346 < (size_t) bytes_72485) {
-                mem_72486 = realloc(mem_72486, bytes_72485);
-                mem_72486_cached_sizze_73346 = bytes_72485;
+            if (mem_72533_cached_sizze_73393 < (size_t) bytes_72532) {
+                mem_72533 = realloc(mem_72533, bytes_72532);
+                mem_72533_cached_sizze_73393 = bytes_72532;
             }
-            if (mem_72501_cached_sizze_73347 < (size_t) bytes_72500) {
-                mem_72501 = realloc(mem_72501, bytes_72500);
-                mem_72501_cached_sizze_73347 = bytes_72500;
+            if (mem_72548_cached_sizze_73394 < (size_t) bytes_72547) {
+                mem_72548 = realloc(mem_72548, bytes_72547);
+                mem_72548_cached_sizze_73394 = bytes_72547;
             }
-            if (mem_72504_cached_sizze_73348 < (size_t) bytes_72485) {
-                mem_72504 = realloc(mem_72504, bytes_72485);
-                mem_72504_cached_sizze_73348 = bytes_72485;
+            if (mem_72551_cached_sizze_73395 < (size_t) bytes_72532) {
+                mem_72551 = realloc(mem_72551, bytes_72532);
+                mem_72551_cached_sizze_73395 = bytes_72532;
             }
-            if (mem_72531_cached_sizze_73349 < (size_t) bytes_72485) {
-                mem_72531 = realloc(mem_72531, bytes_72485);
-                mem_72531_cached_sizze_73349 = bytes_72485;
+            if (mem_72578_cached_sizze_73396 < (size_t) bytes_72532) {
+                mem_72578 = realloc(mem_72578, bytes_72532);
+                mem_72578_cached_sizze_73396 = bytes_72532;
             }
-            if (mem_72546_cached_sizze_73350 < (size_t) bytes_72545) {
-                mem_72546 = realloc(mem_72546, bytes_72545);
-                mem_72546_cached_sizze_73350 = bytes_72545;
+            if (mem_72593_cached_sizze_73397 < (size_t) bytes_72592) {
+                mem_72593 = realloc(mem_72593, bytes_72592);
+                mem_72593_cached_sizze_73397 = bytes_72592;
             }
-            if (mem_72572_cached_sizze_73351 < (size_t) bytes_72545) {
-                mem_72572 = realloc(mem_72572, bytes_72545);
-                mem_72572_cached_sizze_73351 = bytes_72545;
+            if (mem_72619_cached_sizze_73398 < (size_t) bytes_72592) {
+                mem_72619 = realloc(mem_72619, bytes_72592);
+                mem_72619_cached_sizze_73398 = bytes_72592;
             }
-            for (int64_t i_71738 = 0; i_71738 < m_70232; i_71738++) {
-                int64_t discard_71708;
-                int64_t scanacc_71704 = (int64_t) 0;
+            for (int64_t i_71785 = 0; i_71785 < m_70279; i_71785++) {
+                int64_t discard_71755;
+                int64_t scanacc_71751 = (int64_t) 0;
                 
-                for (int64_t i_71706 = 0; i_71706 < n_70233; i_71706++) {
-                    float x_70902 = ((float *) Y_mem_71984.mem)[i_71738 *
-                                                                n_70233 +
-                                                                i_71706];
-                    bool isnan_res_70903;
+                for (int64_t i_71753 = 0; i_71753 < n_70280; i_71753++) {
+                    float x_70949 = ((float *) Y_mem_72031.mem)[i_71785 *
+                                                                n_70280 +
+                                                                i_71753];
+                    bool isnan_res_70950;
                     
-                    isnan_res_70903 = futrts_isnan32(x_70902);
+                    isnan_res_70950 = futrts_isnan32(x_70949);
                     
-                    bool defunc_0_p_res_70904 = !isnan_res_70903;
-                    int64_t defunc_0_f_res_70905 =
-                            btoi_bool_i64(defunc_0_p_res_70904);
-                    int64_t defunc_1_op_res_70901 = add64(defunc_0_f_res_70905,
-                                                          scanacc_71704);
+                    bool defunc_0_p_res_70951 = !isnan_res_70950;
+                    int64_t defunc_0_f_res_70952 =
+                            btoi_bool_i64(defunc_0_p_res_70951);
+                    int64_t defunc_1_op_res_70948 = add64(defunc_0_f_res_70952,
+                                                          scanacc_71751);
                     
-                    ((int64_t *) mem_72486)[i_71706] = defunc_1_op_res_70901;
+                    ((int64_t *) mem_72533)[i_71753] = defunc_1_op_res_70948;
                     
-                    int64_t scanacc_tmp_73253 = defunc_1_op_res_70901;
+                    int64_t scanacc_tmp_73300 = defunc_1_op_res_70948;
                     
-                    scanacc_71704 = scanacc_tmp_73253;
+                    scanacc_71751 = scanacc_tmp_73300;
                 }
-                discard_71708 = scanacc_71704;
+                discard_71755 = scanacc_71751;
                 
-                int64_t last_res_70906 = ((int64_t *) mem_72486)[i_70247];
+                int64_t last_res_70953 = ((int64_t *) mem_72533)[i_70294];
                 
-                for (int64_t i_73255 = 0; i_73255 < n_70233; i_73255++) {
-                    ((float *) mem_72501)[i_73255] = 0.0F;
+                for (int64_t i_73302 = 0; i_73302 < n_70280; i_73302++) {
+                    ((float *) mem_72548)[i_73302] = 0.0F;
                 }
-                for (int64_t i_73256 = 0; i_73256 < n_70233; i_73256++) {
-                    ((int64_t *) mem_72504)[i_73256] = (int64_t) -1;
+                for (int64_t i_73303 = 0; i_73303 < n_70280; i_73303++) {
+                    ((int64_t *) mem_72551)[i_73303] = (int64_t) -1;
                 }
-                for (int64_t write_iter_71709 = 0; write_iter_71709 < n_70233;
-                     write_iter_71709++) {
-                    float write_iv_71712 = ((float *) Y_mem_71984.mem)[i_71738 *
-                                                                       n_70233 +
-                                                                       write_iter_71709];
-                    int64_t write_iv_71713 =
-                            ((int64_t *) mem_72486)[write_iter_71709];
-                    bool isnan_res_70914;
+                for (int64_t write_iter_71756 = 0; write_iter_71756 < n_70280;
+                     write_iter_71756++) {
+                    float write_iv_71759 = ((float *) Y_mem_72031.mem)[i_71785 *
+                                                                       n_70280 +
+                                                                       write_iter_71756];
+                    int64_t write_iv_71760 =
+                            ((int64_t *) mem_72533)[write_iter_71756];
+                    bool isnan_res_70961;
                     
-                    isnan_res_70914 = futrts_isnan32(write_iv_71712);
+                    isnan_res_70961 = futrts_isnan32(write_iv_71759);
                     
-                    bool defunc_0_p_res_70915 = !isnan_res_70914;
-                    int64_t defunc_1_f_res_70916;
+                    bool defunc_0_p_res_70962 = !isnan_res_70961;
+                    int64_t defunc_1_f_res_70963;
                     
-                    if (defunc_0_p_res_70915) {
-                        int64_t defunc_1_f_res_t_res_70917 =
-                                sub64(write_iv_71713, (int64_t) 1);
+                    if (defunc_0_p_res_70962) {
+                        int64_t defunc_1_f_res_t_res_70964 =
+                                sub64(write_iv_71760, (int64_t) 1);
                         
-                        defunc_1_f_res_70916 = defunc_1_f_res_t_res_70917;
+                        defunc_1_f_res_70963 = defunc_1_f_res_t_res_70964;
                     } else {
-                        defunc_1_f_res_70916 = (int64_t) -1;
+                        defunc_1_f_res_70963 = (int64_t) -1;
                     }
-                    if (sle64((int64_t) 0, defunc_1_f_res_70916) &&
-                        slt64(defunc_1_f_res_70916, n_70233)) {
-                        ((int64_t *) mem_72504)[defunc_1_f_res_70916] =
-                            write_iter_71709;
+                    if (sle64((int64_t) 0, defunc_1_f_res_70963) &&
+                        slt64(defunc_1_f_res_70963, n_70280)) {
+                        ((int64_t *) mem_72551)[defunc_1_f_res_70963] =
+                            write_iter_71756;
                     }
-                    if (sle64((int64_t) 0, defunc_1_f_res_70916) &&
-                        slt64(defunc_1_f_res_70916, n_70233)) {
+                    if (sle64((int64_t) 0, defunc_1_f_res_70963) &&
+                        slt64(defunc_1_f_res_70963, n_70280)) {
                         if ((int64_t) 4 > 0)
-                            memmove(mem_72501 + defunc_1_f_res_70916 *
-                                    (int64_t) 4, Y_mem_71984.mem + (i_71738 *
-                                                                    n_70233 +
-                                                                    write_iter_71709) *
+                            memmove(mem_72548 + defunc_1_f_res_70963 *
+                                    (int64_t) 4, Y_mem_72031.mem + (i_71785 *
+                                                                    n_70280 +
+                                                                    write_iter_71756) *
                                     (int64_t) 4, (int64_t) 4);
                     }
                 }
-                for (int64_t i_71719 = 0; i_71719 < n_70233; i_71719++) {
-                    int64_t x_70919 = ((int64_t *) mem_72504)[i_71719];
-                    int64_t defunc_0_f_res_70920 = add64((int64_t) 1, x_70919);
+                for (int64_t i_71766 = 0; i_71766 < n_70280; i_71766++) {
+                    int64_t x_70966 = ((int64_t *) mem_72551)[i_71766];
+                    int64_t defunc_0_f_res_70967 = add64((int64_t) 1, x_70966);
                     
-                    ((int64_t *) mem_72531)[i_71719] = defunc_0_f_res_70920;
+                    ((int64_t *) mem_72578)[i_71766] = defunc_0_f_res_70967;
                 }
                 
-                int64_t min_arg_70921 = sub64(last_res_70906, (int64_t) 1);
-                int64_t min_arg_70922 = sub64(last_res_70906, min_res_70253);
-                int64_t min_res_70923 = smin64(q_70235, last_res_70906);
-                float i64_res_70924 = sitofp_i64_f32(last_res_70906);
-                float x_70925 = i64_res_70259 - i64_res_70924;
-                float max_arg_70926 = x_70925 / 2.0F;
-                float max_res_70927 = fmax32(0.0F, max_arg_70926);
+                int64_t min_arg_70968 = sub64(last_res_70953, (int64_t) 1);
+                int64_t min_arg_70969 = sub64(last_res_70953, min_res_70300);
+                int64_t min_res_70970 = smin64(q_70282, last_res_70953);
+                float i64_res_70971 = sitofp_i64_f32(last_res_70953);
+                float x_70972 = i64_res_70306 - i64_res_70971;
+                float max_arg_70973 = x_70972 / 2.0F;
+                float max_res_70974 = fmax32(0.0F, max_arg_70973);
                 
-                for (int64_t i_71723 = 0; i_71723 < q_70235; i_71723++) {
-                    bool cond_70930 = sle64(last_res_70906, i_71723);
-                    float defunc_0_f_res_70931;
+                for (int64_t i_71770 = 0; i_71770 < q_70282; i_71770++) {
+                    bool cond_70977 = sle64(last_res_70953, i_71770);
+                    float defunc_0_f_res_70978;
                     
-                    if (cond_70930) {
-                        defunc_0_f_res_70931 = 0.0F;
+                    if (cond_70977) {
+                        defunc_0_f_res_70978 = 0.0F;
                     } else {
-                        defunc_0_f_res_70931 = 1.0F;
+                        defunc_0_f_res_70978 = 1.0F;
                     }
-                    ((float *) mem_72546)[i_71723] = defunc_0_f_res_70931;
+                    ((float *) mem_72593)[i_71770] = defunc_0_f_res_70978;
                 }
-                for (int64_t i_71734 = 0; i_71734 < n_m_70241; i_71734++) {
-                    int64_t min_arg_70934 = mul64(jump_70237, i_71734);
-                    int64_t min_res_70935 = smin64(i_70247, min_arg_70934);
-                    int64_t defunc_0_g_res_70936 = add64((int64_t) 1,
-                                                         min_res_70935);
-                    bool init_idx_70937;
-                    int64_t init_idx_70938;
-                    int64_t init_idx_70939;
-                    bool loop_while_70940;
-                    int64_t low_70941;
-                    int64_t high_70942;
+                for (int64_t i_71781 = 0; i_71781 < n_m_70288; i_71781++) {
+                    int64_t min_arg_70981 = mul64(jump_70284, i_71781);
+                    int64_t min_res_70982 = smin64(i_70294, min_arg_70981);
+                    int64_t defunc_0_g_res_70983 = add64((int64_t) 1,
+                                                         min_res_70982);
+                    bool init_idx_70984;
+                    int64_t init_idx_70985;
+                    int64_t init_idx_70986;
+                    bool loop_while_70987;
+                    int64_t low_70988;
+                    int64_t high_70989;
                     
-                    loop_while_70940 = x_70248;
-                    low_70941 = (int64_t) 0;
-                    high_70942 = i_70247;
-                    while (loop_while_70940) {
-                        int64_t x_70943 = add64(low_70941, high_70942);
-                        int64_t mid_70944 = sdiv64(x_70943, (int64_t) 2);
-                        bool x_70945 = sle64((int64_t) 0, mid_70944);
-                        bool y_70946 = slt64(mid_70944, n_70233);
-                        bool bounds_check_70947 = x_70945 && y_70946;
-                        bool index_certs_70948;
+                    loop_while_70987 = x_70295;
+                    low_70988 = (int64_t) 0;
+                    high_70989 = i_70294;
+                    while (loop_while_70987) {
+                        int64_t x_70990 = add64(low_70988, high_70989);
+                        int64_t mid_70991 = sdiv64(x_70990, (int64_t) 2);
+                        bool x_70992 = sle64((int64_t) 0, mid_70991);
+                        bool y_70993 = slt64(mid_70991, n_70280);
+                        bool bounds_check_70994 = x_70992 && y_70993;
+                        bool index_certs_70995;
                         
-                        if (!bounds_check_70947) {
+                        if (!bounds_check_70994) {
                             ctx->error =
                                 msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                          "Index [", (long long) mid_70944,
+                                          "Index [", (long long) mid_70991,
                                           "] out of bounds for array of shape [",
-                                          (long long) n_70233, "].",
-                                          "-> #0  loess.fut:449:26-36\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:588:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:587:5-589:26\n   #10 loess.fut:571:1-610:26\n");
-                            if (memblock_unref(ctx, &mem_72473, "mem_72473") !=
+                                          (long long) n_70280, "].",
+                                          "-> #0  loess.fut:449:26-36\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:589:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:588:5-590:26\n   #10 loess.fut:572:1-611:26\n");
+                            if (memblock_unref(ctx, &mem_72520, "mem_72520") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_72469, "mem_72469") !=
+                            if (memblock_unref(ctx, &mem_72516, "mem_72516") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73036,
-                                               "ext_mem_73036") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73083,
+                                               "ext_mem_73083") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73044,
-                                               "ext_mem_73044") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73091,
+                                               "ext_mem_73091") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73052,
-                                               "ext_mem_73052") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73099,
+                                               "ext_mem_73099") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73060,
-                                               "ext_mem_73060") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73107,
+                                               "ext_mem_73107") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_out_73178,
-                                               "mem_out_73178") != 0)
+                            if (memblock_unref(ctx, &mem_out_73225,
+                                               "mem_out_73225") != 0)
                                 return 1;
                             return 1;
                         }
                         
-                        int64_t mid_id_70949 =
-                                ((int64_t *) mem_72531)[mid_70944];
-                        bool cond_70950 = slt64(mid_id_70949, (int64_t) 0);
-                        int64_t mid_idx_70951;
+                        int64_t mid_id_70996 =
+                                ((int64_t *) mem_72578)[mid_70991];
+                        bool cond_70997 = slt64(mid_id_70996, (int64_t) 0);
+                        int64_t mid_idx_70998;
                         
-                        if (cond_70950) {
-                            mid_idx_70951 = (int64_t) 9223372036854775807;
+                        if (cond_70997) {
+                            mid_idx_70998 = (int64_t) 9223372036854775807;
                         } else {
-                            mid_idx_70951 = mid_id_70949;
+                            mid_idx_70998 = mid_id_70996;
                         }
                         
-                        bool cond_70952 = sle64(defunc_0_g_res_70936,
-                                                mid_idx_70951);
-                        int64_t loopres_70953;
-                        int64_t loopres_70954;
+                        bool cond_70999 = sle64(defunc_0_g_res_70983,
+                                                mid_idx_70998);
+                        int64_t loopres_71000;
+                        int64_t loopres_71001;
                         
-                        if (cond_70952) {
-                            int64_t loopres_t_res_70955 = sub64(mid_70944,
+                        if (cond_70999) {
+                            int64_t loopres_t_res_71002 = sub64(mid_70991,
                                                                 (int64_t) 1);
                             
-                            loopres_70953 = low_70941;
-                            loopres_70954 = loopres_t_res_70955;
+                            loopres_71000 = low_70988;
+                            loopres_71001 = loopres_t_res_71002;
                         } else {
-                            int64_t loopres_f_res_70956 = add64((int64_t) 1,
-                                                                mid_70944);
+                            int64_t loopres_f_res_71003 = add64((int64_t) 1,
+                                                                mid_70991);
                             
-                            loopres_70953 = loopres_f_res_70956;
-                            loopres_70954 = high_70942;
+                            loopres_71000 = loopres_f_res_71003;
+                            loopres_71001 = high_70989;
                         }
                         
-                        bool loop_cond_70957 = sle64(loopres_70953,
-                                                     loopres_70954);
-                        bool loop_while_tmp_73262 = loop_cond_70957;
-                        int64_t low_tmp_73263 = loopres_70953;
-                        int64_t high_tmp_73264 = loopres_70954;
+                        bool loop_cond_71004 = sle64(loopres_71000,
+                                                     loopres_71001);
+                        bool loop_while_tmp_73309 = loop_cond_71004;
+                        int64_t low_tmp_73310 = loopres_71000;
+                        int64_t high_tmp_73311 = loopres_71001;
                         
-                        loop_while_70940 = loop_while_tmp_73262;
-                        low_70941 = low_tmp_73263;
-                        high_70942 = high_tmp_73264;
+                        loop_while_70987 = loop_while_tmp_73309;
+                        low_70988 = low_tmp_73310;
+                        high_70989 = high_tmp_73311;
                     }
-                    init_idx_70937 = loop_while_70940;
-                    init_idx_70938 = low_70941;
-                    init_idx_70939 = high_70942;
+                    init_idx_70984 = loop_while_70987;
+                    init_idx_70985 = low_70988;
+                    init_idx_70986 = high_70989;
                     
-                    bool idx_70958;
-                    int64_t idx_70959;
-                    int64_t idx_70960;
-                    int64_t idx_70961;
-                    bool loop_while_70962;
-                    int64_t l_idx_70963;
-                    int64_t r_idx_70964;
-                    int64_t span_70965;
+                    bool idx_71005;
+                    int64_t idx_71006;
+                    int64_t idx_71007;
+                    int64_t idx_71008;
+                    bool loop_while_71009;
+                    int64_t l_idx_71010;
+                    int64_t r_idx_71011;
+                    int64_t span_71012;
                     
-                    loop_while_70962 = loop_cond_70258;
-                    l_idx_70963 = init_idx_70938;
-                    r_idx_70964 = init_idx_70938;
-                    span_70965 = (int64_t) 1;
-                    while (loop_while_70962) {
-                        int64_t max_arg_70966 = sub64(l_idx_70963, (int64_t) 1);
-                        int64_t max_res_70967 = smax64((int64_t) 0,
-                                                       max_arg_70966);
-                        int64_t min_arg_70968 = add64((int64_t) 1, r_idx_70964);
-                        int64_t min_res_70969 = smin64(min_arg_70921,
-                                                       min_arg_70968);
-                        bool x_70970 = sle64((int64_t) 0, max_res_70967);
-                        bool y_70971 = slt64(max_res_70967, n_70233);
-                        bool bounds_check_70972 = x_70970 && y_70971;
-                        bool index_certs_70973;
+                    loop_while_71009 = loop_cond_70305;
+                    l_idx_71010 = init_idx_70985;
+                    r_idx_71011 = init_idx_70985;
+                    span_71012 = (int64_t) 1;
+                    while (loop_while_71009) {
+                        int64_t max_arg_71013 = sub64(l_idx_71010, (int64_t) 1);
+                        int64_t max_res_71014 = smax64((int64_t) 0,
+                                                       max_arg_71013);
+                        int64_t min_arg_71015 = add64((int64_t) 1, r_idx_71011);
+                        int64_t min_res_71016 = smin64(min_arg_70968,
+                                                       min_arg_71015);
+                        bool x_71017 = sle64((int64_t) 0, max_res_71014);
+                        bool y_71018 = slt64(max_res_71014, n_70280);
+                        bool bounds_check_71019 = x_71017 && y_71018;
+                        bool index_certs_71020;
                         
-                        if (!bounds_check_70972) {
+                        if (!bounds_check_71019) {
                             ctx->error =
                                 msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                          "Index [", (long long) max_res_70967,
+                                          "Index [", (long long) max_res_71014,
                                           "] out of bounds for array of shape [",
-                                          (long long) n_70233, "].",
-                                          "-> #0  loess.fut:459:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:588:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:587:5-589:26\n   #10 loess.fut:571:1-610:26\n");
-                            if (memblock_unref(ctx, &mem_72473, "mem_72473") !=
+                                          (long long) n_70280, "].",
+                                          "-> #0  loess.fut:459:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:589:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:588:5-590:26\n   #10 loess.fut:572:1-611:26\n");
+                            if (memblock_unref(ctx, &mem_72520, "mem_72520") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_72469, "mem_72469") !=
+                            if (memblock_unref(ctx, &mem_72516, "mem_72516") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73036,
-                                               "ext_mem_73036") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73083,
+                                               "ext_mem_73083") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73044,
-                                               "ext_mem_73044") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73091,
+                                               "ext_mem_73091") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73052,
-                                               "ext_mem_73052") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73099,
+                                               "ext_mem_73099") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73060,
-                                               "ext_mem_73060") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73107,
+                                               "ext_mem_73107") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_out_73178,
-                                               "mem_out_73178") != 0)
+                            if (memblock_unref(ctx, &mem_out_73225,
+                                               "mem_out_73225") != 0)
                                 return 1;
                             return 1;
                         }
                         
-                        int64_t x_70974 =
-                                ((int64_t *) mem_72531)[max_res_70967];
-                        int64_t abs_arg_70975 = sub64(x_70974,
-                                                      defunc_0_g_res_70936);
-                        int64_t abs_res_70976 = abs64(abs_arg_70975);
-                        bool x_70977 = sle64((int64_t) 0, min_res_70969);
-                        bool y_70978 = slt64(min_res_70969, n_70233);
-                        bool bounds_check_70979 = x_70977 && y_70978;
-                        bool index_certs_70980;
+                        int64_t x_71021 =
+                                ((int64_t *) mem_72578)[max_res_71014];
+                        int64_t abs_arg_71022 = sub64(x_71021,
+                                                      defunc_0_g_res_70983);
+                        int64_t abs_res_71023 = abs64(abs_arg_71022);
+                        bool x_71024 = sle64((int64_t) 0, min_res_71016);
+                        bool y_71025 = slt64(min_res_71016, n_70280);
+                        bool bounds_check_71026 = x_71024 && y_71025;
+                        bool index_certs_71027;
                         
-                        if (!bounds_check_70979) {
+                        if (!bounds_check_71026) {
                             ctx->error =
                                 msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                          "Index [", (long long) min_res_70969,
+                                          "Index [", (long long) min_res_71016,
                                           "] out of bounds for array of shape [",
-                                          (long long) n_70233, "].",
-                                          "-> #0  loess.fut:460:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:588:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:587:5-589:26\n   #10 loess.fut:571:1-610:26\n");
-                            if (memblock_unref(ctx, &mem_72473, "mem_72473") !=
+                                          (long long) n_70280, "].",
+                                          "-> #0  loess.fut:460:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:589:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:588:5-590:26\n   #10 loess.fut:572:1-611:26\n");
+                            if (memblock_unref(ctx, &mem_72520, "mem_72520") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_72469, "mem_72469") !=
+                            if (memblock_unref(ctx, &mem_72516, "mem_72516") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73036,
-                                               "ext_mem_73036") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73083,
+                                               "ext_mem_73083") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73044,
-                                               "ext_mem_73044") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73091,
+                                               "ext_mem_73091") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73052,
-                                               "ext_mem_73052") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73099,
+                                               "ext_mem_73099") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73060,
-                                               "ext_mem_73060") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73107,
+                                               "ext_mem_73107") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_out_73178,
-                                               "mem_out_73178") != 0)
+                            if (memblock_unref(ctx, &mem_out_73225,
+                                               "mem_out_73225") != 0)
                                 return 1;
                             return 1;
                         }
                         
-                        int64_t x_70981 =
-                                ((int64_t *) mem_72531)[min_res_70969];
-                        int64_t abs_arg_70982 = sub64(x_70981,
-                                                      defunc_0_g_res_70936);
-                        int64_t abs_res_70983 = abs64(abs_arg_70982);
-                        bool cond_70984 = max_res_70967 == l_idx_70963;
-                        int64_t loopres_70985;
-                        int64_t loopres_70986;
-                        int64_t loopres_70987;
+                        int64_t x_71028 =
+                                ((int64_t *) mem_72578)[min_res_71016];
+                        int64_t abs_arg_71029 = sub64(x_71028,
+                                                      defunc_0_g_res_70983);
+                        int64_t abs_res_71030 = abs64(abs_arg_71029);
+                        bool cond_71031 = max_res_71014 == l_idx_71010;
+                        int64_t loopres_71032;
+                        int64_t loopres_71033;
+                        int64_t loopres_71034;
                         
-                        if (cond_70984) {
-                            loopres_70985 = l_idx_70963;
-                            loopres_70986 = r_idx_70964;
-                            loopres_70987 = min_res_70253;
+                        if (cond_71031) {
+                            loopres_71032 = l_idx_71010;
+                            loopres_71033 = r_idx_71011;
+                            loopres_71034 = min_res_70300;
                         } else {
-                            bool cond_70988 = slt64(abs_res_70976,
-                                                    abs_res_70983);
-                            bool cond_f_res_70989 = min_res_70969 ==
-                                 r_idx_70964;
-                            bool x_70990 = !cond_70988;
-                            bool y_70991 = cond_f_res_70989 && x_70990;
-                            bool cond_70992 = cond_70988 || y_70991;
-                            int64_t loopres_f_res_70993;
+                            bool cond_71035 = slt64(abs_res_71023,
+                                                    abs_res_71030);
+                            bool cond_f_res_71036 = min_res_71016 ==
+                                 r_idx_71011;
+                            bool x_71037 = !cond_71035;
+                            bool y_71038 = cond_f_res_71036 && x_71037;
+                            bool cond_71039 = cond_71035 || y_71038;
+                            int64_t loopres_f_res_71040;
                             
-                            if (cond_70992) {
-                                loopres_f_res_70993 = max_res_70967;
+                            if (cond_71039) {
+                                loopres_f_res_71040 = max_res_71014;
                             } else {
-                                loopres_f_res_70993 = l_idx_70963;
+                                loopres_f_res_71040 = l_idx_71010;
                             }
                             
-                            int64_t loopres_f_res_70994;
+                            int64_t loopres_f_res_71041;
                             
-                            if (cond_70992) {
-                                loopres_f_res_70994 = r_idx_70964;
+                            if (cond_71039) {
+                                loopres_f_res_71041 = r_idx_71011;
                             } else {
-                                loopres_f_res_70994 = min_res_70969;
+                                loopres_f_res_71041 = min_res_71016;
                             }
                             
-                            int64_t loopres_f_res_70995;
+                            int64_t loopres_f_res_71042;
                             
-                            if (cond_70992) {
-                                int64_t loopres_f_res_t_res_70996 =
-                                        add64((int64_t) 1, span_70965);
+                            if (cond_71039) {
+                                int64_t loopres_f_res_t_res_71043 =
+                                        add64((int64_t) 1, span_71012);
                                 
-                                loopres_f_res_70995 = loopres_f_res_t_res_70996;
+                                loopres_f_res_71042 = loopres_f_res_t_res_71043;
                             } else {
-                                int64_t loopres_f_res_f_res_70997 =
-                                        add64((int64_t) 1, span_70965);
+                                int64_t loopres_f_res_f_res_71044 =
+                                        add64((int64_t) 1, span_71012);
                                 
-                                loopres_f_res_70995 = loopres_f_res_f_res_70997;
+                                loopres_f_res_71042 = loopres_f_res_f_res_71044;
                             }
-                            loopres_70985 = loopres_f_res_70993;
-                            loopres_70986 = loopres_f_res_70994;
-                            loopres_70987 = loopres_f_res_70995;
+                            loopres_71032 = loopres_f_res_71040;
+                            loopres_71033 = loopres_f_res_71041;
+                            loopres_71034 = loopres_f_res_71042;
                         }
                         
-                        bool loop_cond_70998 = slt64(loopres_70987,
-                                                     min_res_70253);
-                        bool loop_while_tmp_73265 = loop_cond_70998;
-                        int64_t l_idx_tmp_73266 = loopres_70985;
-                        int64_t r_idx_tmp_73267 = loopres_70986;
-                        int64_t span_tmp_73268 = loopres_70987;
+                        bool loop_cond_71045 = slt64(loopres_71034,
+                                                     min_res_70300);
+                        bool loop_while_tmp_73312 = loop_cond_71045;
+                        int64_t l_idx_tmp_73313 = loopres_71032;
+                        int64_t r_idx_tmp_73314 = loopres_71033;
+                        int64_t span_tmp_73315 = loopres_71034;
                         
-                        loop_while_70962 = loop_while_tmp_73265;
-                        l_idx_70963 = l_idx_tmp_73266;
-                        r_idx_70964 = r_idx_tmp_73267;
-                        span_70965 = span_tmp_73268;
+                        loop_while_71009 = loop_while_tmp_73312;
+                        l_idx_71010 = l_idx_tmp_73313;
+                        r_idx_71011 = r_idx_tmp_73314;
+                        span_71012 = span_tmp_73315;
                     }
-                    idx_70958 = loop_while_70962;
-                    idx_70959 = l_idx_70963;
-                    idx_70960 = r_idx_70964;
-                    idx_70961 = span_70965;
+                    idx_71005 = loop_while_71009;
+                    idx_71006 = l_idx_71010;
+                    idx_71007 = r_idx_71011;
+                    idx_71008 = span_71012;
                     
-                    int64_t min_res_70999 = smin64(min_arg_70922, idx_70959);
-                    int64_t max_res_71000 = smax64((int64_t) 0, min_res_70999);
-                    int64_t x_71001 = add64(min_res_70923, max_res_71000);
-                    int64_t r_71002 = sub64(x_71001, (int64_t) 1);
-                    bool x_71003 = sle64((int64_t) 0, r_71002);
-                    bool y_71004 = slt64(r_71002, n_70233);
-                    bool bounds_check_71005 = x_71003 && y_71004;
-                    bool index_certs_71006;
+                    int64_t min_res_71046 = smin64(min_arg_70969, idx_71006);
+                    int64_t max_res_71047 = smax64((int64_t) 0, min_res_71046);
+                    int64_t x_71048 = add64(min_res_70970, max_res_71047);
+                    int64_t r_71049 = sub64(x_71048, (int64_t) 1);
+                    bool x_71050 = sle64((int64_t) 0, r_71049);
+                    bool y_71051 = slt64(r_71049, n_70280);
+                    bool bounds_check_71052 = x_71050 && y_71051;
+                    bool index_certs_71053;
                     
-                    if (!bounds_check_71005) {
+                    if (!bounds_check_71052) {
                         ctx->error =
                             msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                      "Index [", (long long) r_71002,
+                                      "Index [", (long long) r_71049,
                                       "] out of bounds for array of shape [",
-                                      (long long) n_70233, "].",
-                                      "-> #0  loess.fut:484:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:18-55\n   #5  loess.fut:588:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:587:5-589:26\n   #9  loess.fut:571:1-610:26\n");
-                        if (memblock_unref(ctx, &mem_72473, "mem_72473") != 0)
+                                      (long long) n_70280, "].",
+                                      "-> #0  loess.fut:484:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:16-51\n   #5  loess.fut:589:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:588:5-590:26\n   #9  loess.fut:572:1-611:26\n");
+                        if (memblock_unref(ctx, &mem_72520, "mem_72520") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &mem_72469, "mem_72469") != 0)
+                        if (memblock_unref(ctx, &mem_72516, "mem_72516") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &ext_mem_73036,
-                                           "ext_mem_73036") != 0)
+                        if (memblock_unref(ctx, &ext_mem_73083,
+                                           "ext_mem_73083") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &ext_mem_73044,
-                                           "ext_mem_73044") != 0)
+                        if (memblock_unref(ctx, &ext_mem_73091,
+                                           "ext_mem_73091") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &ext_mem_73052,
-                                           "ext_mem_73052") != 0)
+                        if (memblock_unref(ctx, &ext_mem_73099,
+                                           "ext_mem_73099") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &ext_mem_73060,
-                                           "ext_mem_73060") != 0)
+                        if (memblock_unref(ctx, &ext_mem_73107,
+                                           "ext_mem_73107") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &mem_out_73178,
-                                           "mem_out_73178") != 0)
+                        if (memblock_unref(ctx, &mem_out_73225,
+                                           "mem_out_73225") != 0)
                             return 1;
                         return 1;
                     }
                     
-                    int64_t x_71007 = ((int64_t *) mem_72504)[r_71002];
-                    int64_t abs_arg_71008 = sub64(x_71007, min_res_70935);
-                    int64_t abs_res_71009 = abs64(abs_arg_71008);
-                    bool x_71010 = sle64((int64_t) 0, max_res_71000);
-                    bool y_71011 = slt64(max_res_71000, n_70233);
-                    bool bounds_check_71012 = x_71010 && y_71011;
-                    bool index_certs_71013;
+                    int64_t x_71054 = ((int64_t *) mem_72551)[r_71049];
+                    int64_t abs_arg_71055 = sub64(x_71054, min_res_70982);
+                    int64_t abs_res_71056 = abs64(abs_arg_71055);
+                    bool x_71057 = sle64((int64_t) 0, max_res_71047);
+                    bool y_71058 = slt64(max_res_71047, n_70280);
+                    bool bounds_check_71059 = x_71057 && y_71058;
+                    bool index_certs_71060;
                     
-                    if (!bounds_check_71012) {
+                    if (!bounds_check_71059) {
                         ctx->error =
                             msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                      "Index [", (long long) max_res_71000,
+                                      "Index [", (long long) max_res_71047,
                                       "] out of bounds for array of shape [",
-                                      (long long) n_70233, "].",
-                                      "-> #0  loess.fut:483:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:18-55\n   #5  loess.fut:588:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:587:5-589:26\n   #9  loess.fut:571:1-610:26\n");
-                        if (memblock_unref(ctx, &mem_72473, "mem_72473") != 0)
+                                      (long long) n_70280, "].",
+                                      "-> #0  loess.fut:483:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:16-51\n   #5  loess.fut:589:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:588:5-590:26\n   #9  loess.fut:572:1-611:26\n");
+                        if (memblock_unref(ctx, &mem_72520, "mem_72520") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &mem_72469, "mem_72469") != 0)
+                        if (memblock_unref(ctx, &mem_72516, "mem_72516") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &ext_mem_73036,
-                                           "ext_mem_73036") != 0)
+                        if (memblock_unref(ctx, &ext_mem_73083,
+                                           "ext_mem_73083") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &ext_mem_73044,
-                                           "ext_mem_73044") != 0)
+                        if (memblock_unref(ctx, &ext_mem_73091,
+                                           "ext_mem_73091") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &ext_mem_73052,
-                                           "ext_mem_73052") != 0)
+                        if (memblock_unref(ctx, &ext_mem_73099,
+                                           "ext_mem_73099") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &ext_mem_73060,
-                                           "ext_mem_73060") != 0)
+                        if (memblock_unref(ctx, &ext_mem_73107,
+                                           "ext_mem_73107") != 0)
                             return 1;
-                        if (memblock_unref(ctx, &mem_out_73178,
-                                           "mem_out_73178") != 0)
+                        if (memblock_unref(ctx, &mem_out_73225,
+                                           "mem_out_73225") != 0)
                             return 1;
                         return 1;
                     }
                     
-                    int64_t x_71014 = ((int64_t *) mem_72504)[max_res_71000];
-                    int64_t abs_arg_71015 = sub64(x_71014, min_res_70935);
-                    int64_t abs_res_71016 = abs64(abs_arg_71015);
-                    int64_t max_res_71017 = smax64(abs_res_71009,
-                                                   abs_res_71016);
-                    float defunc_0_f_res_71018 = sitofp_i64_f32(max_res_71017);
-                    float defunc_1_f_res_71019 = max_res_70927 +
-                          defunc_0_f_res_71018;
-                    float defunc_2_reduce_res_71020;
-                    float redout_71726 = 0.0F;
+                    int64_t x_71061 = ((int64_t *) mem_72551)[max_res_71047];
+                    int64_t abs_arg_71062 = sub64(x_71061, min_res_70982);
+                    int64_t abs_res_71063 = abs64(abs_arg_71062);
+                    int64_t max_res_71064 = smax64(abs_res_71056,
+                                                   abs_res_71063);
+                    float defunc_0_f_res_71065 = sitofp_i64_f32(max_res_71064);
+                    float defunc_1_f_res_71066 = max_res_70974 +
+                          defunc_0_f_res_71065;
+                    float defunc_2_reduce_res_71067;
+                    float redout_71773 = 0.0F;
                     
-                    for (int64_t i_71728 = 0; i_71728 < q_70235; i_71728++) {
-                        float x_71026 = ((float *) mem_72546)[i_71728];
-                        bool cond_71027 = sle64(last_res_70906, i_71728);
-                        int64_t defunc_0_f_res_71028;
+                    for (int64_t i_71775 = 0; i_71775 < q_70282; i_71775++) {
+                        float x_71073 = ((float *) mem_72593)[i_71775];
+                        bool cond_71074 = sle64(last_res_70953, i_71775);
+                        int64_t defunc_0_f_res_71075;
                         
-                        if (cond_71027) {
-                            defunc_0_f_res_71028 = (int64_t) 0;
+                        if (cond_71074) {
+                            defunc_0_f_res_71075 = (int64_t) 0;
                         } else {
-                            int64_t i_71029 = add64(max_res_71000, i_71728);
-                            int64_t defunc_0_add_arg_71030 =
-                                    ((int64_t *) mem_72504)[i_71029];
-                            int64_t defunc_1_add_res_71031 = add64((int64_t) 1,
-                                                                   defunc_0_add_arg_71030);
+                            int64_t i_71076 = add64(max_res_71047, i_71775);
+                            int64_t defunc_0_add_arg_71077 =
+                                    ((int64_t *) mem_72551)[i_71076];
+                            int64_t defunc_1_add_res_71078 = add64((int64_t) 1,
+                                                                   defunc_0_add_arg_71077);
                             
-                            defunc_0_f_res_71028 = defunc_1_add_res_71031;
+                            defunc_0_f_res_71075 = defunc_1_add_res_71078;
                         }
                         
-                        int64_t binop_p_71032 = sub64(defunc_0_f_res_71028,
-                                                      min_res_70935);
-                        float defunc_0_f_res_71033 =
-                              sitofp_i64_f32(binop_p_71032);
-                        float abs_res_71034 =
-                              (float) fabs(defunc_0_f_res_71033);
-                        float tmp1_71035 = abs_res_71034 / defunc_1_f_res_71019;
-                        float x_71036 = tmp1_71035 * tmp1_71035;
-                        float y_71037 = tmp1_71035 * x_71036;
-                        float tmp2_71038 = 1.0F - y_71037;
-                        float x_71039 = tmp2_71038 * tmp2_71038;
-                        float tmp3_71040 = tmp2_71038 * x_71039;
-                        float tmp4_71041 = x_71026 * tmp3_71040;
-                        float defunc_1_op_res_71024 = tmp4_71041 + redout_71726;
+                        int64_t binop_p_71079 = sub64(defunc_0_f_res_71075,
+                                                      min_res_70982);
+                        float defunc_0_f_res_71080 =
+                              sitofp_i64_f32(binop_p_71079);
+                        float abs_res_71081 =
+                              (float) fabs(defunc_0_f_res_71080);
+                        float tmp1_71082 = abs_res_71081 / defunc_1_f_res_71066;
+                        float x_71083 = tmp1_71082 * tmp1_71082;
+                        float y_71084 = tmp1_71082 * x_71083;
+                        float tmp2_71085 = 1.0F - y_71084;
+                        float x_71086 = tmp2_71085 * tmp2_71085;
+                        float tmp3_71087 = tmp2_71085 * x_71086;
+                        float tmp4_71088 = x_71073 * tmp3_71087;
+                        float defunc_1_op_res_71071 = tmp4_71088 + redout_71773;
                         
-                        ((float *) mem_72572)[i_71728] = tmp4_71041;
+                        ((float *) mem_72619)[i_71775] = tmp4_71088;
                         
-                        float redout_tmp_73269 = defunc_1_op_res_71024;
+                        float redout_tmp_73316 = defunc_1_op_res_71071;
                         
-                        redout_71726 = redout_tmp_73269;
+                        redout_71773 = redout_tmp_73316;
                     }
-                    defunc_2_reduce_res_71020 = redout_71726;
+                    defunc_2_reduce_res_71067 = redout_71773;
                     
-                    float a0_71042 = 1.0F / defunc_2_reduce_res_71020;
-                    float defunc_2_reduce_res_71043;
-                    float redout_71730 = 0.0F;
+                    float a0_71089 = 1.0F / defunc_2_reduce_res_71067;
+                    float defunc_2_reduce_res_71090;
+                    float redout_71777 = 0.0F;
                     
-                    for (int64_t i_71731 = 0; i_71731 < q_70235; i_71731++) {
-                        float x_71048 = ((float *) mem_72572)[i_71731];
-                        bool cond_71049 = sle64(last_res_70906, i_71731);
-                        float defunc_0_f_res_71050;
-                        
-                        if (cond_71049) {
-                            defunc_0_f_res_71050 = 0.0F;
-                        } else {
-                            int64_t i_71051 = add64(max_res_71000, i_71731);
-                            float defunc_0_add_arg_71052 =
-                                  ((float *) mem_72501)[i_71051];
-                            
-                            defunc_0_f_res_71050 = defunc_0_add_arg_71052;
-                        }
-                        
-                        float x_71053 = a0_71042 * x_71048;
-                        float defunc_9_fit_fun_res_71054 =
-                              defunc_0_f_res_71050 * x_71053;
-                        float defunc_1_op_res_71046 =
-                              defunc_9_fit_fun_res_71054 + redout_71730;
-                        float redout_tmp_73271 = defunc_1_op_res_71046;
-                        
-                        redout_71730 = redout_tmp_73271;
-                    }
-                    defunc_2_reduce_res_71043 = redout_71730;
-                    ((float *) mem_72473.mem)[i_71738 * n_m_70241 + i_71734] =
-                        defunc_2_reduce_res_71043;
-                }
-            }
-            if (memblock_set(ctx, &ext_mem_73044, &mem_72473, "mem_72473") != 0)
-                return 1;
-            if (memblock_set(ctx, &ext_mem_73036, &mem_72469, "mem_72469") != 0)
-                return 1;
-            if (memblock_unref(ctx, &mem_72473, "mem_72473") != 0)
-                return 1;
-            if (memblock_unref(ctx, &mem_72469, "mem_72469") != 0)
-                return 1;
-        } else {
-            bool match_lit_71057 = (int64_t) 1 == degree_70236;
-            int64_t binop_x_72604 = m_70232 * n_m_70241;
-            int64_t binop_y_72605 = (int64_t) 4 * binop_x_72604;
-            int64_t bytes_72606 = smax64((int64_t) 0, binop_y_72605);
-            int64_t binop_y_72632 = (int64_t) 8 * n_70233;
-            int64_t bytes_72633 = smax64((int64_t) 0, binop_y_72632);
-            int64_t binop_y_72647 = (int64_t) 4 * n_70233;
-            int64_t bytes_72648 = smax64((int64_t) 0, binop_y_72647);
-            int64_t binop_y_72692 = (int64_t) 4 * q_70235;
-            int64_t bytes_72693 = smax64((int64_t) 0, binop_y_72692);
-            int64_t binop_x_72797 = m_70232 * n_m_70241;
-            int64_t binop_y_72798 = (int64_t) 4 * binop_x_72797;
-            int64_t bytes_72799 = smax64((int64_t) 0, binop_y_72798);
-            int64_t binop_y_72825 = (int64_t) 8 * n_70233;
-            int64_t bytes_72826 = smax64((int64_t) 0, binop_y_72825);
-            int64_t binop_y_72840 = (int64_t) 4 * n_70233;
-            int64_t bytes_72841 = smax64((int64_t) 0, binop_y_72840);
-            int64_t binop_y_72885 = (int64_t) 4 * q_70235;
-            int64_t bytes_72886 = smax64((int64_t) 0, binop_y_72885);
-            struct memblock ext_mem_73028;
-            
-            ext_mem_73028.references = NULL;
-            
-            struct memblock ext_mem_73020;
-            
-            ext_mem_73020.references = NULL;
-            if (match_lit_71057) {
-                struct memblock mem_72607;
-                
-                mem_72607.references = NULL;
-                if (memblock_alloc(ctx, &mem_72607, bytes_72606, "mem_72607")) {
-                    err = 1;
-                    goto cleanup;
-                }
-                
-                struct memblock mem_72611;
-                
-                mem_72611.references = NULL;
-                if (memblock_alloc(ctx, &mem_72611, bytes_72606, "mem_72611")) {
-                    err = 1;
-                    goto cleanup;
-                }
-                if (mem_72634_cached_sizze_73352 < (size_t) bytes_72633) {
-                    mem_72634 = realloc(mem_72634, bytes_72633);
-                    mem_72634_cached_sizze_73352 = bytes_72633;
-                }
-                if (mem_72649_cached_sizze_73353 < (size_t) bytes_72648) {
-                    mem_72649 = realloc(mem_72649, bytes_72648);
-                    mem_72649_cached_sizze_73353 = bytes_72648;
-                }
-                if (mem_72652_cached_sizze_73354 < (size_t) bytes_72633) {
-                    mem_72652 = realloc(mem_72652, bytes_72633);
-                    mem_72652_cached_sizze_73354 = bytes_72633;
-                }
-                if (mem_72679_cached_sizze_73355 < (size_t) bytes_72633) {
-                    mem_72679 = realloc(mem_72679, bytes_72633);
-                    mem_72679_cached_sizze_73355 = bytes_72633;
-                }
-                if (mem_72694_cached_sizze_73356 < (size_t) bytes_72693) {
-                    mem_72694 = realloc(mem_72694, bytes_72693);
-                    mem_72694_cached_sizze_73356 = bytes_72693;
-                }
-                if (mem_72731_cached_sizze_73357 < (size_t) bytes_72693) {
-                    mem_72731 = realloc(mem_72731, bytes_72693);
-                    mem_72731_cached_sizze_73357 = bytes_72693;
-                }
-                if (mem_72734_cached_sizze_73358 < (size_t) bytes_72693) {
-                    mem_72734 = realloc(mem_72734, bytes_72693);
-                    mem_72734_cached_sizze_73358 = bytes_72693;
-                }
-                for (int64_t i_71786 = 0; i_71786 < m_70232; i_71786++) {
-                    int64_t discard_71745;
-                    int64_t scanacc_71741 = (int64_t) 0;
-                    
-                    for (int64_t i_71743 = 0; i_71743 < n_70233; i_71743++) {
-                        float x_71068 = ((float *) Y_mem_71984.mem)[i_71786 *
-                                                                    n_70233 +
-                                                                    i_71743];
-                        bool isnan_res_71069;
-                        
-                        isnan_res_71069 = futrts_isnan32(x_71068);
-                        
-                        bool defunc_0_p_res_71070 = !isnan_res_71069;
-                        int64_t defunc_0_f_res_71071 =
-                                btoi_bool_i64(defunc_0_p_res_71070);
-                        int64_t defunc_1_op_res_71067 =
-                                add64(defunc_0_f_res_71071, scanacc_71741);
-                        
-                        ((int64_t *) mem_72634)[i_71743] =
-                            defunc_1_op_res_71067;
-                        
-                        int64_t scanacc_tmp_73274 = defunc_1_op_res_71067;
-                        
-                        scanacc_71741 = scanacc_tmp_73274;
-                    }
-                    discard_71745 = scanacc_71741;
-                    
-                    int64_t last_res_71072 = ((int64_t *) mem_72634)[i_70247];
-                    
-                    for (int64_t i_73276 = 0; i_73276 < n_70233; i_73276++) {
-                        ((float *) mem_72649)[i_73276] = 0.0F;
-                    }
-                    for (int64_t i_73277 = 0; i_73277 < n_70233; i_73277++) {
-                        ((int64_t *) mem_72652)[i_73277] = (int64_t) -1;
-                    }
-                    for (int64_t write_iter_71746 = 0; write_iter_71746 <
-                         n_70233; write_iter_71746++) {
-                        float write_iv_71749 =
-                              ((float *) Y_mem_71984.mem)[i_71786 * n_70233 +
-                                                          write_iter_71746];
-                        int64_t write_iv_71750 =
-                                ((int64_t *) mem_72634)[write_iter_71746];
-                        bool isnan_res_71080;
-                        
-                        isnan_res_71080 = futrts_isnan32(write_iv_71749);
-                        
-                        bool defunc_0_p_res_71081 = !isnan_res_71080;
-                        int64_t defunc_1_f_res_71082;
-                        
-                        if (defunc_0_p_res_71081) {
-                            int64_t defunc_1_f_res_t_res_71083 =
-                                    sub64(write_iv_71750, (int64_t) 1);
-                            
-                            defunc_1_f_res_71082 = defunc_1_f_res_t_res_71083;
-                        } else {
-                            defunc_1_f_res_71082 = (int64_t) -1;
-                        }
-                        if (sle64((int64_t) 0, defunc_1_f_res_71082) &&
-                            slt64(defunc_1_f_res_71082, n_70233)) {
-                            ((int64_t *) mem_72652)[defunc_1_f_res_71082] =
-                                write_iter_71746;
-                        }
-                        if (sle64((int64_t) 0, defunc_1_f_res_71082) &&
-                            slt64(defunc_1_f_res_71082, n_70233)) {
-                            if ((int64_t) 4 > 0)
-                                memmove(mem_72649 + defunc_1_f_res_71082 *
-                                        (int64_t) 4, Y_mem_71984.mem +
-                                        (i_71786 * n_70233 + write_iter_71746) *
-                                        (int64_t) 4, (int64_t) 4);
-                        }
-                    }
-                    for (int64_t i_71756 = 0; i_71756 < n_70233; i_71756++) {
-                        int64_t x_71085 = ((int64_t *) mem_72652)[i_71756];
-                        int64_t defunc_0_f_res_71086 = add64((int64_t) 1,
-                                                             x_71085);
-                        
-                        ((int64_t *) mem_72679)[i_71756] = defunc_0_f_res_71086;
-                    }
-                    
-                    int64_t min_arg_71087 = sub64(last_res_71072, (int64_t) 1);
-                    int64_t min_arg_71088 = sub64(last_res_71072,
-                                                  min_res_70253);
-                    int64_t min_res_71089 = smin64(q_70235, last_res_71072);
-                    float i64_res_71090 = sitofp_i64_f32(last_res_71072);
-                    float x_71091 = i64_res_70259 - i64_res_71090;
-                    float max_arg_71092 = x_71091 / 2.0F;
-                    float max_res_71093 = fmax32(0.0F, max_arg_71092);
-                    
-                    for (int64_t i_71760 = 0; i_71760 < q_70235; i_71760++) {
-                        bool cond_71096 = sle64(last_res_71072, i_71760);
+                    for (int64_t i_71778 = 0; i_71778 < q_70282; i_71778++) {
+                        float x_71095 = ((float *) mem_72619)[i_71778];
+                        bool cond_71096 = sle64(last_res_70953, i_71778);
                         float defunc_0_f_res_71097;
                         
                         if (cond_71096) {
                             defunc_0_f_res_71097 = 0.0F;
                         } else {
-                            defunc_0_f_res_71097 = 1.0F;
+                            int64_t i_71098 = add64(max_res_71047, i_71778);
+                            float defunc_0_add_arg_71099 =
+                                  ((float *) mem_72548)[i_71098];
+                            
+                            defunc_0_f_res_71097 = defunc_0_add_arg_71099;
                         }
-                        ((float *) mem_72694)[i_71760] = defunc_0_f_res_71097;
+                        
+                        float x_71100 = a0_71089 * x_71095;
+                        float defunc_9_fit_fun_res_71101 =
+                              defunc_0_f_res_71097 * x_71100;
+                        float defunc_1_op_res_71093 =
+                              defunc_9_fit_fun_res_71101 + redout_71777;
+                        float redout_tmp_73318 = defunc_1_op_res_71093;
+                        
+                        redout_71777 = redout_tmp_73318;
                     }
-                    for (int64_t i_71779 = 0; i_71779 < n_m_70241; i_71779++) {
-                        int64_t min_arg_71101 = mul64(jump_70237, i_71779);
-                        int64_t min_res_71102 = smin64(i_70247, min_arg_71101);
-                        int64_t defunc_0_g_res_71103 = add64((int64_t) 1,
-                                                             min_res_71102);
-                        bool init_idx_71104;
-                        int64_t init_idx_71105;
-                        int64_t init_idx_71106;
-                        bool loop_while_71107;
-                        int64_t low_71108;
-                        int64_t high_71109;
-                        
-                        loop_while_71107 = x_70248;
-                        low_71108 = (int64_t) 0;
-                        high_71109 = i_70247;
-                        while (loop_while_71107) {
-                            int64_t x_71110 = add64(low_71108, high_71109);
-                            int64_t mid_71111 = sdiv64(x_71110, (int64_t) 2);
-                            bool x_71112 = sle64((int64_t) 0, mid_71111);
-                            bool y_71113 = slt64(mid_71111, n_70233);
-                            bool bounds_check_71114 = x_71112 && y_71113;
-                            bool index_certs_71115;
-                            
-                            if (!bounds_check_71114) {
-                                ctx->error =
-                                    msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                              "Index [", (long long) mid_71111,
-                                              "] out of bounds for array of shape [",
-                                              (long long) n_70233, "].",
-                                              "-> #0  loess.fut:449:26-36\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:588:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:587:5-589:26\n   #10 loess.fut:571:1-610:26\n");
-                                if (memblock_unref(ctx, &mem_72611,
-                                                   "mem_72611") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &mem_72607,
-                                                   "mem_72607") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73020,
-                                                   "ext_mem_73020") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73028,
-                                                   "ext_mem_73028") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73036,
-                                                   "ext_mem_73036") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73044,
-                                                   "ext_mem_73044") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73052,
-                                                   "ext_mem_73052") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73060,
-                                                   "ext_mem_73060") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &mem_out_73178,
-                                                   "mem_out_73178") != 0)
-                                    return 1;
-                                return 1;
-                            }
-                            
-                            int64_t mid_id_71116 =
-                                    ((int64_t *) mem_72679)[mid_71111];
-                            bool cond_71117 = slt64(mid_id_71116, (int64_t) 0);
-                            int64_t mid_idx_71118;
-                            
-                            if (cond_71117) {
-                                mid_idx_71118 = (int64_t) 9223372036854775807;
-                            } else {
-                                mid_idx_71118 = mid_id_71116;
-                            }
-                            
-                            bool cond_71119 = sle64(defunc_0_g_res_71103,
-                                                    mid_idx_71118);
-                            int64_t loopres_71120;
-                            int64_t loopres_71121;
-                            
-                            if (cond_71119) {
-                                int64_t loopres_t_res_71122 = sub64(mid_71111,
-                                                                    (int64_t) 1);
-                                
-                                loopres_71120 = low_71108;
-                                loopres_71121 = loopres_t_res_71122;
-                            } else {
-                                int64_t loopres_f_res_71123 = add64((int64_t) 1,
-                                                                    mid_71111);
-                                
-                                loopres_71120 = loopres_f_res_71123;
-                                loopres_71121 = high_71109;
-                            }
-                            
-                            bool loop_cond_71124 = sle64(loopres_71120,
-                                                         loopres_71121);
-                            bool loop_while_tmp_73284 = loop_cond_71124;
-                            int64_t low_tmp_73285 = loopres_71120;
-                            int64_t high_tmp_73286 = loopres_71121;
-                            
-                            loop_while_71107 = loop_while_tmp_73284;
-                            low_71108 = low_tmp_73285;
-                            high_71109 = high_tmp_73286;
-                        }
-                        init_idx_71104 = loop_while_71107;
-                        init_idx_71105 = low_71108;
-                        init_idx_71106 = high_71109;
-                        
-                        bool idx_71125;
-                        int64_t idx_71126;
-                        int64_t idx_71127;
-                        int64_t idx_71128;
-                        bool loop_while_71129;
-                        int64_t l_idx_71130;
-                        int64_t r_idx_71131;
-                        int64_t span_71132;
-                        
-                        loop_while_71129 = loop_cond_70258;
-                        l_idx_71130 = init_idx_71105;
-                        r_idx_71131 = init_idx_71105;
-                        span_71132 = (int64_t) 1;
-                        while (loop_while_71129) {
-                            int64_t max_arg_71133 = sub64(l_idx_71130,
-                                                          (int64_t) 1);
-                            int64_t max_res_71134 = smax64((int64_t) 0,
-                                                           max_arg_71133);
-                            int64_t min_arg_71135 = add64((int64_t) 1,
-                                                          r_idx_71131);
-                            int64_t min_res_71136 = smin64(min_arg_71087,
-                                                           min_arg_71135);
-                            bool x_71137 = sle64((int64_t) 0, max_res_71134);
-                            bool y_71138 = slt64(max_res_71134, n_70233);
-                            bool bounds_check_71139 = x_71137 && y_71138;
-                            bool index_certs_71140;
-                            
-                            if (!bounds_check_71139) {
-                                ctx->error =
-                                    msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                              "Index [",
-                                              (long long) max_res_71134,
-                                              "] out of bounds for array of shape [",
-                                              (long long) n_70233, "].",
-                                              "-> #0  loess.fut:459:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:588:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:587:5-589:26\n   #10 loess.fut:571:1-610:26\n");
-                                if (memblock_unref(ctx, &mem_72611,
-                                                   "mem_72611") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &mem_72607,
-                                                   "mem_72607") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73020,
-                                                   "ext_mem_73020") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73028,
-                                                   "ext_mem_73028") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73036,
-                                                   "ext_mem_73036") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73044,
-                                                   "ext_mem_73044") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73052,
-                                                   "ext_mem_73052") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73060,
-                                                   "ext_mem_73060") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &mem_out_73178,
-                                                   "mem_out_73178") != 0)
-                                    return 1;
-                                return 1;
-                            }
-                            
-                            int64_t x_71141 =
-                                    ((int64_t *) mem_72679)[max_res_71134];
-                            int64_t abs_arg_71142 = sub64(x_71141,
-                                                          defunc_0_g_res_71103);
-                            int64_t abs_res_71143 = abs64(abs_arg_71142);
-                            bool x_71144 = sle64((int64_t) 0, min_res_71136);
-                            bool y_71145 = slt64(min_res_71136, n_70233);
-                            bool bounds_check_71146 = x_71144 && y_71145;
-                            bool index_certs_71147;
-                            
-                            if (!bounds_check_71146) {
-                                ctx->error =
-                                    msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                              "Index [",
-                                              (long long) min_res_71136,
-                                              "] out of bounds for array of shape [",
-                                              (long long) n_70233, "].",
-                                              "-> #0  loess.fut:460:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:588:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:587:5-589:26\n   #10 loess.fut:571:1-610:26\n");
-                                if (memblock_unref(ctx, &mem_72611,
-                                                   "mem_72611") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &mem_72607,
-                                                   "mem_72607") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73020,
-                                                   "ext_mem_73020") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73028,
-                                                   "ext_mem_73028") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73036,
-                                                   "ext_mem_73036") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73044,
-                                                   "ext_mem_73044") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73052,
-                                                   "ext_mem_73052") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &ext_mem_73060,
-                                                   "ext_mem_73060") != 0)
-                                    return 1;
-                                if (memblock_unref(ctx, &mem_out_73178,
-                                                   "mem_out_73178") != 0)
-                                    return 1;
-                                return 1;
-                            }
-                            
-                            int64_t x_71148 =
-                                    ((int64_t *) mem_72679)[min_res_71136];
-                            int64_t abs_arg_71149 = sub64(x_71148,
-                                                          defunc_0_g_res_71103);
-                            int64_t abs_res_71150 = abs64(abs_arg_71149);
-                            bool cond_71151 = max_res_71134 == l_idx_71130;
-                            int64_t loopres_71152;
-                            int64_t loopres_71153;
-                            int64_t loopres_71154;
-                            
-                            if (cond_71151) {
-                                loopres_71152 = l_idx_71130;
-                                loopres_71153 = r_idx_71131;
-                                loopres_71154 = min_res_70253;
-                            } else {
-                                bool cond_71155 = slt64(abs_res_71143,
-                                                        abs_res_71150);
-                                bool cond_f_res_71156 = min_res_71136 ==
-                                     r_idx_71131;
-                                bool x_71157 = !cond_71155;
-                                bool y_71158 = cond_f_res_71156 && x_71157;
-                                bool cond_71159 = cond_71155 || y_71158;
-                                int64_t loopres_f_res_71160;
-                                
-                                if (cond_71159) {
-                                    loopres_f_res_71160 = max_res_71134;
-                                } else {
-                                    loopres_f_res_71160 = l_idx_71130;
-                                }
-                                
-                                int64_t loopres_f_res_71161;
-                                
-                                if (cond_71159) {
-                                    loopres_f_res_71161 = r_idx_71131;
-                                } else {
-                                    loopres_f_res_71161 = min_res_71136;
-                                }
-                                
-                                int64_t loopres_f_res_71162;
-                                
-                                if (cond_71159) {
-                                    int64_t loopres_f_res_t_res_71163 =
-                                            add64((int64_t) 1, span_71132);
-                                    
-                                    loopres_f_res_71162 =
-                                        loopres_f_res_t_res_71163;
-                                } else {
-                                    int64_t loopres_f_res_f_res_71164 =
-                                            add64((int64_t) 1, span_71132);
-                                    
-                                    loopres_f_res_71162 =
-                                        loopres_f_res_f_res_71164;
-                                }
-                                loopres_71152 = loopres_f_res_71160;
-                                loopres_71153 = loopres_f_res_71161;
-                                loopres_71154 = loopres_f_res_71162;
-                            }
-                            
-                            bool loop_cond_71165 = slt64(loopres_71154,
-                                                         min_res_70253);
-                            bool loop_while_tmp_73287 = loop_cond_71165;
-                            int64_t l_idx_tmp_73288 = loopres_71152;
-                            int64_t r_idx_tmp_73289 = loopres_71153;
-                            int64_t span_tmp_73290 = loopres_71154;
-                            
-                            loop_while_71129 = loop_while_tmp_73287;
-                            l_idx_71130 = l_idx_tmp_73288;
-                            r_idx_71131 = r_idx_tmp_73289;
-                            span_71132 = span_tmp_73290;
-                        }
-                        idx_71125 = loop_while_71129;
-                        idx_71126 = l_idx_71130;
-                        idx_71127 = r_idx_71131;
-                        idx_71128 = span_71132;
-                        
-                        int64_t min_res_71166 = smin64(min_arg_71088,
-                                                       idx_71126);
-                        int64_t max_res_71167 = smax64((int64_t) 0,
-                                                       min_res_71166);
-                        int64_t x_71168 = add64(min_res_71089, max_res_71167);
-                        int64_t r_71169 = sub64(x_71168, (int64_t) 1);
-                        bool x_71170 = sle64((int64_t) 0, r_71169);
-                        bool y_71171 = slt64(r_71169, n_70233);
-                        bool bounds_check_71172 = x_71170 && y_71171;
-                        bool index_certs_71173;
-                        
-                        if (!bounds_check_71172) {
-                            ctx->error =
-                                msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                          "Index [", (long long) r_71169,
-                                          "] out of bounds for array of shape [",
-                                          (long long) n_70233, "].",
-                                          "-> #0  loess.fut:484:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:18-55\n   #5  loess.fut:588:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:587:5-589:26\n   #9  loess.fut:571:1-610:26\n");
-                            if (memblock_unref(ctx, &mem_72611, "mem_72611") !=
-                                0)
-                                return 1;
-                            if (memblock_unref(ctx, &mem_72607, "mem_72607") !=
-                                0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_73020,
-                                               "ext_mem_73020") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_73028,
-                                               "ext_mem_73028") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_73036,
-                                               "ext_mem_73036") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_73044,
-                                               "ext_mem_73044") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_73052,
-                                               "ext_mem_73052") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_73060,
-                                               "ext_mem_73060") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &mem_out_73178,
-                                               "mem_out_73178") != 0)
-                                return 1;
-                            return 1;
-                        }
-                        
-                        int64_t x_71174 = ((int64_t *) mem_72652)[r_71169];
-                        int64_t abs_arg_71175 = sub64(x_71174, min_res_71102);
-                        int64_t abs_res_71176 = abs64(abs_arg_71175);
-                        bool x_71177 = sle64((int64_t) 0, max_res_71167);
-                        bool y_71178 = slt64(max_res_71167, n_70233);
-                        bool bounds_check_71179 = x_71177 && y_71178;
-                        bool index_certs_71180;
-                        
-                        if (!bounds_check_71179) {
-                            ctx->error =
-                                msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                          "Index [", (long long) max_res_71167,
-                                          "] out of bounds for array of shape [",
-                                          (long long) n_70233, "].",
-                                          "-> #0  loess.fut:483:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:18-55\n   #5  loess.fut:588:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:587:5-589:26\n   #9  loess.fut:571:1-610:26\n");
-                            if (memblock_unref(ctx, &mem_72611, "mem_72611") !=
-                                0)
-                                return 1;
-                            if (memblock_unref(ctx, &mem_72607, "mem_72607") !=
-                                0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_73020,
-                                               "ext_mem_73020") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_73028,
-                                               "ext_mem_73028") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_73036,
-                                               "ext_mem_73036") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_73044,
-                                               "ext_mem_73044") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_73052,
-                                               "ext_mem_73052") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &ext_mem_73060,
-                                               "ext_mem_73060") != 0)
-                                return 1;
-                            if (memblock_unref(ctx, &mem_out_73178,
-                                               "mem_out_73178") != 0)
-                                return 1;
-                            return 1;
-                        }
-                        
-                        int64_t x_71181 =
-                                ((int64_t *) mem_72652)[max_res_71167];
-                        int64_t abs_arg_71182 = sub64(x_71181, min_res_71102);
-                        int64_t abs_res_71183 = abs64(abs_arg_71182);
-                        int64_t max_res_71184 = smax64(abs_res_71176,
-                                                       abs_res_71183);
-                        float defunc_0_f_res_71185 =
-                              sitofp_i64_f32(max_res_71184);
-                        float defunc_1_f_res_71186 = max_res_71093 +
-                              defunc_0_f_res_71185;
-                        float defunc_2_reduce_res_71208;
-                        float defunc_2_reduce_res_71209;
-                        float defunc_2_reduce_res_71210;
-                        float redout_71764;
-                        float redout_71765;
-                        float redout_71766;
-                        
-                        redout_71764 = 0.0F;
-                        redout_71765 = 0.0F;
-                        redout_71766 = 0.0F;
-                        for (int64_t i_71769 = 0; i_71769 < q_70235;
-                             i_71769++) {
-                            float x_71223 = ((float *) mem_72694)[i_71769];
-                            bool cond_71224 = sle64(last_res_71072, i_71769);
-                            int64_t defunc_0_f_res_71225;
-                            
-                            if (cond_71224) {
-                                defunc_0_f_res_71225 = (int64_t) 0;
-                            } else {
-                                int64_t i_71226 = add64(max_res_71167, i_71769);
-                                int64_t defunc_0_add_arg_71227 =
-                                        ((int64_t *) mem_72652)[i_71226];
-                                int64_t defunc_1_add_res_71228 =
-                                        add64((int64_t) 1,
-                                              defunc_0_add_arg_71227);
-                                
-                                defunc_0_f_res_71225 = defunc_1_add_res_71228;
-                            }
-                            
-                            int64_t binop_p_71229 = sub64(defunc_0_f_res_71225,
-                                                          min_res_71102);
-                            float defunc_0_f_res_71230 =
-                                  sitofp_i64_f32(binop_p_71229);
-                            float abs_res_71231 =
-                                  (float) fabs(defunc_0_f_res_71230);
-                            float tmp1_71232 = abs_res_71231 /
-                                  defunc_1_f_res_71186;
-                            float x_71233 = tmp1_71232 * tmp1_71232;
-                            float y_71234 = tmp1_71232 * x_71233;
-                            float tmp2_71235 = 1.0F - y_71234;
-                            float x_71236 = tmp2_71235 * tmp2_71235;
-                            float tmp3_71237 = tmp2_71235 * x_71236;
-                            float tmp4_71238 = x_71223 * tmp3_71237;
-                            float defunc_1_f_res_71239 = defunc_0_f_res_71230 *
-                                  tmp4_71238;
-                            float defunc_1_f_res_71240 = defunc_0_f_res_71230 *
-                                  defunc_1_f_res_71239;
-                            float defunc_1_op_res_71215 = tmp4_71238 +
-                                  redout_71764;
-                            float defunc_1_op_res_71218 = defunc_1_f_res_71239 +
-                                  redout_71765;
-                            float defunc_1_op_res_71221 = defunc_1_f_res_71240 +
-                                  redout_71766;
-                            
-                            ((float *) mem_72731)[i_71769] =
-                                defunc_1_f_res_71239;
-                            ((float *) mem_72734)[i_71769] = tmp4_71238;
-                            
-                            float redout_tmp_73291 = defunc_1_op_res_71215;
-                            float redout_tmp_73292 = defunc_1_op_res_71218;
-                            float redout_tmp_73293 = defunc_1_op_res_71221;
-                            
-                            redout_71764 = redout_tmp_73291;
-                            redout_71765 = redout_tmp_73292;
-                            redout_71766 = redout_tmp_73293;
-                        }
-                        defunc_2_reduce_res_71208 = redout_71764;
-                        defunc_2_reduce_res_71209 = redout_71765;
-                        defunc_2_reduce_res_71210 = redout_71766;
-                        
-                        float x_71246 = defunc_2_reduce_res_71208 *
-                              defunc_2_reduce_res_71210;
-                        float y_71247 = defunc_2_reduce_res_71209 *
-                              defunc_2_reduce_res_71209;
-                        float y_71248 = x_71246 - y_71247;
-                        float det1_71249 = 1.0F / y_71248;
-                        float a11_71250 = defunc_2_reduce_res_71210 *
-                              det1_71249;
-                        float x_71251 = 0.0F - defunc_2_reduce_res_71209;
-                        float b11_71252 = det1_71249 * x_71251;
-                        float c11_71253 = defunc_2_reduce_res_71208 *
-                              det1_71249;
-                        float defunc_2_reduce_res_71254;
-                        float defunc_2_reduce_res_71255;
-                        float redout_71772;
-                        float redout_71773;
-                        
-                        redout_71772 = 0.0F;
-                        redout_71773 = 0.0F;
-                        for (int64_t i_71774 = 0; i_71774 < q_70235;
-                             i_71774++) {
-                            float x_71263 = ((float *) mem_72734)[i_71774];
-                            float x_71264 = ((float *) mem_72731)[i_71774];
-                            bool cond_71265 = sle64(last_res_71072, i_71774);
-                            float defunc_0_f_res_71266;
-                            
-                            if (cond_71265) {
-                                defunc_0_f_res_71266 = 0.0F;
-                            } else {
-                                int64_t i_71267 = add64(max_res_71167, i_71774);
-                                float defunc_0_add_arg_71268 =
-                                      ((float *) mem_72649)[i_71267];
-                                
-                                defunc_0_f_res_71266 = defunc_0_add_arg_71268;
-                            }
-                            
-                            float x_71269 = a11_71250 * x_71263;
-                            float y_71270 = b11_71252 * x_71264;
-                            float x_71271 = x_71269 + y_71270;
-                            float defunc_9_fit_fun_res_71272 =
-                                  defunc_0_f_res_71266 * x_71271;
-                            float x_71273 = b11_71252 * x_71263;
-                            float y_71274 = c11_71253 * x_71264;
-                            float x_71275 = x_71273 + y_71274;
-                            float defunc_9_slope_fun_res_71276 =
-                                  defunc_0_f_res_71266 * x_71275;
-                            float defunc_1_op_res_71258 =
-                                  defunc_9_fit_fun_res_71272 + redout_71772;
-                            float defunc_1_op_res_71261 =
-                                  defunc_9_slope_fun_res_71276 + redout_71773;
-                            float redout_tmp_73296 = defunc_1_op_res_71258;
-                            float redout_tmp_73297 = defunc_1_op_res_71261;
-                            
-                            redout_71772 = redout_tmp_73296;
-                            redout_71773 = redout_tmp_73297;
-                        }
-                        defunc_2_reduce_res_71254 = redout_71772;
-                        defunc_2_reduce_res_71255 = redout_71773;
-                        ((float *) mem_72607.mem)[i_71786 * n_m_70241 +
-                                                  i_71779] =
-                            defunc_2_reduce_res_71254;
-                        ((float *) mem_72611.mem)[i_71786 * n_m_70241 +
-                                                  i_71779] =
-                            defunc_2_reduce_res_71255;
-                    }
+                    defunc_2_reduce_res_71090 = redout_71777;
+                    ((float *) mem_72520.mem)[i_71785 * n_m_70288 + i_71781] =
+                        defunc_2_reduce_res_71090;
                 }
-                if (memblock_set(ctx, &ext_mem_73028, &mem_72607,
-                                 "mem_72607") != 0)
-                    return 1;
-                if (memblock_set(ctx, &ext_mem_73020, &mem_72611,
-                                 "mem_72611") != 0)
-                    return 1;
-                if (memblock_unref(ctx, &mem_72611, "mem_72611") != 0)
-                    return 1;
-                if (memblock_unref(ctx, &mem_72607, "mem_72607") != 0)
-                    return 1;
-            } else {
-                struct memblock mem_72800;
+            }
+            if (memblock_set(ctx, &ext_mem_73091, &mem_72520, "mem_72520") != 0)
+                return 1;
+            if (memblock_set(ctx, &ext_mem_73083, &mem_72516, "mem_72516") != 0)
+                return 1;
+            if (memblock_unref(ctx, &mem_72520, "mem_72520") != 0)
+                return 1;
+            if (memblock_unref(ctx, &mem_72516, "mem_72516") != 0)
+                return 1;
+        } else {
+            bool match_lit_71104 = (int64_t) 1 == degree_70283;
+            int64_t binop_x_72651 = m_70279 * n_m_70288;
+            int64_t binop_y_72652 = (int64_t) 4 * binop_x_72651;
+            int64_t bytes_72653 = smax64((int64_t) 0, binop_y_72652);
+            int64_t binop_y_72679 = (int64_t) 8 * n_70280;
+            int64_t bytes_72680 = smax64((int64_t) 0, binop_y_72679);
+            int64_t binop_y_72694 = (int64_t) 4 * n_70280;
+            int64_t bytes_72695 = smax64((int64_t) 0, binop_y_72694);
+            int64_t binop_y_72739 = (int64_t) 4 * q_70282;
+            int64_t bytes_72740 = smax64((int64_t) 0, binop_y_72739);
+            int64_t binop_x_72844 = m_70279 * n_m_70288;
+            int64_t binop_y_72845 = (int64_t) 4 * binop_x_72844;
+            int64_t bytes_72846 = smax64((int64_t) 0, binop_y_72845);
+            int64_t binop_y_72872 = (int64_t) 8 * n_70280;
+            int64_t bytes_72873 = smax64((int64_t) 0, binop_y_72872);
+            int64_t binop_y_72887 = (int64_t) 4 * n_70280;
+            int64_t bytes_72888 = smax64((int64_t) 0, binop_y_72887);
+            int64_t binop_y_72932 = (int64_t) 4 * q_70282;
+            int64_t bytes_72933 = smax64((int64_t) 0, binop_y_72932);
+            struct memblock ext_mem_73075;
+            
+            ext_mem_73075.references = NULL;
+            
+            struct memblock ext_mem_73067;
+            
+            ext_mem_73067.references = NULL;
+            if (match_lit_71104) {
+                struct memblock mem_72654;
                 
-                mem_72800.references = NULL;
-                if (memblock_alloc(ctx, &mem_72800, bytes_72799, "mem_72800")) {
+                mem_72654.references = NULL;
+                if (memblock_alloc(ctx, &mem_72654, bytes_72653, "mem_72654")) {
                     err = 1;
                     goto cleanup;
                 }
                 
-                struct memblock mem_72804;
+                struct memblock mem_72658;
                 
-                mem_72804.references = NULL;
-                if (memblock_alloc(ctx, &mem_72804, bytes_72799, "mem_72804")) {
+                mem_72658.references = NULL;
+                if (memblock_alloc(ctx, &mem_72658, bytes_72653, "mem_72658")) {
                     err = 1;
                     goto cleanup;
                 }
-                if (mem_72827_cached_sizze_73359 < (size_t) bytes_72826) {
-                    mem_72827 = realloc(mem_72827, bytes_72826);
-                    mem_72827_cached_sizze_73359 = bytes_72826;
+                if (mem_72681_cached_sizze_73399 < (size_t) bytes_72680) {
+                    mem_72681 = realloc(mem_72681, bytes_72680);
+                    mem_72681_cached_sizze_73399 = bytes_72680;
                 }
-                if (mem_72842_cached_sizze_73360 < (size_t) bytes_72841) {
-                    mem_72842 = realloc(mem_72842, bytes_72841);
-                    mem_72842_cached_sizze_73360 = bytes_72841;
+                if (mem_72696_cached_sizze_73400 < (size_t) bytes_72695) {
+                    mem_72696 = realloc(mem_72696, bytes_72695);
+                    mem_72696_cached_sizze_73400 = bytes_72695;
                 }
-                if (mem_72845_cached_sizze_73361 < (size_t) bytes_72826) {
-                    mem_72845 = realloc(mem_72845, bytes_72826);
-                    mem_72845_cached_sizze_73361 = bytes_72826;
+                if (mem_72699_cached_sizze_73401 < (size_t) bytes_72680) {
+                    mem_72699 = realloc(mem_72699, bytes_72680);
+                    mem_72699_cached_sizze_73401 = bytes_72680;
                 }
-                if (mem_72872_cached_sizze_73362 < (size_t) bytes_72826) {
-                    mem_72872 = realloc(mem_72872, bytes_72826);
-                    mem_72872_cached_sizze_73362 = bytes_72826;
+                if (mem_72726_cached_sizze_73402 < (size_t) bytes_72680) {
+                    mem_72726 = realloc(mem_72726, bytes_72680);
+                    mem_72726_cached_sizze_73402 = bytes_72680;
                 }
-                if (mem_72887_cached_sizze_73363 < (size_t) bytes_72886) {
-                    mem_72887 = realloc(mem_72887, bytes_72886);
-                    mem_72887_cached_sizze_73363 = bytes_72886;
+                if (mem_72741_cached_sizze_73403 < (size_t) bytes_72740) {
+                    mem_72741 = realloc(mem_72741, bytes_72740);
+                    mem_72741_cached_sizze_73403 = bytes_72740;
                 }
-                if (mem_72924_cached_sizze_73364 < (size_t) bytes_72886) {
-                    mem_72924 = realloc(mem_72924, bytes_72886);
-                    mem_72924_cached_sizze_73364 = bytes_72886;
+                if (mem_72778_cached_sizze_73404 < (size_t) bytes_72740) {
+                    mem_72778 = realloc(mem_72778, bytes_72740);
+                    mem_72778_cached_sizze_73404 = bytes_72740;
                 }
-                if (mem_72927_cached_sizze_73365 < (size_t) bytes_72886) {
-                    mem_72927 = realloc(mem_72927, bytes_72886);
-                    mem_72927_cached_sizze_73365 = bytes_72886;
+                if (mem_72781_cached_sizze_73405 < (size_t) bytes_72740) {
+                    mem_72781 = realloc(mem_72781, bytes_72740);
+                    mem_72781_cached_sizze_73405 = bytes_72740;
                 }
-                if (mem_72954_cached_sizze_73366 < (size_t) bytes_72886) {
-                    mem_72954 = realloc(mem_72954, bytes_72886);
-                    mem_72954_cached_sizze_73366 = bytes_72886;
-                }
-                if (mem_72957_cached_sizze_73367 < (size_t) bytes_72886) {
-                    mem_72957 = realloc(mem_72957, bytes_72886);
-                    mem_72957_cached_sizze_73367 = bytes_72886;
-                }
-                for (int64_t i_71844 = 0; i_71844 < m_70232; i_71844++) {
-                    int64_t discard_71794;
-                    int64_t scanacc_71790 = (int64_t) 0;
+                for (int64_t i_71833 = 0; i_71833 < m_70279; i_71833++) {
+                    int64_t discard_71792;
+                    int64_t scanacc_71788 = (int64_t) 0;
                     
-                    for (int64_t i_71792 = 0; i_71792 < n_70233; i_71792++) {
-                        float x_71287 = ((float *) Y_mem_71984.mem)[i_71844 *
-                                                                    n_70233 +
-                                                                    i_71792];
-                        bool isnan_res_71288;
+                    for (int64_t i_71790 = 0; i_71790 < n_70280; i_71790++) {
+                        float x_71115 = ((float *) Y_mem_72031.mem)[i_71833 *
+                                                                    n_70280 +
+                                                                    i_71790];
+                        bool isnan_res_71116;
                         
-                        isnan_res_71288 = futrts_isnan32(x_71287);
+                        isnan_res_71116 = futrts_isnan32(x_71115);
                         
-                        bool defunc_0_p_res_71289 = !isnan_res_71288;
-                        int64_t defunc_0_f_res_71290 =
-                                btoi_bool_i64(defunc_0_p_res_71289);
-                        int64_t defunc_1_op_res_71286 =
-                                add64(defunc_0_f_res_71290, scanacc_71790);
+                        bool defunc_0_p_res_71117 = !isnan_res_71116;
+                        int64_t defunc_0_f_res_71118 =
+                                btoi_bool_i64(defunc_0_p_res_71117);
+                        int64_t defunc_1_op_res_71114 =
+                                add64(defunc_0_f_res_71118, scanacc_71788);
                         
-                        ((int64_t *) mem_72827)[i_71792] =
-                            defunc_1_op_res_71286;
+                        ((int64_t *) mem_72681)[i_71790] =
+                            defunc_1_op_res_71114;
                         
-                        int64_t scanacc_tmp_73300 = defunc_1_op_res_71286;
+                        int64_t scanacc_tmp_73321 = defunc_1_op_res_71114;
                         
-                        scanacc_71790 = scanacc_tmp_73300;
+                        scanacc_71788 = scanacc_tmp_73321;
                     }
-                    discard_71794 = scanacc_71790;
+                    discard_71792 = scanacc_71788;
                     
-                    int64_t last_res_71291 = ((int64_t *) mem_72827)[i_70247];
+                    int64_t last_res_71119 = ((int64_t *) mem_72681)[i_70294];
                     
-                    for (int64_t i_73302 = 0; i_73302 < n_70233; i_73302++) {
-                        ((float *) mem_72842)[i_73302] = 0.0F;
+                    for (int64_t i_73323 = 0; i_73323 < n_70280; i_73323++) {
+                        ((float *) mem_72696)[i_73323] = 0.0F;
                     }
-                    for (int64_t i_73303 = 0; i_73303 < n_70233; i_73303++) {
-                        ((int64_t *) mem_72845)[i_73303] = (int64_t) -1;
+                    for (int64_t i_73324 = 0; i_73324 < n_70280; i_73324++) {
+                        ((int64_t *) mem_72699)[i_73324] = (int64_t) -1;
                     }
-                    for (int64_t write_iter_71795 = 0; write_iter_71795 <
-                         n_70233; write_iter_71795++) {
-                        float write_iv_71798 =
-                              ((float *) Y_mem_71984.mem)[i_71844 * n_70233 +
-                                                          write_iter_71795];
-                        int64_t write_iv_71799 =
-                                ((int64_t *) mem_72827)[write_iter_71795];
-                        bool isnan_res_71299;
+                    for (int64_t write_iter_71793 = 0; write_iter_71793 <
+                         n_70280; write_iter_71793++) {
+                        float write_iv_71796 =
+                              ((float *) Y_mem_72031.mem)[i_71833 * n_70280 +
+                                                          write_iter_71793];
+                        int64_t write_iv_71797 =
+                                ((int64_t *) mem_72681)[write_iter_71793];
+                        bool isnan_res_71127;
                         
-                        isnan_res_71299 = futrts_isnan32(write_iv_71798);
+                        isnan_res_71127 = futrts_isnan32(write_iv_71796);
                         
-                        bool defunc_0_p_res_71300 = !isnan_res_71299;
-                        int64_t defunc_1_f_res_71301;
+                        bool defunc_0_p_res_71128 = !isnan_res_71127;
+                        int64_t defunc_1_f_res_71129;
                         
-                        if (defunc_0_p_res_71300) {
-                            int64_t defunc_1_f_res_t_res_71302 =
-                                    sub64(write_iv_71799, (int64_t) 1);
+                        if (defunc_0_p_res_71128) {
+                            int64_t defunc_1_f_res_t_res_71130 =
+                                    sub64(write_iv_71797, (int64_t) 1);
                             
-                            defunc_1_f_res_71301 = defunc_1_f_res_t_res_71302;
+                            defunc_1_f_res_71129 = defunc_1_f_res_t_res_71130;
                         } else {
-                            defunc_1_f_res_71301 = (int64_t) -1;
+                            defunc_1_f_res_71129 = (int64_t) -1;
                         }
-                        if (sle64((int64_t) 0, defunc_1_f_res_71301) &&
-                            slt64(defunc_1_f_res_71301, n_70233)) {
-                            ((int64_t *) mem_72845)[defunc_1_f_res_71301] =
-                                write_iter_71795;
+                        if (sle64((int64_t) 0, defunc_1_f_res_71129) &&
+                            slt64(defunc_1_f_res_71129, n_70280)) {
+                            ((int64_t *) mem_72699)[defunc_1_f_res_71129] =
+                                write_iter_71793;
                         }
-                        if (sle64((int64_t) 0, defunc_1_f_res_71301) &&
-                            slt64(defunc_1_f_res_71301, n_70233)) {
+                        if (sle64((int64_t) 0, defunc_1_f_res_71129) &&
+                            slt64(defunc_1_f_res_71129, n_70280)) {
                             if ((int64_t) 4 > 0)
-                                memmove(mem_72842 + defunc_1_f_res_71301 *
-                                        (int64_t) 4, Y_mem_71984.mem +
-                                        (i_71844 * n_70233 + write_iter_71795) *
+                                memmove(mem_72696 + defunc_1_f_res_71129 *
+                                        (int64_t) 4, Y_mem_72031.mem +
+                                        (i_71833 * n_70280 + write_iter_71793) *
                                         (int64_t) 4, (int64_t) 4);
                         }
                     }
-                    for (int64_t i_71805 = 0; i_71805 < n_70233; i_71805++) {
-                        int64_t x_71304 = ((int64_t *) mem_72845)[i_71805];
-                        int64_t defunc_0_f_res_71305 = add64((int64_t) 1,
-                                                             x_71304);
+                    for (int64_t i_71803 = 0; i_71803 < n_70280; i_71803++) {
+                        int64_t x_71132 = ((int64_t *) mem_72699)[i_71803];
+                        int64_t defunc_0_f_res_71133 = add64((int64_t) 1,
+                                                             x_71132);
                         
-                        ((int64_t *) mem_72872)[i_71805] = defunc_0_f_res_71305;
+                        ((int64_t *) mem_72726)[i_71803] = defunc_0_f_res_71133;
                     }
                     
-                    int64_t min_arg_71306 = sub64(last_res_71291, (int64_t) 1);
-                    int64_t min_arg_71307 = sub64(last_res_71291,
-                                                  min_res_70253);
-                    int64_t min_res_71308 = smin64(q_70235, last_res_71291);
-                    float i64_res_71309 = sitofp_i64_f32(last_res_71291);
-                    float x_71310 = i64_res_70259 - i64_res_71309;
-                    float max_arg_71311 = x_71310 / 2.0F;
-                    float max_res_71312 = fmax32(0.0F, max_arg_71311);
+                    int64_t min_arg_71134 = sub64(last_res_71119, (int64_t) 1);
+                    int64_t min_arg_71135 = sub64(last_res_71119,
+                                                  min_res_70300);
+                    int64_t min_res_71136 = smin64(q_70282, last_res_71119);
+                    float i64_res_71137 = sitofp_i64_f32(last_res_71119);
+                    float x_71138 = i64_res_70306 - i64_res_71137;
+                    float max_arg_71139 = x_71138 / 2.0F;
+                    float max_res_71140 = fmax32(0.0F, max_arg_71139);
                     
-                    for (int64_t i_71809 = 0; i_71809 < q_70235; i_71809++) {
-                        bool cond_71315 = sle64(last_res_71291, i_71809);
-                        float defunc_0_f_res_71316;
+                    for (int64_t i_71807 = 0; i_71807 < q_70282; i_71807++) {
+                        bool cond_71143 = sle64(last_res_71119, i_71807);
+                        float defunc_0_f_res_71144;
                         
-                        if (cond_71315) {
-                            defunc_0_f_res_71316 = 0.0F;
+                        if (cond_71143) {
+                            defunc_0_f_res_71144 = 0.0F;
                         } else {
-                            defunc_0_f_res_71316 = 1.0F;
+                            defunc_0_f_res_71144 = 1.0F;
                         }
-                        ((float *) mem_72887)[i_71809] = defunc_0_f_res_71316;
+                        ((float *) mem_72741)[i_71807] = defunc_0_f_res_71144;
                     }
-                    for (int64_t i_71837 = 0; i_71837 < n_m_70241; i_71837++) {
-                        int64_t min_arg_71320 = mul64(jump_70237, i_71837);
-                        int64_t min_res_71321 = smin64(i_70247, min_arg_71320);
-                        int64_t defunc_0_g_res_71322 = add64((int64_t) 1,
-                                                             min_res_71321);
-                        bool init_idx_71323;
-                        int64_t init_idx_71324;
-                        int64_t init_idx_71325;
-                        bool loop_while_71326;
-                        int64_t low_71327;
-                        int64_t high_71328;
+                    for (int64_t i_71826 = 0; i_71826 < n_m_70288; i_71826++) {
+                        int64_t min_arg_71148 = mul64(jump_70284, i_71826);
+                        int64_t min_res_71149 = smin64(i_70294, min_arg_71148);
+                        int64_t defunc_0_g_res_71150 = add64((int64_t) 1,
+                                                             min_res_71149);
+                        bool init_idx_71151;
+                        int64_t init_idx_71152;
+                        int64_t init_idx_71153;
+                        bool loop_while_71154;
+                        int64_t low_71155;
+                        int64_t high_71156;
                         
-                        loop_while_71326 = x_70248;
-                        low_71327 = (int64_t) 0;
-                        high_71328 = i_70247;
-                        while (loop_while_71326) {
-                            int64_t x_71329 = add64(low_71327, high_71328);
-                            int64_t mid_71330 = sdiv64(x_71329, (int64_t) 2);
-                            bool x_71331 = sle64((int64_t) 0, mid_71330);
-                            bool y_71332 = slt64(mid_71330, n_70233);
-                            bool bounds_check_71333 = x_71331 && y_71332;
-                            bool index_certs_71334;
+                        loop_while_71154 = x_70295;
+                        low_71155 = (int64_t) 0;
+                        high_71156 = i_70294;
+                        while (loop_while_71154) {
+                            int64_t x_71157 = add64(low_71155, high_71156);
+                            int64_t mid_71158 = sdiv64(x_71157, (int64_t) 2);
+                            bool x_71159 = sle64((int64_t) 0, mid_71158);
+                            bool y_71160 = slt64(mid_71158, n_70280);
+                            bool bounds_check_71161 = x_71159 && y_71160;
+                            bool index_certs_71162;
                             
-                            if (!bounds_check_71333) {
+                            if (!bounds_check_71161) {
                                 ctx->error =
                                     msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                              "Index [", (long long) mid_71330,
+                                              "Index [", (long long) mid_71158,
                                               "] out of bounds for array of shape [",
-                                              (long long) n_70233, "].",
-                                              "-> #0  loess.fut:449:26-36\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:588:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:587:5-589:26\n   #10 loess.fut:571:1-610:26\n");
-                                if (memblock_unref(ctx, &mem_72804,
-                                                   "mem_72804") != 0)
+                                              (long long) n_70280, "].",
+                                              "-> #0  loess.fut:449:26-36\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:589:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:588:5-590:26\n   #10 loess.fut:572:1-611:26\n");
+                                if (memblock_unref(ctx, &mem_72658,
+                                                   "mem_72658") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &mem_72800,
-                                                   "mem_72800") != 0)
+                                if (memblock_unref(ctx, &mem_72654,
+                                                   "mem_72654") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73020,
-                                                   "ext_mem_73020") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73067,
+                                                   "ext_mem_73067") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73028,
-                                                   "ext_mem_73028") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73075,
+                                                   "ext_mem_73075") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73036,
-                                                   "ext_mem_73036") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73083,
+                                                   "ext_mem_73083") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73044,
-                                                   "ext_mem_73044") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73091,
+                                                   "ext_mem_73091") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73052,
-                                                   "ext_mem_73052") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73099,
+                                                   "ext_mem_73099") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73060,
-                                                   "ext_mem_73060") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73107,
+                                                   "ext_mem_73107") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &mem_out_73178,
-                                                   "mem_out_73178") != 0)
+                                if (memblock_unref(ctx, &mem_out_73225,
+                                                   "mem_out_73225") != 0)
                                     return 1;
                                 return 1;
                             }
                             
-                            int64_t mid_id_71335 =
-                                    ((int64_t *) mem_72872)[mid_71330];
-                            bool cond_71336 = slt64(mid_id_71335, (int64_t) 0);
-                            int64_t mid_idx_71337;
+                            int64_t mid_id_71163 =
+                                    ((int64_t *) mem_72726)[mid_71158];
+                            bool cond_71164 = slt64(mid_id_71163, (int64_t) 0);
+                            int64_t mid_idx_71165;
                             
-                            if (cond_71336) {
-                                mid_idx_71337 = (int64_t) 9223372036854775807;
+                            if (cond_71164) {
+                                mid_idx_71165 = (int64_t) 9223372036854775807;
                             } else {
-                                mid_idx_71337 = mid_id_71335;
+                                mid_idx_71165 = mid_id_71163;
                             }
                             
-                            bool cond_71338 = sle64(defunc_0_g_res_71322,
-                                                    mid_idx_71337);
-                            int64_t loopres_71339;
-                            int64_t loopres_71340;
+                            bool cond_71166 = sle64(defunc_0_g_res_71150,
+                                                    mid_idx_71165);
+                            int64_t loopres_71167;
+                            int64_t loopres_71168;
                             
-                            if (cond_71338) {
-                                int64_t loopres_t_res_71341 = sub64(mid_71330,
+                            if (cond_71166) {
+                                int64_t loopres_t_res_71169 = sub64(mid_71158,
                                                                     (int64_t) 1);
                                 
-                                loopres_71339 = low_71327;
-                                loopres_71340 = loopres_t_res_71341;
+                                loopres_71167 = low_71155;
+                                loopres_71168 = loopres_t_res_71169;
                             } else {
-                                int64_t loopres_f_res_71342 = add64((int64_t) 1,
-                                                                    mid_71330);
+                                int64_t loopres_f_res_71170 = add64((int64_t) 1,
+                                                                    mid_71158);
                                 
-                                loopres_71339 = loopres_f_res_71342;
-                                loopres_71340 = high_71328;
+                                loopres_71167 = loopres_f_res_71170;
+                                loopres_71168 = high_71156;
                             }
                             
-                            bool loop_cond_71343 = sle64(loopres_71339,
-                                                         loopres_71340);
-                            bool loop_while_tmp_73310 = loop_cond_71343;
-                            int64_t low_tmp_73311 = loopres_71339;
-                            int64_t high_tmp_73312 = loopres_71340;
+                            bool loop_cond_71171 = sle64(loopres_71167,
+                                                         loopres_71168);
+                            bool loop_while_tmp_73331 = loop_cond_71171;
+                            int64_t low_tmp_73332 = loopres_71167;
+                            int64_t high_tmp_73333 = loopres_71168;
                             
-                            loop_while_71326 = loop_while_tmp_73310;
-                            low_71327 = low_tmp_73311;
-                            high_71328 = high_tmp_73312;
+                            loop_while_71154 = loop_while_tmp_73331;
+                            low_71155 = low_tmp_73332;
+                            high_71156 = high_tmp_73333;
                         }
-                        init_idx_71323 = loop_while_71326;
-                        init_idx_71324 = low_71327;
-                        init_idx_71325 = high_71328;
+                        init_idx_71151 = loop_while_71154;
+                        init_idx_71152 = low_71155;
+                        init_idx_71153 = high_71156;
                         
-                        bool idx_71344;
-                        int64_t idx_71345;
-                        int64_t idx_71346;
-                        int64_t idx_71347;
-                        bool loop_while_71348;
-                        int64_t l_idx_71349;
-                        int64_t r_idx_71350;
-                        int64_t span_71351;
+                        bool idx_71172;
+                        int64_t idx_71173;
+                        int64_t idx_71174;
+                        int64_t idx_71175;
+                        bool loop_while_71176;
+                        int64_t l_idx_71177;
+                        int64_t r_idx_71178;
+                        int64_t span_71179;
                         
-                        loop_while_71348 = loop_cond_70258;
-                        l_idx_71349 = init_idx_71324;
-                        r_idx_71350 = init_idx_71324;
-                        span_71351 = (int64_t) 1;
-                        while (loop_while_71348) {
-                            int64_t max_arg_71352 = sub64(l_idx_71349,
+                        loop_while_71176 = loop_cond_70305;
+                        l_idx_71177 = init_idx_71152;
+                        r_idx_71178 = init_idx_71152;
+                        span_71179 = (int64_t) 1;
+                        while (loop_while_71176) {
+                            int64_t max_arg_71180 = sub64(l_idx_71177,
                                                           (int64_t) 1);
-                            int64_t max_res_71353 = smax64((int64_t) 0,
-                                                           max_arg_71352);
-                            int64_t min_arg_71354 = add64((int64_t) 1,
-                                                          r_idx_71350);
-                            int64_t min_res_71355 = smin64(min_arg_71306,
-                                                           min_arg_71354);
-                            bool x_71356 = sle64((int64_t) 0, max_res_71353);
-                            bool y_71357 = slt64(max_res_71353, n_70233);
-                            bool bounds_check_71358 = x_71356 && y_71357;
-                            bool index_certs_71359;
+                            int64_t max_res_71181 = smax64((int64_t) 0,
+                                                           max_arg_71180);
+                            int64_t min_arg_71182 = add64((int64_t) 1,
+                                                          r_idx_71178);
+                            int64_t min_res_71183 = smin64(min_arg_71134,
+                                                           min_arg_71182);
+                            bool x_71184 = sle64((int64_t) 0, max_res_71181);
+                            bool y_71185 = slt64(max_res_71181, n_70280);
+                            bool bounds_check_71186 = x_71184 && y_71185;
+                            bool index_certs_71187;
                             
-                            if (!bounds_check_71358) {
+                            if (!bounds_check_71186) {
                                 ctx->error =
                                     msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
                                               "Index [",
-                                              (long long) max_res_71353,
+                                              (long long) max_res_71181,
                                               "] out of bounds for array of shape [",
-                                              (long long) n_70233, "].",
-                                              "-> #0  loess.fut:459:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:588:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:587:5-589:26\n   #10 loess.fut:571:1-610:26\n");
-                                if (memblock_unref(ctx, &mem_72804,
-                                                   "mem_72804") != 0)
+                                              (long long) n_70280, "].",
+                                              "-> #0  loess.fut:459:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:589:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:588:5-590:26\n   #10 loess.fut:572:1-611:26\n");
+                                if (memblock_unref(ctx, &mem_72658,
+                                                   "mem_72658") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &mem_72800,
-                                                   "mem_72800") != 0)
+                                if (memblock_unref(ctx, &mem_72654,
+                                                   "mem_72654") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73020,
-                                                   "ext_mem_73020") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73067,
+                                                   "ext_mem_73067") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73028,
-                                                   "ext_mem_73028") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73075,
+                                                   "ext_mem_73075") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73036,
-                                                   "ext_mem_73036") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73083,
+                                                   "ext_mem_73083") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73044,
-                                                   "ext_mem_73044") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73091,
+                                                   "ext_mem_73091") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73052,
-                                                   "ext_mem_73052") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73099,
+                                                   "ext_mem_73099") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73060,
-                                                   "ext_mem_73060") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73107,
+                                                   "ext_mem_73107") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &mem_out_73178,
-                                                   "mem_out_73178") != 0)
+                                if (memblock_unref(ctx, &mem_out_73225,
+                                                   "mem_out_73225") != 0)
                                     return 1;
                                 return 1;
                             }
                             
-                            int64_t x_71360 =
-                                    ((int64_t *) mem_72872)[max_res_71353];
-                            int64_t abs_arg_71361 = sub64(x_71360,
-                                                          defunc_0_g_res_71322);
-                            int64_t abs_res_71362 = abs64(abs_arg_71361);
-                            bool x_71363 = sle64((int64_t) 0, min_res_71355);
-                            bool y_71364 = slt64(min_res_71355, n_70233);
-                            bool bounds_check_71365 = x_71363 && y_71364;
-                            bool index_certs_71366;
+                            int64_t x_71188 =
+                                    ((int64_t *) mem_72726)[max_res_71181];
+                            int64_t abs_arg_71189 = sub64(x_71188,
+                                                          defunc_0_g_res_71150);
+                            int64_t abs_res_71190 = abs64(abs_arg_71189);
+                            bool x_71191 = sle64((int64_t) 0, min_res_71183);
+                            bool y_71192 = slt64(min_res_71183, n_70280);
+                            bool bounds_check_71193 = x_71191 && y_71192;
+                            bool index_certs_71194;
                             
-                            if (!bounds_check_71365) {
+                            if (!bounds_check_71193) {
                                 ctx->error =
                                     msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
                                               "Index [",
-                                              (long long) min_res_71355,
+                                              (long long) min_res_71183,
                                               "] out of bounds for array of shape [",
-                                              (long long) n_70233, "].",
-                                              "-> #0  loess.fut:460:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:588:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:587:5-589:26\n   #10 loess.fut:571:1-610:26\n");
-                                if (memblock_unref(ctx, &mem_72804,
-                                                   "mem_72804") != 0)
+                                              (long long) n_70280, "].",
+                                              "-> #0  loess.fut:460:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:589:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:588:5-590:26\n   #10 loess.fut:572:1-611:26\n");
+                                if (memblock_unref(ctx, &mem_72658,
+                                                   "mem_72658") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &mem_72800,
-                                                   "mem_72800") != 0)
+                                if (memblock_unref(ctx, &mem_72654,
+                                                   "mem_72654") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73020,
-                                                   "ext_mem_73020") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73067,
+                                                   "ext_mem_73067") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73028,
-                                                   "ext_mem_73028") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73075,
+                                                   "ext_mem_73075") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73036,
-                                                   "ext_mem_73036") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73083,
+                                                   "ext_mem_73083") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73044,
-                                                   "ext_mem_73044") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73091,
+                                                   "ext_mem_73091") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73052,
-                                                   "ext_mem_73052") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73099,
+                                                   "ext_mem_73099") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &ext_mem_73060,
-                                                   "ext_mem_73060") != 0)
+                                if (memblock_unref(ctx, &ext_mem_73107,
+                                                   "ext_mem_73107") != 0)
                                     return 1;
-                                if (memblock_unref(ctx, &mem_out_73178,
-                                                   "mem_out_73178") != 0)
+                                if (memblock_unref(ctx, &mem_out_73225,
+                                                   "mem_out_73225") != 0)
                                     return 1;
                                 return 1;
                             }
                             
-                            int64_t x_71367 =
-                                    ((int64_t *) mem_72872)[min_res_71355];
-                            int64_t abs_arg_71368 = sub64(x_71367,
-                                                          defunc_0_g_res_71322);
-                            int64_t abs_res_71369 = abs64(abs_arg_71368);
-                            bool cond_71370 = max_res_71353 == l_idx_71349;
-                            int64_t loopres_71371;
-                            int64_t loopres_71372;
-                            int64_t loopres_71373;
+                            int64_t x_71195 =
+                                    ((int64_t *) mem_72726)[min_res_71183];
+                            int64_t abs_arg_71196 = sub64(x_71195,
+                                                          defunc_0_g_res_71150);
+                            int64_t abs_res_71197 = abs64(abs_arg_71196);
+                            bool cond_71198 = max_res_71181 == l_idx_71177;
+                            int64_t loopres_71199;
+                            int64_t loopres_71200;
+                            int64_t loopres_71201;
                             
-                            if (cond_71370) {
-                                loopres_71371 = l_idx_71349;
-                                loopres_71372 = r_idx_71350;
-                                loopres_71373 = min_res_70253;
+                            if (cond_71198) {
+                                loopres_71199 = l_idx_71177;
+                                loopres_71200 = r_idx_71178;
+                                loopres_71201 = min_res_70300;
                             } else {
-                                bool cond_71374 = slt64(abs_res_71362,
-                                                        abs_res_71369);
-                                bool cond_f_res_71375 = min_res_71355 ==
-                                     r_idx_71350;
-                                bool x_71376 = !cond_71374;
-                                bool y_71377 = cond_f_res_71375 && x_71376;
-                                bool cond_71378 = cond_71374 || y_71377;
-                                int64_t loopres_f_res_71379;
+                                bool cond_71202 = slt64(abs_res_71190,
+                                                        abs_res_71197);
+                                bool cond_f_res_71203 = min_res_71183 ==
+                                     r_idx_71178;
+                                bool x_71204 = !cond_71202;
+                                bool y_71205 = cond_f_res_71203 && x_71204;
+                                bool cond_71206 = cond_71202 || y_71205;
+                                int64_t loopres_f_res_71207;
                                 
-                                if (cond_71378) {
-                                    loopres_f_res_71379 = max_res_71353;
+                                if (cond_71206) {
+                                    loopres_f_res_71207 = max_res_71181;
                                 } else {
-                                    loopres_f_res_71379 = l_idx_71349;
+                                    loopres_f_res_71207 = l_idx_71177;
                                 }
                                 
-                                int64_t loopres_f_res_71380;
+                                int64_t loopres_f_res_71208;
                                 
-                                if (cond_71378) {
-                                    loopres_f_res_71380 = r_idx_71350;
+                                if (cond_71206) {
+                                    loopres_f_res_71208 = r_idx_71178;
                                 } else {
-                                    loopres_f_res_71380 = min_res_71355;
+                                    loopres_f_res_71208 = min_res_71183;
                                 }
                                 
-                                int64_t loopres_f_res_71381;
+                                int64_t loopres_f_res_71209;
                                 
-                                if (cond_71378) {
-                                    int64_t loopres_f_res_t_res_71382 =
-                                            add64((int64_t) 1, span_71351);
+                                if (cond_71206) {
+                                    int64_t loopres_f_res_t_res_71210 =
+                                            add64((int64_t) 1, span_71179);
                                     
-                                    loopres_f_res_71381 =
-                                        loopres_f_res_t_res_71382;
+                                    loopres_f_res_71209 =
+                                        loopres_f_res_t_res_71210;
                                 } else {
-                                    int64_t loopres_f_res_f_res_71383 =
-                                            add64((int64_t) 1, span_71351);
+                                    int64_t loopres_f_res_f_res_71211 =
+                                            add64((int64_t) 1, span_71179);
                                     
-                                    loopres_f_res_71381 =
-                                        loopres_f_res_f_res_71383;
+                                    loopres_f_res_71209 =
+                                        loopres_f_res_f_res_71211;
                                 }
-                                loopres_71371 = loopres_f_res_71379;
-                                loopres_71372 = loopres_f_res_71380;
-                                loopres_71373 = loopres_f_res_71381;
+                                loopres_71199 = loopres_f_res_71207;
+                                loopres_71200 = loopres_f_res_71208;
+                                loopres_71201 = loopres_f_res_71209;
                             }
                             
-                            bool loop_cond_71384 = slt64(loopres_71373,
-                                                         min_res_70253);
-                            bool loop_while_tmp_73313 = loop_cond_71384;
-                            int64_t l_idx_tmp_73314 = loopres_71371;
-                            int64_t r_idx_tmp_73315 = loopres_71372;
-                            int64_t span_tmp_73316 = loopres_71373;
+                            bool loop_cond_71212 = slt64(loopres_71201,
+                                                         min_res_70300);
+                            bool loop_while_tmp_73334 = loop_cond_71212;
+                            int64_t l_idx_tmp_73335 = loopres_71199;
+                            int64_t r_idx_tmp_73336 = loopres_71200;
+                            int64_t span_tmp_73337 = loopres_71201;
                             
-                            loop_while_71348 = loop_while_tmp_73313;
-                            l_idx_71349 = l_idx_tmp_73314;
-                            r_idx_71350 = r_idx_tmp_73315;
-                            span_71351 = span_tmp_73316;
+                            loop_while_71176 = loop_while_tmp_73334;
+                            l_idx_71177 = l_idx_tmp_73335;
+                            r_idx_71178 = r_idx_tmp_73336;
+                            span_71179 = span_tmp_73337;
                         }
-                        idx_71344 = loop_while_71348;
-                        idx_71345 = l_idx_71349;
-                        idx_71346 = r_idx_71350;
-                        idx_71347 = span_71351;
+                        idx_71172 = loop_while_71176;
+                        idx_71173 = l_idx_71177;
+                        idx_71174 = r_idx_71178;
+                        idx_71175 = span_71179;
                         
-                        int64_t min_res_71385 = smin64(min_arg_71307,
-                                                       idx_71345);
-                        int64_t max_res_71386 = smax64((int64_t) 0,
-                                                       min_res_71385);
-                        int64_t x_71387 = add64(min_res_71308, max_res_71386);
-                        int64_t r_71388 = sub64(x_71387, (int64_t) 1);
-                        bool x_71389 = sle64((int64_t) 0, r_71388);
-                        bool y_71390 = slt64(r_71388, n_70233);
-                        bool bounds_check_71391 = x_71389 && y_71390;
-                        bool index_certs_71392;
+                        int64_t min_res_71213 = smin64(min_arg_71135,
+                                                       idx_71173);
+                        int64_t max_res_71214 = smax64((int64_t) 0,
+                                                       min_res_71213);
+                        int64_t x_71215 = add64(min_res_71136, max_res_71214);
+                        int64_t r_71216 = sub64(x_71215, (int64_t) 1);
+                        bool x_71217 = sle64((int64_t) 0, r_71216);
+                        bool y_71218 = slt64(r_71216, n_70280);
+                        bool bounds_check_71219 = x_71217 && y_71218;
+                        bool index_certs_71220;
                         
-                        if (!bounds_check_71391) {
+                        if (!bounds_check_71219) {
                             ctx->error =
                                 msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                          "Index [", (long long) r_71388,
+                                          "Index [", (long long) r_71216,
                                           "] out of bounds for array of shape [",
-                                          (long long) n_70233, "].",
-                                          "-> #0  loess.fut:484:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:18-55\n   #5  loess.fut:588:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:587:5-589:26\n   #9  loess.fut:571:1-610:26\n");
-                            if (memblock_unref(ctx, &mem_72804, "mem_72804") !=
+                                          (long long) n_70280, "].",
+                                          "-> #0  loess.fut:484:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:16-51\n   #5  loess.fut:589:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:588:5-590:26\n   #9  loess.fut:572:1-611:26\n");
+                            if (memblock_unref(ctx, &mem_72658, "mem_72658") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_72800, "mem_72800") !=
+                            if (memblock_unref(ctx, &mem_72654, "mem_72654") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73020,
-                                               "ext_mem_73020") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73067,
+                                               "ext_mem_73067") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73028,
-                                               "ext_mem_73028") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73075,
+                                               "ext_mem_73075") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73036,
-                                               "ext_mem_73036") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73083,
+                                               "ext_mem_73083") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73044,
-                                               "ext_mem_73044") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73091,
+                                               "ext_mem_73091") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73052,
-                                               "ext_mem_73052") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73099,
+                                               "ext_mem_73099") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73060,
-                                               "ext_mem_73060") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73107,
+                                               "ext_mem_73107") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_out_73178,
-                                               "mem_out_73178") != 0)
+                            if (memblock_unref(ctx, &mem_out_73225,
+                                               "mem_out_73225") != 0)
                                 return 1;
                             return 1;
                         }
                         
-                        int64_t x_71393 = ((int64_t *) mem_72845)[r_71388];
-                        int64_t abs_arg_71394 = sub64(x_71393, min_res_71321);
-                        int64_t abs_res_71395 = abs64(abs_arg_71394);
-                        bool x_71396 = sle64((int64_t) 0, max_res_71386);
-                        bool y_71397 = slt64(max_res_71386, n_70233);
-                        bool bounds_check_71398 = x_71396 && y_71397;
-                        bool index_certs_71399;
+                        int64_t x_71221 = ((int64_t *) mem_72699)[r_71216];
+                        int64_t abs_arg_71222 = sub64(x_71221, min_res_71149);
+                        int64_t abs_res_71223 = abs64(abs_arg_71222);
+                        bool x_71224 = sle64((int64_t) 0, max_res_71214);
+                        bool y_71225 = slt64(max_res_71214, n_70280);
+                        bool bounds_check_71226 = x_71224 && y_71225;
+                        bool index_certs_71227;
                         
-                        if (!bounds_check_71398) {
+                        if (!bounds_check_71226) {
                             ctx->error =
                                 msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                          "Index [", (long long) max_res_71386,
+                                          "Index [", (long long) max_res_71214,
                                           "] out of bounds for array of shape [",
-                                          (long long) n_70233, "].",
-                                          "-> #0  loess.fut:483:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:18-55\n   #5  loess.fut:588:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:587:5-589:26\n   #9  loess.fut:571:1-610:26\n");
-                            if (memblock_unref(ctx, &mem_72804, "mem_72804") !=
+                                          (long long) n_70280, "].",
+                                          "-> #0  loess.fut:483:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:16-51\n   #5  loess.fut:589:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:588:5-590:26\n   #9  loess.fut:572:1-611:26\n");
+                            if (memblock_unref(ctx, &mem_72658, "mem_72658") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_72800, "mem_72800") !=
+                            if (memblock_unref(ctx, &mem_72654, "mem_72654") !=
                                 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73020,
-                                               "ext_mem_73020") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73067,
+                                               "ext_mem_73067") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73028,
-                                               "ext_mem_73028") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73075,
+                                               "ext_mem_73075") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73036,
-                                               "ext_mem_73036") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73083,
+                                               "ext_mem_73083") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73044,
-                                               "ext_mem_73044") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73091,
+                                               "ext_mem_73091") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73052,
-                                               "ext_mem_73052") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73099,
+                                               "ext_mem_73099") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &ext_mem_73060,
-                                               "ext_mem_73060") != 0)
+                            if (memblock_unref(ctx, &ext_mem_73107,
+                                               "ext_mem_73107") != 0)
                                 return 1;
-                            if (memblock_unref(ctx, &mem_out_73178,
-                                               "mem_out_73178") != 0)
+                            if (memblock_unref(ctx, &mem_out_73225,
+                                               "mem_out_73225") != 0)
                                 return 1;
                             return 1;
                         }
                         
-                        int64_t x_71400 =
-                                ((int64_t *) mem_72845)[max_res_71386];
-                        int64_t abs_arg_71401 = sub64(x_71400, min_res_71321);
-                        int64_t abs_res_71402 = abs64(abs_arg_71401);
-                        int64_t max_res_71403 = smax64(abs_res_71395,
-                                                       abs_res_71402);
-                        float defunc_0_f_res_71404 =
-                              sitofp_i64_f32(max_res_71403);
-                        float defunc_1_f_res_71405 = max_res_71312 +
-                              defunc_0_f_res_71404;
+                        int64_t x_71228 =
+                                ((int64_t *) mem_72699)[max_res_71214];
+                        int64_t abs_arg_71229 = sub64(x_71228, min_res_71149);
+                        int64_t abs_res_71230 = abs64(abs_arg_71229);
+                        int64_t max_res_71231 = smax64(abs_res_71223,
+                                                       abs_res_71230);
+                        float defunc_0_f_res_71232 =
+                              sitofp_i64_f32(max_res_71231);
+                        float defunc_1_f_res_71233 = max_res_71140 +
+                              defunc_0_f_res_71232;
+                        float defunc_2_reduce_res_71255;
+                        float defunc_2_reduce_res_71256;
+                        float defunc_2_reduce_res_71257;
+                        float redout_71811;
+                        float redout_71812;
+                        float redout_71813;
                         
-                        for (int64_t i_71815 = 0; i_71815 < q_70235;
-                             i_71815++) {
-                            float x_71409 = ((float *) mem_72887)[i_71815];
-                            bool cond_71410 = sle64(last_res_71291, i_71815);
-                            int64_t defunc_0_f_res_71411;
+                        redout_71811 = 0.0F;
+                        redout_71812 = 0.0F;
+                        redout_71813 = 0.0F;
+                        for (int64_t i_71816 = 0; i_71816 < q_70282;
+                             i_71816++) {
+                            float x_71270 = ((float *) mem_72741)[i_71816];
+                            bool cond_71271 = sle64(last_res_71119, i_71816);
+                            int64_t defunc_0_f_res_71272;
                             
-                            if (cond_71410) {
-                                defunc_0_f_res_71411 = (int64_t) 0;
+                            if (cond_71271) {
+                                defunc_0_f_res_71272 = (int64_t) 0;
                             } else {
-                                int64_t i_71412 = add64(max_res_71386, i_71815);
-                                int64_t defunc_0_add_arg_71413 =
-                                        ((int64_t *) mem_72845)[i_71412];
-                                int64_t defunc_1_add_res_71414 =
+                                int64_t i_71273 = add64(max_res_71214, i_71816);
+                                int64_t defunc_0_add_arg_71274 =
+                                        ((int64_t *) mem_72699)[i_71273];
+                                int64_t defunc_1_add_res_71275 =
                                         add64((int64_t) 1,
-                                              defunc_0_add_arg_71413);
+                                              defunc_0_add_arg_71274);
                                 
-                                defunc_0_f_res_71411 = defunc_1_add_res_71414;
+                                defunc_0_f_res_71272 = defunc_1_add_res_71275;
                             }
                             
-                            int64_t binop_p_71415 = sub64(defunc_0_f_res_71411,
-                                                          min_res_71321);
-                            float defunc_0_f_res_71416 =
-                                  sitofp_i64_f32(binop_p_71415);
-                            float abs_res_71417 =
-                                  (float) fabs(defunc_0_f_res_71416);
-                            float tmp1_71418 = abs_res_71417 /
-                                  defunc_1_f_res_71405;
-                            float x_71419 = tmp1_71418 * tmp1_71418;
-                            float y_71420 = tmp1_71418 * x_71419;
-                            float tmp2_71421 = 1.0F - y_71420;
-                            float x_71422 = tmp2_71421 * tmp2_71421;
-                            float tmp3_71423 = tmp2_71421 * x_71422;
-                            float tmp4_71424 = x_71409 * tmp3_71423;
+                            int64_t binop_p_71276 = sub64(defunc_0_f_res_71272,
+                                                          min_res_71149);
+                            float defunc_0_f_res_71277 =
+                                  sitofp_i64_f32(binop_p_71276);
+                            float abs_res_71278 =
+                                  (float) fabs(defunc_0_f_res_71277);
+                            float tmp1_71279 = abs_res_71278 /
+                                  defunc_1_f_res_71233;
+                            float x_71280 = tmp1_71279 * tmp1_71279;
+                            float y_71281 = tmp1_71279 * x_71280;
+                            float tmp2_71282 = 1.0F - y_71281;
+                            float x_71283 = tmp2_71282 * tmp2_71282;
+                            float tmp3_71284 = tmp2_71282 * x_71283;
+                            float tmp4_71285 = x_71270 * tmp3_71284;
+                            float defunc_1_f_res_71286 = defunc_0_f_res_71277 *
+                                  tmp4_71285;
+                            float defunc_1_f_res_71287 = defunc_0_f_res_71277 *
+                                  defunc_1_f_res_71286;
+                            float defunc_1_op_res_71262 = tmp4_71285 +
+                                  redout_71811;
+                            float defunc_1_op_res_71265 = defunc_1_f_res_71286 +
+                                  redout_71812;
+                            float defunc_1_op_res_71268 = defunc_1_f_res_71287 +
+                                  redout_71813;
                             
-                            ((float *) mem_72924)[i_71815] =
-                                defunc_0_f_res_71416;
-                            ((float *) mem_72927)[i_71815] = tmp4_71424;
+                            ((float *) mem_72778)[i_71816] =
+                                defunc_1_f_res_71286;
+                            ((float *) mem_72781)[i_71816] = tmp4_71285;
+                            
+                            float redout_tmp_73338 = defunc_1_op_res_71262;
+                            float redout_tmp_73339 = defunc_1_op_res_71265;
+                            float redout_tmp_73340 = defunc_1_op_res_71268;
+                            
+                            redout_71811 = redout_tmp_73338;
+                            redout_71812 = redout_tmp_73339;
+                            redout_71813 = redout_tmp_73340;
                         }
+                        defunc_2_reduce_res_71255 = redout_71811;
+                        defunc_2_reduce_res_71256 = redout_71812;
+                        defunc_2_reduce_res_71257 = redout_71813;
                         
-                        float defunc_2_reduce_res_71431;
-                        float defunc_2_reduce_res_71432;
-                        float defunc_2_reduce_res_71433;
-                        float defunc_2_reduce_res_71434;
-                        float defunc_2_reduce_res_71435;
+                        float x_71293 = defunc_2_reduce_res_71255 *
+                              defunc_2_reduce_res_71257;
+                        float y_71294 = defunc_2_reduce_res_71256 *
+                              defunc_2_reduce_res_71256;
+                        float y_71295 = x_71293 - y_71294;
+                        float det1_71296 = 1.0F / y_71295;
+                        float a11_71297 = defunc_2_reduce_res_71257 *
+                              det1_71296;
+                        float x_71298 = 0.0F - defunc_2_reduce_res_71256;
+                        float b11_71299 = det1_71296 * x_71298;
+                        float c11_71300 = defunc_2_reduce_res_71255 *
+                              det1_71296;
+                        float defunc_2_reduce_res_71301;
+                        float defunc_2_reduce_res_71302;
+                        float redout_71819;
                         float redout_71820;
-                        float redout_71821;
-                        float redout_71822;
-                        float redout_71823;
-                        float redout_71824;
                         
+                        redout_71819 = 0.0F;
                         redout_71820 = 0.0F;
-                        redout_71821 = 0.0F;
-                        redout_71822 = 0.0F;
-                        redout_71823 = 0.0F;
-                        redout_71824 = 0.0F;
-                        for (int64_t i_71827 = 0; i_71827 < q_70235;
-                             i_71827++) {
-                            float x_71453 = ((float *) mem_72924)[i_71827];
-                            float x_71454 = ((float *) mem_72927)[i_71827];
-                            float defunc_1_f_res_71455 = x_71453 * x_71454;
-                            float defunc_1_f_res_71456 = x_71453 *
-                                  defunc_1_f_res_71455;
-                            float defunc_1_f_res_71457 = x_71453 *
-                                  defunc_1_f_res_71456;
-                            float defunc_1_f_res_71458 = x_71453 *
-                                  defunc_1_f_res_71457;
-                            float defunc_1_op_res_71440 = x_71454 +
-                                  redout_71820;
-                            float defunc_1_op_res_71443 = defunc_1_f_res_71455 +
-                                  redout_71821;
-                            float defunc_1_op_res_71446 = defunc_1_f_res_71456 +
-                                  redout_71822;
-                            float defunc_1_op_res_71449 = defunc_1_f_res_71457 +
-                                  redout_71823;
-                            float defunc_1_op_res_71452 = defunc_1_f_res_71458 +
-                                  redout_71824;
+                        for (int64_t i_71821 = 0; i_71821 < q_70282;
+                             i_71821++) {
+                            float x_71310 = ((float *) mem_72781)[i_71821];
+                            float x_71311 = ((float *) mem_72778)[i_71821];
+                            bool cond_71312 = sle64(last_res_71119, i_71821);
+                            float defunc_0_f_res_71313;
                             
-                            ((float *) mem_72954)[i_71827] =
-                                defunc_1_f_res_71456;
-                            ((float *) mem_72957)[i_71827] =
-                                defunc_1_f_res_71455;
-                            
-                            float redout_tmp_73319 = defunc_1_op_res_71440;
-                            float redout_tmp_73320 = defunc_1_op_res_71443;
-                            float redout_tmp_73321 = defunc_1_op_res_71446;
-                            float redout_tmp_73322 = defunc_1_op_res_71449;
-                            float redout_tmp_73323 = defunc_1_op_res_71452;
-                            
-                            redout_71820 = redout_tmp_73319;
-                            redout_71821 = redout_tmp_73320;
-                            redout_71822 = redout_tmp_73321;
-                            redout_71823 = redout_tmp_73322;
-                            redout_71824 = redout_tmp_73323;
-                        }
-                        defunc_2_reduce_res_71431 = redout_71820;
-                        defunc_2_reduce_res_71432 = redout_71821;
-                        defunc_2_reduce_res_71433 = redout_71822;
-                        defunc_2_reduce_res_71434 = redout_71823;
-                        defunc_2_reduce_res_71435 = redout_71824;
-                        
-                        float x_71466 = defunc_2_reduce_res_71433 *
-                              defunc_2_reduce_res_71435;
-                        float y_71467 = defunc_2_reduce_res_71434 *
-                              defunc_2_reduce_res_71434;
-                        float a12_71468 = x_71466 - y_71467;
-                        float x_71469 = defunc_2_reduce_res_71433 *
-                              defunc_2_reduce_res_71434;
-                        float y_71470 = defunc_2_reduce_res_71432 *
-                              defunc_2_reduce_res_71435;
-                        float b12_71471 = x_71469 - y_71470;
-                        float x_71472 = defunc_2_reduce_res_71432 *
-                              defunc_2_reduce_res_71434;
-                        float y_71473 = defunc_2_reduce_res_71433 *
-                              defunc_2_reduce_res_71433;
-                        float c12_71474 = x_71472 - y_71473;
-                        float x_71475 = defunc_2_reduce_res_71431 *
-                              defunc_2_reduce_res_71435;
-                        float b2_71476 = x_71475 - y_71473;
-                        float x_71477 = defunc_2_reduce_res_71432 *
-                              defunc_2_reduce_res_71433;
-                        float y_71478 = defunc_2_reduce_res_71431 *
-                              defunc_2_reduce_res_71434;
-                        float c2_71479 = x_71477 - y_71478;
-                        float x_71480 = defunc_2_reduce_res_71431 * a12_71468;
-                        float y_71481 = defunc_2_reduce_res_71432 * b12_71471;
-                        float x_71482 = x_71480 + y_71481;
-                        float y_71483 = defunc_2_reduce_res_71433 * c12_71474;
-                        float y_71484 = x_71482 + y_71483;
-                        float det_71485 = 1.0F / y_71484;
-                        float a12_71486 = a12_71468 * det_71485;
-                        float b12_71487 = b12_71471 * det_71485;
-                        float c12_71488 = c12_71474 * det_71485;
-                        float b2_71489 = b2_71476 * det_71485;
-                        float c2_71490 = c2_71479 * det_71485;
-                        float defunc_2_reduce_res_71491;
-                        float defunc_2_reduce_res_71492;
-                        float redout_71830;
-                        float redout_71831;
-                        
-                        redout_71830 = 0.0F;
-                        redout_71831 = 0.0F;
-                        for (int64_t i_71832 = 0; i_71832 < q_70235;
-                             i_71832++) {
-                            float x_71500 = ((float *) mem_72927)[i_71832];
-                            float x_71501 = ((float *) mem_72957)[i_71832];
-                            float x_71502 = ((float *) mem_72954)[i_71832];
-                            bool cond_71503 = sle64(last_res_71291, i_71832);
-                            float defunc_0_f_res_71504;
-                            
-                            if (cond_71503) {
-                                defunc_0_f_res_71504 = 0.0F;
+                            if (cond_71312) {
+                                defunc_0_f_res_71313 = 0.0F;
                             } else {
-                                int64_t i_71505 = add64(max_res_71386, i_71832);
-                                float defunc_0_add_arg_71506 =
-                                      ((float *) mem_72842)[i_71505];
+                                int64_t i_71314 = add64(max_res_71214, i_71821);
+                                float defunc_0_add_arg_71315 =
+                                      ((float *) mem_72696)[i_71314];
                                 
-                                defunc_0_f_res_71504 = defunc_0_add_arg_71506;
+                                defunc_0_f_res_71313 = defunc_0_add_arg_71315;
                             }
                             
-                            float x_71507 = a12_71486 * x_71500;
-                            float y_71508 = b12_71487 * x_71501;
-                            float x_71509 = x_71507 + y_71508;
-                            float y_71510 = c12_71488 * x_71502;
-                            float x_71511 = x_71509 + y_71510;
-                            float defunc_9_fit_fun_res_71512 =
-                                  defunc_0_f_res_71504 * x_71511;
-                            float x_71513 = b12_71487 * x_71500;
-                            float y_71514 = b2_71489 * x_71501;
-                            float x_71515 = x_71513 + y_71514;
-                            float y_71516 = c2_71490 * x_71502;
-                            float x_71517 = x_71515 + y_71516;
-                            float defunc_9_slope_fun_res_71518 =
-                                  defunc_0_f_res_71504 * x_71517;
-                            float defunc_1_op_res_71495 =
-                                  defunc_9_fit_fun_res_71512 + redout_71830;
-                            float defunc_1_op_res_71498 =
-                                  defunc_9_slope_fun_res_71518 + redout_71831;
-                            float redout_tmp_73326 = defunc_1_op_res_71495;
-                            float redout_tmp_73327 = defunc_1_op_res_71498;
+                            float x_71316 = a11_71297 * x_71310;
+                            float y_71317 = b11_71299 * x_71311;
+                            float x_71318 = x_71316 + y_71317;
+                            float defunc_9_fit_fun_res_71319 =
+                                  defunc_0_f_res_71313 * x_71318;
+                            float x_71320 = b11_71299 * x_71310;
+                            float y_71321 = c11_71300 * x_71311;
+                            float x_71322 = x_71320 + y_71321;
+                            float defunc_9_slope_fun_res_71323 =
+                                  defunc_0_f_res_71313 * x_71322;
+                            float defunc_1_op_res_71305 =
+                                  defunc_9_fit_fun_res_71319 + redout_71819;
+                            float defunc_1_op_res_71308 =
+                                  defunc_9_slope_fun_res_71323 + redout_71820;
+                            float redout_tmp_73343 = defunc_1_op_res_71305;
+                            float redout_tmp_73344 = defunc_1_op_res_71308;
                             
-                            redout_71830 = redout_tmp_73326;
-                            redout_71831 = redout_tmp_73327;
+                            redout_71819 = redout_tmp_73343;
+                            redout_71820 = redout_tmp_73344;
                         }
-                        defunc_2_reduce_res_71491 = redout_71830;
-                        defunc_2_reduce_res_71492 = redout_71831;
-                        ((float *) mem_72800.mem)[i_71844 * n_m_70241 +
-                                                  i_71837] =
-                            defunc_2_reduce_res_71491;
-                        ((float *) mem_72804.mem)[i_71844 * n_m_70241 +
-                                                  i_71837] =
-                            defunc_2_reduce_res_71492;
+                        defunc_2_reduce_res_71301 = redout_71819;
+                        defunc_2_reduce_res_71302 = redout_71820;
+                        ((float *) mem_72654.mem)[i_71833 * n_m_70288 +
+                                                  i_71826] =
+                            defunc_2_reduce_res_71301;
+                        ((float *) mem_72658.mem)[i_71833 * n_m_70288 +
+                                                  i_71826] =
+                            defunc_2_reduce_res_71302;
                     }
                 }
-                if (memblock_set(ctx, &ext_mem_73028, &mem_72800,
-                                 "mem_72800") != 0)
+                if (memblock_set(ctx, &ext_mem_73075, &mem_72654,
+                                 "mem_72654") != 0)
                     return 1;
-                if (memblock_set(ctx, &ext_mem_73020, &mem_72804,
-                                 "mem_72804") != 0)
+                if (memblock_set(ctx, &ext_mem_73067, &mem_72658,
+                                 "mem_72658") != 0)
                     return 1;
-                if (memblock_unref(ctx, &mem_72804, "mem_72804") != 0)
+                if (memblock_unref(ctx, &mem_72658, "mem_72658") != 0)
                     return 1;
-                if (memblock_unref(ctx, &mem_72800, "mem_72800") != 0)
+                if (memblock_unref(ctx, &mem_72654, "mem_72654") != 0)
+                    return 1;
+            } else {
+                struct memblock mem_72847;
+                
+                mem_72847.references = NULL;
+                if (memblock_alloc(ctx, &mem_72847, bytes_72846, "mem_72847")) {
+                    err = 1;
+                    goto cleanup;
+                }
+                
+                struct memblock mem_72851;
+                
+                mem_72851.references = NULL;
+                if (memblock_alloc(ctx, &mem_72851, bytes_72846, "mem_72851")) {
+                    err = 1;
+                    goto cleanup;
+                }
+                if (mem_72874_cached_sizze_73406 < (size_t) bytes_72873) {
+                    mem_72874 = realloc(mem_72874, bytes_72873);
+                    mem_72874_cached_sizze_73406 = bytes_72873;
+                }
+                if (mem_72889_cached_sizze_73407 < (size_t) bytes_72888) {
+                    mem_72889 = realloc(mem_72889, bytes_72888);
+                    mem_72889_cached_sizze_73407 = bytes_72888;
+                }
+                if (mem_72892_cached_sizze_73408 < (size_t) bytes_72873) {
+                    mem_72892 = realloc(mem_72892, bytes_72873);
+                    mem_72892_cached_sizze_73408 = bytes_72873;
+                }
+                if (mem_72919_cached_sizze_73409 < (size_t) bytes_72873) {
+                    mem_72919 = realloc(mem_72919, bytes_72873);
+                    mem_72919_cached_sizze_73409 = bytes_72873;
+                }
+                if (mem_72934_cached_sizze_73410 < (size_t) bytes_72933) {
+                    mem_72934 = realloc(mem_72934, bytes_72933);
+                    mem_72934_cached_sizze_73410 = bytes_72933;
+                }
+                if (mem_72971_cached_sizze_73411 < (size_t) bytes_72933) {
+                    mem_72971 = realloc(mem_72971, bytes_72933);
+                    mem_72971_cached_sizze_73411 = bytes_72933;
+                }
+                if (mem_72974_cached_sizze_73412 < (size_t) bytes_72933) {
+                    mem_72974 = realloc(mem_72974, bytes_72933);
+                    mem_72974_cached_sizze_73412 = bytes_72933;
+                }
+                if (mem_73001_cached_sizze_73413 < (size_t) bytes_72933) {
+                    mem_73001 = realloc(mem_73001, bytes_72933);
+                    mem_73001_cached_sizze_73413 = bytes_72933;
+                }
+                if (mem_73004_cached_sizze_73414 < (size_t) bytes_72933) {
+                    mem_73004 = realloc(mem_73004, bytes_72933);
+                    mem_73004_cached_sizze_73414 = bytes_72933;
+                }
+                for (int64_t i_71891 = 0; i_71891 < m_70279; i_71891++) {
+                    int64_t discard_71841;
+                    int64_t scanacc_71837 = (int64_t) 0;
+                    
+                    for (int64_t i_71839 = 0; i_71839 < n_70280; i_71839++) {
+                        float x_71334 = ((float *) Y_mem_72031.mem)[i_71891 *
+                                                                    n_70280 +
+                                                                    i_71839];
+                        bool isnan_res_71335;
+                        
+                        isnan_res_71335 = futrts_isnan32(x_71334);
+                        
+                        bool defunc_0_p_res_71336 = !isnan_res_71335;
+                        int64_t defunc_0_f_res_71337 =
+                                btoi_bool_i64(defunc_0_p_res_71336);
+                        int64_t defunc_1_op_res_71333 =
+                                add64(defunc_0_f_res_71337, scanacc_71837);
+                        
+                        ((int64_t *) mem_72874)[i_71839] =
+                            defunc_1_op_res_71333;
+                        
+                        int64_t scanacc_tmp_73347 = defunc_1_op_res_71333;
+                        
+                        scanacc_71837 = scanacc_tmp_73347;
+                    }
+                    discard_71841 = scanacc_71837;
+                    
+                    int64_t last_res_71338 = ((int64_t *) mem_72874)[i_70294];
+                    
+                    for (int64_t i_73349 = 0; i_73349 < n_70280; i_73349++) {
+                        ((float *) mem_72889)[i_73349] = 0.0F;
+                    }
+                    for (int64_t i_73350 = 0; i_73350 < n_70280; i_73350++) {
+                        ((int64_t *) mem_72892)[i_73350] = (int64_t) -1;
+                    }
+                    for (int64_t write_iter_71842 = 0; write_iter_71842 <
+                         n_70280; write_iter_71842++) {
+                        float write_iv_71845 =
+                              ((float *) Y_mem_72031.mem)[i_71891 * n_70280 +
+                                                          write_iter_71842];
+                        int64_t write_iv_71846 =
+                                ((int64_t *) mem_72874)[write_iter_71842];
+                        bool isnan_res_71346;
+                        
+                        isnan_res_71346 = futrts_isnan32(write_iv_71845);
+                        
+                        bool defunc_0_p_res_71347 = !isnan_res_71346;
+                        int64_t defunc_1_f_res_71348;
+                        
+                        if (defunc_0_p_res_71347) {
+                            int64_t defunc_1_f_res_t_res_71349 =
+                                    sub64(write_iv_71846, (int64_t) 1);
+                            
+                            defunc_1_f_res_71348 = defunc_1_f_res_t_res_71349;
+                        } else {
+                            defunc_1_f_res_71348 = (int64_t) -1;
+                        }
+                        if (sle64((int64_t) 0, defunc_1_f_res_71348) &&
+                            slt64(defunc_1_f_res_71348, n_70280)) {
+                            ((int64_t *) mem_72892)[defunc_1_f_res_71348] =
+                                write_iter_71842;
+                        }
+                        if (sle64((int64_t) 0, defunc_1_f_res_71348) &&
+                            slt64(defunc_1_f_res_71348, n_70280)) {
+                            if ((int64_t) 4 > 0)
+                                memmove(mem_72889 + defunc_1_f_res_71348 *
+                                        (int64_t) 4, Y_mem_72031.mem +
+                                        (i_71891 * n_70280 + write_iter_71842) *
+                                        (int64_t) 4, (int64_t) 4);
+                        }
+                    }
+                    for (int64_t i_71852 = 0; i_71852 < n_70280; i_71852++) {
+                        int64_t x_71351 = ((int64_t *) mem_72892)[i_71852];
+                        int64_t defunc_0_f_res_71352 = add64((int64_t) 1,
+                                                             x_71351);
+                        
+                        ((int64_t *) mem_72919)[i_71852] = defunc_0_f_res_71352;
+                    }
+                    
+                    int64_t min_arg_71353 = sub64(last_res_71338, (int64_t) 1);
+                    int64_t min_arg_71354 = sub64(last_res_71338,
+                                                  min_res_70300);
+                    int64_t min_res_71355 = smin64(q_70282, last_res_71338);
+                    float i64_res_71356 = sitofp_i64_f32(last_res_71338);
+                    float x_71357 = i64_res_70306 - i64_res_71356;
+                    float max_arg_71358 = x_71357 / 2.0F;
+                    float max_res_71359 = fmax32(0.0F, max_arg_71358);
+                    
+                    for (int64_t i_71856 = 0; i_71856 < q_70282; i_71856++) {
+                        bool cond_71362 = sle64(last_res_71338, i_71856);
+                        float defunc_0_f_res_71363;
+                        
+                        if (cond_71362) {
+                            defunc_0_f_res_71363 = 0.0F;
+                        } else {
+                            defunc_0_f_res_71363 = 1.0F;
+                        }
+                        ((float *) mem_72934)[i_71856] = defunc_0_f_res_71363;
+                    }
+                    for (int64_t i_71884 = 0; i_71884 < n_m_70288; i_71884++) {
+                        int64_t min_arg_71367 = mul64(jump_70284, i_71884);
+                        int64_t min_res_71368 = smin64(i_70294, min_arg_71367);
+                        int64_t defunc_0_g_res_71369 = add64((int64_t) 1,
+                                                             min_res_71368);
+                        bool init_idx_71370;
+                        int64_t init_idx_71371;
+                        int64_t init_idx_71372;
+                        bool loop_while_71373;
+                        int64_t low_71374;
+                        int64_t high_71375;
+                        
+                        loop_while_71373 = x_70295;
+                        low_71374 = (int64_t) 0;
+                        high_71375 = i_70294;
+                        while (loop_while_71373) {
+                            int64_t x_71376 = add64(low_71374, high_71375);
+                            int64_t mid_71377 = sdiv64(x_71376, (int64_t) 2);
+                            bool x_71378 = sle64((int64_t) 0, mid_71377);
+                            bool y_71379 = slt64(mid_71377, n_70280);
+                            bool bounds_check_71380 = x_71378 && y_71379;
+                            bool index_certs_71381;
+                            
+                            if (!bounds_check_71380) {
+                                ctx->error =
+                                    msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
+                                              "Index [", (long long) mid_71377,
+                                              "] out of bounds for array of shape [",
+                                              (long long) n_70280, "].",
+                                              "-> #0  loess.fut:449:26-36\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:589:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:588:5-590:26\n   #10 loess.fut:572:1-611:26\n");
+                                if (memblock_unref(ctx, &mem_72851,
+                                                   "mem_72851") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &mem_72847,
+                                                   "mem_72847") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73067,
+                                                   "ext_mem_73067") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73075,
+                                                   "ext_mem_73075") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73083,
+                                                   "ext_mem_73083") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73091,
+                                                   "ext_mem_73091") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73099,
+                                                   "ext_mem_73099") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73107,
+                                                   "ext_mem_73107") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &mem_out_73225,
+                                                   "mem_out_73225") != 0)
+                                    return 1;
+                                return 1;
+                            }
+                            
+                            int64_t mid_id_71382 =
+                                    ((int64_t *) mem_72919)[mid_71377];
+                            bool cond_71383 = slt64(mid_id_71382, (int64_t) 0);
+                            int64_t mid_idx_71384;
+                            
+                            if (cond_71383) {
+                                mid_idx_71384 = (int64_t) 9223372036854775807;
+                            } else {
+                                mid_idx_71384 = mid_id_71382;
+                            }
+                            
+                            bool cond_71385 = sle64(defunc_0_g_res_71369,
+                                                    mid_idx_71384);
+                            int64_t loopres_71386;
+                            int64_t loopres_71387;
+                            
+                            if (cond_71385) {
+                                int64_t loopres_t_res_71388 = sub64(mid_71377,
+                                                                    (int64_t) 1);
+                                
+                                loopres_71386 = low_71374;
+                                loopres_71387 = loopres_t_res_71388;
+                            } else {
+                                int64_t loopres_f_res_71389 = add64((int64_t) 1,
+                                                                    mid_71377);
+                                
+                                loopres_71386 = loopres_f_res_71389;
+                                loopres_71387 = high_71375;
+                            }
+                            
+                            bool loop_cond_71390 = sle64(loopres_71386,
+                                                         loopres_71387);
+                            bool loop_while_tmp_73357 = loop_cond_71390;
+                            int64_t low_tmp_73358 = loopres_71386;
+                            int64_t high_tmp_73359 = loopres_71387;
+                            
+                            loop_while_71373 = loop_while_tmp_73357;
+                            low_71374 = low_tmp_73358;
+                            high_71375 = high_tmp_73359;
+                        }
+                        init_idx_71370 = loop_while_71373;
+                        init_idx_71371 = low_71374;
+                        init_idx_71372 = high_71375;
+                        
+                        bool idx_71391;
+                        int64_t idx_71392;
+                        int64_t idx_71393;
+                        int64_t idx_71394;
+                        bool loop_while_71395;
+                        int64_t l_idx_71396;
+                        int64_t r_idx_71397;
+                        int64_t span_71398;
+                        
+                        loop_while_71395 = loop_cond_70305;
+                        l_idx_71396 = init_idx_71371;
+                        r_idx_71397 = init_idx_71371;
+                        span_71398 = (int64_t) 1;
+                        while (loop_while_71395) {
+                            int64_t max_arg_71399 = sub64(l_idx_71396,
+                                                          (int64_t) 1);
+                            int64_t max_res_71400 = smax64((int64_t) 0,
+                                                           max_arg_71399);
+                            int64_t min_arg_71401 = add64((int64_t) 1,
+                                                          r_idx_71397);
+                            int64_t min_res_71402 = smin64(min_arg_71353,
+                                                           min_arg_71401);
+                            bool x_71403 = sle64((int64_t) 0, max_res_71400);
+                            bool y_71404 = slt64(max_res_71400, n_70280);
+                            bool bounds_check_71405 = x_71403 && y_71404;
+                            bool index_certs_71406;
+                            
+                            if (!bounds_check_71405) {
+                                ctx->error =
+                                    msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
+                                              "Index [",
+                                              (long long) max_res_71400,
+                                              "] out of bounds for array of shape [",
+                                              (long long) n_70280, "].",
+                                              "-> #0  loess.fut:459:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:589:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:588:5-590:26\n   #10 loess.fut:572:1-611:26\n");
+                                if (memblock_unref(ctx, &mem_72851,
+                                                   "mem_72851") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &mem_72847,
+                                                   "mem_72847") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73067,
+                                                   "ext_mem_73067") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73075,
+                                                   "ext_mem_73075") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73083,
+                                                   "ext_mem_73083") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73091,
+                                                   "ext_mem_73091") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73099,
+                                                   "ext_mem_73099") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73107,
+                                                   "ext_mem_73107") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &mem_out_73225,
+                                                   "mem_out_73225") != 0)
+                                    return 1;
+                                return 1;
+                            }
+                            
+                            int64_t x_71407 =
+                                    ((int64_t *) mem_72919)[max_res_71400];
+                            int64_t abs_arg_71408 = sub64(x_71407,
+                                                          defunc_0_g_res_71369);
+                            int64_t abs_res_71409 = abs64(abs_arg_71408);
+                            bool x_71410 = sle64((int64_t) 0, min_res_71402);
+                            bool y_71411 = slt64(min_res_71402, n_70280);
+                            bool bounds_check_71412 = x_71410 && y_71411;
+                            bool index_certs_71413;
+                            
+                            if (!bounds_check_71412) {
+                                ctx->error =
+                                    msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
+                                              "Index [",
+                                              (long long) min_res_71402,
+                                              "] out of bounds for array of shape [",
+                                              (long long) n_70280, "].",
+                                              "-> #0  loess.fut:460:35-48\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:442:3-469:10\n   #5  loess.fut:502:15-61\n   #6  loess.fut:589:13-56\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:588:5-590:26\n   #10 loess.fut:572:1-611:26\n");
+                                if (memblock_unref(ctx, &mem_72851,
+                                                   "mem_72851") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &mem_72847,
+                                                   "mem_72847") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73067,
+                                                   "ext_mem_73067") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73075,
+                                                   "ext_mem_73075") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73083,
+                                                   "ext_mem_73083") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73091,
+                                                   "ext_mem_73091") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73099,
+                                                   "ext_mem_73099") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &ext_mem_73107,
+                                                   "ext_mem_73107") != 0)
+                                    return 1;
+                                if (memblock_unref(ctx, &mem_out_73225,
+                                                   "mem_out_73225") != 0)
+                                    return 1;
+                                return 1;
+                            }
+                            
+                            int64_t x_71414 =
+                                    ((int64_t *) mem_72919)[min_res_71402];
+                            int64_t abs_arg_71415 = sub64(x_71414,
+                                                          defunc_0_g_res_71369);
+                            int64_t abs_res_71416 = abs64(abs_arg_71415);
+                            bool cond_71417 = max_res_71400 == l_idx_71396;
+                            int64_t loopres_71418;
+                            int64_t loopres_71419;
+                            int64_t loopres_71420;
+                            
+                            if (cond_71417) {
+                                loopres_71418 = l_idx_71396;
+                                loopres_71419 = r_idx_71397;
+                                loopres_71420 = min_res_70300;
+                            } else {
+                                bool cond_71421 = slt64(abs_res_71409,
+                                                        abs_res_71416);
+                                bool cond_f_res_71422 = min_res_71402 ==
+                                     r_idx_71397;
+                                bool x_71423 = !cond_71421;
+                                bool y_71424 = cond_f_res_71422 && x_71423;
+                                bool cond_71425 = cond_71421 || y_71424;
+                                int64_t loopres_f_res_71426;
+                                
+                                if (cond_71425) {
+                                    loopres_f_res_71426 = max_res_71400;
+                                } else {
+                                    loopres_f_res_71426 = l_idx_71396;
+                                }
+                                
+                                int64_t loopres_f_res_71427;
+                                
+                                if (cond_71425) {
+                                    loopres_f_res_71427 = r_idx_71397;
+                                } else {
+                                    loopres_f_res_71427 = min_res_71402;
+                                }
+                                
+                                int64_t loopres_f_res_71428;
+                                
+                                if (cond_71425) {
+                                    int64_t loopres_f_res_t_res_71429 =
+                                            add64((int64_t) 1, span_71398);
+                                    
+                                    loopres_f_res_71428 =
+                                        loopres_f_res_t_res_71429;
+                                } else {
+                                    int64_t loopres_f_res_f_res_71430 =
+                                            add64((int64_t) 1, span_71398);
+                                    
+                                    loopres_f_res_71428 =
+                                        loopres_f_res_f_res_71430;
+                                }
+                                loopres_71418 = loopres_f_res_71426;
+                                loopres_71419 = loopres_f_res_71427;
+                                loopres_71420 = loopres_f_res_71428;
+                            }
+                            
+                            bool loop_cond_71431 = slt64(loopres_71420,
+                                                         min_res_70300);
+                            bool loop_while_tmp_73360 = loop_cond_71431;
+                            int64_t l_idx_tmp_73361 = loopres_71418;
+                            int64_t r_idx_tmp_73362 = loopres_71419;
+                            int64_t span_tmp_73363 = loopres_71420;
+                            
+                            loop_while_71395 = loop_while_tmp_73360;
+                            l_idx_71396 = l_idx_tmp_73361;
+                            r_idx_71397 = r_idx_tmp_73362;
+                            span_71398 = span_tmp_73363;
+                        }
+                        idx_71391 = loop_while_71395;
+                        idx_71392 = l_idx_71396;
+                        idx_71393 = r_idx_71397;
+                        idx_71394 = span_71398;
+                        
+                        int64_t min_res_71432 = smin64(min_arg_71354,
+                                                       idx_71392);
+                        int64_t max_res_71433 = smax64((int64_t) 0,
+                                                       min_res_71432);
+                        int64_t x_71434 = add64(min_res_71355, max_res_71433);
+                        int64_t r_71435 = sub64(x_71434, (int64_t) 1);
+                        bool x_71436 = sle64((int64_t) 0, r_71435);
+                        bool y_71437 = slt64(r_71435, n_70280);
+                        bool bounds_check_71438 = x_71436 && y_71437;
+                        bool index_certs_71439;
+                        
+                        if (!bounds_check_71438) {
+                            ctx->error =
+                                msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
+                                          "Index [", (long long) r_71435,
+                                          "] out of bounds for array of shape [",
+                                          (long long) n_70280, "].",
+                                          "-> #0  loess.fut:484:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:16-51\n   #5  loess.fut:589:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:588:5-590:26\n   #9  loess.fut:572:1-611:26\n");
+                            if (memblock_unref(ctx, &mem_72851, "mem_72851") !=
+                                0)
+                                return 1;
+                            if (memblock_unref(ctx, &mem_72847, "mem_72847") !=
+                                0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_73067,
+                                               "ext_mem_73067") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_73075,
+                                               "ext_mem_73075") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_73083,
+                                               "ext_mem_73083") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_73091,
+                                               "ext_mem_73091") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_73099,
+                                               "ext_mem_73099") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_73107,
+                                               "ext_mem_73107") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &mem_out_73225,
+                                               "mem_out_73225") != 0)
+                                return 1;
+                            return 1;
+                        }
+                        
+                        int64_t x_71440 = ((int64_t *) mem_72892)[r_71435];
+                        int64_t abs_arg_71441 = sub64(x_71440, min_res_71368);
+                        int64_t abs_res_71442 = abs64(abs_arg_71441);
+                        bool x_71443 = sle64((int64_t) 0, max_res_71433);
+                        bool y_71444 = slt64(max_res_71433, n_70280);
+                        bool bounds_check_71445 = x_71443 && y_71444;
+                        bool index_certs_71446;
+                        
+                        if (!bounds_check_71445) {
+                            ctx->error =
+                                msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
+                                          "Index [", (long long) max_res_71433,
+                                          "] out of bounds for array of shape [",
+                                          (long long) n_70280, "].",
+                                          "-> #0  loess.fut:483:40-47\n   #1  /prelude/soacs.fut:67:19-23\n   #2  /prelude/soacs.fut:67:3-37\n   #3  loess.fut:479:3-487:25\n   #4  loess.fut:503:16-51\n   #5  loess.fut:589:13-56\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:588:5-590:26\n   #9  loess.fut:572:1-611:26\n");
+                            if (memblock_unref(ctx, &mem_72851, "mem_72851") !=
+                                0)
+                                return 1;
+                            if (memblock_unref(ctx, &mem_72847, "mem_72847") !=
+                                0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_73067,
+                                               "ext_mem_73067") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_73075,
+                                               "ext_mem_73075") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_73083,
+                                               "ext_mem_73083") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_73091,
+                                               "ext_mem_73091") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_73099,
+                                               "ext_mem_73099") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &ext_mem_73107,
+                                               "ext_mem_73107") != 0)
+                                return 1;
+                            if (memblock_unref(ctx, &mem_out_73225,
+                                               "mem_out_73225") != 0)
+                                return 1;
+                            return 1;
+                        }
+                        
+                        int64_t x_71447 =
+                                ((int64_t *) mem_72892)[max_res_71433];
+                        int64_t abs_arg_71448 = sub64(x_71447, min_res_71368);
+                        int64_t abs_res_71449 = abs64(abs_arg_71448);
+                        int64_t max_res_71450 = smax64(abs_res_71442,
+                                                       abs_res_71449);
+                        float defunc_0_f_res_71451 =
+                              sitofp_i64_f32(max_res_71450);
+                        float defunc_1_f_res_71452 = max_res_71359 +
+                              defunc_0_f_res_71451;
+                        
+                        for (int64_t i_71862 = 0; i_71862 < q_70282;
+                             i_71862++) {
+                            float x_71456 = ((float *) mem_72934)[i_71862];
+                            bool cond_71457 = sle64(last_res_71338, i_71862);
+                            int64_t defunc_0_f_res_71458;
+                            
+                            if (cond_71457) {
+                                defunc_0_f_res_71458 = (int64_t) 0;
+                            } else {
+                                int64_t i_71459 = add64(max_res_71433, i_71862);
+                                int64_t defunc_0_add_arg_71460 =
+                                        ((int64_t *) mem_72892)[i_71459];
+                                int64_t defunc_1_add_res_71461 =
+                                        add64((int64_t) 1,
+                                              defunc_0_add_arg_71460);
+                                
+                                defunc_0_f_res_71458 = defunc_1_add_res_71461;
+                            }
+                            
+                            int64_t binop_p_71462 = sub64(defunc_0_f_res_71458,
+                                                          min_res_71368);
+                            float defunc_0_f_res_71463 =
+                                  sitofp_i64_f32(binop_p_71462);
+                            float abs_res_71464 =
+                                  (float) fabs(defunc_0_f_res_71463);
+                            float tmp1_71465 = abs_res_71464 /
+                                  defunc_1_f_res_71452;
+                            float x_71466 = tmp1_71465 * tmp1_71465;
+                            float y_71467 = tmp1_71465 * x_71466;
+                            float tmp2_71468 = 1.0F - y_71467;
+                            float x_71469 = tmp2_71468 * tmp2_71468;
+                            float tmp3_71470 = tmp2_71468 * x_71469;
+                            float tmp4_71471 = x_71456 * tmp3_71470;
+                            
+                            ((float *) mem_72971)[i_71862] =
+                                defunc_0_f_res_71463;
+                            ((float *) mem_72974)[i_71862] = tmp4_71471;
+                        }
+                        
+                        float defunc_2_reduce_res_71478;
+                        float defunc_2_reduce_res_71479;
+                        float defunc_2_reduce_res_71480;
+                        float defunc_2_reduce_res_71481;
+                        float defunc_2_reduce_res_71482;
+                        float redout_71867;
+                        float redout_71868;
+                        float redout_71869;
+                        float redout_71870;
+                        float redout_71871;
+                        
+                        redout_71867 = 0.0F;
+                        redout_71868 = 0.0F;
+                        redout_71869 = 0.0F;
+                        redout_71870 = 0.0F;
+                        redout_71871 = 0.0F;
+                        for (int64_t i_71874 = 0; i_71874 < q_70282;
+                             i_71874++) {
+                            float x_71500 = ((float *) mem_72971)[i_71874];
+                            float x_71501 = ((float *) mem_72974)[i_71874];
+                            float defunc_1_f_res_71502 = x_71500 * x_71501;
+                            float defunc_1_f_res_71503 = x_71500 *
+                                  defunc_1_f_res_71502;
+                            float defunc_1_f_res_71504 = x_71500 *
+                                  defunc_1_f_res_71503;
+                            float defunc_1_f_res_71505 = x_71500 *
+                                  defunc_1_f_res_71504;
+                            float defunc_1_op_res_71487 = x_71501 +
+                                  redout_71867;
+                            float defunc_1_op_res_71490 = defunc_1_f_res_71502 +
+                                  redout_71868;
+                            float defunc_1_op_res_71493 = defunc_1_f_res_71503 +
+                                  redout_71869;
+                            float defunc_1_op_res_71496 = defunc_1_f_res_71504 +
+                                  redout_71870;
+                            float defunc_1_op_res_71499 = defunc_1_f_res_71505 +
+                                  redout_71871;
+                            
+                            ((float *) mem_73001)[i_71874] =
+                                defunc_1_f_res_71503;
+                            ((float *) mem_73004)[i_71874] =
+                                defunc_1_f_res_71502;
+                            
+                            float redout_tmp_73366 = defunc_1_op_res_71487;
+                            float redout_tmp_73367 = defunc_1_op_res_71490;
+                            float redout_tmp_73368 = defunc_1_op_res_71493;
+                            float redout_tmp_73369 = defunc_1_op_res_71496;
+                            float redout_tmp_73370 = defunc_1_op_res_71499;
+                            
+                            redout_71867 = redout_tmp_73366;
+                            redout_71868 = redout_tmp_73367;
+                            redout_71869 = redout_tmp_73368;
+                            redout_71870 = redout_tmp_73369;
+                            redout_71871 = redout_tmp_73370;
+                        }
+                        defunc_2_reduce_res_71478 = redout_71867;
+                        defunc_2_reduce_res_71479 = redout_71868;
+                        defunc_2_reduce_res_71480 = redout_71869;
+                        defunc_2_reduce_res_71481 = redout_71870;
+                        defunc_2_reduce_res_71482 = redout_71871;
+                        
+                        float x_71513 = defunc_2_reduce_res_71480 *
+                              defunc_2_reduce_res_71482;
+                        float y_71514 = defunc_2_reduce_res_71481 *
+                              defunc_2_reduce_res_71481;
+                        float a12_71515 = x_71513 - y_71514;
+                        float x_71516 = defunc_2_reduce_res_71480 *
+                              defunc_2_reduce_res_71481;
+                        float y_71517 = defunc_2_reduce_res_71479 *
+                              defunc_2_reduce_res_71482;
+                        float b12_71518 = x_71516 - y_71517;
+                        float x_71519 = defunc_2_reduce_res_71479 *
+                              defunc_2_reduce_res_71481;
+                        float y_71520 = defunc_2_reduce_res_71480 *
+                              defunc_2_reduce_res_71480;
+                        float c12_71521 = x_71519 - y_71520;
+                        float x_71522 = defunc_2_reduce_res_71478 *
+                              defunc_2_reduce_res_71482;
+                        float b2_71523 = x_71522 - y_71520;
+                        float x_71524 = defunc_2_reduce_res_71479 *
+                              defunc_2_reduce_res_71480;
+                        float y_71525 = defunc_2_reduce_res_71478 *
+                              defunc_2_reduce_res_71481;
+                        float c2_71526 = x_71524 - y_71525;
+                        float x_71527 = defunc_2_reduce_res_71478 * a12_71515;
+                        float y_71528 = defunc_2_reduce_res_71479 * b12_71518;
+                        float x_71529 = x_71527 + y_71528;
+                        float y_71530 = defunc_2_reduce_res_71480 * c12_71521;
+                        float y_71531 = x_71529 + y_71530;
+                        float det_71532 = 1.0F / y_71531;
+                        float a12_71533 = a12_71515 * det_71532;
+                        float b12_71534 = b12_71518 * det_71532;
+                        float c12_71535 = c12_71521 * det_71532;
+                        float b2_71536 = b2_71523 * det_71532;
+                        float c2_71537 = c2_71526 * det_71532;
+                        float defunc_2_reduce_res_71538;
+                        float defunc_2_reduce_res_71539;
+                        float redout_71877;
+                        float redout_71878;
+                        
+                        redout_71877 = 0.0F;
+                        redout_71878 = 0.0F;
+                        for (int64_t i_71879 = 0; i_71879 < q_70282;
+                             i_71879++) {
+                            float x_71547 = ((float *) mem_72974)[i_71879];
+                            float x_71548 = ((float *) mem_73004)[i_71879];
+                            float x_71549 = ((float *) mem_73001)[i_71879];
+                            bool cond_71550 = sle64(last_res_71338, i_71879);
+                            float defunc_0_f_res_71551;
+                            
+                            if (cond_71550) {
+                                defunc_0_f_res_71551 = 0.0F;
+                            } else {
+                                int64_t i_71552 = add64(max_res_71433, i_71879);
+                                float defunc_0_add_arg_71553 =
+                                      ((float *) mem_72889)[i_71552];
+                                
+                                defunc_0_f_res_71551 = defunc_0_add_arg_71553;
+                            }
+                            
+                            float x_71554 = a12_71533 * x_71547;
+                            float y_71555 = b12_71534 * x_71548;
+                            float x_71556 = x_71554 + y_71555;
+                            float y_71557 = c12_71535 * x_71549;
+                            float x_71558 = x_71556 + y_71557;
+                            float defunc_9_fit_fun_res_71559 =
+                                  defunc_0_f_res_71551 * x_71558;
+                            float x_71560 = b12_71534 * x_71547;
+                            float y_71561 = b2_71536 * x_71548;
+                            float x_71562 = x_71560 + y_71561;
+                            float y_71563 = c2_71537 * x_71549;
+                            float x_71564 = x_71562 + y_71563;
+                            float defunc_9_slope_fun_res_71565 =
+                                  defunc_0_f_res_71551 * x_71564;
+                            float defunc_1_op_res_71542 =
+                                  defunc_9_fit_fun_res_71559 + redout_71877;
+                            float defunc_1_op_res_71545 =
+                                  defunc_9_slope_fun_res_71565 + redout_71878;
+                            float redout_tmp_73373 = defunc_1_op_res_71542;
+                            float redout_tmp_73374 = defunc_1_op_res_71545;
+                            
+                            redout_71877 = redout_tmp_73373;
+                            redout_71878 = redout_tmp_73374;
+                        }
+                        defunc_2_reduce_res_71538 = redout_71877;
+                        defunc_2_reduce_res_71539 = redout_71878;
+                        ((float *) mem_72847.mem)[i_71891 * n_m_70288 +
+                                                  i_71884] =
+                            defunc_2_reduce_res_71538;
+                        ((float *) mem_72851.mem)[i_71891 * n_m_70288 +
+                                                  i_71884] =
+                            defunc_2_reduce_res_71539;
+                    }
+                }
+                if (memblock_set(ctx, &ext_mem_73075, &mem_72847,
+                                 "mem_72847") != 0)
+                    return 1;
+                if (memblock_set(ctx, &ext_mem_73067, &mem_72851,
+                                 "mem_72851") != 0)
+                    return 1;
+                if (memblock_unref(ctx, &mem_72851, "mem_72851") != 0)
+                    return 1;
+                if (memblock_unref(ctx, &mem_72847, "mem_72847") != 0)
                     return 1;
             }
-            if (memblock_set(ctx, &ext_mem_73044, &ext_mem_73028,
-                             "ext_mem_73028") != 0)
+            if (memblock_set(ctx, &ext_mem_73091, &ext_mem_73075,
+                             "ext_mem_73075") != 0)
                 return 1;
-            if (memblock_set(ctx, &ext_mem_73036, &ext_mem_73020,
-                             "ext_mem_73020") != 0)
+            if (memblock_set(ctx, &ext_mem_73083, &ext_mem_73067,
+                             "ext_mem_73067") != 0)
                 return 1;
-            if (memblock_unref(ctx, &ext_mem_73020, "ext_mem_73020") != 0)
+            if (memblock_unref(ctx, &ext_mem_73067, "ext_mem_73067") != 0)
                 return 1;
-            if (memblock_unref(ctx, &ext_mem_73028, "ext_mem_73028") != 0)
+            if (memblock_unref(ctx, &ext_mem_73075, "ext_mem_73075") != 0)
                 return 1;
         }
-        if (memblock_set(ctx, &ext_mem_73060, &ext_mem_73044,
-                         "ext_mem_73044") != 0)
+        if (memblock_set(ctx, &ext_mem_73107, &ext_mem_73091,
+                         "ext_mem_73091") != 0)
             return 1;
-        if (memblock_set(ctx, &ext_mem_73052, &ext_mem_73036,
-                         "ext_mem_73036") != 0)
+        if (memblock_set(ctx, &ext_mem_73099, &ext_mem_73083,
+                         "ext_mem_73083") != 0)
             return 1;
-        if (memblock_unref(ctx, &ext_mem_73036, "ext_mem_73036") != 0)
+        if (memblock_unref(ctx, &ext_mem_73083, "ext_mem_73083") != 0)
             return 1;
-        if (memblock_unref(ctx, &ext_mem_73044, "ext_mem_73044") != 0)
+        if (memblock_unref(ctx, &ext_mem_73091, "ext_mem_73091") != 0)
             return 1;
     }
     
-    bool cond_71521 = slt64((int64_t) 1, jump_70237);
-    int64_t binop_x_73068 = m_70232 * n_70233;
-    int64_t binop_y_73069 = (int64_t) 4 * binop_x_73068;
-    int64_t bytes_73070 = smax64((int64_t) 0, binop_y_73069);
-    int64_t ext_73116;
+    bool cond_71568 = slt64((int64_t) 1, jump_70284);
+    int64_t binop_x_73115 = m_70279 * n_70280;
+    int64_t binop_y_73116 = (int64_t) 4 * binop_x_73115;
+    int64_t bytes_73117 = smax64((int64_t) 0, binop_y_73116);
+    int64_t ext_73163;
     
-    if (cond_71521) {
-        ext_73116 = n_70233;
+    if (cond_71568) {
+        ext_73163 = n_70280;
     } else {
-        ext_73116 = n_m_70241;
+        ext_73163 = n_m_70288;
     }
     
-    int64_t ext_73115;
+    int64_t ext_73162;
     
-    if (cond_71521) {
-        ext_73115 = n_70233;
+    if (cond_71568) {
+        ext_73162 = n_70280;
     } else {
-        ext_73115 = n_m_70241;
+        ext_73162 = n_m_70288;
     }
     
-    struct memblock ext_mem_73112;
+    struct memblock ext_mem_73159;
     
-    ext_mem_73112.references = NULL;
-    if (cond_71521) {
-        bool zzero_71523 = jump_70237 == (int64_t) 0;
-        bool nonzzero_71524 = !zzero_71523;
-        bool nonzzero_cert_71525;
+    ext_mem_73159.references = NULL;
+    if (cond_71568) {
+        bool zzero_71570 = jump_70284 == (int64_t) 0;
+        bool nonzzero_71571 = !zzero_71570;
+        bool nonzzero_cert_71572;
         
-        if (!nonzzero_71524) {
+        if (!nonzzero_71571) {
             ctx->error = msgprintf("Error: %s\n\nBacktrace:\n%s",
                                    "division by zero",
-                                   "-> #0  loess.fut:530:20-27\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:529:3-542:9\n   #5  loess.fut:607:13-59\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:606:5-608:29\n   #9  loess.fut:571:1-610:26\n");
-            if (memblock_unref(ctx, &ext_mem_73112, "ext_mem_73112") != 0)
+                                   "-> #0  loess.fut:546:20-27\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:545:3-549:9\n   #5  loess.fut:608:13-59\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:607:5-609:29\n   #9  loess.fut:572:1-611:26\n");
+            if (memblock_unref(ctx, &ext_mem_73159, "ext_mem_73159") != 0)
                 return 1;
-            if (memblock_unref(ctx, &ext_mem_73052, "ext_mem_73052") != 0)
+            if (memblock_unref(ctx, &ext_mem_73099, "ext_mem_73099") != 0)
                 return 1;
-            if (memblock_unref(ctx, &ext_mem_73060, "ext_mem_73060") != 0)
+            if (memblock_unref(ctx, &ext_mem_73107, "ext_mem_73107") != 0)
                 return 1;
-            if (memblock_unref(ctx, &mem_out_73178, "mem_out_73178") != 0)
+            if (memblock_unref(ctx, &mem_out_73225, "mem_out_73225") != 0)
                 return 1;
             return 1;
         }
         
-        int64_t y_71526 = sub64(n_m_70241, (int64_t) 1);
-        struct memblock mem_73071;
+        int64_t y_71573 = sub64(n_m_70288, (int64_t) 1);
+        struct memblock mem_73118;
         
-        mem_73071.references = NULL;
-        if (memblock_alloc(ctx, &mem_73071, bytes_73070, "mem_73071")) {
+        mem_73118.references = NULL;
+        if (memblock_alloc(ctx, &mem_73118, bytes_73117, "mem_73118")) {
             err = 1;
             goto cleanup;
         }
-        for (int64_t i_71853 = 0; i_71853 < m_70232; i_71853++) {
-            for (int64_t i_71849 = 0; i_71849 < n_70233; i_71849++) {
-                int64_t m_v_71532 = sdiv64(i_71849, jump_70237);
-                bool cond_71533 = m_v_71532 == y_71526;
-                int64_t j_71534;
+        for (int64_t i_71900 = 0; i_71900 < m_70279; i_71900++) {
+            for (int64_t i_71896 = 0; i_71896 < n_70280; i_71896++) {
+                int64_t m_v_71579 = sdiv64(i_71896, jump_70284);
+                bool cond_71580 = m_v_71579 == y_71573;
+                int64_t j_71581;
                 
-                if (cond_71533) {
-                    int64_t j_t_res_71535 = sub64(m_v_71532, (int64_t) 1);
+                if (cond_71580) {
+                    int64_t j_t_res_71582 = sub64(m_v_71579, (int64_t) 1);
                     
-                    j_71534 = j_t_res_71535;
+                    j_71581 = j_t_res_71582;
                 } else {
-                    j_71534 = m_v_71532;
+                    j_71581 = m_v_71579;
                 }
                 
-                int64_t min_arg_71536 = mul64(jump_70237, j_71534);
-                int64_t min_res_71537 = smin64(i_70247, min_arg_71536);
-                int64_t defunc_0_m_fun_arg_71538 = add64((int64_t) 1, j_71534);
-                int64_t min_arg_71539 = mul64(jump_70237,
-                                              defunc_0_m_fun_arg_71538);
-                int64_t min_res_71540 = smin64(i_70247, min_arg_71539);
-                int64_t i64_arg_71541 = sub64(min_res_71540, min_res_71537);
-                float i64_res_71542 = sitofp_i64_f32(i64_arg_71541);
-                int64_t i64_arg_71543 = sub64(i_71849, min_res_71537);
-                float i64_res_71544 = sitofp_i64_f32(i64_arg_71543);
-                float u_71545 = i64_res_71544 / i64_res_71542;
-                float u2_71546 = u_71545 * u_71545;
-                float u3_71547 = u_71545 * u2_71546;
-                float x_71548 = 2.0F * u3_71547;
-                float y_71549 = 3.0F * u2_71546;
-                float x_71550 = x_71548 - y_71549;
-                float x_71551 = 1.0F + x_71550;
-                bool x_71552 = sle64((int64_t) 0, j_71534);
-                bool y_71553 = slt64(j_71534, n_m_70241);
-                bool bounds_check_71554 = x_71552 && y_71553;
-                bool index_certs_71555;
+                int64_t min_arg_71583 = mul64(jump_70284, j_71581);
+                int64_t min_res_71584 = smin64(i_70294, min_arg_71583);
+                int64_t defunc_0_m_fun_arg_71585 = add64((int64_t) 1, j_71581);
+                int64_t min_arg_71586 = mul64(jump_70284,
+                                              defunc_0_m_fun_arg_71585);
+                int64_t min_res_71587 = smin64(i_70294, min_arg_71586);
+                int64_t i64_arg_71588 = sub64(min_res_71587, min_res_71584);
+                float i64_res_71589 = sitofp_i64_f32(i64_arg_71588);
+                int64_t i64_arg_71590 = sub64(i_71896, min_res_71584);
+                float i64_res_71591 = sitofp_i64_f32(i64_arg_71590);
+                float u_71592 = i64_res_71591 / i64_res_71589;
+                float u2_71593 = u_71592 * u_71592;
+                float u3_71594 = u_71592 * u2_71593;
+                float x_71595 = 2.0F * u3_71594;
+                float y_71596 = 3.0F * u2_71593;
+                float x_71597 = x_71595 - y_71596;
+                float x_71598 = 1.0F + x_71597;
+                bool x_71599 = sle64((int64_t) 0, j_71581);
+                bool y_71600 = slt64(j_71581, n_m_70288);
+                bool bounds_check_71601 = x_71599 && y_71600;
+                bool index_certs_71602;
                 
-                if (!bounds_check_71554) {
+                if (!bounds_check_71601) {
                     ctx->error =
                         msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
-                                  "Index [", (long long) j_71534,
+                                  "Index [", (long long) j_71581,
                                   "] out of bounds for array of shape [",
-                                  (long long) n_m_70241, "].",
-                                  "-> #0  loess.fut:538:34-40\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:529:3-542:9\n   #5  loess.fut:607:13-59\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:606:5-608:29\n   #9  loess.fut:571:1-610:26\n");
-                    if (memblock_unref(ctx, &mem_73071, "mem_73071") != 0)
+                                  (long long) n_m_70288, "].",
+                                  "-> #0  loess.fut:535:27-33\n   #1  loess.fut:548:13-50\n   #2  /prelude/soacs.fut:59:3-10\n   #3  /prelude/array.fut:195:3-17\n   #4  utils.fut:6:3-16\n   #5  loess.fut:545:3-549:9\n   #6  loess.fut:608:13-59\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:607:5-609:29\n   #10 loess.fut:572:1-611:26\n");
+                    if (memblock_unref(ctx, &mem_73118, "mem_73118") != 0)
                         return 1;
-                    if (memblock_unref(ctx, &ext_mem_73112, "ext_mem_73112") !=
+                    if (memblock_unref(ctx, &ext_mem_73159, "ext_mem_73159") !=
                         0)
                         return 1;
-                    if (memblock_unref(ctx, &ext_mem_73052, "ext_mem_73052") !=
+                    if (memblock_unref(ctx, &ext_mem_73099, "ext_mem_73099") !=
                         0)
                         return 1;
-                    if (memblock_unref(ctx, &ext_mem_73060, "ext_mem_73060") !=
+                    if (memblock_unref(ctx, &ext_mem_73107, "ext_mem_73107") !=
                         0)
                         return 1;
-                    if (memblock_unref(ctx, &mem_out_73178, "mem_out_73178") !=
+                    if (memblock_unref(ctx, &mem_out_73225, "mem_out_73225") !=
                         0)
                         return 1;
                     return 1;
                 }
                 
-                float y_71556 = ((float *) ext_mem_73060.mem)[i_71853 *
-                                                              n_m_70241 +
-                                                              j_71534];
-                float x_71557 = x_71551 * y_71556;
-                float x_71558 = y_71549 - x_71548;
-                bool x_71559 = sle64((int64_t) 0, defunc_0_m_fun_arg_71538);
-                bool y_71560 = slt64(defunc_0_m_fun_arg_71538, n_m_70241);
-                bool bounds_check_71561 = x_71559 && y_71560;
-                bool index_certs_71562;
+                float y_71603 = ((float *) ext_mem_73107.mem)[i_71900 *
+                                                              n_m_70288 +
+                                                              j_71581];
+                float x_71604 = x_71598 * y_71603;
+                float x_71605 = y_71596 - x_71595;
+                bool x_71606 = sle64((int64_t) 0, defunc_0_m_fun_arg_71585);
+                bool y_71607 = slt64(defunc_0_m_fun_arg_71585, n_m_70288);
+                bool bounds_check_71608 = x_71606 && y_71607;
+                bool index_certs_71609;
                 
-                if (!bounds_check_71561) {
+                if (!bounds_check_71608) {
                     ctx->error =
                         msgprintf("Error: %s%lld%s%lld%s\n\nBacktrace:\n%s",
                                   "Index [",
-                                  (long long) defunc_0_m_fun_arg_71538,
+                                  (long long) defunc_0_m_fun_arg_71585,
                                   "] out of bounds for array of shape [",
-                                  (long long) n_m_70241, "].",
-                                  "-> #0  loess.fut:539:34-44\n   #1  /prelude/soacs.fut:59:3-10\n   #2  /prelude/array.fut:195:3-17\n   #3  utils.fut:6:3-16\n   #4  loess.fut:529:3-542:9\n   #5  loess.fut:607:13-59\n   #6  /prelude/soacs.fut:67:19-23\n   #7  /prelude/soacs.fut:67:3-37\n   #8  loess.fut:606:5-608:29\n   #9  loess.fut:571:1-610:26\n");
-                    if (memblock_unref(ctx, &mem_73071, "mem_73071") != 0)
+                                  (long long) n_m_70288, "].",
+                                  "-> #0  loess.fut:536:27-37\n   #1  loess.fut:548:13-50\n   #2  /prelude/soacs.fut:59:3-10\n   #3  /prelude/array.fut:195:3-17\n   #4  utils.fut:6:3-16\n   #5  loess.fut:545:3-549:9\n   #6  loess.fut:608:13-59\n   #7  /prelude/soacs.fut:67:19-23\n   #8  /prelude/soacs.fut:67:3-37\n   #9  loess.fut:607:5-609:29\n   #10 loess.fut:572:1-611:26\n");
+                    if (memblock_unref(ctx, &mem_73118, "mem_73118") != 0)
                         return 1;
-                    if (memblock_unref(ctx, &ext_mem_73112, "ext_mem_73112") !=
+                    if (memblock_unref(ctx, &ext_mem_73159, "ext_mem_73159") !=
                         0)
                         return 1;
-                    if (memblock_unref(ctx, &ext_mem_73052, "ext_mem_73052") !=
+                    if (memblock_unref(ctx, &ext_mem_73099, "ext_mem_73099") !=
                         0)
                         return 1;
-                    if (memblock_unref(ctx, &ext_mem_73060, "ext_mem_73060") !=
+                    if (memblock_unref(ctx, &ext_mem_73107, "ext_mem_73107") !=
                         0)
                         return 1;
-                    if (memblock_unref(ctx, &mem_out_73178, "mem_out_73178") !=
+                    if (memblock_unref(ctx, &mem_out_73225, "mem_out_73225") !=
                         0)
                         return 1;
                     return 1;
                 }
                 
-                float y_71563 = ((float *) ext_mem_73060.mem)[i_71853 *
-                                                              n_m_70241 +
-                                                              defunc_0_m_fun_arg_71538];
-                float y_71564 = x_71558 * y_71563;
-                float x_71565 = x_71557 + y_71564;
-                float y_71566 = 2.0F * u2_71546;
-                float x_71567 = u3_71547 - y_71566;
-                float x_71568 = u_71545 + x_71567;
-                float y_71569 = ((float *) ext_mem_73052.mem)[i_71853 *
-                                                              n_m_70241 +
-                                                              j_71534];
-                float x_71570 = x_71568 * y_71569;
-                float y_71571 = i64_res_71542 * x_71570;
-                float x_71572 = x_71565 + y_71571;
-                float x_71573 = u3_71547 - u2_71546;
-                float y_71574 = ((float *) ext_mem_73052.mem)[i_71853 *
-                                                              n_m_70241 +
-                                                              defunc_0_m_fun_arg_71538];
-                float x_71575 = x_71573 * y_71574;
-                float y_71576 = i64_res_71542 * x_71575;
-                float defunc_0_f_res_71577 = x_71572 + y_71576;
+                float y_71610 = ((float *) ext_mem_73107.mem)[i_71900 *
+                                                              n_m_70288 +
+                                                              defunc_0_m_fun_arg_71585];
+                float y_71611 = x_71605 * y_71610;
+                float x_71612 = x_71604 + y_71611;
+                float y_71613 = 2.0F * u2_71593;
+                float x_71614 = u3_71594 - y_71613;
+                float x_71615 = u_71592 + x_71614;
+                float y_71616 = ((float *) ext_mem_73099.mem)[i_71900 *
+                                                              n_m_70288 +
+                                                              j_71581];
+                float x_71617 = x_71615 * y_71616;
+                float y_71618 = i64_res_71589 * x_71617;
+                float x_71619 = x_71612 + y_71618;
+                float x_71620 = u3_71594 - u2_71593;
+                float y_71621 = ((float *) ext_mem_73099.mem)[i_71900 *
+                                                              n_m_70288 +
+                                                              defunc_0_m_fun_arg_71585];
+                float x_71622 = x_71620 * y_71621;
+                float y_71623 = i64_res_71589 * x_71622;
+                float defunc_4_interpolate_proc_res_71624 = x_71619 + y_71623;
                 
-                ((float *) mem_73071.mem)[i_71853 * n_70233 + i_71849] =
-                    defunc_0_f_res_71577;
+                ((float *) mem_73118.mem)[i_71900 * n_70280 + i_71896] =
+                    defunc_4_interpolate_proc_res_71624;
             }
         }
-        if (memblock_set(ctx, &ext_mem_73112, &mem_73071, "mem_73071") != 0)
+        if (memblock_set(ctx, &ext_mem_73159, &mem_73118, "mem_73118") != 0)
             return 1;
-        if (memblock_unref(ctx, &mem_73071, "mem_73071") != 0)
+        if (memblock_unref(ctx, &mem_73118, "mem_73118") != 0)
             return 1;
     } else {
-        bool dim_match_71578 = n_70233 == n_m_70241;
-        bool empty_or_match_cert_71579;
+        bool dim_match_71625 = n_70280 == n_m_70288;
+        bool empty_or_match_cert_71626;
         
-        if (!dim_match_71578) {
+        if (!dim_match_71625) {
             ctx->error =
                 msgprintf("Error: %s%lld%s%lld%s%lld%s%lld%s\n\nBacktrace:\n%s",
                           "Value of (core language) shape (",
-                          (long long) m_70232, ", ", (long long) n_m_70241,
+                          (long long) m_70279, ", ", (long long) n_m_70288,
                           ") cannot match shape of type `[",
-                          (long long) m_70232, "][", (long long) n_70233,
+                          (long long) m_70279, "][", (long long) n_70280,
                           "]f32`.",
-                          "-> #0  loess.fut:610:5-26\n   #1  loess.fut:571:1-610:26\n");
-            if (memblock_unref(ctx, &ext_mem_73112, "ext_mem_73112") != 0)
+                          "-> #0  loess.fut:611:5-26\n   #1  loess.fut:572:1-611:26\n");
+            if (memblock_unref(ctx, &ext_mem_73159, "ext_mem_73159") != 0)
                 return 1;
-            if (memblock_unref(ctx, &ext_mem_73052, "ext_mem_73052") != 0)
+            if (memblock_unref(ctx, &ext_mem_73099, "ext_mem_73099") != 0)
                 return 1;
-            if (memblock_unref(ctx, &ext_mem_73060, "ext_mem_73060") != 0)
+            if (memblock_unref(ctx, &ext_mem_73107, "ext_mem_73107") != 0)
                 return 1;
-            if (memblock_unref(ctx, &mem_out_73178, "mem_out_73178") != 0)
+            if (memblock_unref(ctx, &mem_out_73225, "mem_out_73225") != 0)
                 return 1;
             return 1;
         }
-        if (memblock_set(ctx, &ext_mem_73112, &ext_mem_73060,
-                         "ext_mem_73060") != 0)
+        if (memblock_set(ctx, &ext_mem_73159, &ext_mem_73107,
+                         "ext_mem_73107") != 0)
             return 1;
     }
-    if (memblock_unref(ctx, &ext_mem_73052, "ext_mem_73052") != 0)
+    if (memblock_unref(ctx, &ext_mem_73099, "ext_mem_73099") != 0)
         return 1;
-    if (memblock_unref(ctx, &ext_mem_73060, "ext_mem_73060") != 0)
+    if (memblock_unref(ctx, &ext_mem_73107, "ext_mem_73107") != 0)
         return 1;
     
-    int64_t binop_x_73120 = m_70232 * n_70233;
-    int64_t binop_y_73121 = (int64_t) 4 * binop_x_73120;
-    int64_t bytes_73122 = smax64((int64_t) 0, binop_y_73121);
-    struct memblock mem_73123;
+    int64_t binop_x_73167 = m_70279 * n_70280;
+    int64_t binop_y_73168 = (int64_t) 4 * binop_x_73167;
+    int64_t bytes_73169 = smax64((int64_t) 0, binop_y_73168);
+    struct memblock mem_73170;
     
-    mem_73123.references = NULL;
-    if (memblock_alloc(ctx, &mem_73123, bytes_73122, "mem_73123")) {
+    mem_73170.references = NULL;
+    if (memblock_alloc(ctx, &mem_73170, bytes_73169, "mem_73170")) {
         err = 1;
         goto cleanup;
     }
-    if (m_70232 * n_70233 * (int64_t) 4 > 0)
-        memmove(mem_73123.mem + (int64_t) 0, ext_mem_73112.mem + (int64_t) 0,
-                m_70232 * n_70233 * (int64_t) 4);
-    if (memblock_unref(ctx, &ext_mem_73112, "ext_mem_73112") != 0)
+    if (m_70279 * n_70280 * (int64_t) 4 > 0)
+        memmove(mem_73170.mem + (int64_t) 0, ext_mem_73159.mem + (int64_t) 0,
+                m_70279 * n_70280 * (int64_t) 4);
+    if (memblock_unref(ctx, &ext_mem_73159, "ext_mem_73159") != 0)
         return 1;
-    if (memblock_set(ctx, &mem_out_73178, &mem_73123, "mem_73123") != 0)
+    if (memblock_set(ctx, &mem_out_73225, &mem_73170, "mem_73170") != 0)
         return 1;
-    (*mem_out_p_73330).references = NULL;
-    if (memblock_set(ctx, &*mem_out_p_73330, &mem_out_73178, "mem_out_73178") !=
+    (*mem_out_p_73377).references = NULL;
+    if (memblock_set(ctx, &*mem_out_p_73377, &mem_out_73225, "mem_out_73225") !=
         0)
         return 1;
-    if (memblock_unref(ctx, &mem_73123, "mem_73123") != 0)
+    if (memblock_unref(ctx, &mem_73170, "mem_73170") != 0)
         return 1;
-    if (memblock_unref(ctx, &ext_mem_73112, "ext_mem_73112") != 0)
+    if (memblock_unref(ctx, &ext_mem_73159, "ext_mem_73159") != 0)
         return 1;
-    if (memblock_unref(ctx, &ext_mem_73052, "ext_mem_73052") != 0)
+    if (memblock_unref(ctx, &ext_mem_73099, "ext_mem_73099") != 0)
         return 1;
-    if (memblock_unref(ctx, &ext_mem_73060, "ext_mem_73060") != 0)
+    if (memblock_unref(ctx, &ext_mem_73107, "ext_mem_73107") != 0)
         return 1;
-    if (memblock_unref(ctx, &mem_out_73178, "mem_out_73178") != 0)
+    if (memblock_unref(ctx, &mem_out_73225, "mem_out_73225") != 0)
         return 1;
     
   cleanup:
     { }
-    free(mem_72005);
-    free(mem_72020);
-    free(mem_72023);
-    free(mem_72050);
-    free(mem_72065);
-    free(mem_72138);
-    free(mem_72153);
-    free(mem_72156);
-    free(mem_72183);
-    free(mem_72198);
-    free(mem_72301);
-    free(mem_72316);
-    free(mem_72319);
-    free(mem_72346);
-    free(mem_72361);
-    free(mem_72486);
-    free(mem_72501);
-    free(mem_72504);
-    free(mem_72531);
-    free(mem_72546);
-    free(mem_72572);
-    free(mem_72634);
-    free(mem_72649);
-    free(mem_72652);
-    free(mem_72679);
-    free(mem_72694);
-    free(mem_72731);
-    free(mem_72734);
-    free(mem_72827);
-    free(mem_72842);
-    free(mem_72845);
-    free(mem_72872);
-    free(mem_72887);
-    free(mem_72924);
-    free(mem_72927);
-    free(mem_72954);
-    free(mem_72957);
+    free(mem_72052);
+    free(mem_72067);
+    free(mem_72070);
+    free(mem_72097);
+    free(mem_72112);
+    free(mem_72185);
+    free(mem_72200);
+    free(mem_72203);
+    free(mem_72230);
+    free(mem_72245);
+    free(mem_72348);
+    free(mem_72363);
+    free(mem_72366);
+    free(mem_72393);
+    free(mem_72408);
+    free(mem_72533);
+    free(mem_72548);
+    free(mem_72551);
+    free(mem_72578);
+    free(mem_72593);
+    free(mem_72619);
+    free(mem_72681);
+    free(mem_72696);
+    free(mem_72699);
+    free(mem_72726);
+    free(mem_72741);
+    free(mem_72778);
+    free(mem_72781);
+    free(mem_72874);
+    free(mem_72889);
+    free(mem_72892);
+    free(mem_72919);
+    free(mem_72934);
+    free(mem_72971);
+    free(mem_72974);
+    free(mem_73001);
+    free(mem_73004);
     return err;
 }
 
@@ -7828,49 +7828,49 @@ int futhark_entry_main(struct futhark_context *ctx,
                        int64_t in2, const int64_t in3, const int64_t in4, const
                        int64_t in5)
 {
-    struct memblock Y_mem_71984;
+    struct memblock Y_mem_72031;
     
-    Y_mem_71984.references = NULL;
+    Y_mem_72031.references = NULL;
     
-    int64_t m_70232;
-    int64_t n_70233;
-    int64_t q_70235;
-    int64_t degree_70236;
-    int64_t jump_70237;
-    int64_t jump_threshold_70238;
-    int64_t q_threshold_70239;
-    struct memblock mem_out_73178;
+    int64_t m_70279;
+    int64_t n_70280;
+    int64_t q_70282;
+    int64_t degree_70283;
+    int64_t jump_70284;
+    int64_t jump_threshold_70285;
+    int64_t q_threshold_70286;
+    struct memblock mem_out_73225;
     
-    mem_out_73178.references = NULL;
+    mem_out_73225.references = NULL;
     
     int ret = 0;
     
     lock_lock(&ctx->lock);
-    Y_mem_71984 = in0->mem;
-    m_70232 = in0->shape[0];
-    n_70233 = in0->shape[1];
-    q_70235 = in1;
-    degree_70236 = in2;
-    jump_70237 = in3;
-    jump_threshold_70238 = in4;
-    q_threshold_70239 = in5;
-    if (!(m_70232 == in0->shape[0] && n_70233 == in0->shape[1])) {
+    Y_mem_72031 = in0->mem;
+    m_70279 = in0->shape[0];
+    n_70280 = in0->shape[1];
+    q_70282 = in1;
+    degree_70283 = in2;
+    jump_70284 = in3;
+    jump_threshold_70285 = in4;
+    q_threshold_70286 = in5;
+    if (!(m_70279 == in0->shape[0] && n_70280 == in0->shape[1])) {
         ret = 1;
         if (!ctx->error)
             ctx->error =
                 msgprintf("Error: entry point arguments have invalid sizes.\n");
     }
     if (ret == 0) {
-        ret = futrts_entry_main(ctx, &mem_out_73178, Y_mem_71984, m_70232,
-                                n_70233, q_70235, degree_70236, jump_70237,
-                                jump_threshold_70238, q_threshold_70239);
+        ret = futrts_entry_main(ctx, &mem_out_73225, Y_mem_72031, m_70279,
+                                n_70280, q_70282, degree_70283, jump_70284,
+                                jump_threshold_70285, q_threshold_70286);
         if (ret == 0) {
             assert((*out0 =
                     (struct futhark_f32_2d *) malloc(sizeof(struct futhark_f32_2d))) !=
                 NULL);
-            (*out0)->mem = mem_out_73178;
-            (*out0)->shape[0] = m_70232;
-            (*out0)->shape[1] = n_70233;
+            (*out0)->mem = mem_out_73225;
+            (*out0)->shape[0] = m_70279;
+            (*out0)->shape[1] = n_70280;
         }
     }
     lock_unlock(&ctx->lock);

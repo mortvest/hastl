@@ -22,8 +22,7 @@ let check_odd (x: i64): i64 =
 let check_deg (x: i64): i64 =
   assert (x >= 0 && x <= 2) x
 
-let check_win =
-  check_odd >-> check_pos
+let check_win = check_odd >-> check_pos
 
 let check_nonneg (x: i64): i64 =
   assert (x >= 0) x
@@ -31,13 +30,6 @@ let check_nonneg (x: i64): i64 =
 -- gather for the padded (with -1) indexes
 let pad_gather [n] 'a (vs: []a) (idxs: [n]i64) (zero: a): [n]a =
   map (\i -> if i >= 0 then vs[i] else zero) idxs
-
-
-let pad_idx (n: i64) (i: i64) (n_p: i64) (i_max: i64): [n]i64 =
-  tab (\j -> let ind = i + (j * n_p)
-               in
-               if ind < i_max then ind else -1
-      ) n
 
 -- Filter the array with a predicate, then pad to original size with dummy
 -- returns:

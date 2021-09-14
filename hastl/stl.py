@@ -47,17 +47,17 @@ class STL():
     def fit(self,
             Y,
             n_p,
-            s_window,
-            t_window=None,
-            l_window=None,
-            s_degree=1,
-            t_degree=1,
-            l_degree=None,
-            s_jump=None,
-            t_jump=None,
-            l_jump=None,
-            inner=2,
-            outer=1,
+            q_s,
+            q_t=None,
+            q_l=None,
+            d_s=1,
+            d_t=1,
+            d_l=None,
+            jump_s=None,
+            jump_t=None,
+            jump_l=None,
+            n_inner=2,
+            n_outer=1,
             critfreq=0.05,
             dump=False,
             ):
@@ -71,40 +71,40 @@ class STL():
             raise ValueError("n_p was set to {}. Must be at least 4".format(n_p))
         n_p = int(n_p)
 
-        if s_window < 7:
-            raise ValueError("s_window was set to {}. Must be at least 7".format(s_window))
-        s_window = _wincheck(s_window)
+        if q_s < 7:
+            raise ValueError("q_s was set to {}. Must be at least 7".format(q_s))
+        q_s = _wincheck(q_s)
 
-        if t_window is None:
-            # t_window = _nextodd(np.ceil(1.5 * n_p / (1 - 1.5 / self.s_window)))
-            t_window = self._get_t_window(t_degree, s_degree, s_window, n_p, critfreq)
-        t_window = _wincheck(t_window)
+        if q_t is None:
+            q_t = _nextodd(1.5 * n_p / (1 - 1.5 / q_s))
+            # q_t = self._get_q_t(d_t, d_s, q_s, n_p, critfreq)
+        q_t = _wincheck(q_t)
 
-        if l_window is None:
-            l_window = _nextodd(n_p)
-        l_window = _wincheck(l_window)
+        if q_l is None:
+            q_l = _nextodd(n_p)
+        q_l = _wincheck(q_l)
 
-        s_degree = _degcheck(s_degree)
-        t_degree = _degcheck(t_degree)
+        d_s = _degcheck(d_s)
+        d_t = _degcheck(d_t)
 
-        if l_degree is None:
-            l_degree = t_degree
-        l_degree = _degcheck(l_degree)
+        if d_l is None:
+            d_l = d_t
+        d_l = _degcheck(d_l)
 
-        if s_jump is None:
-            s_jump = np.ceil(s_window / 10)
-        s_jump = _jump_check(s_jump, n)
+        if jump_s is None:
+            jump_s = np.ceil(q_s / 10)
+        jump_s = _jump_check(jump_s, n)
 
-        if t_jump is None:
-            t_jump = np.ceil(t_window / 10)
-        t_jump = _jump_check(t_jump, n)
+        if jump_t is None:
+            jump_t = np.ceil(q_t / 10)
+        jump_t = _jump_check(jump_t, n)
 
-        if l_jump is None:
-            l_jump = np.ceil(l_window / 10)
-        l_jump = _jump_check(l_jump, n)
+        if jump_l is None:
+            jump_l = np.ceil(q_l / 10)
+        jump_l = _jump_check(jump_l, n)
 
-        inner = _iter_check(inner)
-        outer = _iter_check(outer)
+        n_inner = _iter_check(n_inner)
+        n_outer = _iter_check(n_outer)
 
         jump_threshold = 10000000 if self.backend in ["c", "multicore"] else self.jump_threshold
 
@@ -118,17 +118,17 @@ class STL():
             futhark_data.dump(Y_32, f)
 
             params = [(n_p, "n_p"),
-                      (s_window, "q_s"),
-                      (t_window, "q_t"),
-                      (l_window, "q_l"),
-                      (s_degree, "d_s"),
-                      (t_degree, "d_t"),
-                      (l_degree, "d_l"),
-                      (s_jump, "n_jump_s"),
-                      (t_jump, "n_jump_t"),
-                      (l_jump, "n_jump_l"),
-                      (inner, "n_inner"),
-                      (outer, "n_outer"),
+                      (q_s, "q_s"),
+                      (q_t, "q_t"),
+                      (q_l, "q_l"),
+                      (d_s, "d_s"),
+                      (d_t, "d_t"),
+                      (d_l, "d_l"),
+                      (jump_s, "n_jump_s"),
+                      (jump_t, "n_jump_t"),
+                      (jump_l, "n_jump_l"),
+                      (n_inner, "n_inner"),
+                      (n_outer, "n_outer"),
                       (self.jump_threshold, "jump threshold"),
                       (self.max_group_size, "q_threshold")]
 
@@ -142,17 +142,17 @@ class STL():
         try:
             s_data, t_data, r_data = self._fut_obj.main(Y,
                                                         n_p,
-                                                        s_window,
-                                                        t_window,
-                                                        l_window,
-                                                        s_degree,
-                                                        t_degree,
-                                                        l_degree,
-                                                        s_jump,
-                                                        t_jump,
-                                                        l_jump,
-                                                        inner,
-                                                        outer,
+                                                        q_s,
+                                                        q_t,
+                                                        q_l,
+                                                        d_s,
+                                                        d_t,
+                                                        d_l,
+                                                        jump_s,
+                                                        jump_t,
+                                                        jump_l,
+                                                        n_inner,
+                                                        n_outer,
                                                         jump_threshold,
                                                         self.max_group_size)
 
@@ -172,17 +172,17 @@ class STL():
     def fit_1d(self,
             y,
             n_p,
-            s_window,
-            t_window=None,
-            l_window=None,
-            s_degree=1,
-            t_degree=1,
-            l_degree=None,
-            s_jump=None,
-            t_jump=None,
-            l_jump=None,
-            inner=2,
-            outer=1,
+            q_s,
+            q_t=None,
+            q_l=None,
+            d_s=1,
+            d_t=1,
+            d_l=None,
+            jump_s=None,
+            jump_t=None,
+            jump_l=None,
+            n_inner=2,
+            n_outer=1,
             critfreq=0.05,
             dump=False
             ):
@@ -194,51 +194,51 @@ class STL():
 
         season, trend, remainder = self.fit(Y,
                                             n_p,
-                                            s_window,
-                                            t_window,
-                                            l_window,
-                                            s_degree,
-                                            t_degree,
-                                            l_degree,
-                                            s_jump,
-                                            t_jump,
-                                            l_jump,
-                                            inner,
-                                            outer,
+                                            q_s,
+                                            q_t,
+                                            q_l,
+                                            d_s,
+                                            d_t,
+                                            d_l,
+                                            jump_s,
+                                            jump_t,
+                                            jump_l,
+                                            n_inner,
+                                            n_outer,
                                             critfreq,
                                             dump)
         return season[0], trend[0], remainder[0]
 
-    def _get_t_window(self, t_degree, s_degree, n_s, n_p, omega):
-        t_dg = max(t_degree - 1, 0)
-        s_dg = max(s_degree - 1, 0)
+    # def _get_q_t(self, d_t, d_s, n_s, n_p, omega):
+    #     t_dg = max(d_t - 1, 0)
+    #     s_dg = max(d_s - 1, 0)
 
-        coefs_a_a = (0.000103350651767650, 3.81086166990428e-6)
-        coefs_a_b = (-0.000216653946625270, 0.000708495976681902)
+    #     coefs_a_a = (0.000103350651767650, 3.81086166990428e-6)
+    #     coefs_a_b = (-0.000216653946625270, 0.000708495976681902)
 
-        coefs_b_a = (1.42686036792937, 2.24089552678906)
-        coefs_b_b = (-3.1503819836694, -3.30435316073732)
-        coefs_b_c = (5.07481807116087, 5.08099438760489)
+    #     coefs_b_a = (1.42686036792937, 2.24089552678906)
+    #     coefs_b_b = (-3.1503819836694, -3.30435316073732)
+    #     coefs_b_c = (5.07481807116087, 5.08099438760489)
 
-        coefs_c_a = (1.66534145060448, 2.33114333880815)
-        coefs_c_b = (-3.87719398039131, -1.8314816166323)
-        coefs_c_c = (6.46952900183769, 1.85431548427732)
+    #     coefs_c_a = (1.66534145060448, 2.33114333880815)
+    #     coefs_c_b = (-3.87719398039131, -1.8314816166323)
+    #     coefs_c_c = (6.46952900183769, 1.85431548427732)
 
-        # estimate critical frequency for seasonal
-        betac0 = coefs_a_a[s_dg] + coefs_a_b[s_dg] * omega
-        betac1 = coefs_b_a[s_dg] + coefs_b_b[s_dg] * omega + coefs_b_c[s_dg] * omega**2
-        betac2 = coefs_c_a[s_dg] + coefs_c_b[s_dg] * omega + coefs_c_c[s_dg] * omega**2
-        f_c = (1 - (betac0 + betac1 / n_s + betac2 / n_s**2)) / n_p
+    #     # estimate critical frequency for seasonal
+    #     betac0 = coefs_a_a[s_dg] + coefs_a_b[s_dg] * omega
+    #     betac1 = coefs_b_a[s_dg] + coefs_b_b[s_dg] * omega + coefs_b_c[s_dg] * omega**2
+    #     betac2 = coefs_c_a[s_dg] + coefs_c_b[s_dg] * omega + coefs_c_c[s_dg] * omega**2
+    #     f_c = (1 - (betac0 + betac1 / n_s + betac2 / n_s**2)) / n_p
 
-        # choose
-        betat0 = coefs_a_a[t_dg] + coefs_a_b[t_dg] * omega
-        betat1 = coefs_b_a[t_dg] + coefs_b_b[t_dg] * omega + coefs_b_c[t_dg] * omega**2
-        betat2 = coefs_c_a[t_dg] + coefs_c_b[t_dg] * omega + coefs_c_c[t_dg] * omega**2
+    #     # choose
+    #     betat0 = coefs_a_a[t_dg] + coefs_a_b[t_dg] * omega
+    #     betat1 = coefs_b_a[t_dg] + coefs_b_b[t_dg] * omega + coefs_b_c[t_dg] * omega**2
+    #     betat2 = coefs_c_a[t_dg] + coefs_c_b[t_dg] * omega + coefs_c_c[t_dg] * omega**2
 
-        betat00 = betat0 - f_c
+    #     betat00 = betat0 - f_c
 
-        n_t = _nextodd((-betat1 - np.sqrt(betat1**2 - 4 * betat00 * betat2)) / (2 * betat00))
-        return n_t
+    #     n_t = _nextodd((-betat1 - np.sqrt(betat1**2 - 4 * betat00 * betat2)) / (2 * betat00))
+    #     return n_t
 
 
 def print_installed_backends():

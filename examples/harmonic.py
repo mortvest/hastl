@@ -55,7 +55,7 @@ if __name__ == "__main__":
     x = np.arange(1, x_dim + 1)
 
     stl = STL(debug=True, backend="c")
-    seasonal, trend, remainder = stl.fit_1d(data, n_p=n_p, s_window=19, s_degree=0)
+    seasonal, trend, remainder = stl.fit_1d(data, n_p=n_p, q_s=19, d_s=0)
 
     fig, axs = plt.subplots(4)
     labels = ["Input", "Seasonal", "Trend", "Remainder"]

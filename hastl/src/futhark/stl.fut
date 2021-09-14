@@ -47,17 +47,17 @@ local let pad_gather_ints = \vs idxs -> pad_gather vs idxs 0i64
 --------------------------------------------------------------------------------
 let stl [m] [n] (Y: [m][n]t)
                 (n_p: i64)
-                (s_window: i64)
-                (t_window: i64)
-                (l_window: i64)
-                (s_degree: i64)
-                (t_degree: i64)
-                (l_degree: i64)
-                (s_jump: i64)
-                (t_jump: i64)
-                (l_jump: i64)
-                (inner: i64)
-                (outer: i64)
+                (q_s: i64)
+                (q_t: i64)
+                (q_l: i64)
+                (d_s: i64)
+                (d_t: i64)
+                (d_l: i64)
+                (jump_s: i64)
+                (jump_t: i64)
+                (jump_l: i64)
+                (n_inner: i64)
+                (n_outer: i64)
                 (jump_threshold: i64)
                 (q_threshold: i64)
                 : ([m][n]t, [m][n]t, [m][n]t) =
@@ -68,35 +68,35 @@ let stl [m] [n] (Y: [m][n]t)
   -- check arguments
   let n_p = assert (n_p >= 4) n_p
 
-  let t_window = check_win t_window
-  let l_window = check_win l_window
+  let q_t = check_win q_t
+  let q_l = check_win q_l
 
-  let t_degree = check_deg t_degree
-  let l_degree = check_deg l_degree
+  let d_t = check_deg d_t
+  let d_l = check_deg d_l
 
-  let t_jump = check_nonneg t_jump
-  let l_jump = check_nonneg l_jump
+  let jump_t = check_pos jump_t
+  let jump_l = check_pos jump_l
 
-  let inner = check_pos inner
-  let outer = check_nonneg outer
+  let n_inner = check_pos n_inner
+  let n_outer = check_pos n_outer
 
   -- set up parameters for cycle-subseries smoothing
   let max_css_len = T.ceil ((T.i64 n) / (T.i64 n_p)) |> T.to_i64
   let pad_css_len = max_css_len + 2
   let C_len = n + 2 * n_p
 
-  let s_n_m = if s_jump == 1 then pad_css_len else max_css_len / s_jump + 3
+  let s_n_m = if jump_s == 1 then pad_css_len else max_css_len / jump_s + 3
   let s_m_fun (x: i64) = if x == 0 then 0
                          else if x == s_n_m - 1 then pad_css_len - 1
-                         else i64.min ((x - 1) * s_jump + 1) (max_css_len)
+                         else i64.min ((x - 1) * jump_s + 1) (max_css_len)
 
   -- set up parameters for the low-pass filter smoothing
-  let l_n_m = if l_jump == 1 then n else n / l_jump + 1
-  let l_m_fun (x: i64): i64 = i64.min (x * l_jump) (n - 1)
+  let l_n_m = if jump_l == 1 then n else n / jump_l + 1
+  let l_m_fun (x: i64): i64 = i64.min (x * jump_l) (n - 1)
 
   -- set up parameters for trend smoothing
-  let t_n_m = if t_jump == 1 then n else n / t_jump + 1
-  let t_m_fun (x: i64): i64 = i64.min (x * t_jump) (n - 1)
+  let t_n_m = if jump_t == 1 then n else n / jump_t + 1
+  let t_m_fun (x: i64): i64 = i64.min (x * jump_t) (n - 1)
 
   -- set up parameters for median calculation
   let mid1 = T.floor ((T.i64 n) / 2 + 1) |> T.to_i64
@@ -111,44 +111,50 @@ let stl [m] [n] (Y: [m][n]t)
   -- filter nans and pad non-nan indices
   let (_, nn_idx_l, n_nn_l) = map filterPadNans Y |> unzip3 |> opaque
 
-  -- compute local indexes of non-nan values and their number for each css
-  let (css_nn_idxss_l, css_n_nns_l) =
+  -- extract all cycle subseries, resulting in [m][n_p][max_css_len] array
+  let csss_l =
     map (\y ->
            tab ( \i ->
-                 -- extract css, padded to max_css_len with NaNs
-                   let css = tab ( \j ->
-                                     let new_i = i + n_p * j
-                                     in
-                                     if new_i > n - 1
-                                     then T.nan
-                                     else y[new_i]
-                                 ) max_css_len
-                 -- extract non-nan indexes from padded css, pad to max_css_len
-                 let (_, css_nn_idx, css_n_nn) = filterPadNans css
-                 in (css_nn_idx, css_n_nn)
-               ) n_p |> unzip
-        ) Y |> unzip |> opaque
+                   -- extract css, padded to max_css_len with a NaN value
+                   tab ( \j ->
+                           let new_i = i + n_p * j
+                           in
+                           if new_i > n - 1
+                           then T.nan
+                           else y[new_i]
+                       ) max_css_len
+               ) n_p
+        ) Y |> opaque
 
-  -- calculate invariant arrays for the seasonal smoothing
-  let (css_l_idxs_l, css_max_dists_l) =
+  -- compute local indexes of non-nan values and their quantity for each css
+  let (css_nn_idxss_l, css_n_nns_l) =
+    map (\csss ->
+           map ( \css ->
+                  let (_, css_nn_idx, css_n_nn) = filterPadNans css
+                  in (css_nn_idx, css_n_nn)
+               ) csss |> unzip
+        ) csss_l |> unzip |> opaque
+
+  -- calculate invariant arrays for the seasonal smoothing: nearest neighbors and lamba
+  let (css_l_idxs_l, css_lambdas_l) =
     map2 (\css_nn_idxss css_n_nns ->
            map2 (\css_nn_idxs css_n_nn ->
-                   loess.loess_params_css s_window s_m_fun s_n_m css_nn_idxs css_n_nn
+                   loess.loess_params_css q_s s_m_fun s_n_m css_nn_idxs css_n_nn
                 ) css_nn_idxss css_n_nns |> unzip
         ) css_nn_idxss_l css_n_nns_l |> unzip |> opaque
 
   -- calculate invariant arrays for the low-pass filter smoothing
-  let (l_l_idx_l, l_max_dist_l) =
+  let (l_l_idx_l, l_lambdas_l) =
     map2 (\nn_idx n_nn ->
             -- [l_n_m]
-            loess.loess_params l_window l_m_fun l_n_m nn_idx n_nn
+            loess.loess_params q_l l_m_fun l_n_m nn_idx n_nn
          ) nn_idx_l n_nn_l |> unzip |> opaque
 
   -- calculate invariant arrays for the trend smoothing
-  let (t_l_idx_l, t_max_dist_l) =
+  let (t_l_idx_l, t_lambdas_l) =
     map2 (\nn_idx n_nn ->
             -- [t_n_m]
-            loess.loess_params t_window t_m_fun t_n_m nn_idx n_nn
+            loess.loess_params q_t t_m_fun t_n_m nn_idx n_nn
          ) nn_idx_l n_nn_l |> unzip |> opaque
 
   --- initialize components to 0s, should not be instantiated
@@ -163,12 +169,12 @@ let stl [m] [n] (Y: [m][n]t)
     ------------------------------------
     -- Outer loop start               --
     ------------------------------------
-    loop (seasonal_l, trend_l, weights_l) for i_outer < outer do
+    loop (seasonal_l, trend_l, weights_l) for i_outer < n_outer do
       let (seasonal_l, trend_l) =
         ------------------------------------
         -- Inner loop start               --
         ------------------------------------
-        loop (_, trend_l) = (seasonal_l, trend_l) for _i_inner < inner do
+        loop (_, trend_l) = (seasonal_l, trend_l) for _i_inner < n_inner do
           -- Step 1: Detrending
           let Y_detrended_l = map2 (\y trend -> map2 (-) y trend) Y trend_l |> opaque
 
@@ -176,7 +182,9 @@ let stl [m] [n] (Y: [m][n]t)
           --- extract the padded non-NaN values for each css and corresponding weights
           let (css_nns_l, css_ws_l) =
             map3 (\css_nn_idxss y_detrended w ->
+                    -- [n_p]
                     map2 (\i css_nn_idx ->
+                            -- [css_max_len]
                            map (\nn_id ->
                                    let idx = nn_id * n_p + i
                                    in
@@ -190,26 +198,26 @@ let stl [m] [n] (Y: [m][n]t)
           -- apply LOESS to each css
           let (css_fits_l, css_slopes_l) = loess.loess_css_l css_nn_idxss_l
                                                              css_nns_l
-                                                             s_degree
-                                                             s_window
+                                                             d_s
+                                                             q_s
                                                              s_m_fun
                                                              css_ws_l
                                                              css_l_idxs_l
-                                                             css_max_dists_l
+                                                             css_lambdas_l
                                                              css_n_nns_l
-                                                             s_jump
+                                                             jump_s
                                                              jump_threshold
                                                              q_threshold
 
           -- apply interpolation to each css if necessary. The result has inner dimension (max_css_length + 2)
           let css_results_l =
-            if s_jump == 1
+            if jump_s == 1
             then
               css_fits_l
             else
               map2 (\css_fits css_slopes ->
                       map2 (\css_fit css_slope ->
-                              loess.interpolate_css s_m_fun css_fit css_slope pad_css_len s_jump
+                              loess.interpolate_css s_m_fun css_fit css_slope pad_css_len jump_s
                            ) css_fits css_slopes
                    ) css_fits_l css_slopes_l |> opaque
 
@@ -225,23 +233,23 @@ let stl [m] [n] (Y: [m][n]t)
           --- then apply LOESS
           let (l_results_l, l_slopes_l) = loess.loess_l (replicate m (iota n))
                                                         ma3_l
-                                                        l_degree
-                                                        l_window
+                                                        d_l
+                                                        q_l
                                                         (t_m_fun >-> (+1))
                                                         weights_l
                                                         l_l_idx_l
-                                                        l_max_dist_l
+                                                        l_lambdas_l
                                                         (replicate m n)
-                                                        l_jump
+                                                        jump_l
                                                         jump_threshold
                                                         q_threshold
 
           -- interpolate, if needed
           let L_l =
-            if l_jump > 1 then
+            if jump_l > 1 then
               map2 (\l_results l_slopes ->
                       -- [n]
-                      loess.interpolate l_m_fun l_results l_slopes n l_jump
+                      loess.interpolate l_m_fun l_results l_slopes n jump_l
                    ) l_results_l l_slopes_l
             else
               l_results_l :> [m][n]t
@@ -278,22 +286,22 @@ let stl [m] [n] (Y: [m][n]t)
           -- apply LOESS
           let (t_results_l, t_slopes_l) = loess.loess_l nn_idx_l
                                                         D_pad_l
-                                                        t_degree
-                                                        t_window
+                                                        d_t
+                                                        q_t
                                                         (t_m_fun >-> (+1))
                                                         w_pad_l
                                                         t_l_idx_l
-                                                        t_max_dist_l
+                                                        t_lambdas_l
                                                         n_nn_l
-                                                        t_jump
+                                                        jump_t
                                                         jump_threshold
                                                         q_threshold
           --- interpolate
           let trend_l =
             -- [n]
-            if t_jump > 1 then
+            if jump_t > 1 then
               map2 (\t_results t_slopes ->
-                      loess.interpolate t_m_fun t_results t_slopes n t_jump
+                      loess.interpolate t_m_fun t_results t_slopes n jump_t
                    ) t_results_l t_slopes_l |> opaque
             else
               t_results_l :> [m][n]t
@@ -310,7 +318,7 @@ let stl [m] [n] (Y: [m][n]t)
       -- Update the weights             --
       ------------------------------------
       let weights_l =
-        if i_outer < outer - 1
+        if i_outer < n_outer - 1
         then
           --- calculate remainder estimate
           let R_abs_l =
@@ -376,32 +384,32 @@ let stl [m] [n] (Y: [m][n]t)
 
 entry main [m] [n] (Y: [m][n]f32)
                    (n_p: i64)
-                   (s_window: i64)
-                   (t_window: i64)
-                   (l_window: i64)
-                   (s_degree: i64)
-                   (t_degree: i64)
-                   (l_degree: i64)
-                   (s_jump: i64)
-                   (t_jump: i64)
-                   (l_jump: i64)
-                   (inner: i64)
-                   (outer: i64)
+                   (q_s: i64)
+                   (q_t: i64)
+                   (q_l: i64)
+                   (d_s: i64)
+                   (d_t: i64)
+                   (d_l: i64)
+                   (jump_s: i64)
+                   (jump_t: i64)
+                   (jump_l: i64)
+                   (n_inner: i64)
+                   (n_outer: i64)
                    (jump_threshold: i64)
                    (q_threshold: i64)
                    : ([m][n]f32, [m][n]f32, [m][n]f32) =
   stl_batched.stl Y
                   n_p
-                  s_window
-                  t_window
-                  l_window
-                  s_degree
-                  t_degree
-                  l_degree
-                  s_jump
-                  t_jump
-                  l_jump
-                  inner
-                  outer
+                  q_s
+                  q_t
+                  q_l
+                  d_s
+                  d_t
+                  d_l
+                  jump_s
+                  jump_t
+                  jump_l
+                  n_inner
+                  n_outer
                   jump_threshold
                   q_threshold
