@@ -38,8 +38,7 @@ Then select the backends (choose from opencl, cuda, c and multicore) that you wi
 
   export HASTL_BACKENDS="opencl multicore c" 
 
-If no environmental variable is set, an attempt will be made to compile all the
-available backends.
+If no environmental variable is set, an attempt will be made to compile all available backends.
 
 The package can then be easily installed using pip. This will take a while, since we need
 to compile the shared libraries for your particular system, Python implementation and all selected backends::
@@ -50,7 +49,7 @@ To install the package from the sources, first get the current stable release vi
 
   git clone https://github.com/mortvest/hastl
 
-Install the bfast dependencies via::
+Install the dependencies via::
 
   pip install -r requirements.txt
 
@@ -62,7 +61,7 @@ Afterwards, you can install the package. This can also take a while::
 
 Usage
 -----
-Set backend to "cuda", "opencl", "multicore" or "c" and run::
+Examples of HaSTL usage can be found in the examples/ direcotry. The simplest snippet should contain::
 
   from hastl import STL
   stl = STL(backend="opencl")
