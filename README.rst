@@ -65,7 +65,7 @@ Examples of HaSTL usage can be found in the examples/ direcotry. The simplest sn
 
   from hastl import STL
   stl = STL(backend="opencl")
-  seasonal, trend, remainder = stl.fit(data, n_p=12, s_window=13)
+  seasonal, trend, remainder = stl.fit(data, n_p=12, q_s=13)
 
 
 References
