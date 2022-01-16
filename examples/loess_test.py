@@ -11,9 +11,9 @@ def plot_single(ax, data, q):
     ax.set_xlim(-5, 505)
     ax.plot(x, data, label="data")
     ax.plot(x, result, label="LOESS")
-    ax.set_title("q = {}".format(q))
+    ax.set_title(r"$q = {}$".format(q))
     ax.set_ylabel("y")
-    ax.legend()
+    ax.legend(loc="lower left")
 
 
 if __name__ == "__main__":
@@ -21,10 +21,10 @@ if __name__ == "__main__":
     plt.rcParams['font.size'] = 12
     plt.rcParams['axes.labelsize'] = 12
     plt.rcParams['axes.labelweight'] = 'bold'
-    plt.rcParams['xtick.labelsize'] = 12
-    plt.rcParams['ytick.labelsize'] = 12
+    plt.rcParams['xtick.labelsize'] = 14
+    plt.rcParams['ytick.labelsize'] = 14
     plt.rcParams['legend.fontsize'] = 12
-    plt.rcParams['figure.titlesize'] = 12
+    plt.rcParams['figure.titlesize'] = 14
 
     x_dim = 500
     n_p = 100
@@ -34,7 +34,8 @@ if __name__ == "__main__":
 
     loess = LOESS(backend="c")
 
-    qs = [11, 31, 101, 3001]
+    # qs = [11, 31, 101, 3001]
+    qs = [11, 101, 1001]
     fig, axs = plt.subplots(len(qs))
     if type(axs) != np.ndarray:
         axs = np.array([axs])
@@ -43,9 +44,11 @@ if __name__ == "__main__":
         plot_single(ax, data, q)
     plt.xlabel("x")
 
-    fig.set_size_inches(10, 10)
+    # fig.set_size_inches(10, 10)
+    # fig.set_size_inches(10, 7)
+    fig.set_size_inches(10, 4)
 
     plt.tight_layout()
-    plt.subplots_adjust(wspace=0.085)
-    plt.savefig("loess_qs.png", dpi=150)
+    plt.subplots_adjust(left=0.06, bottom=0.12, right=0.99, top=0.93, wspace=None, hspace=0.6)
+    plt.savefig("loess1.pdf", dpi=150)
     # plt.show()

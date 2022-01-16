@@ -43,10 +43,10 @@ if __name__ == "__main__":
     plt.rcParams['font.size'] = 12
     plt.rcParams['axes.labelsize'] = 12
     plt.rcParams['axes.labelweight'] = 'bold'
-    plt.rcParams['xtick.labelsize'] = 12
-    plt.rcParams['ytick.labelsize'] = 12
+    plt.rcParams['xtick.labelsize'] = 14
+    plt.rcParams['ytick.labelsize'] = 14
     plt.rcParams['legend.fontsize'] = 12
-    plt.rcParams['figure.titlesize'] = 12
+    plt.rcParams['figure.titlesize'] = 14
 
     x_dim = 500
     n_p = 52
@@ -65,9 +65,12 @@ if __name__ == "__main__":
         plot_single(ax, x, data, label)
 
     plt.xlabel("x")
-    fig.set_size_inches(10, 10)
+    fig.set_size_inches(10, 7)
 
     plt.tight_layout()
-    plt.subplots_adjust(wspace=0.085)
-    # plt.savefig("stl1.png", dpi=150)
-    plt.show()
+
+    plt.subplots_adjust(left=0.08, bottom=0.07, right=0.98, top=0.96, wspace=None, hspace=0.4)
+    # plt.subplots_adjust(wspace=0.085)
+    # plt.subplots_adjust(wspace=-1)
+    plt.savefig("stl1.pdf", dpi=150)
+    # plt.show()
