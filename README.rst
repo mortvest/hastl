@@ -15,7 +15,7 @@ Requirements
 
 You would need a working OpenCL or CUDA installation/header files, C compiler and these Python packages:
 
-- futhark-ffi>=0.14.0
+- futhark-ffi==0.14.1
 - wheel
 
 
@@ -38,7 +38,7 @@ Then select the backends (choose from opencl, cuda, c and multicore) that you wi
 
   export HASTL_BACKENDS="opencl multicore c" 
 
-If no environmental variable is set, an attempt will be made to compile all available backends.
+If no environmental variable is set, only the sequential c backend would be compiled.
 
 The package can then be easily installed using pip. This will take a while, since we need
 to compile the shared libraries for your particular system, Python implementation and all selected backends::

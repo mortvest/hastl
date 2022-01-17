@@ -1,3 +1,4 @@
 include README.rst
 include hastl/src/*.h
 include hastl/src/*.c
+include hastl/src/*.json

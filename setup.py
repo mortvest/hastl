@@ -20,7 +20,7 @@ def check_backend(backend_str, base):
 def find_cffi_modules():
     # read environment variable
     env_backends = os.environ.get(ENV_VAR, None)
-    backends = env_backends.split(" ") if env_backends else ALL_BACKENDS
+    backends = env_backends.split(" ") if env_backends else ["c"]
     modules = []
     for module_base in [STL_MODULE_BASE, LOESS_MODULE_BASE]:
         modules += list({check_backend(backend, module_base) for backend in backends})
@@ -55,10 +55,10 @@ setup(
         "Topic :: Scientific/Engineering",
     ],
     install_requires=[
-        "futhark-ffi>=0.14.0",
+        "futhark-ffi==0.14.1",
     ],
     setup_requires=[
-        "futhark-ffi>=0.14.0"
+        "futhark-ffi==0.14.1"
     ],
     cffi_modules=find_cffi_modules()
 )

@@ -3,7 +3,7 @@ backends = cuda opencl c multicore
 .PHONY: all move stl loess loess_c_files loess_h_files stl_c_files stl_h_files clean
 
 move:
-	cp *.c *.h ../
+	cp *.c *.h *.json ../
 
 all: stl loess
 
