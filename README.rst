@@ -64,8 +64,8 @@ Usage
 Examples of HaSTL usage can be found in the examples/ direcotry. The simplest snippet should contain::
 
   from hastl import STL
-  stl = STL(backend="opencl")
-  seasonal, trend, remainder = stl.fit(data, n_p=12, q_s=13)
+  stl = STL(backend=..)
+  seasonal, trend, remainder = stl.fit(data, n_p=.., q_s=..)
 
 
 References
