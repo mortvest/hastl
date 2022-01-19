@@ -396,10 +396,22 @@ let stl [m] [n] (Y: [m][n]t)
                        (jump_threshold: i64)
                        (q_threshold: i64)
                        : ([m][n]t, [m][n]t, [m][n]t) =
-    let all_nans_l = map (all (T.isnan)) Y
+    let max_css_len = T.ceil ((T.i64 n) / (T.i64 n_p)) |> T.to_i64
+    -- let all_nans_l = map (all (T.isnan)) Y
+    -- detect if at least one of css in each time series is all NaNs
+    let all_nans_l = map (\y ->
+                            tab (\i ->
+                                   tab (\j ->
+                                          let idx = j * n_p + i
+                                          in idx < n && T.isnan y[idx]
+                                       ) max_css_len |> all id
+                                ) n_p |> any id
+                         ) Y
+    -- filter out all such time series
     let (Y_filt, _, idxs) =
       filter (\(_, flag, _) -> !flag) (zip3 Y all_nans_l (iota m)) |> unzip3
 
+    -- apply STL to each time series that passed the filtering
     let (seasonal_filt_l, trend_filt_l, remainder_filt_l) = stl Y_filt
                                                                 n_p
                                                                 q_s
@@ -416,7 +428,7 @@ let stl [m] [n] (Y: [m][n]t)
                                                                 jump_threshold
                                                                 q_threshold
 
-    -- write the filtered values back into the buffers with outer dimension m
+    -- write the decomposed values into the bufferes of full batch size m
     let seasonal_l = scatter (replicate m (replicate n (T.nan))) idxs seasonal_filt_l
     let trend_l = scatter (replicate m (replicate n (T.nan))) idxs trend_filt_l
     let remainder_l = scatter (replicate m (replicate n (T.nan))) idxs remainder_filt_l

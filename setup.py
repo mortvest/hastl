@@ -25,6 +25,7 @@ def find_cffi_modules():
     for module_base in [STL_MODULE_BASE, LOESS_MODULE_BASE]:
         modules += list({check_backend(backend, module_base) for backend in backends})
     assert modules, "List of cffi modules can not be empty"
+    print("Attempting to compile following modules:", modules)
     return modules
 
 setup(
