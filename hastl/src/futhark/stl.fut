@@ -379,6 +379,48 @@ let stl [m] [n] (Y: [m][n]t)
                             map3 (\v s t -> v - s - t) y seasonal trend
                          ) Y seasonal_l trend_l
   in (seasonal_l, trend_l, remainder_l)
+
+  let stl_filt [m] [n] (Y: [m][n]t)
+                       (n_p: i64)
+                       (q_s: i64)
+                       (q_t: i64)
+                       (q_l: i64)
+                       (d_s: i64)
+                       (d_t: i64)
+                       (d_l: i64)
+                       (jump_s: i64)
+                       (jump_t: i64)
+                       (jump_l: i64)
+                       (n_inner: i64)
+                       (n_outer: i64)
+                       (jump_threshold: i64)
+                       (q_threshold: i64)
+                       : ([m][n]t, [m][n]t, [m][n]t) =
+    let all_nans_l = map (all (T.isnan)) Y
+    let (Y_filt, _, idxs) =
+      filter (\(_, flag, _) -> !flag) (zip3 Y all_nans_l (iota m)) |> unzip3
+
+    let (seasonal_filt_l, trend_filt_l, remainder_filt_l) = stl Y_filt
+                                                                n_p
+                                                                q_s
+                                                                q_t
+                                                                q_l
+                                                                d_s
+                                                                d_t
+                                                                d_l
+                                                                jump_s
+                                                                jump_t
+                                                                jump_l
+                                                                n_inner
+                                                                n_outer
+                                                                jump_threshold
+                                                                q_threshold
+
+    -- write the filtered values back into the buffers with outer dimension m
+    let seasonal_l = scatter (replicate m (replicate n (T.nan))) idxs seasonal_filt_l
+    let trend_l = scatter (replicate m (replicate n (T.nan))) idxs trend_filt_l
+    let remainder_l = scatter (replicate m (replicate n (T.nan))) idxs remainder_filt_l
+    in (seasonal_l, trend_l, remainder_l)
 }
 
 
@@ -398,18 +440,18 @@ entry main [m] [n] (Y: [m][n]f64)
                    (jump_threshold: i64)
                    (q_threshold: i64)
                    : ([m][n]f64, [m][n]f64, [m][n]f64) =
-  stl_batched.stl Y
-                  n_p
-                  q_s
-                  q_t
-                  q_l
-                  d_s
-                  d_t
-                  d_l
-                  jump_s
-                  jump_t
-                  jump_l
-                  n_inner
-                  n_outer
-                  jump_threshold
-                  q_threshold
+  stl_batched.stl_filt Y
+                       n_p
+                       q_s
+                       q_t
+                       q_l
+                       d_s
+                       d_t
+                       d_l
+                       jump_s
+                       jump_t
+                       jump_l
+                       n_inner
+                       n_outer
+                       jump_threshold
+                       q_threshold
