@@ -38,30 +38,30 @@ const char *futhark_get_tuning_param_name(int);
 const char *futhark_get_tuning_param_class(int);
 
 // Arrays
-struct futhark_f32_2d;
-struct futhark_f32_2d *futhark_new_f32_2d(struct futhark_context *ctx, const
-                                          float *data, int64_t dim0,
+struct futhark_f64_2d;
+struct futhark_f64_2d *futhark_new_f64_2d(struct futhark_context *ctx, const
+                                          double *data, int64_t dim0,
                                           int64_t dim1);
-struct futhark_f32_2d *futhark_new_raw_f32_2d(struct futhark_context *ctx, const
+struct futhark_f64_2d *futhark_new_raw_f64_2d(struct futhark_context *ctx, const
                                               unsigned char *data,
                                               int64_t offset, int64_t dim0,
                                               int64_t dim1);
-int futhark_free_f32_2d(struct futhark_context *ctx,
-                        struct futhark_f32_2d *arr);
-int futhark_values_f32_2d(struct futhark_context *ctx,
-                          struct futhark_f32_2d *arr, float *data);
-unsigned char *futhark_values_raw_f32_2d(struct futhark_context *ctx,
-                                         struct futhark_f32_2d *arr);
-const int64_t *futhark_shape_f32_2d(struct futhark_context *ctx,
-                                    struct futhark_f32_2d *arr);
+int futhark_free_f64_2d(struct futhark_context *ctx,
+                        struct futhark_f64_2d *arr);
+int futhark_values_f64_2d(struct futhark_context *ctx,
+                          struct futhark_f64_2d *arr, double *data);
+unsigned char *futhark_values_raw_f64_2d(struct futhark_context *ctx,
+                                         struct futhark_f64_2d *arr);
+const int64_t *futhark_shape_f64_2d(struct futhark_context *ctx,
+                                    struct futhark_f64_2d *arr);
 
 // Opaque values
 
 
 // Entry points
 int futhark_entry_main(struct futhark_context *ctx,
-                       struct futhark_f32_2d **out0, const
-                       struct futhark_f32_2d *in0, const int64_t in1, const
+                       struct futhark_f64_2d **out0, const
+                       struct futhark_f64_2d *in0, const int64_t in1, const
                        int64_t in2, const int64_t in3, const int64_t in4, const
                        int64_t in5);
 

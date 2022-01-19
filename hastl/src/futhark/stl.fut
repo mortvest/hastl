@@ -10,7 +10,7 @@ import "utils"
 
 module stl_batched = {
 
-module T = f32
+module T = f64
 type t = T.t
 
 module loess = loess_m
@@ -382,7 +382,7 @@ let stl [m] [n] (Y: [m][n]t)
 }
 
 
-entry main [m] [n] (Y: [m][n]f32)
+entry main [m] [n] (Y: [m][n]f64)
                    (n_p: i64)
                    (q_s: i64)
                    (q_t: i64)
@@ -397,7 +397,7 @@ entry main [m] [n] (Y: [m][n]f32)
                    (n_outer: i64)
                    (jump_threshold: i64)
                    (q_threshold: i64)
-                   : ([m][n]f32, [m][n]f32, [m][n]f32) =
+                   : ([m][n]f64, [m][n]f64, [m][n]f64) =
   stl_batched.stl Y
                   n_p
                   q_s

@@ -2,7 +2,7 @@
 import "utils"
 
 module loess_m = {
-module T = f32
+module T = f64
 
 type t = T.t
 type^ fun_t = (t -> t -> t -> t -> t -> t -> t -> t -> t -> t -> t)
@@ -87,8 +87,8 @@ let loess_flat [n] [n_m] (xx: [n]i64)
          -- REDOMAP 1
          -----------------------------------
          #[unsafe]
-         let xx_slice = q_slice xx l_idx_i 1 (i64.+) 0
-         let ww_slice = q_slice ww l_idx_i 0 (T.+) 0
+         let xx_slice = q_slice xx l_idx_i 1 (+) 0
+         let ww_slice = q_slice ww l_idx_i 0 (+) 0
          let (w, xw, x2w, x3w, x4w) =
            map2 (\xx_j ww_j ->
                    let x_j = (xx_j - m_fun i) |> T.i64
@@ -139,8 +139,8 @@ let loess_flat [n] [n_m] (xx: [n]i64)
          -----------------------------------
          -- REDOMAP 2
          -----------------------------------
-         let xx_slice' = q_slice' xx l_idx_i 1 (i64.+) 0
-         let ww_slice' = q_slice' ww l_idx_i 0 (T.+) 0
+         let xx_slice' = q_slice' xx l_idx_i 1 (+) 0
+         let ww_slice' = q_slice' ww l_idx_i 0 (+) 0
          let (x', w') =
            map2 (\xx_j ww_j ->
                    let x_j = (xx_j - m_fun i) |> T.i64
@@ -156,7 +156,7 @@ let loess_flat [n] [n_m] (xx: [n]i64)
          -- then, compute fit and slope based on polynomial degree
          let xw' = map2 (*) x' w'
          let x2w' = map2 (*) x' xw'
-         let yy_slice' = q_slice' yy l_idx_i 0 (T.+) 0
+         let yy_slice' = q_slice' yy l_idx_i 0 (+) 0
 
          let fit = map4 (
                      \w_j yy_j xw_j x2w_j ->
@@ -240,6 +240,7 @@ let loess_intragroup_simple [n] [n_m] (xx: [n]i64)
                                       : ([n_m]t, [n_m]t) =
   let q_slice 'a (arr: [n]a) (l_idx_i: i64) (v: a) (add: a -> a -> a) (zero: a): [q]a =
     #[unsafe]
+    -- tab (\j -> if j >= n_nn then zero else add arr[l_idx_i + j] v) q
     tab (\j -> if j >= n_nn then zero else add arr[l_idx_i + j] v) q
   in
   -- [n_m]
@@ -248,8 +249,8 @@ let loess_intragroup_simple [n] [n_m] (xx: [n]i64)
          -- [q]
          -- get polynomial weights (from tri-cube), x, and a
          #[unsafe]
-         let xx_slice = q_slice xx l_idx_i 1 (i64.+) 0
-         let ww_slice = q_slice ww l_idx_i 0 (T.+) 0
+         let xx_slice = q_slice xx l_idx_i 1 (+) 0
+         let ww_slice = q_slice ww l_idx_i 0 (+) 0
          let (x, w) =
            map2 (\xx_j ww_j ->
                    let x_j = (xx_j - m_fun i) |> T.i64
@@ -296,7 +297,7 @@ let loess_intragroup_simple [n] [n_m] (xx: [n]i64)
 
          let a0 = 1 / a
 
-         let yy_slice = q_slice yy l_idx_i 0 (f32.+) 0
+         let yy_slice = q_slice yy l_idx_i 0 (+) 0
 
          let fit =
            map4 (
@@ -569,19 +570,19 @@ let interpolate_css [n_m] (m_fun: i64 -> i64)
 --------------------------------------------------------------------------------
 -- Entry Point for the LOESS application                                      --
 --------------------------------------------------------------------------------
-entry main [m] [n] (Y: [m][n]f32)
+entry main [m] [n] (Y: [m][n]f64)
                    (q: i64)
                    (degree: i64)
                    (jump: i64)
                    (jump_threshold: i64)
-                   (q_threshold: i64): [m][n]f32 =
+                   (q_threshold: i64): [m][n]f64 =
   -- set up parameters for the low-pass filter smoothing
   let n_m = if jump == 1 then n else n / jump + 1
   let m_fun (x: i64): i64 = i64.min (x * jump) (n - 1)
 
   -- filter nans and pad non-nan indices
   let (nn_y_l, nn_idx_l, n_nn_l) =
-    map (filterPadWithKeys (\i -> !(f32.isnan i)) 0) Y |> unzip3
+    map (filterPadWithKeys (\i -> !(f64.isnan i)) 0) Y |> unzip3
 
   -- calculate invariant arrays for the low-pass filter smoothing
   let (l_idx_l, lambda_l) =
@@ -589,7 +590,7 @@ entry main [m] [n] (Y: [m][n]f32)
             loess_m.loess_params q m_fun n_m nn_idx n_nn
          ) nn_idx_l n_nn_l |> unzip
 
-  let weights_l = replicate (m * n) 1f32 |> unflatten m n
+  let weights_l = replicate (m * n) 1f64 |> unflatten m n
   let (results_l, slopes_l) = loess_m.loess_l nn_idx_l
                                               nn_y_l
                                               degree
@@ -608,4 +609,4 @@ entry main [m] [n] (Y: [m][n]f32)
             loess_m.interpolate m_fun results slopes n jump
          ) results_l slopes_l
   else
-    results_l :> [m][n]f32
+    results_l :> [m][n]f64
