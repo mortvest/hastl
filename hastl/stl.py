@@ -5,8 +5,21 @@ import numpy as np
 
 
 class STL():
-    """
-    Batched STL decomposition for GPUs
+    """Class for the batched STL decomposition.
+    :param backend: which backend to use
+    :type str: one of [c, opencl, cuda, multicore]
+    :param jump_threshold: determines when to switch from the outer-parallel
+        version. This optimal value for this parameter depends on your GPU.
+        Should be set higher for higher-end GPUs.
+    :type int: integer > 1, optional
+    :param max_group_size: the maximal size for the workgroup. 1024 for the
+        NVIDIA cards and 256 for AMD
+    :type int: integer > 1
+    :param tuning: The dictionary of threshold values.
+        See https://futhark-lang.org/docs.html
+    :type dict: dictionary of "string": integer
+    :param debug: debug mode
+    :type bool: true to enable debugging messages
     """
     def __init__(self,
                  backend="opencl",
@@ -61,6 +74,45 @@ class STL():
             critfreq=0.05,
             dump=False,
             ):
+        """Decomposes 2d array Y into trend, seasonal and remainder
+        :param Y: input data
+        :type array: 2d array of float
+        :param n_p: the number of observations in each cycle of the seasonal
+            component
+        :type int: integer >= 4
+        :param q_s: smoothing parameter for the seasonal component
+        :type int: positive, odd
+        :param q_t: smoothing parameter for the trend component
+        :type int: positive, odd, optional
+        :param q_l: smoothing parameter for the low-pass filter
+        :type int: positive, odd, optional
+        :param d_s: polynomial degree for the smoothing of the seasonal component
+        :type int: one of [0, 1, 2], optional
+        :param d_t: polynomial degree for the smoothing of the trend component
+        :type int: one of [0, 1, 2], optional
+        :param d_l: polynomial degree for the smoothing of the low-pass filter
+        :type int: one of [0, 1, 2], optional
+        :param jump_s: stride of the jump parameter for the smoothing of the
+            seasonal component (higher - faster, but less precise)
+        :type int: integer >= 1, optional
+        :param jump_t: stride of the jump parameter for the smoothing of the
+            trend component (higher - faster, but less precise)
+        :type int: integer >= 1, optional
+        :param jump_l: stride of the jump parameter for the smoothing of the
+            low-pass filter (higher - faster, but less precise)
+        :type int: integer >= 1, optional
+        :param n_inner: number of the inner loop iterations. 2 is the default
+            value, set to 1 if n_outer is > 1
+        :type int: integer >= 1, optional
+        :param n_outer: number of the outer loop iterations, set to 1 for
+            faster execution, set to 5 if extra robustness is required
+        :type int: integer >= 1, optional
+        :param critfreq: critical frequency to use for automatic calculation of
+            smoothing windows for the trend and high-pass filter.
+        :type float: the default value is almost always sufficient, optional
+        :return: the decomposed result: seasonal, trend, remainder
+        :rtype: tuple of 3 2d arrays
+    """
         Y = np.asarray(Y)
 
         if Y.ndim != 2:
