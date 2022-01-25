@@ -28,6 +28,7 @@ class STL():
                  tuning=None,
                  device=None,
                  platform=None,
+                 profiling=False,
                  debug=False
                  ):
         # set device-specific parameters
@@ -36,6 +37,7 @@ class STL():
         self.max_group_size = max_group_size
         self.device = device
         self.platform = platform
+        self.profiling = profiling
         self.debug = debug
 
         if tuning is None:
@@ -52,7 +54,11 @@ class STL():
         if self.debug and self.backend in ["opencl", "cuda"]:
             print("Initializing the device")
         try:
-            self._fut_obj = Futhark(fut_lib, tuning=self.tuning, device=self.device, platform=self.platform)
+            self._fut_obj = Futhark(fut_lib, 
+                                    tuning=self.tuning,
+                                    device=self.device,
+                                    platform=self.platform,
+                                    profiling=self.profiling)
         except ValueError as err:
             from_err = err if self.debug else None
             raise ValueError("An error occurred while initializing the device") from from_err
