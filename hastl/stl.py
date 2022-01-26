@@ -360,5 +360,4 @@ def print_installed_backends():
 def load_tuning_file(file_path):
     with open(file_path, "r") as f:
         lines = f.readlines()
-        d = {k : int(v) for k, v in map(lambda l: re.search(r"(.*)=([0-9]*)", l).groups(), lines)}
-    return d
+    return {k : int(v) for k, v in map(lambda l: re.search(r"(.*)=([0-9]*)", l).groups(), lines)}
