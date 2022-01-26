@@ -56,10 +56,10 @@ setup(
         "Topic :: Scientific/Engineering",
     ],
     install_requires=[
-        "futhark-ffi==0.14.1",
+        "futhark-ffi==0.14.2",
     ],
     setup_requires=[
-        "futhark-ffi==0.14.1"
+        "futhark-ffi==0.14.2"
     ],
     cffi_modules=find_cffi_modules()
 )

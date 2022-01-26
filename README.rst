@@ -15,7 +15,7 @@ Requirements
 
 You would need a working OpenCL or CUDA installation/header files, C compiler and these Python packages:
 
-- futhark-ffi==0.14.1
+- futhark-ffi==0.14.2
 - wheel
 
 
