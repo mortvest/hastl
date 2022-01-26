@@ -44,6 +44,8 @@ class STL():
         if tuning is None:
             # TODO: add default tuning
             self.tuning = None
+        else:
+            self.tuning = tuning
 
         self._backends = ["opencl", "cuda", "multicore", "c"]
 
