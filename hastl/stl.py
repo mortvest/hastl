@@ -5,7 +5,7 @@ import numpy as np
 
 
 class STL():
-    """Class for the batched STL decomposition.
+    """Class for the STL decomposition.
     :param backend: which backend to use
     :type str: one of [c, opencl, cuda, multicore]
     :param jump_threshold: determines when to switch from the outer-parallel
@@ -74,7 +74,10 @@ class STL():
             critfreq=0.05,
             dump=False,
             ):
-        """Decomposes 2d array Y into trend, seasonal and remainder
+        """Decomposes (m x n) array Y into a tuple of three (m x n) arrays which
+        correspond to the seasonal, trend and remainder components.
+        m is the number of time series that is being processed (batch size),
+        and n is the time series length.
         :param Y: input data
         :type array: 2d array of float
         :param n_p: the number of observations in each cycle of the seasonal
