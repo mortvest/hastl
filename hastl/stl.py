@@ -1,4 +1,5 @@
 from importlib import import_module
+import re
 
 from futhark_ffi import Futhark
 import numpy as np
@@ -41,8 +42,8 @@ class STL():
         self.debug = debug
 
         if tuning is None:
-            # TODO: add tuning
-            self.tuning = {}
+            # TODO: add default tuning
+            self.tuning = None
 
         self._backends = ["opencl", "cuda", "multicore", "c"]
 
@@ -54,7 +55,7 @@ class STL():
         if self.debug and self.backend in ["opencl", "cuda"]:
             print("Initializing the device")
         try:
-            self._fut_obj = Futhark(fut_lib, 
+            self._fut_obj = Futhark(fut_lib,
                                     tuning=self.tuning,
                                     device=self.device,
                                     platform=self.platform,
@@ -302,18 +303,6 @@ class STL():
     #     return n_t
 
 
-def print_installed_backends():
-    installed_backends = []
-    for backend in ["cuda", "opencl", "multicore", "c"]:
-        try:
-            _try_importing(backend, "stl")
-        except ValueError:
-            pass
-        else:
-            installed_backends.append(backend)
-    print("Installed HaSTL backens:")
-    print(installed_backends)
-
 def _degcheck(x):
     x = int(x)
     if not (0 <= x <= 2):
@@ -346,7 +335,6 @@ def _len_check(x, name):
         raise ValueError("{} value must be non-negative".format(name))
     return x
 
-
 def _try_importing(backend, name):
     module_name = "_" + name + "_" + backend
     try:
@@ -356,3 +344,21 @@ def _try_importing(backend, name):
     else:
         globals()[module_name] = mod
         return mod
+
+def print_installed_backends():
+    installed_backends = []
+    for backend in ["cuda", "opencl", "multicore", "c"]:
+        try:
+            _try_importing(backend, "stl")
+        except ValueError:
+            pass
+        else:
+            installed_backends.append(backend)
+    print("Installed HaSTL backens:")
+    print(installed_backends)
+
+def load_tuning_file(file_path):
+    with open(file_path, "r") as f:
+        lines = f.readlines()
+        d = {k : int(v) for k, v in map(lambda l: re.search(r"(.*)=([0-9]*)", l).groups(), lines)}
+    return d
