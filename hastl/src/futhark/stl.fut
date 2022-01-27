@@ -404,7 +404,7 @@ let stl [m] [n] (Y: [m][n]t)
                                    tab (\j ->
                                           let idx = j * n_p + i
                                           in idx >= n || T.isnan y[idx]
-                                       ) max_css_len |> trace |> (all id)
+                                       ) max_css_len |> (all id)
                                 ) n_p |> any id
                          ) Y
     -- filter out all such time series
