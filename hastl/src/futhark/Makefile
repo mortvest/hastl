@@ -17,15 +17,11 @@ stl_h_files: $(backends:%=stl_%.h)
 loess_c_files: $(backends:%=loess_%.c)
 loess_h_files: $(backends:%=loess_%.h)
 
-stl_%.c stl_%.h: stl.fut loess.fut utils.fut
-	futhark pkg add github.com/diku-dk/sorts
-	futhark pkg sync
+stl_%.c stl_%.h: stl.fut loess.fut utils.fut median.fut
 	futhark $* $< --library -o stl_$*
 
 loess_%.c loess_%.h: loess.fut utils.fut
-	futhark pkg add github.com/diku-dk/sorts
-	futhark pkg sync
 	futhark $* $< --library -o loess_$*
 
 clean:
-	rm -rf *.c *.h lib/ futhark.pkg
+	rm -rf *.c *.h

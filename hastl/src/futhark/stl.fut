@@ -4,9 +4,9 @@
 -- ==
 -- compiled input @ batchednan.in
 
-import "lib/github.com/diku-dk/sorts/radix_sort"
 import "loess"
 import "utils"
+import "median"
 
 module stl_batched = {
 
@@ -14,6 +14,7 @@ module T = f64
 type t = T.t
 
 module loess = loess_m
+module median = median_batched
 
 --------------------------------------------------------------------------------
 -- Three moving averages                                                      --
@@ -97,13 +98,6 @@ let stl [m] [n] (Y: [m][n]t)
   -- set up parameters for trend smoothing
   let t_n_m = if jump_t == 1 then n else n / jump_t + 1
   let t_m_fun (x: i64): i64 = i64.min (x * jump_t) (n - 1)
-
-  -- set up parameters for median calculation
-  let mid1 = T.floor ((T.i64 n) / 2 + 1) |> T.to_i64
-  let mid2 = n - mid1 + 1
-  let (mid1, mid2) = if mid1 == mid2
-                     then (mid1 - 1, mid1)
-                     else ((i64.min mid1 mid2) - 1, i64.max mid1 mid2)
 
   ------------------------------------------------------------------------------
   -- LOOP-INVARIANT VALUES                                                    --
@@ -334,19 +328,17 @@ let stl [m] [n] (Y: [m][n]t)
                     pad_gather R_abs nn_idx T.inf
                  ) R_abs_l nn_idx_l |> opaque
 
-          let R_sorted_l = map (\R_pad ->
-                                  radix_sort_float T.num_bits T.get_bit R_pad
-                               ) R_pad_l |> opaque
+          let med_l = median.median_l R_pad_l n_nn_l
           -- find boundaries
           let (h_l, h9_l, h1_l)=
-            map (\R_sorted ->
+            map (\med ->
                    -- median
-                   let h = 3 * (R_sorted[mid1:mid2] |> T.sum)
+                   let h = 6 * med
                    -- boundaries
                    let h9 = 0.999 * h
                    let h1 = 0.001 * h
                    in (h, h9, h1)
-                ) R_sorted_l |> unzip3 |> opaque
+                ) med_l |> unzip3 |> opaque
 
           -- calculate new weights
           let w_l =
