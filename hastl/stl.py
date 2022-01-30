@@ -204,25 +204,23 @@ class STL():
             exit()
 
         try:
-            s_data, t_data, r_data = self._fut_obj.main(Y,
-                                                        n_p,
-                                                        q_s,
-                                                        q_t,
-                                                        q_l,
-                                                        d_s,
-                                                        d_t,
-                                                        d_l,
-                                                        jump_s,
-                                                        jump_t,
-                                                        jump_l,
-                                                        n_inner,
-                                                        n_outer,
-                                                        jump_threshold,
-                                                        self.max_group_size)
+            s_data = self._fut_obj.main(Y,
+                                        n_p,
+                                        q_s,
+                                        q_t,
+                                        q_l,
+                                        d_s,
+                                        d_t,
+                                        d_l,
+                                        jump_s,
+                                        jump_t,
+                                        jump_l,
+                                        n_inner,
+                                        n_outer,
+                                        jump_threshold,
+                                        self.max_group_size)
 
-            season = self._fut_obj.from_futhark(s_data)
-            trend = self._fut_obj.from_futhark(t_data)
-            remainder = self._fut_obj.from_futhark(r_data)
+            seasonal_magn = self._fut_obj.from_futhark(s_data)
         except ValueError as err:
             err_type = err.args[0].split("\n")[0]
             from_err = err if self.debug else None
@@ -231,7 +229,7 @@ class STL():
             else:
                 raise ValueError("An internal error occurred while running the GPU program") from from_err
 
-        return season, trend, remainder
+        return seasonal_magn
 
     def fit_1d(self,
             y,
@@ -256,22 +254,22 @@ class STL():
         n = y.shape[0]
         Y = y.reshape(1, n)
 
-        season, trend, remainder = self.fit(Y,
-                                            n_p,
-                                            q_s,
-                                            q_t,
-                                            q_l,
-                                            d_s,
-                                            d_t,
-                                            d_l,
-                                            jump_s,
-                                            jump_t,
-                                            jump_l,
-                                            n_inner,
-                                            n_outer,
-                                            critfreq,
-                                            dump)
-        return season[0], trend[0], remainder[0]
+        seasonal_magn = self.fit(Y,
+                                 n_p,
+                                 q_s,
+                                 q_t,
+                                 q_l,
+                                 d_s,
+                                 d_t,
+                                 d_l,
+                                 jump_s,
+                                 jump_t,
+                                 jump_l,
+                                 n_inner,
+                                 n_outer,
+                                 critfreq,
+                                 dump)
+        return seasonal_magn[0]
 
     # def _get_q_t(self, d_t, d_s, n_s, n_p, omega):
     #     t_dg = max(d_t - 1, 0)

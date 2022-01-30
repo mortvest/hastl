@@ -61,9 +61,7 @@ let stl [m] [n] (Y: [m][n]f32)
                 (n_inner: i64)
                 (n_outer: i64)
                 (jump_threshold: i64)
-                (q_threshold: i64)
-                : ([m][n]f32, [m][n]f32, [m][n]f32) =
-
+                (q_threshold: i64) =
   ------------------------------------------------------------------------------
   -- PARAMETER SETUP                                                          --
   ------------------------------------------------------------------------------
@@ -364,13 +362,8 @@ let stl [m] [n] (Y: [m][n]f32)
       -- Outer loop end                 --
       ------------------------------------
   let tof32 = f32.f64 <-< T.to_f64
-  let seasonal_l = map (map tof32) seasonal_l
-  let trend_l = map (map tof32) trend_l
-  let remainder_l = map3 (\y seasonal trend ->
-                            -- [n]
-                            map3 (\v s t -> v - s - t) y seasonal trend
-                         ) Y seasonal_l trend_l
-  in (seasonal_l, trend_l, remainder_l)
+  in
+  map (\s -> tof32 (T.maximum s - T.minimum s)) seasonal_l
 
 
   let stl_filt [m] [n] (Y: [m][n]f32)
@@ -387,8 +380,7 @@ let stl [m] [n] (Y: [m][n]f32)
                        (n_inner: i64)
                        (n_outer: i64)
                        (jump_threshold: i64)
-                       (q_threshold: i64)
-                       : ([m][n]f32, [m][n]f32, [m][n]f32) =
+                       (q_threshold: i64) =
     let max_css_len = T.ceil ((T.i64 n) / (T.i64 n_p)) |> T.to_i64
     -- let all_nans_l = map (all (T.isnan)) Y
     -- detect if at least one of css in each time series is all NaNs
@@ -405,27 +397,24 @@ let stl [m] [n] (Y: [m][n]f32)
       filter (\(_, flag, _) -> !flag) (zip3 Y all_nans_l (iota m)) |> unzip3
 
     -- apply STL to each time series that passed the filtering
-    let (seasonal_filt_l, trend_filt_l, remainder_filt_l) = stl Y_filt
-                                                                n_p
-                                                                q_s
-                                                                q_t
-                                                                q_l
-                                                                d_s
-                                                                d_t
-                                                                d_l
-                                                                jump_s
-                                                                jump_t
-                                                                jump_l
-                                                                n_inner
-                                                                n_outer
-                                                                jump_threshold
-                                                                q_threshold
+    let seasonal_magn_filt = stl Y_filt
+                                 n_p
+                                 q_s
+                                 q_t
+                                 q_l
+                                 d_s
+                                 d_t
+                                 d_l
+                                 jump_s
+                                 jump_t
+                                 jump_l
+                                 n_inner
+                                 n_outer
+                                 jump_threshold
+                                 q_threshold
 
     -- write the decomposed values into the bufferes of full batch size m
-    let seasonal_l = scatter (replicate m (replicate n (f32.nan))) idxs seasonal_filt_l
-    let trend_l = scatter (replicate m (replicate n (f32.nan))) idxs trend_filt_l
-    let remainder_l = scatter (replicate m (replicate n (f32.nan))) idxs remainder_filt_l
-    in (seasonal_l, trend_l, remainder_l)
+    in scatter (replicate m (f32.nan)) idxs seasonal_magn_filt
 }
 
 
@@ -443,8 +432,7 @@ entry main [m] [n] (Y: [m][n]f32)
                    (n_inner: i64)
                    (n_outer: i64)
                    (jump_threshold: i64)
-                   (q_threshold: i64)
-                   : ([m][n]f32, [m][n]f32, [m][n]f32) =
+                   (q_threshold: i64) =
   stl_batched.stl_filt Y
                        n_p
                        q_s
