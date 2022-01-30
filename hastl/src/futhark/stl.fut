@@ -40,13 +40,14 @@ local let moving_averages_l [m][n] (x_l: [m][n]t) (n_p: i64): [m][]t =
 
 
 local let filterPadNans = filterPadWithKeys (\i -> !(T.isnan i)) 0
+local let filterPadNans32 = filterPadWithKeys (\i -> !(f32.isnan i)) 0
 local let pad_gather_floats = \vs idxs -> pad_gather vs idxs (T.i64 0)
 local let pad_gather_ints = \vs idxs -> pad_gather vs idxs 0i64
 
 --------------------------------------------------------------------------------
 -- Main STL function                                                          --
 --------------------------------------------------------------------------------
-let stl [m] [n] (Y: [m][n]t)
+let stl [m] [n] (Y: [m][n]f32)
                 (n_p: i64)
                 (q_s: i64)
                 (q_t: i64)
@@ -61,7 +62,7 @@ let stl [m] [n] (Y: [m][n]t)
                 (n_outer: i64)
                 (jump_threshold: i64)
                 (q_threshold: i64)
-                : ([m][n]t, [m][n]t, [m][n]t) =
+                : ([m][n]f32, [m][n]f32, [m][n]f32) =
 
   ------------------------------------------------------------------------------
   -- PARAMETER SETUP                                                          --
@@ -103,7 +104,7 @@ let stl [m] [n] (Y: [m][n]t)
   -- LOOP-INVARIANT VALUES                                                    --
   ------------------------------------------------------------------------------
   -- filter nans and pad non-nan indices
-  let (_, nn_idx_l, n_nn_l) = map filterPadNans Y |> unzip3 |> opaque
+  let (_, nn_idx_l, n_nn_l) = map filterPadNans32 Y |> unzip3 |> opaque
 
   -- extract all cycle subseries, resulting in [m][n_p][max_css_len] array
   let csss_l =
@@ -115,7 +116,7 @@ let stl [m] [n] (Y: [m][n]t)
                            in
                            if new_i > n - 1
                            then T.nan
-                           else y[new_i]
+                           else T.f32 y[new_i]
                        ) max_css_len
                ) n_p
         ) Y |> opaque
@@ -170,7 +171,9 @@ let stl [m] [n] (Y: [m][n]t)
         ------------------------------------
         loop (_, trend_l) = (seasonal_l, trend_l) for _i_inner < n_inner do
           -- Step 1: Detrending
-          let Y_detrended_l = map2 (\y trend -> map2 (-) y trend) Y trend_l |> opaque
+          let Y_detrended_l = map2 (\y trend ->
+                                      map2 (\v t -> (T.f32 v) - t) y trend
+                                   ) Y trend_l |> opaque
 
           -- Step 2: Cycle subseries smoothing
           --- extract the padded non-NaN values for each css and corresponding weights
@@ -263,7 +266,7 @@ let stl [m] [n] (Y: [m][n]t)
           let D_l =
             map2 (\y seasonal ->
                     -- [n]
-                    map2 (-) y seasonal
+                    map2 (\v s -> (T.f32 v) - s) y seasonal
                  ) Y seasonal_l
 
           -- Step 6: Trend Smoothing
@@ -318,7 +321,7 @@ let stl [m] [n] (Y: [m][n]t)
           let R_abs_l =
             map3 (\y seasonal trend ->
                     -- [n]
-                    let R = map3 (\v s t -> v - s - t) y seasonal trend
+                    let R = map3 (\v s t -> (T.f32 v) - s - t) y seasonal trend
                     in
                     map (\r -> if T.isnan r then r else T.abs r) R
                  ) Y seasonal_l trend_l
@@ -348,14 +351,9 @@ let stl [m] [n] (Y: [m][n]t)
                         let zero_val = 10 ** (-6)
                         let bicube = (1 - (r_abs / h)**2)**2
                         in
-                        if T.isnan r_abs || r_abs <= h1
-                        then
-                          1
-                        else if r_abs >= h9 || r_abs <= zero_val
-                        then
-                          zero_val
-                        else
-                          bicube
+                        if T.isnan r_abs || r_abs <= h1 then 1 else
+                        if r_abs >= h9 || r_abs <= zero_val then zero_val
+                        else bicube
                      ) R_abs
                  ) R_abs_l h_l h9_l h1_l |> opaque
           in w_l
@@ -365,14 +363,17 @@ let stl [m] [n] (Y: [m][n]t)
       ------------------------------------
       -- Outer loop end                 --
       ------------------------------------
-
+  let tof32 = f32.f64 <-< T.to_f64
+  let seasonal_l = map (map tof32) seasonal_l
+  let trend_l = map (map tof32) trend_l
   let remainder_l = map3 (\y seasonal trend ->
                             -- [n]
                             map3 (\v s t -> v - s - t) y seasonal trend
                          ) Y seasonal_l trend_l
   in (seasonal_l, trend_l, remainder_l)
 
-  let stl_filt [m] [n] (Y: [m][n]t)
+
+  let stl_filt [m] [n] (Y: [m][n]f32)
                        (n_p: i64)
                        (q_s: i64)
                        (q_t: i64)
@@ -387,7 +388,7 @@ let stl [m] [n] (Y: [m][n]t)
                        (n_outer: i64)
                        (jump_threshold: i64)
                        (q_threshold: i64)
-                       : ([m][n]t, [m][n]t, [m][n]t) =
+                       : ([m][n]f32, [m][n]f32, [m][n]f32) =
     let max_css_len = T.ceil ((T.i64 n) / (T.i64 n_p)) |> T.to_i64
     -- let all_nans_l = map (all (T.isnan)) Y
     -- detect if at least one of css in each time series is all NaNs
@@ -395,7 +396,7 @@ let stl [m] [n] (Y: [m][n]t)
                             tab (\i ->
                                    tab (\j ->
                                           let idx = j * n_p + i
-                                          in idx >= n || T.isnan y[idx]
+                                          in idx >= n || f32.isnan y[idx]
                                        ) max_css_len |> (all id)
                                 ) n_p |> any id
                          ) Y
@@ -421,14 +422,14 @@ let stl [m] [n] (Y: [m][n]t)
                                                                 q_threshold
 
     -- write the decomposed values into the bufferes of full batch size m
-    let seasonal_l = scatter (replicate m (replicate n (T.nan))) idxs seasonal_filt_l
-    let trend_l = scatter (replicate m (replicate n (T.nan))) idxs trend_filt_l
-    let remainder_l = scatter (replicate m (replicate n (T.nan))) idxs remainder_filt_l
+    let seasonal_l = scatter (replicate m (replicate n (f32.nan))) idxs seasonal_filt_l
+    let trend_l = scatter (replicate m (replicate n (f32.nan))) idxs trend_filt_l
+    let remainder_l = scatter (replicate m (replicate n (f32.nan))) idxs remainder_filt_l
     in (seasonal_l, trend_l, remainder_l)
 }
 
 
-entry main [m] [n] (Y: [m][n]f64)
+entry main [m] [n] (Y: [m][n]f32)
                    (n_p: i64)
                    (q_s: i64)
                    (q_t: i64)
@@ -443,7 +444,7 @@ entry main [m] [n] (Y: [m][n]f64)
                    (n_outer: i64)
                    (jump_threshold: i64)
                    (q_threshold: i64)
-                   : ([m][n]f64, [m][n]f64, [m][n]f64) =
+                   : ([m][n]f32, [m][n]f32, [m][n]f32) =
   stl_batched.stl_filt Y
                        n_p
                        q_s
