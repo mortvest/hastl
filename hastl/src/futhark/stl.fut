@@ -61,8 +61,7 @@ let stl [m] [n] (Y: [m][n]f32)
                 (n_inner: i64)
                 (n_outer: i64)
                 (jump_threshold: i64)
-                (q_threshold: i64)
-                : ([m][n]f32, [m][n]f32, [m][n]f32) =
+                (q_threshold: i64): ([m][n]f32, [m][n]f32, [m][n]f32) =
 
   ------------------------------------------------------------------------------
   -- PARAMETER SETUP                                                          --
