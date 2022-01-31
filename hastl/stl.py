@@ -182,8 +182,8 @@ class STL():
         if dump:
             import futhark_data
             f = open("dump.in", "wb")
-            Y_64 = Y.astype(np.float64)
-            futhark_data.dump(Y_64, f)
+            Y_32 = Y.astype(np.float32)
+            futhark_data.dump(Y_32, f)
 
             params = [(n_p, "n_p"),
                       (q_s, "q_s"),
