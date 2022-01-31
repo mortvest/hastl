@@ -174,7 +174,7 @@ class STL():
         n_inner = _iter_check(n_inner)
         n_outer = _iter_check(n_outer)
 
-        jump_threshold_1 = 10000000 if self.backend in ["c", "multicore"] else self.jump_threshold
+        jump_threshold_1 = 10000000 if self.backend in ["c", "multicore"] else self.jump_threshold_1
 
         if self.debug:
             print("Running the program")
