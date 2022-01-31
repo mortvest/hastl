@@ -12,8 +12,10 @@ class LOESS():
     """
     def __init__(self,
                  backend="opencl",
-                 jump_threshold=9,
-                 max_group_size=1024,
+                 jump_threshold_1=13,
+                 jump_threshold_2=16,
+                 q_threshold_1=511,
+                 q_threshold_2=1023,
                  tuning=None,
                  device=None,
                  platform=None,
@@ -21,8 +23,10 @@ class LOESS():
                  ):
         # set device-specific parameters
         self.backend = backend
-        self.jump_threshold = jump_threshold
-        self.max_group_size = max_group_size
+        self.jump_threshold_1 = jump_threshold_1
+        self.jump_threshold_2 = jump_threshold_2
+        self.q_threshold_1 = q_threshold_1
+        self.q_threshold_2 = q_threshold_2
         self.device = device
         self.platform = platform
         self.debug = debug
@@ -73,8 +77,10 @@ class LOESS():
                                             q,
                                             degree,
                                             jump,
-                                            self.jump_threshold,
-                                            self.max_group_size)
+                                            self.jump_threshold_1,
+                                            self.jump_threshold_2,
+                                            self.q_threshold_1,
+                                            self.q_threshold_2)
 
             result = self._fut_obj.from_futhark(result_fut)
         except ValueError as err:

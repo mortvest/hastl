@@ -63,7 +63,7 @@ int futhark_entry_main(struct futhark_context *ctx,
                        struct futhark_f64_2d **out0, const
                        struct futhark_f64_2d *in0, const int64_t in1, const
                        int64_t in2, const int64_t in3, const int64_t in4, const
-                       int64_t in5);
+                       int64_t in5, const int64_t in6, const int64_t in7);
 
 // Miscellaneous
 char *futhark_context_report(struct futhark_context *ctx);

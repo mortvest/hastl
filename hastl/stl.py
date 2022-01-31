@@ -24,8 +24,10 @@ class STL():
     """
     def __init__(self,
                  backend="opencl",
-                 jump_threshold=9,
-                 max_group_size=1024,
+                 jump_threshold_1=13,
+                 jump_threshold_2=16,
+                 q_threshold_1=511,
+                 q_threshold_2=1023,
                  tuning=None,
                  device=None,
                  platform=None,
@@ -34,8 +36,10 @@ class STL():
                  ):
         # set device-specific parameters
         self.backend = backend
-        self.jump_threshold = jump_threshold
-        self.max_group_size = max_group_size
+        self.jump_threshold_1 = jump_threshold_1
+        self.jump_threshold_2 = jump_threshold_2
+        self.q_threshold_1 = q_threshold_1
+        self.q_threshold_2 = q_threshold_2
         self.device = device
         self.platform = platform
         self.profiling = profiling
@@ -170,7 +174,7 @@ class STL():
         n_inner = _iter_check(n_inner)
         n_outer = _iter_check(n_outer)
 
-        jump_threshold = 10000000 if self.backend in ["c", "multicore"] else self.jump_threshold
+        jump_threshold_1 = 10000000 if self.backend in ["c", "multicore"] else self.jump_threshold
 
         if self.debug:
             print("Running the program")
@@ -193,8 +197,10 @@ class STL():
                       (jump_l, "n_jump_l"),
                       (n_inner, "n_inner"),
                       (n_outer, "n_outer"),
-                      (self.jump_threshold, "jump threshold"),
-                      (self.max_group_size, "q_threshold")]
+                      (self.jump_threshold_1, "jump threshold_1"),
+                      (self.jump_threshold_2, "jump threshold_2"),
+                      (self.q_threshold_1, "q_threshold_1"),
+                      (self.q_threshold_2, "q_threshold_2")]
 
             for (par, name) in params:
                 print("{}: {}".format(name, par))
@@ -217,8 +223,10 @@ class STL():
                                                         jump_l,
                                                         n_inner,
                                                         n_outer,
-                                                        jump_threshold,
-                                                        self.max_group_size)
+                                                        jump_threshold_1,
+                                                        self.jump_threshold_2,
+                                                        self.q_threshold_1,
+                                                        self.q_threshold_2)
 
             season = self._fut_obj.from_futhark(s_data)
             trend = self._fut_obj.from_futhark(t_data)

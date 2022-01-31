@@ -59,7 +59,173 @@ let slope_fun_two (w_j: t) (yy_j: t) (xw_j: t) (x2w_j: t) (c2: t)
 
 
 --------------------------------------------------------------------------------
--- Main LOESS procedure - sequential/flat version, with extra work            --
+-- Main LOESS procedure - outer parallel version, with extra work             --
+--------------------------------------------------------------------------------
+let loess_outer [n] [n_m] (xx: [n]i64)
+                          (yy: [n]t)
+                          (q: i64)
+                          (m_fun: i64 -> i64)
+                          (ww: [n]t)
+                          (l_idx: [n_m]i64)
+                          (lambda: [n_m]t)
+                          (n_nn: i64)
+                          (fit_fun: fun_t)
+                          (slope_fun: fun_t)
+                          : ([n_m]t, [n_m]t) =
+  let q_slice 'a (arr: [n]a) (l_idx_i: i64) (v: a) (add: a -> a -> a) (zero: a): [q]a =
+    #[unsafe]
+    tab (\j -> if j >= n_nn then zero else add arr[l_idx_i + j] v) q
+  -- need the duplicate to prevent manifestation
+  let q_slice' 'a (arr: [n]a) (l_idx_i: i64) (v: a) (add: a -> a -> a) (zero: a): [q]a =
+    #[unsafe]
+    tab (\j -> if j >= n_nn then zero else add arr[l_idx_i + j] v) q
+  in
+  -- [n_m]
+  #[sequential_inner]
+  map3 (\i l_idx_i lambda_i ->
+         -----------------------------------
+         -- REDOMAP 1
+         -----------------------------------
+         #[unsafe]
+         let xx_slice = q_slice xx l_idx_i 1 (+) 0
+         let ww_slice = q_slice ww l_idx_i 0 (+) 0
+         let (w, xw, x2w, x3w, x4w) =
+           map2 (\xx_j ww_j ->
+                   let x_j = (xx_j - m_fun i) |> T.i64
+                   -- tricube
+                   let r = T.abs x_j
+                   let tmp1 = r / lambda_i
+                   let tmp2 = 1.0 - tmp1 * tmp1 * tmp1
+                   let tmp3 = tmp2 * tmp2 * tmp2
+                   -- scale by user-defined weights
+                   let w_j = tmp3 * ww_j
+                   let xw_j = x_j * w_j
+                   let x2w_j = x_j * xw_j
+                   let x3w_j = x_j * x2w_j
+                   let x4w_j = x_j * x3w_j
+                   in (w_j, xw_j, x2w_j, x3w_j, x4w_j)
+                ) xx_slice ww_slice |> unzip5
+         -- then, compute fit and slope based on polynomial degree
+         let a = T.sum w
+         let b = T.sum xw
+         let c = T.sum x2w
+         let d = T.sum x3w
+         let e = T.sum x4w
+
+         -- degree 0
+         let a0 = 1 / a
+
+         -- degree 1
+         let det1 = 1 / (a * c - b * b)
+         let a11 = c * det1
+         let b11 = -b * det1
+         let c11 = a * det1
+
+         -- degree 2
+         let a12 = e * c - d * d
+         let b12 = c * d - e * b
+         let c12 = b * d - c * c
+         let a2 = c * d - e * b
+         let b2 = e * a - c * c
+         let c2 = b * c - d * a
+         let det = 1 / (a * a12 + b * b12 + c * c12)
+         let a12 = a12 * det
+         let b12 = b12 * det
+         let c12 = c12 * det
+         let a2 = a2 * det
+         let b2 = b2 * det
+         let c2 = c2 * det
+
+         -----------------------------------
+         -- REDOMAP 2
+         -----------------------------------
+         let xx_slice' = q_slice' xx l_idx_i 1 (+) 0
+         let ww_slice' = q_slice' ww l_idx_i 0 (+) 0
+         let (x', w') =
+           map2 (\xx_j ww_j ->
+                   let x_j = (xx_j - m_fun i) |> T.i64
+                   -- tricube
+                   let r = T.abs x_j
+                   let tmp1 = r / lambda_i
+                   let tmp2 = 1.0 - tmp1 * tmp1 * tmp1
+                   let tmp3 = tmp2 * tmp2 * tmp2
+                   -- scale by user-defined weights
+                   let tmp4 = tmp3 * ww_j
+                   in (x_j, tmp4)
+                ) xx_slice' ww_slice' |> unzip2
+         -- then, compute fit and slope based on polynomial degree
+         let xw' = map2 (*) x' w'
+         let x2w' = map2 (*) x' xw'
+         let yy_slice' = q_slice' yy l_idx_i 0 (+) 0
+
+         let fit = map4 (
+                     \w_j yy_j xw_j x2w_j ->
+                       fit_fun w_j yy_j xw_j x2w_j a0 a11 a12 b11 b12 c12
+                   ) w' yy_slice' xw' x2w' |> T.sum
+
+         let slope = map4 (
+                     \w_j yy_j xw_j x2w_j ->
+                       slope_fun w_j yy_j xw_j x2w_j c2 a11 a2 b11 b2 c11
+                   ) w' yy_slice' xw' x2w' |> T.sum
+
+         in (fit, slope)
+       ) (iota n_m) l_idx lambda |> unzip
+
+let loess_outer_l [m] [n] [n_m] (xx_l: [m][n]i64)
+                                (yy_l: [m][n]t)
+                                (q: i64)
+                                (m_fun: i64 -> i64)
+                                (ww_l: [m][n]t)
+                                (l_idx_l: [m][n_m]i64)
+                                (lambda_l: [m][n_m]t)
+                                (n_nn_l: [m]i64)
+                                (fit_fun: fun_t)
+                                (slope_fun: fun_t)
+                                : ([m][n_m]t, [m][n_m]t) =
+  #[incremental_flattening(no_intra)]
+  map5 (\xx yy ww l_idx (lambda, n_nn) ->
+          loess_outer xx
+                      yy
+                      q
+                      m_fun
+                      ww
+                      l_idx
+                      lambda
+                      n_nn
+                      fit_fun
+                      slope_fun
+       ) xx_l yy_l ww_l l_idx_l (zip lambda_l n_nn_l) |> unzip
+
+let loess_outer_css_l [m] [n_p] [n] [n_m] (xx_css_l: [m][n_p][n]i64)
+                                          (yy_css_l: [m][n_p][n]t)
+                                          (q: i64)
+                                          (m_fun: i64 -> i64)
+                                          (ww_css_l: [m][n_p][n]t)
+                                          (l_idx_css_l: [m][n_p][n_m]i64)
+                                          (lambda_css_l: [m][n_p][n_m]t)
+                                          (n_nn_css_l: [m][n_p]i64)
+                                          (fit_fun: fun_t)
+                                          (slope_fun: fun_t)
+                                          : ([m][n_p][n_m]t, [m][n_p][n_m]t) =
+    #[incremental_flattening(no_intra)]
+    map5 (\xx_css yy_css ww_css l_idx_css (lambda_css, n_nn_css) ->
+            map5 (\xx yy ww l_idx (lambda, n_nn) ->
+                    loess_outer xx
+                                yy
+                                q
+                                m_fun
+                                ww
+                                l_idx
+                                lambda
+                                n_nn
+                                fit_fun
+                                slope_fun
+                 ) xx_css yy_css ww_css l_idx_css (zip lambda_css n_nn_css) |> unzip
+         ) xx_css_l yy_css_l ww_css_l l_idx_css_l (zip lambda_css_l n_nn_css_l) |> unzip
+
+
+--------------------------------------------------------------------------------
+-- Main LOESS procedure - flat version, with extra work                       --
 --------------------------------------------------------------------------------
 let loess_flat [n] [n_m] (xx: [n]i64)
                          (yy: [n]t)
@@ -82,6 +248,7 @@ let loess_flat [n] [n_m] (xx: [n]i64)
   in
   -- [n_m]
   #[incremental_flattening(no_intra)]
+  #[incremental_flattening(no_outer)]
   map3 (\i l_idx_i lambda_i ->
          -----------------------------------
          -- REDOMAP 1
@@ -182,6 +349,7 @@ let loess_flat_l [m] [n] [n_m] (xx_l: [m][n]i64)
                                (fit_fun: fun_t)
                                (slope_fun: fun_t)
                                : ([m][n_m]t, [m][n_m]t) =
+  #[incremental_flattening(no_outer)]
   #[incremental_flattening(no_intra)]
   map5 (\xx yy ww l_idx (lambda, n_nn) ->
           loess_flat xx
@@ -207,6 +375,7 @@ let loess_flat_css_l [m] [n_p] [n] [n_m] (xx_css_l: [m][n_p][n]i64)
                                          (fit_fun: fun_t)
                                          (slope_fun: fun_t)
                                          : ([m][n_p][n_m]t, [m][n_p][n_m]t) =
+    #[incremental_flattening(no_outer)]
     #[incremental_flattening(no_intra)]
     map5 (\xx_css yy_css ww_css l_idx_css (lambda_css, n_nn_css) ->
             map5 (\xx yy ww l_idx (lambda, n_nn) ->
@@ -379,8 +548,10 @@ let loess_l [m] [n] [n_m] (xx_l: [m][n]i64)
                           (lambda_l: [m][n_m]t)
                           (n_nn_l: [m]i64)
                           (jump: i64)
-                          (jump_threshold: i64)
-                          (q_threshold: i64)
+                          (jump_threshold_1: i64)
+                          (jump_threshold_2: i64)
+                          (q_threshold_1: i64)
+                          (q_threshold_2: i64)
                           : ([m][n_m]t, [m][n_m]t) =
   let use_version (loess_proc: loess_t[m][n][n_m]): ([m][n_m]t, [m][n_m]t) =
     let loess_l_fun (fit_fu: fun_t) (slope_fu: fun_t): ([m][n_m]t, [m][n_m]t) =
@@ -393,10 +564,12 @@ let loess_l [m] [n] [n_m] (xx_l: [m][n]i64)
     case _ -> loess_l_fun fit_fun_two  slope_fun_two  |> opaque
   in
   -- choose version, based on value of q and jump
-  if jump < jump_threshold || q > q_threshold then
-    use_version loess_flat_l
-  else
+  if jump < jump_threshold_1 || jump < jump_threshold_2 && q < q_threshold_2 then
+    use_version loess_outer_l
+  else if jump >= jump_threshold_2 && q < q_threshold_1 then
     use_version loess_intragroup_simple_l
+  else
+    use_version loess_flat_l
 
 --------------------------------------------------------------------------------
 -- Lifted LOESS wrapper for the cycle subseries smoothing                     --
@@ -411,8 +584,10 @@ let loess_css_l [m] [n_p] [n] [n_m] (xx_css_l: [m][n_p][n]i64)
                                     (lambda_css_l: [m][n_p][n_m]t)
                                     (n_nn_css_l: [m][n_p]i64)
                                     (jump: i64)
-                                    (jump_threshold: i64)
-                                    (q_threshold: i64)
+                                    (jump_threshold_1: i64)
+                                    (jump_threshold_2: i64)
+                                    (q_threshold_1: i64)
+                                    (q_threshold_2: i64)
                                     : ([m][n_p][n_m]t, [m][n_p][n_m]t) =
   let use_version (loess_proc: loess_css_t[m][n_p][n][n_m]): ([m][n_p][n_m]t, [m][n_p][n_m]t) =
     let loess_css_l_fun (fit_fu: fun_t) (slope_fu: fun_t): ([m][n_p][n_m]t, [m][n_p][n_m]t) =
@@ -425,10 +600,12 @@ let loess_css_l [m] [n_p] [n] [n_m] (xx_css_l: [m][n_p][n]i64)
     case _ -> loess_css_l_fun fit_fun_two  slope_fun_two  |> opaque
   in
   -- choose version, based on value of q and jump
-  if jump < jump_threshold || q > q_threshold then
-    use_version loess_flat_css_l
-  else
+  if jump < jump_threshold_1 || jump < jump_threshold_2 && q < q_threshold_2 then
+    use_version loess_outer_css_l
+  else if jump >= jump_threshold_2 && q < q_threshold_1 then
     use_version loess_intragroup_simple_css_l
+  else
+    use_version loess_flat_css_l
 
 --------------------------------------------------------------------------------
 -- Find q nearest neighbors and return index of the leftmost one              --
@@ -574,8 +751,10 @@ entry main [m] [n] (Y: [m][n]f64)
                    (q: i64)
                    (degree: i64)
                    (jump: i64)
-                   (jump_threshold: i64)
-                   (q_threshold: i64): [m][n]f64 =
+                   (jump_threshold_1: i64)
+                   (jump_threshold_2: i64)
+                   (q_threshold_1: i64)
+                   (q_threshold_2: i64): [m][n]f64 =
   -- set up parameters for the low-pass filter smoothing
   let n_m = if jump == 1 then n else n / jump + 1
   let m_fun (x: i64): i64 = i64.min (x * jump) (n - 1)
@@ -601,8 +780,10 @@ entry main [m] [n] (Y: [m][n]f64)
                                               lambda_l
                                               n_nn_l
                                               jump
-                                              jump_threshold
-                                              q_threshold
+                                              jump_threshold_1
+                                              jump_threshold_2
+                                              q_threshold_1
+                                              q_threshold_2
   in
   if jump > 1 then
     map2 (\results slopes ->

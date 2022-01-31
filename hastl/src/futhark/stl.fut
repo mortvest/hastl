@@ -60,8 +60,11 @@ let stl [m] [n] (Y: [m][n]f32)
                 (jump_l: i64)
                 (n_inner: i64)
                 (n_outer: i64)
-                (jump_threshold: i64)
-                (q_threshold: i64): ([m][n]f32, [m][n]f32, [m][n]f32) =
+                (jump_threshold_1: i64)
+                (jump_threshold_2: i64)
+                (q_threshold_1: i64)
+                (q_threshold_2: i64)
+                : ([m][n]f32, [m][n]f32, [m][n]f32) =
 
   ------------------------------------------------------------------------------
   -- PARAMETER SETUP                                                          --
@@ -202,8 +205,10 @@ let stl [m] [n] (Y: [m][n]f32)
                                                              css_lambdas_l
                                                              css_n_nns_l
                                                              jump_s
-                                                             jump_threshold
-                                                             q_threshold
+                                                             jump_threshold_1
+                                                             jump_threshold_2
+                                                             q_threshold_1
+                                                             q_threshold_2
 
           -- apply interpolation to each css if necessary. The result has inner dimension (max_css_length + 2)
           let css_results_l =
@@ -237,8 +242,10 @@ let stl [m] [n] (Y: [m][n]f32)
                                                         l_lambdas_l
                                                         (replicate m n)
                                                         jump_l
-                                                        jump_threshold
-                                                        q_threshold
+                                                        jump_threshold_1
+                                                        jump_threshold_2
+                                                        q_threshold_1
+                                                        q_threshold_2
 
           -- interpolate, if needed
           let L_l =
@@ -290,8 +297,10 @@ let stl [m] [n] (Y: [m][n]f32)
                                                         t_lambdas_l
                                                         n_nn_l
                                                         jump_t
-                                                        jump_threshold
-                                                        q_threshold
+                                                        jump_threshold_1
+                                                        jump_threshold_2
+                                                        q_threshold_1
+                                                        q_threshold_2
           --- interpolate
           let trend_l =
             -- [n]
@@ -385,8 +394,10 @@ let stl [m] [n] (Y: [m][n]f32)
                        (jump_l: i64)
                        (n_inner: i64)
                        (n_outer: i64)
-                       (jump_threshold: i64)
-                       (q_threshold: i64)
+                       (jump_threshold_1: i64)
+                       (jump_threshold_2: i64)
+                       (q_threshold_1: i64)
+                       (q_threshold_2: i64)
                        : ([m][n]f32, [m][n]f32, [m][n]f32) =
     let max_css_len = T.ceil ((T.i64 n) / (T.i64 n_p)) |> T.to_i64
     -- let all_nans_l = map (all (T.isnan)) Y
@@ -417,8 +428,10 @@ let stl [m] [n] (Y: [m][n]f32)
                                                                 jump_l
                                                                 n_inner
                                                                 n_outer
-                                                                jump_threshold
-                                                                q_threshold
+                                                                jump_threshold_1
+                                                                jump_threshold_2
+                                                                q_threshold_1
+                                                                q_threshold_2
 
     -- write the decomposed values into the bufferes of full batch size m
     let seasonal_l = scatter (replicate m (replicate n (f32.nan))) idxs seasonal_filt_l
@@ -441,8 +454,10 @@ entry main [m] [n] (Y: [m][n]f32)
                    (jump_l: i64)
                    (n_inner: i64)
                    (n_outer: i64)
-                   (jump_threshold: i64)
-                   (q_threshold: i64)
+                   (jump_threshold_1: i64)
+                   (jump_threshold_2: i64)
+                   (q_threshold_1: i64)
+                   (q_threshold_2: i64)
                    : ([m][n]f32, [m][n]f32, [m][n]f32) =
   stl_batched.stl_filt Y
                        n_p
@@ -457,5 +472,7 @@ entry main [m] [n] (Y: [m][n]f32)
                        jump_l
                        n_inner
                        n_outer
-                       jump_threshold
-                       q_threshold
+                       jump_threshold_1
+                       jump_threshold_2
+                       q_threshold_1
+                       q_threshold_2

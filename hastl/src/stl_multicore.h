@@ -68,7 +68,8 @@ int futhark_entry_main(struct futhark_context *ctx,
                        int64_t in5, const int64_t in6, const int64_t in7, const
                        int64_t in8, const int64_t in9, const int64_t in10, const
                        int64_t in11, const int64_t in12, const int64_t in13,
-                       const int64_t in14);
+                       const int64_t in14, const int64_t in15, const
+                       int64_t in16);
 
 // Miscellaneous
 char *futhark_context_report(struct futhark_context *ctx);
