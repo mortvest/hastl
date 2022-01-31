@@ -61,8 +61,7 @@ let stl [m] [n] (Y: [m][n]f32)
                 (n_inner: i64)
                 (n_outer: i64)
                 (jump_threshold: i64)
-                (q_threshold: i64)
-                : ([m][n]f32, [m][n]f32, [m][n]f32) =
+                (q_threshold: i64) =
 
   ------------------------------------------------------------------------------
   -- PARAMETER SETUP                                                          --
@@ -160,7 +159,7 @@ let stl [m] [n] (Y: [m][n]f32)
   ------------------------------------------------------------------------------
   -- NESTED LOOPS                                                             --
   ------------------------------------------------------------------------------
-  let (seasonal_l, trend_l, _) =
+  let (_, trend_l, _) =
     ------------------------------------
     -- Outer loop start               --
     ------------------------------------
@@ -364,13 +363,20 @@ let stl [m] [n] (Y: [m][n]f32)
       -- Outer loop end                 --
       ------------------------------------
   let tof32 = f32.f64 <-< T.to_f64
-  let seasonal_l = map (map tof32) seasonal_l
-  let trend_l = map (map tof32) trend_l
-  let remainder_l = map3 (\y seasonal trend ->
-                            -- [n]
-                            map3 (\v s t -> v - s - t) y seasonal trend
-                         ) Y seasonal_l trend_l
-  in (seasonal_l, trend_l, remainder_l)
+  in
+  map (\y ->
+         let (x, x2) = map (\x ->
+                              let x_ = x + 1
+                              in (T.i64 x_, (T.i64 x_ * T.i64 x_))
+                           ) (iota n) |> unzip
+         let b = T.sum x
+         let c = T.sum x2
+         let a = T.i64 n
+         let det1 = 1 / (a * c - b * b)
+         let b11 = -b * det1
+         let c11 = a * det1
+         in map2 (\x_j y_j -> (b11 + x_j * c11) * y_j) x y |> f64.sum |> tof32
+      ) trend_l
 
 
   let stl_filt [m] [n] (Y: [m][n]f32)
@@ -387,8 +393,7 @@ let stl [m] [n] (Y: [m][n]f32)
                        (n_inner: i64)
                        (n_outer: i64)
                        (jump_threshold: i64)
-                       (q_threshold: i64)
-                       : ([m][n]f32, [m][n]f32, [m][n]f32) =
+                       (q_threshold: i64) =
     let max_css_len = T.ceil ((T.i64 n) / (T.i64 n_p)) |> T.to_i64
     -- let all_nans_l = map (all (T.isnan)) Y
     -- detect if at least one of css in each time series is all NaNs
@@ -405,27 +410,24 @@ let stl [m] [n] (Y: [m][n]f32)
       filter (\(_, flag, _) -> !flag) (zip3 Y all_nans_l (iota m)) |> unzip3
 
     -- apply STL to each time series that passed the filtering
-    let (seasonal_filt_l, trend_filt_l, remainder_filt_l) = stl Y_filt
-                                                                n_p
-                                                                q_s
-                                                                q_t
-                                                                q_l
-                                                                d_s
-                                                                d_t
-                                                                d_l
-                                                                jump_s
-                                                                jump_t
-                                                                jump_l
-                                                                n_inner
-                                                                n_outer
-                                                                jump_threshold
-                                                                q_threshold
+    let trend_magn_filt_l = stl Y_filt
+                                n_p
+                                q_s
+                                q_t
+                                q_l
+                                d_s
+                                d_t
+                                d_l
+                                jump_s
+                                jump_t
+                                jump_l
+                                n_inner
+                                n_outer
+                                jump_threshold
+                                q_threshold
 
     -- write the decomposed values into the bufferes of full batch size m
-    let seasonal_l = scatter (replicate m (replicate n (f32.nan))) idxs seasonal_filt_l
-    let trend_l = scatter (replicate m (replicate n (f32.nan))) idxs trend_filt_l
-    let remainder_l = scatter (replicate m (replicate n (f32.nan))) idxs remainder_filt_l
-    in (seasonal_l, trend_l, remainder_l)
+    in scatter (replicate m f32.nan) idxs trend_magn_filt_l
 }
 
 
@@ -443,8 +445,7 @@ entry main [m] [n] (Y: [m][n]f32)
                    (n_inner: i64)
                    (n_outer: i64)
                    (jump_threshold: i64)
-                   (q_threshold: i64)
-                   : ([m][n]f32, [m][n]f32, [m][n]f32) =
+                   (q_threshold: i64) =
   stl_batched.stl_filt Y
                        n_p
                        q_s
