@@ -2,6 +2,7 @@
 --- Loosely based on:
 ---- https://github.com/hafen/stlplus
 -- ==
+-- entry: main
 -- compiled input @ batchednan.in
 
 import "loess"
@@ -476,3 +477,24 @@ entry main [m] [n] (Y: [m][n]f32)
                        jump_threshold_2
                        q_threshold_1
                        q_threshold_2
+
+entry trend_magnitude [m][n] (trend_l: [m][n]f32) : [m]f32 =
+  map (\y ->
+         let (x, x2) = map (\x ->
+                              let x_ = x + 1
+                              in (f64.i64 x_, (f64.i64 x_ * f64.i64 x_))
+                           ) (iota n) |> unzip
+         let b = f64.sum x
+         let c = f64.sum x2
+         let a = f64.i64 n
+         let det1 = 1 / (a * c - b * b)
+         let b11 = -b * det1
+         let c11 = a * det1
+         in map2 (\x_j y_j -> (b11 + x_j * c11) * f64.f32 y_j) x y |> f64.sum |> (*a) |> f32.f64
+      ) trend_l
+
+
+entry seasonal_amplitude [m][n] (seasonal_l: [m][n]f32) : [m]f32 =
+  map (\s -> let v = f32.maximum s - f32.minimum s
+             in if f32.isinf v then f32.nan else v
+      ) seasonal_l

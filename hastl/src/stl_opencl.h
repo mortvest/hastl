@@ -81,6 +81,20 @@ const char *futhark_get_tuning_param_name(int);
 const char *futhark_get_tuning_param_class(int);
 
 // Arrays
+struct futhark_f32_1d;
+struct futhark_f32_1d *futhark_new_f32_1d(struct futhark_context *ctx, const
+                                          float *data, int64_t dim0);
+struct futhark_f32_1d *futhark_new_raw_f32_1d(struct futhark_context *ctx, const
+                                              cl_mem data, int64_t offset,
+                                              int64_t dim0);
+int futhark_free_f32_1d(struct futhark_context *ctx,
+                        struct futhark_f32_1d *arr);
+int futhark_values_f32_1d(struct futhark_context *ctx,
+                          struct futhark_f32_1d *arr, float *data);
+cl_mem futhark_values_raw_f32_1d(struct futhark_context *ctx,
+                                 struct futhark_f32_1d *arr);
+const int64_t *futhark_shape_f32_1d(struct futhark_context *ctx,
+                                    struct futhark_f32_1d *arr);
 struct futhark_f32_2d;
 struct futhark_f32_2d *futhark_new_f32_2d(struct futhark_context *ctx, const
                                           float *data, int64_t dim0,
@@ -112,6 +126,12 @@ int futhark_entry_main(struct futhark_context *ctx,
                        int64_t in11, const int64_t in12, const int64_t in13,
                        const int64_t in14, const int64_t in15, const
                        int64_t in16);
+int futhark_entry_seasonal_amplitude(struct futhark_context *ctx,
+                                     struct futhark_f32_1d **out0, const
+                                     struct futhark_f32_2d *in0);
+int futhark_entry_trend_magnitude(struct futhark_context *ctx,
+                                  struct futhark_f32_1d **out0, const
+                                  struct futhark_f32_2d *in0);
 
 // Miscellaneous
 int futhark_context_sync(struct futhark_context *ctx);

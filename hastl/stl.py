@@ -86,6 +86,7 @@ class STL():
             n_outer=1,
             critfreq=0.05,
             dump=False,
+            manifest=True
             ):
         """Decomposes (m x n) array Y into a tuple of three (m x n) arrays which
         correspond to the seasonal, trend and remainder components.
@@ -228,9 +229,9 @@ class STL():
                                                         self.q_threshold_1,
                                                         self.q_threshold_2)
 
-            season = self._fut_obj.from_futhark(s_data)
-            trend = self._fut_obj.from_futhark(t_data)
-            remainder = self._fut_obj.from_futhark(r_data)
+            season = self._fut_obj.from_futhark(s_data) if manifest else s_data
+            trend = self._fut_obj.from_futhark(t_data) if manifest else t_data
+            remainder = self._fut_obj.from_futhark(r_data) if manifest else r_data
         except ValueError as err:
             err_type = err.args[0].split("\n")[0]
             from_err = err if self.debug else None
@@ -280,6 +281,16 @@ class STL():
                                             critfreq,
                                             dump)
         return season[0], trend[0], remainder[0]
+
+    def trend_magnitude(self, trend_data):
+        trend_magn_data = self._fut_obj.trend_magnitude(trend_data)
+        trend_magn = self._fut_obj.from_futhark(trend_magn_data)
+        return trend_magn
+
+    def seasonal_amplitude(self, seasonal_data):
+        seasonal_ampl_data = self._fut_obj.seasonal_amplitude(seasonal_data)
+        seasonal_ampl = self._fut_obj.from_futhark(seasonal_ampl_data)
+        return seasonal_ampl
 
     # def _get_q_t(self, d_t, d_s, n_s, n_p, omega):
     #     t_dg = max(d_t - 1, 0)
