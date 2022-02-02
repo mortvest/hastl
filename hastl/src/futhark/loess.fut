@@ -200,7 +200,7 @@ let loess_outer_l [m] [n] [n_m] (xx_l: [m][n]i64)
                       n_nn
                       fit_fun
                       slope_fun
-       ) xx_l yy_l ww_l l_idx_l (zip lambda_l n_nn_l) |> unzip
+       ) xx_l yy_l ww_l l_idx_l (zip lambda_l n_nn_l) |> unzip |> opaque
 
 let loess_outer_css_l [m] [n_p] [n] [n_m] (xx_css_l: [m][n_p][n]i64)
                                           (yy_css_l: [m][n_p][n]t)
@@ -227,7 +227,7 @@ let loess_outer_css_l [m] [n_p] [n] [n_m] (xx_css_l: [m][n_p][n]i64)
                                 fit_fun
                                 slope_fun
                  ) xx_css yy_css ww_css l_idx_css (zip lambda_css n_nn_css) |> unzip
-         ) xx_css_l yy_css_l ww_css_l l_idx_css_l (zip lambda_css_l n_nn_css_l) |> unzip
+         ) xx_css_l yy_css_l ww_css_l l_idx_css_l (zip lambda_css_l n_nn_css_l) |> unzip |> opaque
 
 
 --------------------------------------------------------------------------------
@@ -374,7 +374,7 @@ let loess_flat_l [m] [n] [n_m] (xx_l: [m][n]i64)
                      n_nn
                      fit_fun
                      slope_fun
-       ) xx_l yy_l ww_l l_idx_l (zip lambda_l n_nn_l) |> unzip
+       ) xx_l yy_l ww_l l_idx_l (zip lambda_l n_nn_l) |> unzip |> opaque
 
 let loess_flat_css_l [m] [n_p] [n] [n_m] (xx_css_l: [m][n_p][n]i64)
                                          (yy_css_l: [m][n_p][n]t)
@@ -402,7 +402,7 @@ let loess_flat_css_l [m] [n_p] [n] [n_m] (xx_css_l: [m][n_p][n]i64)
                                fit_fun
                                slope_fun
                  ) xx_css yy_css ww_css l_idx_css (zip lambda_css n_nn_css) |> unzip
-         ) xx_css_l yy_css_l ww_css_l l_idx_css_l (zip lambda_css_l n_nn_css_l) |> unzip
+         ) xx_css_l yy_css_l ww_css_l l_idx_css_l (zip lambda_css_l n_nn_css_l) |> unzip |> opaque
 
 
 --------------------------------------------------------------------------------
@@ -523,7 +523,7 @@ let loess_intragroup_simple_l [m] [n] [n_m] (xx_l: [m][n]i64)
                                   n_nn
                                   fit_fun
                                   slope_fun
-       ) xx_l yy_l ww_l l_idx_l (zip lambda_l n_nn_l) |> unzip
+       ) xx_l yy_l ww_l l_idx_l (zip lambda_l n_nn_l) |> unzip |> opaque
 
 let loess_intragroup_simple_css_l [m] [n_p] [n] [n_m] (xx_css_l: [m][n_p][n]i64)
                                                       (yy_css_l: [m][n_p][n]t)
@@ -551,8 +551,8 @@ let loess_intragroup_simple_css_l [m] [n_p] [n] [n_m] (xx_css_l: [m][n_p][n]i64)
                                             fit_fun
                                             slope_fun
                  ) xx_css yy_css ww_css l_idx_css (zip lambda_css n_nn_css) |> unzip
-         ) xx_css_l yy_css_l ww_css_l l_idx_css_l (zip lambda_css_l n_nn_css_l) |> unzip
-
+         ) xx_css_l yy_css_l ww_css_l l_idx_css_l (zip lambda_css_l n_nn_css_l) |> unzip |> opaque
+ 
 --------------------------------------------------------------------------------
 -- Lifted LOESS wrapper, choose and run the correct code version for each ts  --
 --------------------------------------------------------------------------------
@@ -779,13 +779,13 @@ entry main [m] [n] (Y: [m][n]f64)
 
   -- filter nans and pad non-nan indices
   let (nn_y_l, nn_idx_l, n_nn_l) =
-    map (filterPadWithKeys (\i -> !(f64.isnan i)) 0) Y |> unzip3
+    map (filterPadWithKeys (\i -> !(f64.isnan i)) 0) Y |> unzip3 |> opaque
 
   -- calculate invariant arrays for the low-pass filter smoothing
   let (l_idx_l, lambda_l) =
     map2 (\nn_idx n_nn ->
             loess_m.loess_params q m_fun n_m nn_idx n_nn
-         ) nn_idx_l n_nn_l |> unzip
+         ) nn_idx_l n_nn_l |> unzip |> opaque
 
   let weights_l = replicate (m * n) 1f64 |> unflatten m n
   let (results_l, slopes_l) = loess_m.loess_l nn_idx_l
@@ -801,7 +801,7 @@ entry main [m] [n] (Y: [m][n]f64)
                                               jump_threshold_1
                                               jump_threshold_2
                                               q_threshold_1
-                                              q_threshold_2
+                                              q_threshold_2 |> opaque
   in
   if jump > 1 then
     map2 (\results slopes ->

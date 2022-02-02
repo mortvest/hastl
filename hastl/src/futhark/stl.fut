@@ -209,7 +209,7 @@ let stl [m] [n] (Y: [m][n]f32)
                                                              jump_threshold_1
                                                              jump_threshold_2
                                                              q_threshold_1
-                                                             q_threshold_2
+                                                             q_threshold_2 |> opaque
 
           -- apply interpolation to each css if necessary. The result has inner dimension (max_css_length + 2)
           let css_results_l =
