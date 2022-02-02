@@ -106,11 +106,17 @@ let loess_outer [n] [n_m] (xx: [n]i64)
                    in (w_j, xw_j, x2w_j, x3w_j, x4w_j)
                 ) xx_slice ww_slice |> unzip5
          -- then, compute fit and slope based on polynomial degree
-         let a = T.sum w + T.epsilon
-         let b = T.sum xw + T.epsilon
-         let c = T.sum x2w + T.epsilon
-         let d = T.sum x3w + T.epsilon
-         let e = T.sum x4w + T.epsilon
+         let a_0 = T.sum w
+         let b_0 = T.sum xw
+         let c_0 = T.sum x2w
+         let d_0 = T.sum x3w
+         let e_0 = T.sum x4w
+
+         let a = a_0 + T.epsilon
+         let b = b_0 + T.epsilon
+         let c = c_0 + T.epsilon
+         let d = d_0 + T.epsilon
+         let e = e_0 + T.epsilon
 
          -- degree 0
          let a0 = 1 / a
@@ -273,11 +279,17 @@ let loess_flat [n] [n_m] (xx: [n]i64)
                    in (w_j, xw_j, x2w_j, x3w_j, x4w_j)
                 ) xx_slice ww_slice |> unzip5
          -- then, compute fit and slope based on polynomial degree
-         let a = T.sum w + T.epsilon
-         let b = T.sum xw + T.epsilon
-         let c = T.sum x2w + T.epsilon
-         let d = T.sum x3w + T.epsilon
-         let e = T.sum x4w + T.epsilon
+         let a_0 = T.sum w
+         let b_0 = T.sum xw
+         let c_0 = T.sum x2w
+         let d_0 = T.sum x3w
+         let e_0 = T.sum x4w
+
+         let a = a_0 + T.epsilon
+         let b = b_0 + T.epsilon
+         let c = c_0 + T.epsilon
+         let d = d_0 + T.epsilon
+         let e = e_0 + T.epsilon
 
          -- degree 0
          let a0 = 1 / a
@@ -438,11 +450,17 @@ let loess_intragroup_simple [n] [n_m] (xx: [n]i64)
          let x3w = map2 (*) x x2w
          let x4w = map2 (*) x x3w
 
-         let a = T.sum w + T.epsilon
-         let b = T.sum xw + T.epsilon
-         let c = T.sum x2w + T.epsilon
-         let d = T.sum x3w + T.epsilon
-         let e = T.sum x4w + T.epsilon
+         let a_0 = T.sum w
+         let b_0 = T.sum xw
+         let c_0 = T.sum x2w
+         let d_0 = T.sum x3w
+         let e_0 = T.sum x4w
+
+         let a = a_0 + T.epsilon
+         let b = b_0 + T.epsilon
+         let c = c_0 + T.epsilon
+         let d = d_0 + T.epsilon
+         let e = e_0 + T.epsilon
 
          let det1 = 1 / (a * c - b * b)
          let a11 = c * det1
